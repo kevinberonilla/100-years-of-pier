@@ -1,0 +1,170 @@
+@mixin animated($side: all, $duration: 250ms, $function: ease) {
+    transition: $side $duration $function;
+}
+@mixin column-width($width, $affix) {
+    &-#{$affix} {
+        width: $width;
+    }
+}
+@mixin column-margin($margin, $affix) {
+    &-#{$affix} {
+        margin-left: $margin;
+    }
+}
+@mixin column-float-right-margin($margin, $affix) {
+    &-#{$affix} {
+        margin-left: 0;
+        margin-right: $margin;
+    }
+}
+@mixin breakpoint-columns($establish) {
+    .column {
+        @each $column in $column-list {
+            &.#{nth($column, 1)} {
+                @include column-width(nth($column, 2), $establish);
+            }
+        }
+        @each $column in $column-list {
+            &.margin-#{nth($column, 1)} {
+                @include column-margin(nth($column, 2), $establish);
+            }
+        }
+        &.float-right {
+            @each $column in $column-list {
+                &.margin-#{nth($column, 1)} {
+                    @include column-float-right-margin(nth($column, 2), $establish);
+                }
+            }
+        }
+    }
+}
+@mixin block-adjustment-classes($property-value, $side-value, $pixels) {
+    @if (nth($property-value, 1) == b) { // If border
+        @if (nth($side-value, 1) == a) { // If all sides
+            border-width: #{$pixels}px;
+        } @else {
+            border-#{nth($side-value, 2)}-width: #{$pixels}px;
+        }
+    } @else {
+        @if (nth($side-value, 1) == a) { // If all sides
+            #{nth($property-value, 2)}: #{$pixels}px;
+        } @else {
+            #{nth($property-value, 2)}-#{nth($side-value, 2)}: #{$pixels}px;
+        }
+    }
+}
+@mixin adjustments($breakpoint: null) {
+    @if ($breakpoint) {
+        &-pos {
+            @each $position in $position-list {
+                &-#{nth($position, 1)}-#{$breakpoint} {
+                    position: #{nth($position, 2)}
+                }
+            }
+        }
+        &-d {
+            @each $display in $display-list {
+                &-#{nth($display, 1)}-#{$breakpoint} {
+                    display: #{nth($display, 2)}
+                }
+            }
+        }
+        &-ta {
+            @each $text-align in $text-align-list {
+                &-#{nth($text-align, 1)}-#{$breakpoint} {
+                    text-align: #{nth($text-align, 2)}
+                }
+            }
+        }
+        &-f {
+            @each $float in $float-list {
+                &-#{nth($float, 1)}-#{$breakpoint} {
+                    float: #{nth($float, 2)}
+                }
+            }
+        }
+        &-va {
+            @each $vertical-align in $vertical-align-list {
+                &-#{nth($vertical-align, 1)}-#{$breakpoint} {
+                    vertical-align: #{nth($vertical-align, 2)}
+                }
+            }
+        }
+        &-c {
+            @each $cursor in $cursor-list {
+                &-#{nth($cursor, 1)}-#{$breakpoint} {
+                    cursor: #{nth($cursor, 2)}
+                }
+            }
+        }
+        @each $block-property in $block-property-list {
+            &-#{nth($block-property, 1)} {
+                @each $side in $side-list {
+                    &-#{nth($side, 1)} {
+                        @for $i from 0 through $adjustment-max {
+                            &-#{$i}-#{$breakpoint} {
+                                @include block-adjustment-classes($block-property, $side, $i);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } @else {
+        &-pos {
+            @each $position in $position-list {
+                &-#{nth($position, 1)} {
+                    position: #{nth($position, 2)}
+                }
+            }
+        }
+        &-d {
+            @each $display in $display-list {
+                &-#{nth($display, 1)} {
+                    display: #{nth($display, 2)}
+                }
+            }
+        }
+        &-ta {
+            @each $text-align in $text-align-list {
+                &-#{nth($text-align, 1)} {
+                    text-align: #{nth($text-align, 2)}
+                }
+            }
+        }
+        &-f {
+            @each $float in $float-list {
+                &-#{nth($float, 1)} {
+                    float: #{nth($float, 2)}
+                }
+            }
+        }
+        &-va {
+            @each $vertical-align in $vertical-align-list {
+                &-#{nth($vertical-align, 1)} {
+                    vertical-align: #{nth($vertical-align, 2)}
+                }
+            }
+        }
+        &-c {
+            @each $cursor in $cursor-list {
+                &-#{nth($cursor, 1)} {
+                    cursor: #{nth($cursor, 2)}
+                }
+            }
+        }
+        @each $block-property in $block-property-list {
+            &-#{nth($block-property, 1)} {
+                @each $side in $side-list {
+                    &-#{nth($side, 1)} {
+                        @for $i from 0 through $adjustment-max {
+                            &-#{$i} {
+                                @include block-adjustment-classes($block-property, $side, $i);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

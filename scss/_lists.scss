@@ -1,0 +1,77 @@
+$column-list: (
+    (span-0, 0),
+    (span-1, 8.333%),
+    (span-2, 16.666%),
+    (span-3, 25%),
+    (span-4, 33.333%),
+    (span-5, 41.666%),
+    (span-6, 50%),
+    (span-7, 58.333%),
+    (span-8, 66.666%),
+    (span-9, 75%),
+    (span-10, 83.333%),
+    (span-11, 91.666%),
+    (span-12, 100%)
+);
+$block-property-list: (
+    (m, margin),
+    (p, padding),
+    (b, border)
+);
+$side-list: (
+    (t, top),
+    (r, right),
+    (b, bottom),
+    (l, left),
+    (a, all)
+);
+$display-list: (
+    (n, none),
+    (b, block),
+    (ib, inline-block),
+    (i, inline),
+    (t, table),
+    (tr, table-row),
+    (tc, table-cell),
+    (li, list-item)
+);
+$position-list: (
+    (s, static),
+    (r, relative),
+    (a, absolute),
+    (f, fixed),
+);
+$text-align-list: (
+    (c, center),
+    (l, left),
+    (r, right),
+    (j, justify)
+);
+$float-list: (
+    (l, left),
+    (r, right),
+    (n, none)
+);
+$vertical-align-list: (
+    (t, top),
+    (tt, text-top),
+    (m, middle),
+    (bl, baseline),
+    (b, bottom),
+    (tb, text-bottom)
+);
+$cursor-list: (
+    (p, pointer),
+    (na, not-allowed),
+    (t, text),
+    (h, help),
+    (nd, no-drop),
+    (w, wait),
+    (c, cell),
+    (m, move),
+    (n, none),
+    (zi, zoom-in),
+    (zo, zoom-out),
+    (a, alias),
+    (i, initial)
+);
