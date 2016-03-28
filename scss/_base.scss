@@ -17,7 +17,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font-family: $font-stack;
+    font-family: $font-stack-primary;
     font-size: $font-size;
     line-height: $line-height;
     &.disable-scroll {

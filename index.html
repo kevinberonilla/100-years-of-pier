@@ -1,22 +1,61 @@
 <!doctype html>
 <html>
     <head>
-        <meta name="robots" content="noindex, nofollow">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>Centennial Vision | Navy Pier</title>
-        <link rel="stylesheet" type="text/css" href="css/main.min.css">
+        <link rel="stylesheet" type="text/css" href="http://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.circular-carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
         <!--[if lt IE 9]>
             <script src="js/html5shiv.min.js"></script>
             <script src="js/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
-        <section id="home">
-            <div class="content">
-                Test
+        <header>
+            <button id="open-nav-button">Open Nav</button>
+        </header>
+        <nav>
+            <button id="close-nav-button">Close Nav</button>
+            <ul>
+                <li>
+                    <a href="#section-1">
+                        <span class="vertical-align">Section 1</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#section-2">
+                        <span class="vertical-align">Section 2</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#section-3">
+                        <span class="vertical-align">Section 3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#section-4">
+                        <span class="vertical-align">Section 4</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section id="home" class="full-screen-height">
+            <div class="content title full-parent-height">
+                <div class="vertical-align">
+                    Home
+                </div>
             </div>
         </section>
+        <section id="section-1" class="double-screen-height">
+            <div class="content">
+                Section 1
+            </div>
+        </section>
+        <footer>
+            Footer
+        </footer>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script src="js/jquery.min.js"></script>
         <script src="js/requestAnimationFrame.min.js"></script>
@@ -24,6 +63,7 @@
         <script src="js/jquery.parallax.min.js"></script>
         <script src="js/scrollreveal.min.js"></script>
         <script src="js/matchMedia.min.js"></script>
-        <script src="js/main.min.js"></script>
+        <script src="js/jquery.circular-carousel.min.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
