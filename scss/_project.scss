@@ -28,6 +28,15 @@ body {
         
     }
 }
+.video-bg {
+    position: absolute;
+    z-index: 1;
+    min-width: 105%;
+    min-height: 105%;
+    width: auto;
+    height: auto;
+    background-size: cover;
+}
 header {
     @include animated;
     position: fixed;

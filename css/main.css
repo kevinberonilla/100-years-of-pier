@@ -480,6 +480,15 @@ body {
     opacity: 1;
     display: inline-block; }
 
+.video-bg {
+  position: absolute;
+  z-index: 1;
+  min-width: 105%;
+  min-height: 105%;
+  width: auto;
+  height: auto;
+  background-size: cover; }
+
 header, footer {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;

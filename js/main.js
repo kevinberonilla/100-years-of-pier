@@ -57,6 +57,49 @@ $(document).ready(function() {
     $(window).resize(calculateFullParentHeight);
     
     /* ----------------------------------------
+    Video Background Functions
+    ---------------------------------------- */    
+    var videoBg = $('.video-bg'),
+        hero = $('#hero'),
+        tabletPortrainBreakpoint = 768,
+        isMobile,
+        scrollPos,
+        adjustedPos,
+        blurVal,
+        videoOffset,
+        windowHeight;
+    
+    if (matchMedia('only screen and (max-width: ' + tabletPortraitBreakpoint + 'px)').matches) { // Don't load the video for tablet portrait and smaller
+        videoBg.remove();
+        isMobile = true;
+    }
+    
+    function setCenter() {
+        var heroWidth = hero.width(),
+            heroHeight = hero.height(),
+            videoBgWidth = videoBg.width(),
+            videoBgHeight = videoBg.height(),
+            newPosX = (heroWidth / 2) - (videoBgWidth / 2) + 'px',
+            newPosY = (heroHeight / 2) - (videoBgHeight / 2) + 120 + 'px';
+        
+        videoBg.css({
+            'left': newPosX,
+            'top': newPosY
+        });
+    }
+    
+    function playVideo() {
+        document.getElementById('video-bg').play();
+    }
+    
+    if (!isMobile && videoBg.length > 0) {
+        $(window).load(playVideo);
+    }
+    
+    $(window).resize(setCenter);
+    $(window).load(setCenter);
+    
+    /* ----------------------------------------
     Nav Functions
     ---------------------------------------- */
     var navEntry = $('nav > ul > li'),
