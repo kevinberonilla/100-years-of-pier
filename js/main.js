@@ -7,8 +7,10 @@ $(document).ready(function() {
     $(window).load(function() {
         var homeTitle = $('#home .title');
         
-        homeTitle.animate({
-            width: '600px'
+        setTimeout(function() {
+            homeTitle.animate({
+                width: '600px'
+            }, 1500);
         }, 1000);
         
         $('body').addClass('loaded');
@@ -60,44 +62,45 @@ $(document).ready(function() {
     Video Background Functions
     ---------------------------------------- */    
     var videoBg = $('.video-bg'),
-        hero = $('#hero'),
-        tabletPortrainBreakpoint = 768,
         isMobile,
         scrollPos,
         adjustedPos,
-        blurVal,
         videoOffset,
         windowHeight;
     
-    if (matchMedia('only screen and (max-width: ' + tabletPortraitBreakpoint + 'px)').matches) { // Don't load the video for tablet portrait and smaller
+    if (matchMedia('only screen and (max-width: 768px)').matches) { // Don't load the video for tablet portrait and smaller
         videoBg.remove();
         isMobile = true;
     }
     
     function setCenter() {
-        var heroWidth = hero.width(),
-            heroHeight = hero.height(),
-            videoBgWidth = videoBg.width(),
-            videoBgHeight = videoBg.height(),
-            newPosX = (heroWidth / 2) - (videoBgWidth / 2) + 'px',
-            newPosY = (heroHeight / 2) - (videoBgHeight / 2) + 120 + 'px';
-        
-        videoBg.css({
-            'left': newPosX,
-            'top': newPosY
+        videoBg.each(function() {
+            var pageWidth = page.width(),
+                pageHeight = page.height(),
+                videoBgWidth = $(this).width(),
+                videoBgHeight = $(this).height(),
+                newPosX = (pageWidth / 2) - (videoBgWidth / 2) + 'px',
+                newPosY = (pageHeight / 2) - (videoBgHeight / 2) + 'px';
+            
+            $(this).css({
+                'left': newPosX,
+                'top': newPosY
+            });
         });
     }
     
     function playVideo() {
-        document.getElementById('video-bg').play();
-    }
-    
-    if (!isMobile && videoBg.length > 0) {
-        $(window).load(playVideo);
+        videoBg.each(function() {
+            $(this).get(0).play();
+        });
     }
     
     $(window).resize(setCenter);
     $(window).load(setCenter);
+    
+    if (!isMobile && videoBg.length > 0) {
+        $(window).load(playVideo);
+    }
     
     /* ----------------------------------------
     Nav Functions

@@ -479,10 +479,15 @@ body {
   body.nav-open #close-nav-button {
     opacity: 1;
     display: inline-block; }
+  body.loaded .video-bg {
+    opacity: 1; }
 
 .video-bg {
-  position: absolute;
-  z-index: 1;
+  -webkit-transition: all 1000ms ease;
+  transition: all 1000ms ease;
+  opacity: 0;
+  position: fixed;
+  z-index: -1;
   min-width: 105%;
   min-height: 105%;
   width: auto;
@@ -566,8 +571,7 @@ nav {
 section {
   width: 100%;
   position: relative;
-  z-index: 1;
-  background-color: #333; }
+  z-index: 1; }
   section .intro {
     position: relative;
     background-color: #666; }
@@ -586,7 +590,6 @@ section {
     opacity: 1; }
 
 #home {
-  background: #ccc;
   position: fixed;
   top: 0;
   z-index: 0; }
