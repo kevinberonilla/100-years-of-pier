@@ -110,7 +110,21 @@ section {
     width: 100%;
     position: relative;
     z-index: 1;
-    background-color: #ccc;
+    background-color: #333;
+    .intro {
+        position: relative;
+        background-color: #666;
+        .overlay {
+            display: block;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: $color-intro-overlay;
+        }
+    }
     .content {
         @include animated;
         opacity: 1;
@@ -127,7 +141,7 @@ section {
     .title {
         transition: none;
         width: 100%;
-        background-color: rgba(black, 0.7);
+        background-color: $color-title-overlay;
         margin: 0 auto;
         text-align: center;
     }

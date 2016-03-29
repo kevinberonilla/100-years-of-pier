@@ -558,7 +558,19 @@ section {
   width: 100%;
   position: relative;
   z-index: 1;
-  background-color: #ccc; }
+  background-color: #333; }
+  section .intro {
+    position: relative;
+    background-color: #666; }
+    section .intro .overlay {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(59, 66, 88, 0.5); }
   section .content {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -575,7 +587,7 @@ section {
     -webkit-transition: none;
     transition: none;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.75);
     margin: 0 auto;
     text-align: center; }
 

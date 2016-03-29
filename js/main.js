@@ -122,18 +122,45 @@ $(document).ready(function() {
     var home = $('#home');
     
     function adjustOpacity() {
-        var multiplier = multiplier || 1,
-            scrollPos = $(window).scrollTop();
+        var scrollPos = $(window).scrollTop();
         
         if (scrollPos <= windowHeight) {
             home.css('opacity', ((windowHeight - scrollPos) / 1000));
-            console.log('scroll');
         }
     }
     
-    $(window).scroll(function() {
-        requestAnimationFrame(adjustOpacity);
-    });
+    /* ----------------------------------------
+    Section Scroll Functions
+    ---------------------------------------- */
+    var sectionIntro = $('section .intro');
     
-    adjustOpacity();
+    function revealIntroBg() {
+        var scrollPos = $(window).scrollTop();
+        console.log('scroll');
+        sectionIntro.each(function() {
+            console.log(this);
+            var overlay = $('.overlay', this),
+                offsetTop = $(this).offset().top,
+                offsetBottom = $(this).offset().bottom;
+            
+            if (offsetTop <= scrollPos && offsetBottom >= scrollPos) {
+                overlay.css('opacity', ((windowHeight - scrollPos) / 1000));
+                console.log('success');
+            }
+        });
+    }
+    
+    /* ----------------------------------------
+    requestAnimationFrame Functions
+    ---------------------------------------- */
+    function animate() {
+        adjustOpacity();
+        revealIntroBg();
+    }
+    
+    animate();
+        
+    $(window).scroll(function() {
+        requestAnimationFrame(animate);
+    });
 });
