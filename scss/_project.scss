@@ -125,7 +125,6 @@ section {
     z-index: 1;
     .intro {
         position: relative;
-        background-color: #666;
         .overlay {
             display: block;
             position: absolute;
@@ -135,6 +134,12 @@ section {
             left: 0;
             bottom: 0;
             background-color: $color-intro-overlay;
+        }
+        .underlay {
+            @extend .overlay;
+            position: fixed;
+            z-index: -1;
+            background-color: #333;
         }
     }
     .content {

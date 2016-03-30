@@ -165,13 +165,16 @@ $(document).ready(function() {
     /* ----------------------------------------
     Home Scroll Functions
     ---------------------------------------- */
-    var home = $('#home');
+    var home = $('#home'),
+        homeHeight = home.height();
     
     function adjustOpacity() {
         var scrollPos = $(window).scrollTop();
         
         if (scrollPos <= windowHeight) {
-            home.css('opacity', ((windowHeight - scrollPos) / 1000));
+            home.css('opacity', ((homeHeight - scrollPos) / 1000));
+        } else {
+            home.css('opacity', 0);
         }
     }
     
@@ -182,16 +185,23 @@ $(document).ready(function() {
     
     function revealIntroBg() {
         var scrollPos = $(window).scrollTop();
-        console.log('scroll');
         sectionIntro.each(function() {
-            console.log(this);
-            var overlay = $('.overlay', this),
-                offsetTop = $(this).offset().top,
-                offsetBottom = $(this).offset().bottom;
+            var self = $(this),
+                overlay = $('.overlay', self),
+                underlay = $('.underlay', self),
+                thisHeight = self.height(),
+                offsetTop = self.offset().top,
+                offsetBottom = offsetTop + thisHeight,
+                overlayHeight = overlay.height();
             
             if (offsetTop <= scrollPos && offsetBottom >= scrollPos) {
-                overlay.css('opacity', ((windowHeight - scrollPos) / 1000));
-                console.log('success');
+                underlay.css('position', 'fixed');
+                underlay.css('opacity', ((offsetTop + thisHeight) - scrollPos) / 1000);
+                overlay.css('opacity', ((offsetTop + overlayHeight) - (scrollPos * 2)) / 1000);
+                console.log('scroll');
+            } else {
+                underlay.css('position', 'absolute');
+                overlay.css('opacity', 1);
             }
         });
     }

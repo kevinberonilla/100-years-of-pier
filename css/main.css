@@ -573,9 +573,8 @@ section {
   position: relative;
   z-index: 1; }
   section .intro {
-    position: relative;
-    background-color: #666; }
-    section .intro .overlay {
+    position: relative; }
+    section .intro .overlay, section .intro .underlay {
       display: block;
       position: absolute;
       z-index: 1;
@@ -584,6 +583,10 @@ section {
       left: 0;
       bottom: 0;
       background-color: rgba(59, 66, 88, 0.5); }
+    section .intro .underlay {
+      position: fixed;
+      z-index: -1;
+      background-color: #333; }
   section .content {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
