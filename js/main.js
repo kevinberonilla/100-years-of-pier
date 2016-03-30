@@ -181,15 +181,16 @@ $(document).ready(function() {
     /* ----------------------------------------
     Section Scroll Functions
     ---------------------------------------- */
-    var sectionIntro = $('section .intro');
+    var section = $('section');
     
     function revealIntroBg() {
         var scrollPos = $(window).scrollTop();
-        sectionIntro.each(function() {
+        section.each(function() {
             var self = $(this),
-                overlay = $('.overlay', self),
-                underlay = $('.underlay', self),
-                thisHeight = self.height(),
+                intro = $('.intro', self),
+                overlay = $('.overlay', intro),
+                underlay = $('.underlay', intro),
+                thisHeight = intro.height(),
                 offsetTop = self.offset().top,
                 offsetBottom = offsetTop + thisHeight,
                 overlayHeight = overlay.height();
@@ -201,6 +202,7 @@ $(document).ready(function() {
                 console.log('scroll');
             } else {
                 underlay.css('position', 'absolute');
+                underlay.css('opacity', 1);
                 overlay.css('opacity', 1);
             }
         });
