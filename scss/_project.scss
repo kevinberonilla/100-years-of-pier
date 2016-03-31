@@ -112,12 +112,6 @@ nav {
     @extend #open-nav-button;
     display: none;
 }
-/*.full-screen-height {
-    min-height: 100vh;
-}
-.double-screen-height {
-    min-height: 200vh;
-}*/
 section {
     width: 100%;
     position: relative;
@@ -132,8 +126,7 @@ section {
         }
     }
     .intro {
-        position: relative;
-        /*.overlay {
+        .overlay {
             display: block;
             position: absolute;
             z-index: 1;
@@ -149,7 +142,7 @@ section {
             z-index: -1;
             background-color: #333;
             background-size: cover;
-        }*/
+        }
     }
     .content {
         @include animated;

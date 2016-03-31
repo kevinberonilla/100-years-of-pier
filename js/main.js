@@ -172,6 +172,8 @@ $(document).ready(function() {
         animationTime: 2000,
         keyboard: true,
         direction: 'vertical',
+        pagination: false,
+        loop: false,
         beforeMove: function() { console.log('beforeMove'); },
         afterMove: function() { console.log('afterMove'); },
     });
