@@ -9,40 +9,40 @@ $(document).ready(function() {
         
         setTimeout(function() {
             homeTitle.animate({
-                width: '600px'
+                width: '640px'
             }, 1500);
         }, 1000);
         
         $('body').addClass('loaded');
     });
     
-    /* ----------------------------------------
-    Full Screen Height Functions
-    ---------------------------------------- */
-    var fullScreenHeight = $('.full-screen-height'),
-        doubleScreenHeight = $('.double-screen-height'),
-        firstSection = $('#home + section'),
-        windowWidth = $(window).width(),
-        windowHeight = $(window).height();
-    
-    function recalculateFullScreenHeight(multiplier) {
-        var newWindowWidth = $(window).width();
-        
-        if (windowWidth != newWindowWidth) {
-            windowWidth = newWindowWidth;
-            
-            windowHeight = $(window).height();
-            
-            fullScreenHeight.css('min-height', windowHeight + 'px');
-            doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
-            firstSection.css('margin-top', windowHeight + 'px');
-        }
-    }
-    
-    fullScreenHeight.css('min-height', windowHeight + 'px');
-    doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
-    firstSection.css('margin-top', windowHeight + 'px');
-    $(window).resize(recalculateFullScreenHeight);
+//    /* ----------------------------------------
+//    Full Screen Height Functions
+//    ---------------------------------------- */
+//    var fullScreenHeight = $('.full-screen-height'),
+//        doubleScreenHeight = $('.double-screen-height'),
+//        firstSection = $('#home + section'),
+//        windowWidth = $(window).width(),
+//        windowHeight = $(window).height();
+//    
+//    function recalculateFullScreenHeight(multiplier) {
+//        var newWindowWidth = $(window).width();
+//        
+//        if (windowWidth != newWindowWidth) {
+//            windowWidth = newWindowWidth;
+//            
+//            windowHeight = $(window).height();
+//            
+//            fullScreenHeight.css('min-height', windowHeight + 'px');
+//            doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
+//            firstSection.css('margin-top', windowHeight + 'px');
+//        }
+//    }
+//    
+//    fullScreenHeight.css('min-height', windowHeight + 'px');
+//    doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
+//    firstSection.css('margin-top', windowHeight + 'px');
+//    $(window).resize(recalculateFullScreenHeight);
     
     /* ----------------------------------------
     Full Parent Height Functions
@@ -112,7 +112,8 @@ $(document).ready(function() {
         closeNavButton = $('#close-nav-button');
     
     function calculatenavEntryHeight() {
-        var linkHeight = (windowHeight / linkCount) - 1;
+        var currentWindowHeight = $(window).height(),
+            linkHeight = (currentWindowHeight / linkCount) - 1;
         
         navEntry.css('height', linkHeight + 'px');
     }
@@ -153,9 +154,9 @@ $(document).ready(function() {
         }, 250)
     });
     
-    page.on('scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove', function() { // Prevent scroll hijacking
-        page.stop();
-    });
+//    page.on('scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove', function() { // Prevent scroll hijacking
+//        page.stop();
+//    });
     
     calculatenavEntryHeight();
     $(window).resize(calculatenavEntryHeight);
@@ -163,62 +164,75 @@ $(document).ready(function() {
     closeNavButton.click(closeNav);
     
     /* ----------------------------------------
-    Home Scroll Functions
+    One Page Scroll Functions
     ---------------------------------------- */
-    var home = $('#home'),
-        homeHeight = home.height();
-    
-    function adjustOpacity() {
-        var scrollPos = $(window).scrollTop();
-        
-        if (scrollPos <= windowHeight) {
-            home.css('opacity', ((homeHeight - scrollPos) / 1000));
-        } else {
-            home.css('opacity', 0);
-        }
-    }
-    
-    /* ----------------------------------------
-    Section Scroll Functions
-    ---------------------------------------- */
-    var section = $('section');
-    
-    function revealIntroBg() {
-        var scrollPos = $(window).scrollTop();
-        section.each(function() {
-            var self = $(this),
-                intro = $('.intro', self),
-                overlay = $('.overlay', intro),
-                underlay = $('.underlay', intro),
-                thisHeight = intro.height(),
-                offsetTop = self.offset().top,
-                offsetBottom = offsetTop + thisHeight,
-                overlayHeight = overlay.height();
-            
-            if (offsetTop <= scrollPos && offsetBottom >= scrollPos) {
-                underlay.css('position', 'fixed');
-                underlay.css('opacity', ((offsetTop + thisHeight) - scrollPos) / 1000);
-                overlay.css('opacity', ((offsetTop + overlayHeight) - (scrollPos * 2)) / 1000);
-                console.log('scroll');
-            } else {
-                underlay.css('position', 'absolute');
-                underlay.css('opacity', 1);
-                overlay.css('opacity', 1);
-            }
-        });
-    }
-    
-    /* ----------------------------------------
-    requestAnimationFrame Functions
-    ---------------------------------------- */
-    function animate() {
-        adjustOpacity();
-        revealIntroBg();
-    }
-    
-    animate();
-        
-    $(window).scroll(function() {
-        requestAnimationFrame(animate);
+    $('#main').onepage_scroll({
+        sectionContainer: 'section',
+        easing: 'ease',
+        animationTime: 2000,
+        keyboard: true,
+        direction: 'vertical',
+        beforeMove: function() { console.log('beforeMove'); },
+        afterMove: function() { console.log('afterMove'); },
     });
+    
+//    /* ----------------------------------------
+//    Home Scroll Functions
+//    ---------------------------------------- */
+//    var home = $('#home'),
+//        homeHeight = home.height();
+//    
+//    function adjustOpacity() {
+//        var scrollPos = $(window).scrollTop();
+//        
+//        if (scrollPos <= windowHeight) {
+//            home.css('opacity', ((homeHeight - scrollPos) / 1000));
+//        } else {
+//            home.css('opacity', 0);
+//        }
+//    }
+//    
+//    /* ----------------------------------------
+//    Section Scroll Functions
+//    ---------------------------------------- */
+//    var section = $('section');
+//    
+//    function revealIntroBg() {
+//        var scrollPos = $(window).scrollTop();
+//        section.each(function() {
+//            var self = $(this),
+//                intro = $('.intro', self),
+//                overlay = $('.overlay', intro),
+//                underlay = $('.underlay', intro),
+//                introheight = intro.height(),
+//                thisHeight = self.height(),
+//                overlayHeight = overlay.height(),
+//                offsetTop = self.offset().top,
+//                offsetBottom = offsetTop + overlayHeight,
+//                overlayHeight = overlay.height();
+//            
+//            if (offsetTop <= scrollPos && (overlayHeight * 2) >= scrollPos) {
+////                underlay.css('opacity', ((offsetTop + (overlayHeight * 2)) - scrollPos) / 1000); // THIS USED TO WORK
+////                overlay.css('opacity', ((offsetTop + overlayHeight) - scrollPos) / 1000);
+//                overlay.css('opacity', (offsetTop + overlayHeight) / (scrollPos + overlayHeight));
+//            } else {
+//                underlay.css('opacity', 1);
+//                overlay.css('opacity', 1);
+//            }
+//        });
+//    }
+//    
+//    /* ----------------------------------------
+//    requestAnimationFrame Functions
+//    ---------------------------------------- */
+//    function animate() {
+//        adjustOpacity();
+//        revealIntroBg();
+//    }
+//    
+//    animate();
+//        
+//    $(window).scroll(function() {
+//        requestAnimationFrame(animate);
+//    });
 });

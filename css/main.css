@@ -58,7 +58,7 @@ img {
   max-width: 100%; }
 
 .vertical-align {
-  position: relative;
+  position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -486,13 +486,14 @@ body {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
-  position: fixed;
+  position: absolute;
   z-index: -1;
   min-width: 105%;
   min-height: 105%;
   width: auto;
   height: auto;
-  background-size: cover; }
+  background-size: cover;
+  pointer-events: none; }
 
 header, footer {
   -webkit-transition: all 250ms ease;
@@ -511,7 +512,7 @@ nav {
   transition: all 250ms ease;
   opacity: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   z-index: 9999;
@@ -562,49 +563,46 @@ nav {
 #close-nav-button {
   display: none; }
 
-.full-screen-height {
-  min-height: 100vh; }
-
+/*.full-screen-height {
+    min-height: 100vh;
+}
 .double-screen-height {
-  min-height: 200vh; }
-
+    min-height: 200vh;
+}*/
 section {
   width: 100%;
   position: relative;
   z-index: 1; }
-  section .intro {
-    position: relative; }
-    section .intro .overlay, section .intro .underlay {
-      display: block;
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(59, 66, 88, 0.5); }
-    section .intro .underlay {
-      position: fixed;
-      z-index: 0;
-      background-color: #333; }
-  section .content {
-    -webkit-transition: all 250ms ease;
-    transition: all 250ms ease;
-    opacity: 1; }
-
-#home {
-  position: fixed;
-  top: 0;
-  z-index: 0; }
-  #home + section {
-    margin-top: 100vh; }
-  #home .title {
+  section#home .title {
     -webkit-transition: none;
     transition: none;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     margin: 0 auto;
     text-align: center; }
+  section .intro {
+    position: relative;
+    /*.overlay {
+            display: block;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: $color-intro-overlay;
+            pointer-events: none;
+        }
+        .underlay {
+            @extend .overlay;
+            z-index: -1;
+            background-color: #333;
+            background-size: cover;
+        }*/ }
+  section .content {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    opacity: 1; }
 
 /* ----------------------------------------
 Overrides
