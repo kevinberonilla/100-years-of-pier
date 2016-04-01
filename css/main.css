@@ -479,10 +479,15 @@ body {
   body.nav-open #close-nav-button {
     opacity: 1;
     display: inline-block; }
-  body.loaded .video-bg {
+  body.nav-open #home #title {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease; }
+  body.loaded .video-background {
     opacity: 1; }
+  body.loaded #home #title {
+    width: 640px; }
 
-.video-bg {
+.video-background {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
@@ -494,6 +499,9 @@ body {
   height: auto;
   background-size: cover;
   pointer-events: none; }
+
+.full-parent-height {
+  position: relative; }
 
 header, footer {
   -webkit-transition: all 250ms ease;
@@ -563,35 +571,39 @@ nav {
 #close-nav-button {
   display: none; }
 
+#overlay, #underlay {
+  display: none;
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(59, 66, 88, 0.75);
+  pointer-events: none; }
+
+#underlay {
+  z-index: -1;
+  background-color: rgba(204, 204, 204, 0.75);
+  background-size: cover; }
+
 section {
   width: 100%;
   position: relative;
   z-index: 1; }
-  section#home .title {
-    -webkit-transition: none;
-    transition: none;
+  section#home #title {
+    -webkit-transition: all 2000ms 250ms ease;
+    transition: all 2000ms 250ms ease;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     margin: 0 auto;
     text-align: center; }
-  section .intro .overlay, section .intro .underlay {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(59, 66, 88, 0.75);
-    pointer-events: none; }
-  section .intro .underlay {
-    z-index: -1;
-    background-color: #333;
-    background-size: cover; }
   section .content {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
-    opacity: 1; }
+    opacity: 1;
+    position: relative;
+    z-index: 1; }
 
 /* ----------------------------------------
 Overrides

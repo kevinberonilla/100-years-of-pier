@@ -21,14 +21,24 @@ body {
             opacity: 1;
             display: inline-block;
         }
+        #home {
+            #title {
+                @include animated;
+            }
+        }
     }
     &.loaded {
-        .video-bg {
+        .video-background {
             opacity: 1;
+        }
+        #home {
+            #title {
+                width: 640px;
+            }
         }
     }
 }
-.video-bg {
+.video-background {
     @include animated(all, 1000ms, ease);
     opacity: 0;
     position: absolute;
@@ -39,6 +49,9 @@ body {
     height: auto;
     background-size: cover;
     pointer-events: none;
+}
+.full-parent-height {
+    position: relative;
 }
 header {
     @include animated;
@@ -112,13 +125,30 @@ nav {
     @extend #open-nav-button;
     display: none;
 }
+#overlay {
+    display: none;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $color-intro-overlay;
+    pointer-events: none;
+}
+#underlay {
+    @extend #overlay;
+    z-index: -1;
+    background-color: rgba(#ccc, 0.75);
+    background-size: cover;
+}
 section {
     width: 100%;
     position: relative;
     z-index: 1;
     &#home {
-        .title {
-            transition: none;
+        #title {
+            @include animated(all 2000ms);
             width: 100%;
             background-color: $color-title-overlay;
             margin: 0 auto;
@@ -126,26 +156,11 @@ section {
         }
     }
     .intro {
-        .overlay {
-            display: block;
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background-color: $color-intro-overlay;
-            pointer-events: none;
-        }
-        .underlay {
-            @extend .overlay;
-            z-index: -1;
-            background-color: #333;
-            background-size: cover;
-        }
     }
     .content {
         @include animated;
         opacity: 1;
+        position: relative;
+        z-index: 1;
     }
 }

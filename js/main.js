@@ -5,14 +5,6 @@ $(document).ready(function() {
     Page Load Functions
     ---------------------------------------- */
     $(window).load(function() {
-        var homeTitle = $('#home .title');
-        
-        setTimeout(function() {
-            homeTitle.animate({
-                width: '640px'
-            }, 1500);
-        }, 1000);
-        
         $('body').addClass('loaded');
     });
     
@@ -61,7 +53,7 @@ $(document).ready(function() {
     /* ----------------------------------------
     Video Background Functions
     ---------------------------------------- */    
-    var videoBg = $('.video-bg'),
+    var videoBackground = $('.video-background'),
         isMobile,
         scrollPos,
         adjustedPos,
@@ -69,18 +61,18 @@ $(document).ready(function() {
         windowHeight;
     
     if (matchMedia('only screen and (max-width: 768px)').matches) { // Don't load the video for tablet portrait and smaller
-        videoBg.remove();
+        videoBackground.remove();
         isMobile = true;
     }
     
     function setCenter() {
-        videoBg.each(function() {
+        videoBackground.each(function() {
             var pageWidth = page.width(),
                 pageHeight = page.height(),
-                videoBgWidth = $(this).width(),
-                videoBgHeight = $(this).height(),
-                newPosX = (pageWidth / 2) - (videoBgWidth / 2) + 'px',
-                newPosY = (pageHeight / 2) - (videoBgHeight / 2) + 'px';
+                videoBackgroundWidth = $(this).width(),
+                videoBackgroundHeight = $(this).height(),
+                newPosX = (pageWidth / 2) - (videoBackgroundWidth / 2) + 'px',
+                newPosY = (pageHeight / 2) - (videoBackgroundHeight / 2) + 'px';
             
             $(this).css({
                 'left': newPosX,
@@ -90,7 +82,7 @@ $(document).ready(function() {
     }
     
     function playVideo() {
-        videoBg.each(function() {
+        videoBackground.each(function() {
             $(this).get(0).play();
         });
     }
@@ -98,7 +90,7 @@ $(document).ready(function() {
     $(window).resize(setCenter);
     $(window).load(setCenter);
     
-    if (!isMobile && videoBg.length > 0) {
+    if (!isMobile && videoBackground.length > 0) {
         $(window).load(playVideo);
     }
     
@@ -166,16 +158,59 @@ $(document).ready(function() {
     /* ----------------------------------------
     One Page Scroll Functions
     ---------------------------------------- */
+    var underlay = $('#underlay'),
+        overlay = $('#overlay'),
+        homeVideo = $('#home-video'),
+        backgroundVideo = $('#background-video'),
+        title = $('#home #title');
+    
+    function manageIntros() {
+        var activeSection = $('section.active');
+        
+        if (activeSection.is('#home')) {
+            homeVideo.stop()
+                .fadeIn(1500);
+            
+            title.stop()
+                .fadeIn(1500);
+        } else {
+            homeVideo.stop()
+                .fadeOut(1500);
+            
+            title.stop()
+                .fadeOut(1500);
+        }
+        
+        if (activeSection.hasClass('has-overlay')) {
+            overlay.stop()
+                .fadeIn(1500);
+        } else {
+            overlay.stop()
+                .fadeOut(1500);
+        }
+        
+        if (activeSection.hasClass('has-underlay')) {
+            var underlayBackground = activeSection.data('underlay-background');
+            
+            underlay.css('background-image', 'url(' + underlayBackground + ')')
+                .stop()
+                .fadeIn(1500);
+        } else {
+            underlay.stop()
+                .fadeOut(1500);
+        }
+    }
+    
     $('#main').onepage_scroll({
         sectionContainer: 'section',
         easing: 'ease',
-        animationTime: 2000,
+        animationTime: 1500,
         keyboard: true,
         direction: 'vertical',
         pagination: false,
         loop: false,
-        beforeMove: function() { console.log('beforeMove'); },
-        afterMove: function() { console.log('afterMove'); },
+        beforeMove: manageIntros,
+        afterMove: function() { console.log('afterMove'); }
     });
     
 //    /* ----------------------------------------
