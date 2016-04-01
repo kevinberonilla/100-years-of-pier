@@ -1,6 +1,32 @@
+h4 {
+    font-size: 12px;
+    line-height: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    a,
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
+}
+
 body {
     background-color: black;
     color: white;
+    &.loaded {
+        .video-background {
+            opacity: 1;
+        }
+        header,
+        footer {
+            opacity: 1;
+        }
+        #home {
+            #title {
+                width: 640px;
+            }
+        }
+    }
     &.nav-open {
         section {
             .content {
@@ -11,7 +37,8 @@ body {
             opacity: 1;
             height: 100%;
         }
-        header, footer {
+        header,
+        footer {
             opacity: 0;
         }
         #open-nav-button {
@@ -27,17 +54,8 @@ body {
             }
         }
     }
-    &.loaded {
-        .video-background {
-            opacity: 1;
-        }
-        #home {
-            #title {
-                width: 640px;
-            }
-        }
-    }
 }
+
 .video-background {
     @include animated(all, 1000ms, ease);
     opacity: 0;
@@ -50,21 +68,26 @@ body {
     background-size: cover;
     pointer-events: none;
 }
+
 .full-parent-height {
     position: relative;
 }
+
 header {
     @include animated;
+    padding: 36px 40px;
     position: fixed;
     top: 0;
     z-index: 9998;
-    opacity: 1;
+    opacity: 0;
 }
+
 footer {
     @extend header;
     top: initial;
     bottom: 0;
 }
+
 nav {
     @include animated;
     opacity: 0;
@@ -93,7 +116,8 @@ nav {
                 top: 0;
                 opacity: 1;
             }
-            a, a:visited {
+            a,
+            a:visited {
                 @include animated;
                 background: transparent;
                 color: white;
@@ -113,18 +137,21 @@ nav {
         }
     }
 }
+
 #open-nav-button {
     @include animated;
     position: fixed;
     z-index: 9998;
-    top: 20px;
-    right: 20px;
+    top: 40px;
+    right: 40px;
     opacity: 1;
 }
+
 #close-nav-button {
     @extend #open-nav-button;
     display: none;
 }
+
 #overlay {
     display: none;
     position: fixed;
@@ -136,12 +163,29 @@ nav {
     background-color: $color-intro-overlay;
     pointer-events: none;
 }
+
 #underlay {
     @extend #overlay;
     z-index: -1;
     background-color: rgba(#ccc, 0.75);
     background-size: cover;
 }
+
+#vignette {
+    position: relative;
+    &:after {
+        box-shadow: inset 0 0 50vh $color-vignette;
+        position: fixed;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        content: '';
+        display: block;
+    }
+}
+
 section {
     width: 100%;
     position: relative;
@@ -153,9 +197,12 @@ section {
             background-color: $color-title-overlay;
             margin: 0 auto;
             text-align: center;
+            .logo {
+                display: inline-block;
+                width: 240px;
+                height: auto;
+            }
         }
-    }
-    .intro {
     }
     .content {
         @include animated;

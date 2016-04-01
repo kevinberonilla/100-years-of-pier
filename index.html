@@ -15,26 +15,22 @@
     </head>
     <body>
         <video id="background-video" class="video-background" muted loop style="background-image: url(images/water-bg.jpg);">
-            <source src="videos/big_buck_bunny.webm">
+            <!--<source src="videos/big_buck_bunny.webm">
             <source src="videos/big_buck_bunny.ogg">
-            <source src="videos/big_buck_bunny.mp4">
+            <source src="videos/big_buck_bunny.mp4">-->
         </video>
-        <video id="home-video" class="video-background" muted loop>
-            <source src="videos/big_buck_bunny.webm">
+        <video id="home-video" class="video-background" muted loop style="background-image: url(images/home-bg.png);">
+            <!--<source src="videos/big_buck_bunny.webm">
             <source src="videos/big_buck_bunny.ogg">
-            <source src="videos/big_buck_bunny.mp4">
+            <source src="videos/big_buck_bunny.mp4">-->
         </video>
         <header>
-            <button id="open-nav-button">Open Nav</button>
+            <h4><a href="https://navypier.com">Back to navypier.com</a></h4>
+            <a id="open-nav-button"><img src="images/menu-icon.png"></a>
         </header>
         <nav>
             <button id="close-nav-button">Close Nav</button>
             <ul>
-                <li>
-                    <a href="#home">
-                        <span class="vertical-align">Home</span>
-                    </a>
-                </li>
                 <li>
                     <a href="#section-1">
                         <span class="vertical-align">Section 1</span>
@@ -58,13 +54,14 @@
             </ul>
         </nav>
         <div id="underlay"></div>
+        <div id="vignette"></div>
         <div id="overlay"></div>
         <main id="main">
             <!-- Home -->
             <section id="home">
                 <div id="title" class="content full-parent-height">
-                    <div class="vertical-align">
-                        Home
+                    <div class="content vertical-align">
+                        <img src="images/logo-vertical.svg" class="logo">
                     </div>
                 </div>
             </section>

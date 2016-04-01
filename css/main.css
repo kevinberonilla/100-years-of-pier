@@ -464,15 +464,35 @@ Grid Styles
 /* ----------------------------------------
 Project Styles
 ---------------------------------------- */
+h4 {
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
+  h4 a,
+  h4 a:visited {
+    color: white;
+    text-decoration: none; }
+
 body {
   background-color: black;
   color: white; }
+  body.loaded .video-background {
+    opacity: 1; }
+  body.loaded header,
+  body.loaded footer,
+  body.loaded footer {
+    opacity: 1; }
+  body.loaded #home #title {
+    width: 640px; }
   body.nav-open section .content {
     opacity: 0; }
   body.nav-open nav {
     opacity: 1;
     height: 100%; }
-  body.nav-open header, body.nav-open footer, body.nav-open footer {
+  body.nav-open header,
+  body.nav-open footer,
+  body.nav-open footer {
     opacity: 0; }
   body.nav-open #open-nav-button, body.nav-open #close-nav-button {
     opacity: 0; }
@@ -482,10 +502,6 @@ body {
   body.nav-open #home #title {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease; }
-  body.loaded .video-background {
-    opacity: 1; }
-  body.loaded #home #title {
-    width: 640px; }
 
 .video-background {
   -webkit-transition: all 1000ms ease;
@@ -506,10 +522,11 @@ body {
 header, footer {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
+  padding: 36px 40px;
   position: fixed;
   top: 0;
   z-index: 9998;
-  opacity: 1; }
+  opacity: 0; }
 
 footer {
   top: initial;
@@ -543,7 +560,8 @@ nav {
       nav > ul > li.show {
         top: 0;
         opacity: 1; }
-      nav > ul > li a, nav > ul > li a:visited {
+      nav > ul > li a,
+      nav > ul > li a:visited {
         -webkit-transition: all 250ms ease;
         transition: all 250ms ease;
         background: transparent;
@@ -553,10 +571,12 @@ nav {
         height: 100%;
         text-decoration: none;
         vertical-align: middle; }
-        nav > ul > li a:hover, nav > ul > li a:visited:hover {
+        nav > ul > li a:hover,
+        nav > ul > li a:visited:hover {
           background-color: rgba(255, 255, 255, 0.7);
           color: black; }
-        nav > ul > li a span, nav > ul > li a:visited span {
+        nav > ul > li a span,
+        nav > ul > li a:visited span {
           display: block; }
 
 #open-nav-button, #close-nav-button {
@@ -564,8 +584,8 @@ nav {
   transition: all 250ms ease;
   position: fixed;
   z-index: 9998;
-  top: 20px;
-  right: 20px;
+  top: 40px;
+  right: 40px;
   opacity: 1; }
 
 #close-nav-button {
@@ -587,6 +607,19 @@ nav {
   background-color: rgba(204, 204, 204, 0.75);
   background-size: cover; }
 
+#vignette {
+  position: relative; }
+  #vignette:after {
+    box-shadow: inset 0 0 50vh rgba(0, 0, 0, 0.75);
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: '';
+    display: block; }
+
 section {
   width: 100%;
   position: relative;
@@ -598,6 +631,10 @@ section {
     background-color: rgba(0, 0, 0, 0.75);
     margin: 0 auto;
     text-align: center; }
+    section#home #title .logo {
+      display: inline-block;
+      width: 240px;
+      height: auto; }
   section .content {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
