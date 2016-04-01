@@ -464,15 +464,34 @@ Grid Styles
 /* ----------------------------------------
 Project Styles
 ---------------------------------------- */
-h4 {
+h2 {
+  font-size: 48px;
+  line-height: 56px;
+  text-transform: uppercase;
+  font-weight: 700; }
+
+h3 {
+  font-size: 30px;
+  line-height: 38px;
+  text-transform: uppercase;
+  font-weight: 700; }
+
+h4, section#home #title .scroll-message {
   font-size: 12px;
   line-height: 20px;
   text-transform: uppercase;
   letter-spacing: 2px; }
   h4 a,
-  h4 a:visited {
+  section#home #title .scroll-message a,
+  h4 a:visited, section#home #title .scroll-message a:visited {
     color: white;
     text-decoration: none; }
+
+.italic-heading {
+  font-size: 48px;
+  line-height: 56px;
+  font-family: Georgia, serif;
+  font-style: italic; }
 
 body {
   background-color: black;
@@ -485,7 +504,7 @@ body {
     opacity: 1; }
   body.loaded #home #title {
     width: 640px; }
-  body.nav-open section .content {
+  body.nav-open .content {
     opacity: 0; }
   body.nav-open nav {
     opacity: 1;
@@ -620,25 +639,60 @@ nav {
     content: '';
     display: block; }
 
+.logo-container {
+  text-align: center;
+  position: fixed;
+  z-index: 9998;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  display: inline-block; }
+  .logo-container img {
+    width: 220px;
+    height: auto; }
+  .logo-container.horizontal {
+    -webkit-transition: all 1000ms 250ms ease;
+    transition: all 1000ms 250ms ease;
+    opacity: 0;
+    pointer-events: none;
+    top: 20px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%); }
+    .logo-container.horizontal img {
+      width: 340px;
+      height: auto; }
+    .logo-container.horizontal.show {
+      opacity: 1; }
+
+.content {
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+  opacity: 1; }
+
 section {
   width: 100%;
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  min-height: 700px; }
   section#home #title {
     -webkit-transition: all 2000ms 250ms ease;
     transition: all 2000ms 250ms ease;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
-    margin: 0 auto;
-    text-align: center; }
-    section#home #title .logo {
-      display: inline-block;
-      width: 240px;
-      height: auto; }
+    margin: 0 auto; }
+    section#home #title .scroll-message {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+      width: 100%; }
+      section#home #title .scroll-message .scroll-arrow {
+        margin-top: 10px; }
+    section#home #title .italic-heading {
+      margin-top: 30px; }
   section .content {
-    -webkit-transition: all 250ms ease;
-    transition: all 250ms ease;
-    opacity: 1;
     position: relative;
     z-index: 1; }
 

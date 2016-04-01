@@ -1,3 +1,17 @@
+h2 {
+    font-size: 48px;
+    line-height: 56px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 38px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
 h4 {
     font-size: 12px;
     line-height: 20px;
@@ -8,6 +22,13 @@ h4 {
         color: white;
         text-decoration: none;
     }
+}
+
+.italic-heading {
+    font-size: 48px;
+    line-height: 56px;
+    font-family: $font-stack-secondary;
+    font-style: italic;
 }
 
 body {
@@ -28,10 +49,8 @@ body {
         }
     }
     &.nav-open {
-        section {
-            .content {
-                opacity: 0;
-            }
+        .content {
+            opacity: 0;
         }
         nav {
             opacity: 1;
@@ -186,27 +205,66 @@ nav {
     }
 }
 
+.logo-container {
+    text-align: center;
+    position: fixed;
+    z-index: 9998;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: inline-block;
+    img {
+        width: 220px;
+        height: auto;
+    }
+    &.horizontal {
+        @include animated(all 1000ms);
+        opacity: 0;
+        pointer-events: none;
+        top: 20px;
+        transform: translateX(-50%);
+        img {
+            width: 340px;
+            height: auto;
+        }
+        &.show {
+            opacity: 1;
+        }
+    }
+}
+
+.content {
+    @include animated;
+    opacity: 1;
+}
+
 section {
     width: 100%;
     position: relative;
     z-index: 1;
+    min-height: 700px;
     &#home {
         #title {
             @include animated(all 2000ms);
             width: 100%;
             background-color: $color-title-overlay;
             margin: 0 auto;
-            text-align: center;
-            .logo {
-                display: inline-block;
-                width: 240px;
-                height: auto;
+            .scroll-message {
+                @extend h4;
+                position: absolute;
+                bottom: 40px;
+                text-align: center;
+                width: 100%;
+                .scroll-arrow {
+                    margin-top: 10px;
+                }
+            }
+            .italic-heading {
+                margin-top: 30px;
             }
         }
     }
     .content {
-        @include animated;
-        opacity: 1;
         position: relative;
         z-index: 1;
     }

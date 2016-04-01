@@ -162,31 +162,36 @@ $(document).ready(function() {
         overlay = $('#overlay'),
         homeVideo = $('#home-video'),
         backgroundVideo = $('#background-video'),
-        title = $('#home #title');
+        title = $('#home #title'),
+        horizontalLogo = $('.logo-container.horizontal');
     
-    function manageIntros() {
+    function processBeforeMove() {
         var activeSection = $('section.active');
         
         if (activeSection.is('#home')) {
             homeVideo.stop()
-                .fadeIn(1500);
+                .fadeIn(1000);
             
             title.stop()
-                .fadeIn(1500);
+                .fadeIn(1000);
+            
+            horizontalLogo.removeClass('show');
         } else {
             homeVideo.stop()
-                .fadeOut(1500);
+                .fadeOut(1000);
             
             title.stop()
-                .fadeOut(1500);
+                .fadeOut(1000);
         }
         
         if (activeSection.hasClass('has-overlay')) {
             overlay.stop()
-                .fadeIn(1500);
+                .fadeIn(1000);
+            
+            horizontalLogo.removeClass('show');
         } else {
             overlay.stop()
-                .fadeOut(1500);
+                .fadeOut(1000);
         }
         
         if (activeSection.hasClass('has-underlay')) {
@@ -194,22 +199,28 @@ $(document).ready(function() {
             
             underlay.css('background-image', 'url(' + underlayBackground + ')')
                 .stop()
-                .fadeIn(1500);
+                .fadeIn(1000);
+            
+            horizontalLogo.removeClass('show');
         } else {
             underlay.stop()
-                .fadeOut(1500);
+                .fadeOut(1000);
+        }
+        
+        if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
+            horizontalLogo.addClass('show');
         }
     }
     
     $('#main').onepage_scroll({
         sectionContainer: 'section',
         easing: 'ease',
-        animationTime: 1500,
+        animationTime: 1000,
         keyboard: true,
         direction: 'vertical',
         pagination: false,
         loop: false,
-        beforeMove: manageIntros,
+        beforeMove: processBeforeMove,
         afterMove: function() { console.log('afterMove'); }
     });
     
