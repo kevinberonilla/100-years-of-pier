@@ -35,9 +35,6 @@ body {
     background-color: black;
     color: white;
     &.loaded {
-        .video-background {
-            opacity: 1;
-        }
         header,
         footer {
             opacity: 1;
@@ -86,6 +83,9 @@ body {
     height: auto;
     background-size: cover;
     pointer-events: none;
+    &.show {
+        opacity: 1;
+    }
 }
 
 .full-parent-height {
@@ -172,7 +172,8 @@ nav {
 }
 
 #overlay {
-    display: none;
+    @include animated(all 1000ms);
+    opacity: 0;
     position: fixed;
     z-index: 0;
     top: 0;
@@ -180,7 +181,11 @@ nav {
     left: 0;
     bottom: 0;
     background-color: $color-intro-overlay;
+    background-blend-mode: multiply;
     pointer-events: none;
+    &.show {
+        opacity: 1;
+    }
 }
 
 #underlay {
@@ -188,12 +193,13 @@ nav {
     z-index: -1;
     background-color: rgba(#ccc, 0.75);
     background-size: cover;
+    background-blend-mode: none;
 }
 
 #vignette {
     position: relative;
     &:after {
-        box-shadow: inset 0 0 50vh $color-vignette;
+        box-shadow: inset 0 0 50vw $color-vignette;
         position: fixed;
         z-index: 0;
         top: 0;

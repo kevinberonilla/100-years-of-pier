@@ -5,36 +5,12 @@ $(document).ready(function() {
     Page Load Functions
     ---------------------------------------- */
     $(window).load(function() {
-        $('body').addClass('loaded');
+        var body = $('body'),
+            videoBackground = $('.video-background');
+        
+        body.addClass('loaded');
+        videoBackground.addClass('show');
     });
-    
-//    /* ----------------------------------------
-//    Full Screen Height Functions
-//    ---------------------------------------- */
-//    var fullScreenHeight = $('.full-screen-height'),
-//        doubleScreenHeight = $('.double-screen-height'),
-//        firstSection = $('#home + section'),
-//        windowWidth = $(window).width(),
-//        windowHeight = $(window).height();
-//    
-//    function recalculateFullScreenHeight(multiplier) {
-//        var newWindowWidth = $(window).width();
-//        
-//        if (windowWidth != newWindowWidth) {
-//            windowWidth = newWindowWidth;
-//            
-//            windowHeight = $(window).height();
-//            
-//            fullScreenHeight.css('min-height', windowHeight + 'px');
-//            doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
-//            firstSection.css('margin-top', windowHeight + 'px');
-//        }
-//    }
-//    
-//    fullScreenHeight.css('min-height', windowHeight + 'px');
-//    doubleScreenHeight.css('min-height', (windowHeight * 2) + 'px');
-//    firstSection.css('margin-top', windowHeight + 'px');
-//    $(window).resize(recalculateFullScreenHeight);
     
     /* ----------------------------------------
     Full Parent Height Functions
@@ -101,7 +77,8 @@ $(document).ready(function() {
         navLink = $('a', navEntry),
         linkCount = navEntry.length,
         openNavButton = $('#open-nav-button'),
-        closeNavButton = $('#close-nav-button');
+        closeNavButton = $('#close-nav-button'),
+        main = $('.main');
     
     function calculatenavEntryHeight() {
         var currentWindowHeight = $(window).height(),
@@ -135,20 +112,12 @@ $(document).ready(function() {
         e.preventDefault();
         
         var href = $(this).attr('href'),
-            targetPos = $(href).offset().top;
+            index = $(href).index() + 1;
         
         closeNav();
         
-        setTimeout(function() {
-            page.animate({
-                scrollTop: targetPos
-            }, 1250);
-        }, 250)
+        main.moveTo(index);
     });
-    
-//    page.on('scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove', function() { // Prevent scroll hijacking
-//        page.stop();
-//    });
     
     calculatenavEntryHeight();
     $(window).resize(calculatenavEntryHeight);
@@ -169,42 +138,27 @@ $(document).ready(function() {
         var activeSection = $('section.active');
         
         if (activeSection.is('#home')) {
-            homeVideo.stop()
-                .fadeIn(1000);
-            
-            title.stop()
-                .fadeIn(1000);
-            
+            homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
         } else {
-            homeVideo.stop()
-                .fadeOut(1000);
-            
-            title.stop()
-                .fadeOut(1000);
+            homeVideo.removeClass('show');
         }
         
         if (activeSection.hasClass('has-overlay')) {
-            overlay.stop()
-                .fadeIn(1000);
-            
+            overlay.addClass('show');
             horizontalLogo.removeClass('show');
         } else {
-            overlay.stop()
-                .fadeOut(1000);
+            overlay.removeClass('show');
         }
         
         if (activeSection.hasClass('has-underlay')) {
             var underlayBackground = activeSection.data('underlay-background');
             
             underlay.css('background-image', 'url(' + underlayBackground + ')')
-                .stop()
-                .fadeIn(1000);
-            
+                .addClass('show');
             horizontalLogo.removeClass('show');
         } else {
-            underlay.stop()
-                .fadeOut(1000);
+            underlay.removeClass('show');
         }
         
         if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
@@ -223,64 +177,4 @@ $(document).ready(function() {
         beforeMove: processBeforeMove,
         afterMove: function() { console.log('afterMove'); }
     });
-    
-//    /* ----------------------------------------
-//    Home Scroll Functions
-//    ---------------------------------------- */
-//    var home = $('#home'),
-//        homeHeight = home.height();
-//    
-//    function adjustOpacity() {
-//        var scrollPos = $(window).scrollTop();
-//        
-//        if (scrollPos <= windowHeight) {
-//            home.css('opacity', ((homeHeight - scrollPos) / 1000));
-//        } else {
-//            home.css('opacity', 0);
-//        }
-//    }
-//    
-//    /* ----------------------------------------
-//    Section Scroll Functions
-//    ---------------------------------------- */
-//    var section = $('section');
-//    
-//    function revealIntroBg() {
-//        var scrollPos = $(window).scrollTop();
-//        section.each(function() {
-//            var self = $(this),
-//                intro = $('.intro', self),
-//                overlay = $('.overlay', intro),
-//                underlay = $('.underlay', intro),
-//                introheight = intro.height(),
-//                thisHeight = self.height(),
-//                overlayHeight = overlay.height(),
-//                offsetTop = self.offset().top,
-//                offsetBottom = offsetTop + overlayHeight,
-//                overlayHeight = overlay.height();
-//            
-//            if (offsetTop <= scrollPos && (overlayHeight * 2) >= scrollPos) {
-////                underlay.css('opacity', ((offsetTop + (overlayHeight * 2)) - scrollPos) / 1000); // THIS USED TO WORK
-////                overlay.css('opacity', ((offsetTop + overlayHeight) - scrollPos) / 1000);
-//                overlay.css('opacity', (offsetTop + overlayHeight) / (scrollPos + overlayHeight));
-//            } else {
-//                underlay.css('opacity', 1);
-//                overlay.css('opacity', 1);
-//            }
-//        });
-//    }
-//    
-//    /* ----------------------------------------
-//    requestAnimationFrame Functions
-//    ---------------------------------------- */
-//    function animate() {
-//        adjustOpacity();
-//        revealIntroBg();
-//    }
-//    
-//    animate();
-//        
-//    $(window).scroll(function() {
-//        requestAnimationFrame(animate);
-//    });
 });

@@ -496,8 +496,6 @@ h4, section#home #title .scroll-message {
 body {
   background-color: black;
   color: white; }
-  body.loaded .video-background {
-    opacity: 1; }
   body.loaded header,
   body.loaded footer,
   body.loaded footer {
@@ -534,6 +532,8 @@ body {
   height: auto;
   background-size: cover;
   pointer-events: none; }
+  .video-background.show {
+    opacity: 1; }
 
 .full-parent-height {
   position: relative; }
@@ -611,25 +611,31 @@ nav {
   display: none; }
 
 #overlay, #underlay {
-  display: none;
+  -webkit-transition: all 1000ms 250ms ease;
+  transition: all 1000ms 250ms ease;
+  opacity: 0;
   position: fixed;
   z-index: 0;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(59, 66, 88, 0.75);
+  background-color: rgba(84, 98, 124, 0.75);
+  background-blend-mode: multiply;
   pointer-events: none; }
+  #overlay.show, .show#underlay {
+    opacity: 1; }
 
 #underlay {
   z-index: -1;
   background-color: rgba(204, 204, 204, 0.75);
-  background-size: cover; }
+  background-size: cover;
+  background-blend-mode: none; }
 
 #vignette {
   position: relative; }
   #vignette:after {
-    box-shadow: inset 0 0 50vh rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 50vw rgba(0, 0, 0, 0.75);
     position: fixed;
     z-index: 0;
     top: 0;
