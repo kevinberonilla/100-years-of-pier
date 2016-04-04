@@ -620,7 +620,7 @@ nav {
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(84, 98, 124, 0.75);
+  background-color: rgba(64, 87, 128, 0.75);
   background-blend-mode: multiply;
   pointer-events: none; }
   #overlay.show, .show#underlay {
@@ -677,6 +677,30 @@ nav {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
   opacity: 1; }
+
+.timeline-entry .content {
+  position: relative; }
+
+.timeline-border {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  border-left: 1px solid white; }
+
+.timeline-content {
+  position: relative;
+  padding-left: 40px; }
+  .timeline-content:before {
+    content: '';
+    display: block;
+    border-top: 1px solid white;
+    width: 30px;
+    position: absolute;
+    width: 30px;
+    left: 0;
+    top: 10px; }
 
 section {
   width: 100%;

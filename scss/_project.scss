@@ -244,6 +244,36 @@ nav {
     opacity: 1;
 }
 
+.timeline {
+    &-entry {
+        .content {
+            position: relative;
+        }
+    }
+    &-border {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        border-left: 1px solid white;
+    }
+    &-content {
+        position: relative;
+        padding-left: 40px;
+        &:before {
+            content: '';
+            display: block;
+            border-top: 1px solid white;
+            width: 30px;
+            position: absolute;
+            width: 30px;
+            left: 0;
+            top: 10px;
+        }
+    }
+}
+
 section {
     width: 100%;
     position: relative;

@@ -177,4 +177,30 @@ $(document).ready(function() {
         beforeMove: processBeforeMove,
         afterMove: function() { console.log('afterMove'); }
     });
+    
+    /* ----------------------------------------
+    Timeline Functions
+    ---------------------------------------- */
+    var timelineEntryStart = $('.timeline-entry.start'),
+        timelineEntryEnd = $('.timeline-entry.end'),
+        timelineMarkOffset = 10;
+    
+    timelineEntryStart.each(function() {
+        var contentOffsetTop = $(this).find('.timeline-content').offset().top,
+            parentOffsetTop = $(this).closest('section').offset().top,
+            delta = contentOffsetTop - parentOffsetTop + timelineMarkOffset,
+            timelineBorder = $('.timeline-border', this);
+            
+        timelineBorder.css('top', delta + 'px');
+    });
+    
+    timelineEntryEnd.each(function() {
+        var contentOffsetTop = $(this).find('.timeline-content').offset().top,
+            parentOffsetTop = $(this).closest('section').offset().top,
+            contentHeight = $(this).find('.timeline-content').height(),
+            delta = (contentOffsetTop + contentHeight) - parentOffsetTop - timelineMarkOffset,
+            timelineBorder = $('.timeline-border', this);
+        
+        timelineBorder.css('bottom', delta + 'px');
+    });
 });
