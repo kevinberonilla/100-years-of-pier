@@ -78,6 +78,7 @@ $(document).ready(function() {
         linkCount = navEntry.length,
         openNavButton = $('#open-nav-button'),
         closeNavButton = $('#close-nav-button'),
+        blurElements = $('#underlay, #clouds, .video-background'),
         main = $('.main');
     
     function calculatenavEntryHeight() {
@@ -99,6 +100,10 @@ $(document).ready(function() {
                 $(self).addClass('show');
             }, (index + 1) * 75);
         });
+        
+        setTimeout(function() {
+            blurElements.addClass('blur');
+        }, 250);
     }
     
     function closeNav() {
@@ -106,6 +111,10 @@ $(document).ready(function() {
             .removeClass('disable-scroll');
         
         navEntry.removeClass('show');
+        
+        setTimeout(function() {
+            blurElements.removeClass('blur');
+        }, 150);
     }
     
     navLink.click(function(e) {
@@ -125,10 +134,34 @@ $(document).ready(function() {
     closeNavButton.click(closeNav);
     
     /* ----------------------------------------
+    Content Reveal Functions
+    ---------------------------------------- */
+    function processAnimateIn(section) {
+        var animateIn = $('.animate-in', section);
+        
+        animateIn.each(function() {
+            var self = $(this),
+                delay = self.data('delay') || 0;
+            
+            setTimeout(function() {
+                self.addClass('reveal');
+            }, delay);
+        });
+    }
+    
+    /* ----------------------------------------
+    Parallax Functions
+    ---------------------------------------- */
+    var cloudParallax = $('#clouds').parallax();
+    
+    cloudParallax.parallax('disable');
+    
+    /* ----------------------------------------
     One Page Scroll Functions
     ---------------------------------------- */
     var underlay = $('#underlay'),
         overlay = $('#overlay'),
+        clouds = $('#clouds'),
         homeVideo = $('#home-video'),
         backgroundVideo = $('#background-video'),
         title = $('#home #title'),
@@ -146,9 +179,13 @@ $(document).ready(function() {
         
         if (activeSection.hasClass('has-overlay')) {
             overlay.addClass('show');
+            clouds.addClass('show');
+            cloudParallax.parallax('enable');
             horizontalLogo.removeClass('show');
         } else {
             overlay.removeClass('show');
+            clouds.removeClass('show');
+            cloudParallax.parallax('disable');
         }
         
         if (activeSection.hasClass('has-underlay')) {
@@ -164,6 +201,14 @@ $(document).ready(function() {
         if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
             horizontalLogo.addClass('show');
         }
+        
+        setTimeout(function() {
+            processAnimateIn(activeSection);
+        }, 1000);
+    }
+    
+    function processAfterMove() {
+        // afterMove functions go here
     }
     
     $('#main').onepage_scroll({
@@ -175,7 +220,7 @@ $(document).ready(function() {
         pagination: false,
         loop: false,
         beforeMove: processBeforeMove,
-        afterMove: function() { console.log('afterMove'); }
+        afterMove: processAfterMove
     });
     
     /* ----------------------------------------
@@ -185,22 +230,27 @@ $(document).ready(function() {
         timelineEntryEnd = $('.timeline-entry.end'),
         timelineMarkOffset = 10;
     
-    timelineEntryStart.each(function() {
-        var contentOffsetTop = $(this).find('.timeline-content').offset().top,
-            parentOffsetTop = $(this).closest('section').offset().top,
-            delta = contentOffsetTop - parentOffsetTop + timelineMarkOffset,
-            timelineBorder = $('.timeline-border', this);
+    function calculateTimelineBorders() {
+        timelineEntryStart.each(function() {
+            var contentOffsetTop = $(this).find('.timeline-body').offset().top,
+                parentOffsetTop = $(this).closest('section').offset().top,
+                delta = contentOffsetTop - parentOffsetTop + timelineMarkOffset,
+                timelineBorder = $('.timeline-border', this);
             
-        timelineBorder.css('top', delta + 'px');
-    });
-    
-    timelineEntryEnd.each(function() {
-        var contentOffsetTop = $(this).find('.timeline-content').offset().top,
-            parentOffsetTop = $(this).closest('section').offset().top,
-            contentHeight = $(this).find('.timeline-content').height(),
-            delta = (contentOffsetTop + contentHeight) - parentOffsetTop - timelineMarkOffset,
-            timelineBorder = $('.timeline-border', this);
+            timelineBorder.css('top', delta + 'px');
+        });
         
-        timelineBorder.css('bottom', delta + 'px');
-    });
+        timelineEntryEnd.each(function() {
+            var contentOffsetTop = $(this).find('.timeline-body').offset().top,
+                parentOffsetTop = $(this).closest('section').offset().top,
+                contentHeight = $(this).find('.timeline-body').height(),
+                delta = (contentOffsetTop + contentHeight) - parentOffsetTop - timelineMarkOffset,
+                timelineBorder = $('.timeline-border', this);
+            
+            timelineBorder.css('bottom', delta + 'px');
+        });
+    }
+    
+    calculateTimelineBorders();
+    $(window).resize($.debounce(250, calculateTimelineBorders));
 });

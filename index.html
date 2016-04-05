@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>Centennial Vision | Navy Pier</title>
-<!--        <link rel="stylesheet" type="text/css" href="http://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">-->
-<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+        <link rel="stylesheet" type="text/css" href="http://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/jquery.circular-carousel.min.css">
         <link rel="stylesheet" type="text/css" href="css/onepage-scroll.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -15,6 +16,13 @@
         <![endif]-->
     </head>
     <body>
+        <div id="preload">
+            <img src="images/water-bg.jpg">
+            <img src="images/home-bg.png">
+            <img src="images/section-1-bg.jpg">
+            <img src="images/clouds-1.png">
+            <img src="images/clouds-2.png">
+        </div>
         <video id="background-video" class="video-background" muted loop style="background-image: url(images/water-bg.jpg);">
             <!--<source src="videos/big_buck_bunny.webm">
             <source src="videos/big_buck_bunny.ogg">
@@ -26,12 +34,12 @@
             <source src="videos/big_buck_bunny.mp4">-->
         </video>
         <header>
-            <h4><a href="https://navypier.com">Back to navypier.com</a></h4>
-            <a id="open-nav-button"><img src="images/menu-icon.png"></a>
+            <h4><a id="back-to-np" href="https://navypier.com">Back to navypier.com</a></h4>
+            <a href="javascript:void(0);" id="open-nav-button"><img src="images/menu-icon.png"></a>
         </header>
         <!-- Navigation -->
         <nav>
-            <button id="close-nav-button">Close Nav</button>
+            <a href="javascript:void(0);" id="close-nav-button"><img src="images/menu-close.png"></a>
             <ul>
                 <li>
                     <a href="#section-1">
@@ -59,6 +67,10 @@
         <div id="underlay"></div>
         <div id="vignette"></div>
         <div id="overlay"></div>
+        <ul id="clouds">
+            <li class="layer" data-depth="0.5"><img src="images/clouds-1.png"></li>
+            <li class="layer" data-depth="0.15"><img src="images/clouds-2.png"></li>
+        </ul>
         <div class="content logo-container horizontal">
             <img src="images/logo-horizontal.svg">
         </div>
@@ -82,7 +94,10 @@
             <section id="section-1" class="has-overlay has-underlay" data-underlay-background="images/section-1-bg.jpg">
                 <div class="intro">
                     <div class="container content full-parent-height">
-                        <div class="vertical-align">This is the intro to section 1</div>
+                        <div class="vertical-align">
+                            <h3>This is the intro to section 1</h3>
+                            <p>This is the text that goes after the intro. Blah blah blah.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -92,24 +107,27 @@
             <section class="timeline-entry start">
                 <div class="container content full-parent-height">
                     <div class="timeline-border"></div>
-                    <div class="vertical-align timeline-content">
-                        Timeline Entry 1
+                    <div class="vertical-align timeline-body">
+                        <p class="animate-in vertical italic-heading">1909—Vertical no delay 1</p>
+                        <p class="animate-in horizontal" data-delay="250">horizontal 250ms delay 1</p>
                     </div>
                 </div>
             </section>
             <section class="timeline-entry">
                 <div class="container content full-parent-height">
                     <div class="timeline-border"></div>
-                    <div class="vertical-align timeline-content">
-                        Timeline Entry 2
+                    <div class="vertical-align timeline-body">
+                        <p class="animate-in vertical italic-heading">1909—Vertical no delay 2</p>
+                        <p class="animate-in horizontal" data-delay="250">horizontal 250ms delay 2</p>
                     </div>
                 </div>
             </section>
             <section class="timeline-entry end">
                 <div class="container content full-parent-height">
                     <div class="timeline-border"></div>
-                    <div class="vertical-align timeline-content">
-                        Timeline Entry 3
+                    <div class="vertical-align timeline-body">
+                        <p class="animate-in vertical italic-heading">1909—Vertical no delay 3</p>
+                        <p class="animate-in horizontal" data-delay="250">horizontal 250ms delay 3</p>
                     </div>
                 </div>
             </section>
@@ -120,11 +138,11 @@
             Footer
         </footer>
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.ba-throttle-debounce.min.js"></script>
         <script src="js/requestAnimationFrame.min.js"></script>
         <script src="js/matchMedia.min.js"></script>
         <script src="js/jquery.parallax.min.js"></script>
         <script src="js/jquery.onepage-scroll.min.js"></script>
-        <script src="js/scrollreveal.min.js"></script>
         <script src="js/matchMedia.min.js"></script>
         <script src="js/jquery.circular-carousel.min.js"></script>
         <script src="js/main.js"></script>
