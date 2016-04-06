@@ -253,4 +253,19 @@ $(document).ready(function() {
     
     calculateTimelineBorders();
     $(window).resize($.debounce(250, calculateTimelineBorders));
+    
+    /* ----------------------------------------
+    Music Functions
+    ---------------------------------------- */
+    var musicIcon = $('#music-icon');
+    
+    musicIcon.click(function() {
+        if ($(this).hasClass('fa-volume-up')) {
+            $(this).removeClass('fa-volume-up')
+                .addClass('fa-volume-off');
+        } else {
+            $(this).removeClass('fa-volume-off')
+                .addClass('fa-volume-up');
+        }
+    });
 });
