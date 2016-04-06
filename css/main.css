@@ -497,21 +497,6 @@ h4, section#home #title .scroll-message {
     font-size: 28px;
     line-height: 36px; }
 
-.roman-numeral {
-  font-size: 22px;
-  line-height: 30px;
-  font-family: "Libre Baskerville", serif;
-  stroke: #bfd62f;
-  stroke-width: 0.15px;
-  stroke-linecap: butt;
-  stroke-linejoin: miter;
-  font-weight: 700;
-  fill: none;
-  position: absolute;
-  top: -92px;
-  z-index: -1;
-  display: block; }
-
 body {
   background-color: black;
   color: white; }
@@ -594,9 +579,28 @@ footer {
     footer .icon:hover {
       opacity: 0.5; }
 
+.roman-numeral {
+  font-size: 22px;
+  font-family: "Libre Baskerville", serif;
+  stroke: #bfd62f;
+  stroke-width: 0.15px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  font-weight: 700;
+  fill: none;
+  position: absolute;
+  top: -72px;
+  z-index: -1;
+  display: block; }
+
 nav {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
   opacity: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.75);
@@ -636,10 +640,16 @@ nav {
         nav > ul > li a:hover,
         nav > ul > li a:visited:hover {
           background-color: rgba(255, 255, 255, 0.7);
-          color: black; }
+          color: #676f7c; }
         nav > ul > li a span,
         nav > ul > li a:visited span {
           display: block; }
+  nav .roman-numeral {
+    font-size: 4px;
+    stroke-width: 0.1px;
+    top: -4px;
+    stroke: rgba(255, 255, 255, 0.35);
+    letter-spacing: normal; }
 
 #open-nav-button, #close-nav-button {
   -webkit-transition: all 250ms ease;

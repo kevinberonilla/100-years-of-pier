@@ -83,7 +83,7 @@ $(document).ready(function() {
     
     function calculatenavEntryHeight() {
         var currentWindowHeight = $(window).height(),
-            linkHeight = (currentWindowHeight / linkCount) - 1;
+            linkHeight = (currentWindowHeight / linkCount);
         
         navEntry.css('height', linkHeight + 'px');
     }
@@ -152,9 +152,22 @@ $(document).ready(function() {
     /* ----------------------------------------
     Parallax Functions
     ---------------------------------------- */
-    var cloudParallax = $('#clouds').parallax();
+    var cloudsList = $('#clouds'),
+        cloudParallax;
     
-    cloudParallax.parallax('disable');
+    function enableCloudParallax() {
+        if (typeof(cloudParallax) === 'undefined') {
+            cloudParallax = cloudsList.parallax();
+        } else {
+            cloudParallax.parallax('enable');
+        }
+    }
+    
+    function disableCloudParallax() {
+        if (typeof(cloudParallax) !== 'undefined') {
+            cloudParallax.parallax('disable');
+        }
+    }
     
     /* ----------------------------------------
     One Page Scroll Functions
@@ -180,12 +193,14 @@ $(document).ready(function() {
         if (activeSection.hasClass('has-overlay')) {
             overlay.addClass('show');
             clouds.addClass('show');
-            cloudParallax.parallax('enable');
             horizontalLogo.removeClass('show');
+            
+            enableCloudParallax();
         } else {
             overlay.removeClass('show');
             clouds.removeClass('show');
-            cloudParallax.parallax('disable');
+            
+            disableCloudParallax();
         }
         
         if (activeSection.hasClass('has-underlay')) {
