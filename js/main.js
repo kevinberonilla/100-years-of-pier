@@ -71,6 +71,29 @@ $(document).ready(function() {
     }
     
     /* ----------------------------------------
+    Quote Background Image Functions
+    ---------------------------------------- */
+    var quoteBackgroundImage = $('.quote-background-image');
+    
+    function resizeQuoteBackgroundImages() {
+        var windowWidth = $(window).width();
+        
+        quoteBackgroundImage.each(function() {
+            var self = $(this),
+                containerWidth = self.closest('.container').width(),
+                delta = windowWidth - containerWidth;
+            
+            self.css({
+                'left': '-' + (delta / 2) + 'px',
+                'right': '-' + (delta / 2) + 'px'
+            });
+        });
+    }
+    
+    resizeQuoteBackgroundImages();
+    $(window).resize($.debounce(250, resizeQuoteBackgroundImages));
+    
+    /* ----------------------------------------
     Nav Functions
     ---------------------------------------- */
     var navEntry = $('nav > ul > li'),
@@ -134,6 +157,15 @@ $(document).ready(function() {
     closeNavButton.click(closeNav);
     
     /* ----------------------------------------
+    Home Link Functions
+    ---------------------------------------- */
+    var homeLink = $('.logo-container.horizontal > a');
+    
+    homeLink.click(function() {
+        main.moveTo('#home')
+    });
+    
+    /* ----------------------------------------
     Content Reveal Functions
     ---------------------------------------- */
     function processAnimateIn(section) {
@@ -174,6 +206,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     var underlay = $('#underlay'),
         overlay = $('#overlay'),
+        backgroundImage = $('#background-image'),
         clouds = $('#clouds'),
         homeVideo = $('#home-video'),
         backgroundVideo = $('#background-video'),
@@ -183,6 +216,7 @@ $(document).ready(function() {
     function processBeforeMove() {
         var activeSection = $('section.active');
         
+        // If is home
         if (activeSection.is('#home')) {
             homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
@@ -190,6 +224,7 @@ $(document).ready(function() {
             homeVideo.removeClass('show');
         }
         
+        // If has overlay
         if (activeSection.hasClass('has-overlay')) {
             overlay.addClass('show');
             clouds.addClass('show');
@@ -203,16 +238,28 @@ $(document).ready(function() {
             disableCloudParallax();
         }
         
+        // If has underlay
         if (activeSection.hasClass('has-underlay')) {
-            var underlayBackground = activeSection.data('underlay-background');
+            var underlayUrl = activeSection.data('underlay-background');
             
-            underlay.css('background-image', 'url(' + underlayBackground + ')')
+            underlay.css('background-image', 'url(' + underlayUrl + ')')
                 .addClass('show');
             horizontalLogo.removeClass('show');
         } else {
             underlay.removeClass('show');
         }
         
+        // If has background image
+        if (activeSection.hasClass('has-background-image')) {
+            var backgroundImageUrl = activeSection.data('background-image');
+            
+            backgroundImage.css('background-image', 'url(' + backgroundImageUrl + ')')
+                .addClass('show');
+        } else {
+            backgroundImage.removeClass('show');
+        }
+        
+        // If is not home, does not have overlay, and does not have underlay
         if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
             horizontalLogo.addClass('show');
         }
@@ -243,30 +290,30 @@ $(document).ready(function() {
     ---------------------------------------- */
     var timelineEntryStart = $('.timeline-entry.start'),
         timelineEntryEnd = $('.timeline-entry.end'),
-        timelineMarkOffset = 10;
+        timelineMarkOffset = 30,
+        timelineContentPaddingTop = 50;
     
     function calculateTimelineBorders() {
         timelineEntryStart.each(function() {
-            var contentOffsetTop = $(this).find('.timeline-body').offset().top,
+            var contentOffsetTop = $(this).find('.timeline-content').offset().top,
                 parentOffsetTop = $(this).closest('section').offset().top,
-                delta = contentOffsetTop - parentOffsetTop + timelineMarkOffset,
+                position = contentOffsetTop - parentOffsetTop + timelineMarkOffset + timelineContentPaddingTop,
                 timelineBorder = $('.timeline-border', this);
             
-            timelineBorder.css('top', delta + 'px');
+            timelineBorder.css('top', position + 'px');
         });
         
         timelineEntryEnd.each(function() {
-            var contentOffsetTop = $(this).find('.timeline-body').offset().top,
-                parentOffsetTop = $(this).closest('section').offset().top,
-                contentHeight = $(this).find('.timeline-body').height(),
-                delta = (contentOffsetTop + contentHeight) - parentOffsetTop - timelineMarkOffset,
+            var lastBodyHeight = $(this).find('.timeline-body').last().height(),
+                contentHeight = $(this).find('.timeline-content').innerHeight(),
+                parentHeight = $(this).closest('section').height(),
+                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight - timelineMarkOffset,
                 timelineBorder = $('.timeline-border', this);
             
-            timelineBorder.css('bottom', delta + 'px');
+            timelineBorder.css('bottom', position + 'px');
         });
     }
-    
-    calculateTimelineBorders();
+    $(window).load(calculateTimelineBorders);
     $(window).resize($.debounce(250, calculateTimelineBorders));
     
     /* ----------------------------------------
