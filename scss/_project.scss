@@ -126,13 +126,15 @@ body {
 
 header {
     @include animated;
-    padding: 36px 40px;
+    padding: 36px 42px 32px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 9998;
     opacity: 0;
     #back-to-np {
+        display: inline-block;
+        margin-top: 5px;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             display: none;
         }

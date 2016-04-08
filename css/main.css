@@ -570,15 +570,18 @@ body {
 header, footer {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
-  padding: 36px 40px;
+  padding: 36px 42px 32px;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 9998;
   opacity: 0; }
-  @media only screen and (max-width: 768px) {
-    header #back-to-np, footer #back-to-np {
-      display: none; } }
+  header #back-to-np, footer #back-to-np {
+    display: inline-block;
+    margin-top: 5px; }
+    @media only screen and (max-width: 768px) {
+      header #back-to-np, footer #back-to-np {
+        display: none; } }
 
 footer {
   top: initial;
