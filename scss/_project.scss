@@ -39,8 +39,8 @@ hr {
     font-style: italic;
     text-transform: none;
     &.small {
-        font-size: 32px;
-        line-height: 44px;
+        font-size: 36px;
+        line-height: 48px;
     }
 }
 
@@ -229,7 +229,7 @@ nav {
     .roman-numeral {
         font-size: 4px;
         stroke-width: 0.1px;
-        top: -16px;
+        top: -24px;
         stroke: $color-nav-roman-numeral;
         letter-spacing: normal;
     }
@@ -385,13 +385,14 @@ nav {
         display: block;
         position: absolute;
         top: 0;
+        left: $timeline-border-offset;
         bottom: 0;
         width: 30px;
         border-left: 1px solid white;
     }
     &-body {
         position: relative;
-        padding-left: 40px;
+        padding-left: $timeline-border-offset + 40;
         + .timeline-body {
             margin-top: 120px;
         }
@@ -402,7 +403,7 @@ nav {
             width: 30px;
             position: absolute;
             width: 30px;
-            left: 0;
+            left: $timeline-border-offset;
             top: 30px;
         }
     }
@@ -430,6 +431,7 @@ nav {
         position: absolute;
         top: 0;
         bottom: 0;
+        left: $timeline-border-offset;
         width: 30px;
         border-left: 1px solid white;
     }
@@ -528,8 +530,19 @@ section {
     &.horizontal {
         transform: translateX(-20px);
     }
+    &.blur {
+        @include animated(all 500ms);
+        filter: blur(10px);
+    }
     &.reveal {
         opacity: 1;
         transform: none;
+        filter: none;
+    }
+}
+
+.gallery {
+    &-body {
+        margin-top: 80px;
     }
 }

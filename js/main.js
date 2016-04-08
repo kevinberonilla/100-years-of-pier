@@ -354,9 +354,11 @@ $(document).ready(function() {
     musicIcon.click(function() {
         if ($(this).hasClass('fa-volume-up')) {
             $(this).removeClass('fa-volume-up')
-                .addClass('fa-volume-off');
+                .addClass('fa-volume-off')
+                .addClass('adjust-p-r-6');
         } else {
             $(this).removeClass('fa-volume-off')
+                .removeClass('adjust-p-r-6')
                 .addClass('fa-volume-up');
         }
     });

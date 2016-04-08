@@ -39,12 +39,12 @@ img {
   height: auto; }
 
 .container {
-  width: 960px;
+  width: 1024px;
   margin: 0 auto; }
   @media only screen and (max-width: 1024px) {
     .container {
       width: 100%;
-      padding: 0 32px; } }
+      padding: 0 0px; } }
 
 .clearfix:after, .row:after {
   content: '';
@@ -502,8 +502,8 @@ hr {
   font-style: italic;
   text-transform: none; }
   .italic-heading.small {
-    font-size: 32px;
-    line-height: 44px; }
+    font-size: 36px;
+    line-height: 48px; }
 
 body {
   background-color: black;
@@ -663,7 +663,7 @@ nav {
   nav .roman-numeral {
     font-size: 4px;
     stroke-width: 0.1px;
-    top: -16px;
+    top: -24px;
     stroke: rgba(255, 255, 255, 0.35);
     letter-spacing: normal; }
 
@@ -798,13 +798,14 @@ nav {
   display: block;
   position: absolute;
   top: 0;
+  left: 80px;
   bottom: 0;
   width: 30px;
   border-left: 1px solid white; }
 
 .timeline-body {
   position: relative;
-  padding-left: 40px; }
+  padding-left: 120px; }
   .timeline-body + .timeline-body {
     margin-top: 120px; }
   .timeline-body:before {
@@ -814,7 +815,7 @@ nav {
     width: 30px;
     position: absolute;
     width: 30px;
-    left: 0;
+    left: 80px;
     top: 30px; }
 
 .timeline-content {
@@ -837,6 +838,7 @@ nav {
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 80px;
   width: 30px;
   border-left: 1px solid white; }
 
@@ -927,11 +929,21 @@ section {
     -webkit-transform: translateX(-20px);
     -ms-transform: translateX(-20px);
     transform: translateX(-20px); }
+  .animate-in.blur {
+    -webkit-transition: all 500ms 250ms ease;
+    transition: all 500ms 250ms ease;
+    -webkit-filter: blur(10px);
+    filter: blur(10px); }
   .animate-in.reveal {
     opacity: 1;
     -webkit-transform: none;
     -ms-transform: none;
-    transform: none; }
+    transform: none;
+    -webkit-filter: none;
+    filter: none; }
+
+.gallery-body {
+  margin-top: 80px; }
 
 /* ----------------------------------------
 Overrides
