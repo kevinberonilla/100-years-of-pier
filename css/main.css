@@ -514,9 +514,11 @@ body {
     opacity: 1; }
   body.loaded #home #title {
     width: 640px; }
-  body.loaded #home .italic-heading {
-    font-size: 46px;
-    line-height: 54px; }
+  body.loaded #home #tagline {
+    opacity: 1; }
+  body.loaded #home #loading-bar,
+  body.loaded #home #loading-percentage {
+    opacity: 0; }
   body.nav-open .logo-container.horizontal {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -836,9 +838,12 @@ nav {
   border-left: 1px solid white; }
 
 .quote-background-image {
-  z-index: 1;
+  z-index: 0;
   position: absolute;
   opacity: 1; }
+
+.quote-body {
+  text-align: center; }
 
 section {
   width: 100%;
@@ -852,14 +857,48 @@ section {
     background-color: rgba(0, 0, 0, 0.75);
     margin: 0 auto; }
     section#home #title .scroll-message {
+      -webkit-transition: all 1000ms 250ms ease;
+      transition: all 1000ms 250ms ease;
       position: absolute;
       bottom: 40px;
       text-align: center;
-      width: 100%; }
+      width: 100%;
+      opacity: 0; }
+      section#home #title .scroll-message.show {
+        opacity: 1; }
       section#home #title .scroll-message .scroll-arrow {
         margin-top: 10px; }
-    section#home #title .italic-heading {
-      margin-top: 30px; }
+  section#home #tagline {
+    -webkit-transition: all 1000ms 250ms ease;
+    transition: all 1000ms 250ms ease;
+    opacity: 0;
+    margin-top: 30px;
+    font-size: 46px;
+    line-height: 54px; }
+  section#home #loading-bar {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    opacity: 1;
+    position: fixed;
+    left: 0;
+    bottom: 20vh;
+    width: 0;
+    max-width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    z-index: 0; }
+  section#home #loading-percentage {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    opacity: 1;
+    position: fixed;
+    left: 0;
+    bottom: -webkit-calc(20vh + 20px);
+    bottom: calc(20vh + 20px);
+    width: 100%;
+    text-align: center;
+    pointer-events: none; }
   section .intro {
     text-align: center;
     font-size: 22px;

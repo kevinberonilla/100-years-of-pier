@@ -4,12 +4,40 @@ $(document).ready(function() {
     /* ----------------------------------------
     Page Load Functions
     ---------------------------------------- */
+    var media =  $('img, video'),
+        total = media.length,
+        loadingBar = $('#loading-bar'),
+        loaded = 0,
+        loadingPercentage = $('#loading-percentage .number');
+    
+    function processLoadedMedia() {
+        loaded ++;
+        var percentage = parseInt((loaded / total) * 100);
+        
+        loadingBar.css('width', percentage + '%');
+        loadingPercentage.text(percentage);
+    }
+    
+    media.load(processLoadedMedia);
+    
     $(window).load(function() {
         var body = $('body'),
-            videoBackground = $('.video-background');
+            videoBackground = $('.video-background'),
+            scrollMessage = $('.scroll-message');
+        
+        loadingBar.css('width', '100%');
+        loadingPercentage.text('100');
         
         body.addClass('loaded');
         videoBackground.addClass('show');
+        
+        setTimeout(function() {
+            scrollMessage.addClass('show');
+        }, 3000);
+        
+        setTimeout(function() {
+            $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
+        }, 2000);
     });
     
     /* ----------------------------------------
@@ -273,16 +301,18 @@ $(document).ready(function() {
         // afterMove functions go here
     }
     
-    $('#main').onepage_scroll({
-        sectionContainer: 'section',
-        easing: 'ease',
-        animationTime: 1000,
-        keyboard: true,
-        direction: 'vertical',
-        pagination: false,
-        loop: false,
-        beforeMove: processBeforeMove,
-        afterMove: processAfterMove
+    $('body').on('pageready.np', function() {
+        $('#main').onepage_scroll({
+            sectionContainer: 'section',
+            easing: 'ease',
+            animationTime: 1000,
+            keyboard: true,
+            direction: 'vertical',
+            pagination: false,
+            loop: false,
+            beforeMove: processBeforeMove,
+            afterMove: processAfterMove
+        });
     });
     
     /* ----------------------------------------

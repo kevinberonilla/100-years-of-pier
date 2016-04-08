@@ -56,9 +56,12 @@ body {
             #title {
                 width: 640px;
             }
-            .italic-heading {
-                font-size: 46px;
-                line-height: 54px;
+            #tagline {
+                opacity: 1;
+            }
+            #loading-bar,
+            #loading-percentage {
+                opacity: 0;
             }
         }
     }
@@ -430,9 +433,12 @@ nav {
     }
     &-background-image {
         @extend #background-image;
-        z-index: 1;
+        z-index: 0;
         position: absolute;
         opacity: 1;
+    }
+    &-body {
+        text-align: center;
     }
 }
 
@@ -448,18 +454,50 @@ section {
             background-color: $color-title-overlay;
             margin: 0 auto;
             .scroll-message {
+                @include animated(all 1000ms);
                 @extend h4;
                 position: absolute;
                 bottom: 40px;
                 text-align: center;
                 width: 100%;
+                opacity: 0;
+                &.show {
+                    opacity: 1;
+                }
                 .scroll-arrow {
                     margin-top: 10px;
                 }
             }
-            .italic-heading {
-                margin-top: 30px;
-            }
+        }
+        #tagline {
+            @include animated(all 1000ms);
+            opacity: 0;
+            margin-top: 30px;
+            font-size: 46px;
+            line-height: 54px;
+        }
+        #loading-bar {
+            @include animated;
+            opacity: 1;
+            position: fixed;
+            left: 0;
+            bottom: 20vh;
+            width: 0;
+            max-width: 100%;
+            height: 4px;
+            background-color: $color-loading-bar;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #loading-percentage {
+            @include animated;
+            opacity: 1;
+            position: fixed;
+            left: 0;
+            bottom: calc(20vh + 20px);
+            width: 100%;
+            text-align: center;
+            pointer-events: none;
         }
     }
     .intro {
