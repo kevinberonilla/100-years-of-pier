@@ -419,6 +419,88 @@ nav {
         float: left;
         width: 75%;
     }
+    &-gallery {
+        margin-top: 35px;
+    }
+}
+
+.gallery {
+    list-style: none;
+    display: block;
+    &.type-a {
+        height: 480px;
+        > li {
+            @include animated;
+            display: block;
+            width: 640px;
+            height: 480px;
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            cursor: pointer;
+            &:after {
+                @include animated;
+                content: '';
+                display: block;
+                opacity: 0.75;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+            }
+            &:not(.active):hover {
+                &:after {
+                    opacity: 0.25;
+                }
+            }
+            @include build-gallery-entry-properties($gallery-entry-list);
+        }
+    }
+    &.type-b {
+        > li {
+            @include animated;
+            
+            display: block;
+            height: 40vh;
+            margin: 5px;
+            width: 140px;
+            position: relative;
+            float: left;
+            background-size: cover;
+            background-position: center center;
+            cursor: pointer;
+            &:after {
+                @include animated;
+                content: '';
+                display: block;
+                opacity: 0.75;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+            }
+            &.active {
+                &:after {
+                    opacity: 0;
+                }
+            }
+            &:not(.active):hover {
+                &:after {
+                    opacity: 0.25;
+                }
+            }
+            @include build-gallery-entry-properties($gallery-entry-list);
+        }
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    }
 }
 
 .quote {
@@ -525,7 +607,7 @@ section {
     @include animated;
     opacity: 0;
     &.vertical {
-        transform: translateY(-20px);
+        transform: translateY(20px);
     }
     &.horizontal {
         transform: translateX(-20px);
@@ -538,11 +620,5 @@ section {
         opacity: 1;
         transform: none;
         filter: none;
-    }
-}
-
-.gallery {
-    &-body {
-        margin-top: 80px;
     }
 }

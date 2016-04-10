@@ -7,7 +7,6 @@
         <link rel="stylesheet" type="text/css" href="http://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700">
-        <link rel="stylesheet" type="text/css" href="css/jquery.circular-carousel.min.css">
         <link rel="stylesheet" type="text/css" href="css/onepage-scroll.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <!--[if lt IE 9]>
@@ -17,11 +16,13 @@
     </head>
     <body>
         <div id="preload">
+            <!-- Include all images used in css backgrounds here -->
             <img src="images/water-bg.jpg">
             <img src="images/home-bg.png">
             <img src="images/section-1-bg.jpg">
             <img src="images/clouds-1.png">
             <img src="images/clouds-2.png">
+            <!-- /Include all images used in css backgrounds here -->
         </div>
         <video id="background-video" class="video-background" muted loop style="background-image: url(images/water-bg.jpg);">
             <!--<source src="videos/big_buck_bunny.webm">
@@ -321,6 +322,35 @@
             </section>
             <!-- /Quote Entry -->
             <!-- Timeline Entry -->
+            <section class="timeline-entry">
+                <div class="container content full-parent-height">
+                    <div class="timeline-border"></div>
+                    <div class="vertical-align timeline-content">
+                        <!-- Timeline Body -->
+                        <div class="timeline-body clearfix">
+                            <div class="animate-in horizontal italic-heading adjust-m-right-10 timeline-date">1909</div>
+                            <div class="timeline-details">
+                                <h4 class="italic-heading small animate-in horizontal" data-delay="100">Title Goes Here</h4>
+                                <hr class="animate-in horizontal" data-delay="200">
+                                <p class="animate-in horizontal" data-delay="300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis turpis, viverra ac enim ut, consequat sollicitudin augue. Sed magna massa, lobortis eget tempor nec, maximus volutpat mauris. Fusce condimentum urna ut lorem laoreet lacinia. Quisque sem orci, convallis a facilisis ac, lacinia pellentesque odio. Mauris at bibendum purus. Aliquam a sollicitudin nisi, in tempus enim.</p>
+                            </div>
+                        </div>
+                        <!-- /Timeline Body -->
+                        <!-- Timeline Gallery -->
+                        <div class="timeline-gallery">
+                            <ul class="gallery type-b">
+                                <li class="gallery-entry animate-in vertical" data-delay="400" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="500" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="600" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="700" style="background-image: url(images/section-1-bg.jpg);"></li>
+                            </ul>
+                        </div>
+                        <!-- /Timeline Gallery -->
+                    </div>
+                </div>
+            </section>
+            <!-- /Timeline Entry -->
+            <!-- Timeline Entry -->
             <section class="timeline-entry end">
                 <div class="container content full-parent-height">
                     <div class="timeline-border"></div>
@@ -335,11 +365,16 @@
                             </div>
                         </div>
                         <!-- /Timeline Body -->
-                        <!-- Gallery Body -->
-                        <div class="gallery-body">
-                            Test
+                        <!-- Timeline Gallery -->
+                        <div class="timeline-gallery">
+                            <ul class="gallery type-a">
+                                <li class="gallery-entry animate-in vertical" data-delay="400" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="500" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="600" style="background-image: url(images/section-1-bg.jpg);"></li>
+                                <li class="gallery-entry animate-in vertical" data-delay="700" style="background-image: url(images/section-1-bg.jpg);"></li>
+                            </ul>
                         </div>
-                        <!-- /Gallery Body -->
+                        <!-- /Timeline Gallery -->
                     </div>
                 </div>
             </section>
@@ -358,8 +393,8 @@
         <script src="js/matchMedia.min.js"></script>
         <script src="js/jquery.parallax.min.js"></script>
         <script src="js/jquery.onepage-scroll.min.js"></script>
+        <script src="js/jquery.cloud9carousel.min.js"></script>
         <script src="js/matchMedia.min.js"></script>
-        <script src="js/jquery.circular-carousel.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

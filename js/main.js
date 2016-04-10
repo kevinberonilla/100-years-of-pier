@@ -190,7 +190,7 @@ $(document).ready(function() {
     var homeLink = $('.logo-container.horizontal > a');
     
     homeLink.click(function() {
-        main.moveTo('#home')
+        main.moveTo(1)
     });
     
     /* ----------------------------------------
@@ -337,7 +337,8 @@ $(document).ready(function() {
             var lastBodyHeight = $(this).find('.timeline-body').last().height(),
                 contentHeight = $(this).find('.timeline-content').innerHeight(),
                 parentHeight = $(this).closest('section').height(),
-                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight - timelineMarkOffset,
+                galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
+                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight - timelineMarkOffset,
                 timelineBorder = $('.timeline-border', this);
             
             timelineBorder.css('bottom', position + 'px');
@@ -345,6 +346,53 @@ $(document).ready(function() {
     }
     $(window).load(calculateTimelineBorders);
     $(window).resize($.debounce(250, calculateTimelineBorders));
+    
+    /* ----------------------------------------
+    Gallery Type A   Functions
+    ---------------------------------------- */
+    var galleryTypeA = $('.gallery.type-a');
+    
+    galleryTypeA.Cloud9Carousel({
+        autoPlay: 0,
+        bringToFront: true,
+        smooth: true,
+        transforms: true,
+        speed: 20,
+        itemClass: 'gallery-entry',
+        yRadius: -10
+    });
+    
+    /* ----------------------------------------
+    Gallery Type B Functions
+    ---------------------------------------- */
+    var galleryTypeB = $('.gallery.type-b');
+    
+    galleryTypeB.each(function() {
+        var galleryEntry = $('> li', this),
+            galleryEntryCount = galleryEntry.length,
+            galleryClosedWidth = 140,
+            totalMarginWidth = 10,
+            containerWidth = $(this).closest('.container').width(),
+            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
+        
+        galleryEntry.click(function() {
+            galleryEntry.removeClass('active')
+                .css('width', '');
+            
+            $(this).addClass('active')
+                .css('width', galleryOpenWidth + 'px');
+        });
+        
+        function recalculateWidths() {
+            containerWidth = $(this).closest('.container').width();
+            galleryOpenWidth = containerWidth - (galleryEntryCount * galleryClosedWidth);
+        }
+        
+        $(window).resize($.debounce(250, recalculateWidths));
+        
+        galleryEntry.first()
+            .click(); // Set initial state
+    });
     
     /* ----------------------------------------
     Music Functions

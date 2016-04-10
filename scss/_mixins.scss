@@ -171,3 +171,12 @@
         }
     }
 }
+@mixin build-gallery-entry-properties($list) {
+    @each $gallery-entry in $list {
+        &:nth-child(#{nth($gallery-entry, 1)}) {
+            &:after {
+                background-color: #{nth($gallery-entry, 2)};
+            }
+        }
+    }
+}
