@@ -451,6 +451,11 @@ nav {
                 left: 0;
                 z-index: 1;
             }
+            &.active {
+                &:after {
+                    opacity: 0;
+                }
+            }
             &:not(.active):hover {
                 &:after {
                     opacity: 0.25;

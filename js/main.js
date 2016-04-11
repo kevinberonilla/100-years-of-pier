@@ -354,7 +354,7 @@ $(document).ready(function() {
     $(window).resize($.debounce(250, calculateTimelineBorders));
     
     /* ----------------------------------------
-    Gallery Type A   Functions
+    Gallery Type A Functions
     ---------------------------------------- */
     var galleryTypeA = $('.gallery.type-a');
     

@@ -861,6 +861,8 @@ nav {
         bottom: 0;
         left: 0;
         z-index: 1; }
+      .gallery.type-a > li.active:after {
+        opacity: 0; }
       .gallery.type-a > li:not(.active):hover:after {
         opacity: 0.25; }
       .gallery.type-a > li:nth-child(1):after {
