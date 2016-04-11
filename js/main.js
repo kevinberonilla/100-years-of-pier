@@ -22,22 +22,25 @@ $(document).ready(function() {
     
     $(window).load(function() {
         var body = $('body'),
-            videoBackground = $('.video-background'),
+            homeVideo = $('#home-video'),
             scrollMessage = $('.scroll-message');
         
         loadingBar.css('width', '100%');
         loadingPercentage.text('100');
         
-        body.addClass('loaded');
-        videoBackground.addClass('show');
-        
         setTimeout(function() {
-            scrollMessage.addClass('show');
-        }, 3000);
+            body.addClass('loaded');
+            videoBackground.addClass('show');
+        }, 250);
+        
         
         setTimeout(function() {
             $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
         }, 2000);
+        
+        setTimeout(function() {
+            scrollMessage.addClass('show');
+        }, 3000);
     });
     
     /* ----------------------------------------
@@ -290,6 +293,9 @@ $(document).ready(function() {
         // If is not home, does not have overlay, and does not have underlay
         if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
             horizontalLogo.addClass('show');
+            backgroundVideo.addClass('show');
+        } else {
+            backgroundVideo.removeClass('show');
         }
         
         setTimeout(function() {
@@ -357,9 +363,21 @@ $(document).ready(function() {
         bringToFront: true,
         smooth: true,
         transforms: true,
-        speed: 20,
+        speed: 250,
         itemClass: 'gallery-entry',
-        yRadius: -10
+        yRadius: -25
+    });
+    
+    galleryTypeA.each(function() {
+        var galleryEntry = $('.gallery-entry', this),
+            firstGalleryEntry = galleryEntry.first();
+        
+        firstGalleryEntry.addClass('active');
+        
+        galleryEntry.click(function() {
+            galleryEntry.removeClass('active');
+            $(this).addClass('active');
+        });
     });
     
     /* ----------------------------------------

@@ -837,7 +837,8 @@ nav {
   list-style: none;
   display: block; }
   .gallery.type-a {
-    height: 480px; }
+    height: 480px;
+    overflow: visible !important; }
     .gallery.type-a > li {
       -webkit-transition: all 250ms ease;
       transition: all 250ms ease;

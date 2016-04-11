@@ -429,6 +429,7 @@ nav {
     display: block;
     &.type-a {
         height: 480px;
+        overflow: visible !important;
         > li {
             @include animated;
             display: block;
@@ -461,7 +462,6 @@ nav {
     &.type-b {
         > li {
             @include animated;
-            
             display: block;
             height: 40vh;
             margin: 5px;
