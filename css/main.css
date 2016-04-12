@@ -838,12 +838,14 @@ nav {
   display: block; }
   .gallery.type-a {
     height: 480px;
-    overflow: visible !important; }
+    overflow: visible !important;
+    position: relative;
+    top: -23px; }
     .gallery.type-a > li {
       -webkit-transition: all 250ms ease;
       transition: all 250ms ease;
       display: block;
-      width: 640px;
+      width: 720px;
       height: 480px;
       position: relative;
       background-size: cover;
@@ -865,6 +867,18 @@ nav {
         opacity: 0; }
       .gallery.type-a > li:not(.active):hover:after {
         opacity: 0.25; }
+      .gallery.type-a > li.animate-in {
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none; }
+        .gallery.type-a > li.animate-in.vertical {
+          margin-top: 20px; }
+          .gallery.type-a > li.animate-in.vertical.reveal {
+            margin-top: 0; }
+        .gallery.type-a > li.animate-in.horizontal {
+          margin-left: 20px; }
+          .gallery.type-a > li.animate-in.horizontal.reveal {
+            margin-left: 0; }
       .gallery.type-a > li:nth-child(1):after {
         background-color: #e265b0; }
       .gallery.type-a > li:nth-child(2):after {
@@ -929,6 +943,19 @@ nav {
     content: '';
     display: table;
     clear: both; }
+  .gallery li {
+    box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35); }
+    .gallery li .caption {
+      -webkit-transition: all 250ms ease;
+      transition: all 250ms ease;
+      position: absolute;
+      bottom: -40px;
+      font-size: 14px;
+      line-height: 28px;
+      text-overflow: inherit;
+      opacity: 0; }
+    .gallery li.active .caption {
+      opacity: 1; }
 
 .quote .vertical-align {
   z-index: 2; }
@@ -949,6 +976,47 @@ nav {
 
 .quote-body {
   text-align: center; }
+
+.quote-image-container {
+  width: 35vh;
+  height: 35vh;
+  -webkit-transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+  -ms-transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+  transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 45%;
+  z-index: -1; }
+
+.quote-image {
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  display: block;
+  width: 50vh;
+  height: 50vh; }
+  .quote-image:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.75; }
+  .quote-image.teal:after {
+    background-color: #3fcfd5; }
+  .quote-image.yellow:after {
+    background-color: #ffc82B; }
+  .quote-image.pink:after {
+    background-color: #e265b0; }
+  .quote-image.green:after {
+    background-color: #bfd62f; }
 
 section {
   width: 100%;

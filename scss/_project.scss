@@ -430,10 +430,12 @@ nav {
     &.type-a {
         height: 480px;
         overflow: visible !important;
+        position: relative;
+        top: -23px;
         > li {
             @include animated;
             display: block;
-            width: 640px;
+            width: 720px;
             height: 480px;
             position: relative;
             background-size: cover;
@@ -459,6 +461,21 @@ nav {
             &:not(.active):hover {
                 &:after {
                     opacity: 0.25;
+                }
+            }
+            &.animate-in {
+                transform: none;
+                &.vertical {
+                    margin-top: 20px;
+                    &.reveal {
+                        margin-top: 0;
+                    }
+                }
+                &.horizontal {
+                    margin-left: 20px;
+                    &.reveal {
+                        margin-left: 0;
+                    }
                 }
             }
             @include build-gallery-entry-properties($gallery-entry-list);
@@ -506,6 +523,23 @@ nav {
             clear: both;
         }
     }
+    li {
+        @include shadow;
+        .caption {
+            @include animated;
+            position: absolute;
+            bottom: -40px;
+            font-size: 14px;
+            line-height: 28px;
+            text-overflow: inherit;
+            opacity: 0;
+        }
+        &.active {
+            .caption {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .quote {
@@ -530,6 +564,56 @@ nav {
     }
     &-body {
         text-align: center;
+    }
+    &-image-container {
+        width: 35vh;
+        height: 35vh;
+        transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 45%;
+        z-index: -1;
+    }
+    &-image {
+        background-size: cover;
+        background-position: center center;
+        transform: rotate(45deg);
+        position: absolute;
+        display: block;
+        width: 50vh;
+        height: 50vh;
+        &:after {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.75;
+        }
+        &.teal {
+            &:after {
+                background-color: $color-teal;
+            }
+        }
+        &.yellow {
+            &:after {
+                background-color: $color-yellow;
+            }
+        }
+        &.pink {
+            &:after {
+                background-color: $color-pink;
+            }
+        }
+        &.green {
+            &:after {
+                background-color: $color-green;
+            }
+        }
     }
 }
 

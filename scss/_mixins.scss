@@ -1,9 +1,6 @@
 @mixin animated($side: all, $duration: 250ms, $function: ease) {
     transition: $side $duration $function;
 }
-@mixin shadow($horizontal: 8px, $vertical: 12px, $blur: 50px, $spread: 0, $color: rgba(0,0,0,0.5)) {
-    box-shadow: $horizontal $vertical $blur $spread $color;
-}
 @mixin column-width($width, $affix) {
     &-#{$affix} {
         width: $width;
@@ -170,6 +167,9 @@
             }
         }
     }
+}
+@mixin shadow($horizontal: 8px, $vertical: 12px, $blur: 40px, $spread: 0, $color: rgba(0,0,0,0.35)) {
+    box-shadow: $horizontal $vertical $blur $spread $color;
 }
 @mixin build-gallery-entry-properties($list) {
     @each $gallery-entry in $list {

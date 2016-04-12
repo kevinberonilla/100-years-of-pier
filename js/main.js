@@ -36,7 +36,7 @@ $(document).ready(function() {
         
         setTimeout(function() {
             $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
-        }, 2000);
+        }, 2000); // CHANGE THIS TO 2000 FOR PRODUCTION
         
         setTimeout(function() {
             scrollMessage.addClass('show');
@@ -356,7 +356,8 @@ $(document).ready(function() {
     /* ----------------------------------------
     Gallery Type A Functions
     ---------------------------------------- */
-    var galleryTypeA = $('.gallery.type-a');
+    var galleryTypeA = $('.gallery.type-a'),
+        containerWidth = galleryTypeA.closest('.container').width();
     
     galleryTypeA.Cloud9Carousel({
         autoPlay: 0,
@@ -365,7 +366,8 @@ $(document).ready(function() {
         transforms: true,
         speed: 250,
         itemClass: 'gallery-entry',
-        yRadius: -25
+        yRadius: -25,
+        xRadius: containerWidth / 3
     });
     
     galleryTypeA.each(function() {
@@ -411,6 +413,32 @@ $(document).ready(function() {
         galleryEntry.first()
             .click(); // Set initial state
     });
+    
+    /* ----------------------------------------
+    Quote Image Functions
+    ---------------------------------------- */
+    var quoteImageContainer = $('.quote-image-container');
+    
+    function centerQuoteImages() {
+        quoteImageContainer.each(function() {
+            var self = $(this),
+                quoteImage = $('.quote-image', self),
+                containerWidth = self.width(),
+                containerHeight = self.height(),
+                imageWidth = quoteImage.width(),
+                imageHeight = quoteImage.height(),
+                widthDelta = containerWidth - imageWidth,
+                heightDelta = containerHeight - imageHeight;
+
+            quoteImage.css({
+                'left': widthDelta / 2,
+                'top': heightDelta / 2
+            });
+        });
+    }
+    
+    $(window).resize($.debounce(250, centerQuoteImages));
+    $(window).load(centerQuoteImages);
     
     /* ----------------------------------------
     Music Functions
