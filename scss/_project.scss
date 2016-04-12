@@ -566,14 +566,15 @@ nav {
         text-align: center;
     }
     &-image-container {
+        @include shadow(-4px, 12px);
         width: 35vh;
         height: 35vh;
-        transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+        transform: rotate(-45deg) translateY(-40%) translateX(-30%);
         display: block;
         overflow: hidden;
         position: absolute;
         top: 0;
-        left: 45%;
+        left: 50%;
         z-index: -1;
     }
     &-image {

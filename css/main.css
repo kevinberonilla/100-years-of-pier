@@ -978,16 +978,17 @@ nav {
   text-align: center; }
 
 .quote-image-container {
+  box-shadow: -4px 12px 40px 0 rgba(0, 0, 0, 0.35);
   width: 35vh;
   height: 35vh;
-  -webkit-transform: rotate(-45deg) translateY(-30%) translateX(-20%);
-  -ms-transform: rotate(-45deg) translateY(-30%) translateX(-20%);
-  transform: rotate(-45deg) translateY(-30%) translateX(-20%);
+  -webkit-transform: rotate(-45deg) translateY(-40%) translateX(-30%);
+  -ms-transform: rotate(-45deg) translateY(-40%) translateX(-30%);
+  transform: rotate(-45deg) translateY(-40%) translateX(-30%);
   display: block;
   overflow: hidden;
   position: absolute;
   top: 0;
-  left: 45%;
+  left: 50%;
   z-index: -1; }
 
 .quote-image {

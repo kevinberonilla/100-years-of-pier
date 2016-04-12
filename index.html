@@ -16,26 +16,14 @@
         <![endif]-->
     </head>
     <body>
-        <div id="preload">
-            <!-- Include all images used in css backgrounds here -->
-            <img src="images/water-bg.jpg">
-            <img src="images/home-bg.png">
-            <img src="images/section-1-bg.jpg">
-            <img src="images/clouds-1.png">
-            <img src="images/clouds-2.png">
-            <!-- /Include all images used in css backgrounds here -->
-        </div>
+        <div id="preload"></div>
         <video id="background-video" class="video-background" muted loop style="background-image: url(images/water-bg.jpg);">
-<!--
-            <source src="videos/big_buck_bunny.webm">
-            <source src="videos/big_buck_bunny.ogg">
-            <source src="videos/big_buck_bunny.mp4">
--->
+            <source src="videos/water-bg.webm">
+            <source src="videos/water-bg.mp4">
         </video>
         <video id="home-video" class="video-background" muted loop style="background-image: url(images/home-bg.png);">
 <!--
             <source src="videos/big_buck_bunny.webm">
-            <source src="videos/big_buck_bunny.ogg">
             <source src="videos/big_buck_bunny.mp4">
 -->
         </video>
@@ -234,6 +222,9 @@
                     <div class="vertical-align">
                         <!-- Quote Body -->
                         <div class="quote-body">
+                            <div class="quote-image-container">
+                                <div class="quote-image orange" style="background-image: url(images/section-1-bg.jpg);"></div>
+                            </div>
                             <p class="italic-heading animate-in blur">"Make no little plans."</p>
                         </div>
                         <!-- /Quote Body -->

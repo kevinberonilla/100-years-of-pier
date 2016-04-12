@@ -4,44 +4,66 @@ $(document).ready(function() {
     /* ----------------------------------------
     Page Load Functions
     ---------------------------------------- */
-    var media =  $('img, video'),
-        total = media.length,
-        loadingBar = $('#loading-bar'),
-        loaded = 0,
-        loadingPercentage = $('#loading-percentage .number');
-    
-    function processLoadedMedia() {
-        loaded ++;
-        var percentage = parseInt((loaded / total) * 100);
-        
-        loadingBar.css('width', percentage + '%');
-        loadingPercentage.text(percentage);
+    function beginLoading() {
+        var media =  $('img, video'),
+            total = media.length,
+            loadingBar = $('#loading-bar'),
+            loaded = 0,
+            loadingPercentage = $('#loading-percentage .number');
+
+        function processLoadedMedia() {
+            loaded ++;
+            var percentage = parseInt((loaded / total) * 100);
+
+            loadingBar.css('width', percentage + '%');
+            loadingPercentage.text(percentage);
+        }
+
+        media.load(processLoadedMedia);
+
+        $(window).load(function() {
+            var body = $('body'),
+                homeVideo = $('#home-video'),
+                scrollMessage = $('.scroll-message');
+
+            loadingBar.css('width', '100%');
+            loadingPercentage.text('100');
+
+            setTimeout(function() {
+                body.addClass('loaded');
+                videoBackground.addClass('show');
+            }, 250);
+
+
+            setTimeout(function() {
+                $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
+            }, 2000); // CHANGE THIS TO 2000 FOR PRODUCTION
+
+            setTimeout(function() {
+                scrollMessage.addClass('show');
+            }, 3000);
+        });
     }
     
-    media.load(processLoadedMedia);
+    /* ----------------------------------------
+    Preload Auto-Populate Functions
+    ---------------------------------------- */
+    function autoPopulatePreload() {
+        var preload = $('#preload');
+        
+        $('[data-background-image]').each(function() {
+            var imageUrl = $(this).data('background-image');
+            
+            preload.append('<img src="' + imageUrl + '" alt="">');
+        });
+        $('[style*="background-image"]').each(function() {
+            var imageUrl = $(this).attr('style').replace('background-image: url(', '').replace(')', '').replace(';', '');
+            
+            preload.append('<img src="' + imageUrl + '" alt="">');
+        });
+    }
     
-    $(window).load(function() {
-        var body = $('body'),
-            homeVideo = $('#home-video'),
-            scrollMessage = $('.scroll-message');
-        
-        loadingBar.css('width', '100%');
-        loadingPercentage.text('100');
-        
-        setTimeout(function() {
-            body.addClass('loaded');
-            videoBackground.addClass('show');
-        }, 250);
-        
-        
-        setTimeout(function() {
-            $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
-        }, 2000); // CHANGE THIS TO 2000 FOR PRODUCTION
-        
-        setTimeout(function() {
-            scrollMessage.addClass('show');
-        }, 3000);
-    });
+    $.when(autoPopulatePreload()).done(beginLoading);
     
     /* ----------------------------------------
     Full Parent Height Functions
