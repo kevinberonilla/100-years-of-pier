@@ -10,35 +10,34 @@ $(document).ready(function() {
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
-
+        
         function processLoadedMedia() {
             loaded ++;
             var percentage = parseInt((loaded / total) * 100);
-
+            
             loadingBar.css('width', percentage + '%');
             loadingPercentage.text(percentage);
         }
-
+        
         media.load(processLoadedMedia);
-
+        
         $(window).load(function() {
             var body = $('body'),
                 homeVideo = $('#home-video'),
                 scrollMessage = $('.scroll-message');
-
+            
             loadingBar.css('width', '100%');
             loadingPercentage.text('100');
-
+            
             setTimeout(function() {
                 body.addClass('loaded');
                 videoBackground.addClass('show');
             }, 250);
-
-
+            
             setTimeout(function() {
                 $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
             }, 2000); // CHANGE THIS TO 2000 FOR PRODUCTION
-
+            
             setTimeout(function() {
                 scrollMessage.addClass('show');
             }, 3000);
@@ -326,7 +325,7 @@ $(document).ready(function() {
     }
     
     function processAfterMove() {
-        // afterMove functions go here
+        // afterMove functions can go here
     }
     
     $('body').on('pageready.np', function() {

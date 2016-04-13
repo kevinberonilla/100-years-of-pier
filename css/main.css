@@ -981,13 +981,13 @@ nav {
   box-shadow: -4px 12px 40px 0 rgba(0, 0, 0, 0.35);
   width: 35vh;
   height: 35vh;
-  -webkit-transform: rotate(-45deg) translateY(-40%) translateX(-30%);
-  -ms-transform: rotate(-45deg) translateY(-40%) translateX(-30%);
-  transform: rotate(-45deg) translateY(-40%) translateX(-30%);
+  -webkit-transform: rotate(-45deg) translateY(-70%);
+  -ms-transform: rotate(-45deg) translateY(-70%);
+  transform: rotate(-45deg) translateY(-70%);
   display: block;
   overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
   z-index: -1; }
 
@@ -1019,6 +1019,20 @@ nav {
   .quote-image.green:after {
     background-color: #bfd62f; }
 
+.quote-caption {
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  bottom: 40px;
+  font-size: 14px;
+  line-height: 28px; }
+  .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
+    font-size: 18px;
+    line-height: 36px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; }
+
 section {
   width: 100%;
   position: relative;
@@ -1037,9 +1051,11 @@ section {
       bottom: 40px;
       text-align: center;
       width: 100%;
-      opacity: 0; }
+      opacity: 0;
+      margin-bottom: 50px; }
       section#home #title .scroll-message.show {
-        opacity: 1; }
+        opacity: 1;
+        margin-bottom: 0; }
       section#home #title .scroll-message .scroll-arrow {
         margin-top: 10px; }
   section#home #tagline {

@@ -569,11 +569,11 @@ nav {
         @include shadow(-4px, 12px);
         width: 35vh;
         height: 35vh;
-        transform: rotate(-45deg) translateY(-40%) translateX(-30%);
+        transform: rotate(-45deg) translateY(-70%);
         display: block;
         overflow: hidden;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 50%;
         z-index: -1;
     }
@@ -616,6 +616,21 @@ nav {
             }
         }
     }
+    &-caption {
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        bottom: 40px;
+        font-size: 14px;
+        line-height: 28px;
+        h4 {
+            font-size: 18px;
+            line-height: 36px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+    }
 }
 
 section {
@@ -637,8 +652,10 @@ section {
                 text-align: center;
                 width: 100%;
                 opacity: 0;
+                margin-bottom: 50px;
                 &.show {
                     opacity: 1;
+                    margin-bottom: 0;
                 }
                 .scroll-arrow {
                     margin-top: 10px;
