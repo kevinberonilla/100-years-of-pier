@@ -436,6 +436,15 @@ $(document).ready(function() {
     });
     
     /* ----------------------------------------
+    Slider Functions
+    ---------------------------------------- */
+    var slider = $('.slider');
+    
+    $(window).load(function() {
+        slider.twentytwenty();
+    });
+    
+    /* ----------------------------------------
     Quote Image Functions
     ---------------------------------------- */
     var quoteImageContainer = $('.quote-image-container');
@@ -449,11 +458,13 @@ $(document).ready(function() {
                 imageWidth = quoteImage.width(),
                 imageHeight = quoteImage.height(),
                 widthDelta = containerWidth - imageWidth,
-                heightDelta = containerHeight - imageHeight;
+                heightDelta = containerHeight - imageHeight,
+                offsetX = quoteImage.data('offset-x') || 0,
+                offsetY = quoteImage.data('offset-y') || 0;
 
             quoteImage.css({
-                'left': widthDelta / 2,
-                'top': heightDelta / 2
+                'left': (widthDelta / 2) + offsetX + 'px',
+                'top': (heightDelta / 2) + offsetY + 'px'
             });
         });
     }
