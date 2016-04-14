@@ -409,11 +409,12 @@ $(document).ready(function() {
     var galleryTypeB = $('.gallery.type-b');
     
     galleryTypeB.each(function() {
-        var galleryEntry = $('> li', this),
+        var self = this,
+            galleryEntry = $('> li', self),
             galleryEntryCount = galleryEntry.length,
             galleryClosedWidth = 140,
             totalMarginWidth = 10,
-            containerWidth = $(this).closest('.container').width(),
+            containerWidth = $(self).closest('.container').width(),
             galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
         
         galleryEntry.click(function() {
@@ -425,8 +426,8 @@ $(document).ready(function() {
         });
         
         function recalculateWidths() {
-            containerWidth = $(this).closest('.container').width();
-            galleryOpenWidth = containerWidth - (galleryEntryCount * galleryClosedWidth);
+            containerWidth = $(self).closest('.container').width();
+            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
         }
         
         $(window).resize($.debounce(250, recalculateWidths));

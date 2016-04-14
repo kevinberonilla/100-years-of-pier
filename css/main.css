@@ -828,7 +828,8 @@ nav {
 
 .timeline-details {
   float: left;
-  width: 75%; }
+  width: 75%;
+  padding-right: 80px; }
 
 .timeline-gallery {
   margin-top: 35px; }
@@ -853,6 +854,7 @@ nav {
       display: block;
       width: 720px;
       height: 480px;
+      max-height: 45vh;
       position: relative;
       background-size: cover;
       background-position: center center;
@@ -905,7 +907,8 @@ nav {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
     display: block;
-    height: 40vh;
+    height: 480px;
+    max-height: 45vh;
     margin: 5px;
     width: 140px;
     position: relative;

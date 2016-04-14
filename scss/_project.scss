@@ -418,6 +418,7 @@ nav {
     &-details {
         float: left;
         width: 75%;
+        padding-right: $timeline-border-offset;
     }
     &-gallery {
         margin-top: 35px;
@@ -444,6 +445,7 @@ nav {
             display: block;
             width: 720px;
             height: 480px;
+            max-height: 45vh;
             position: relative;
             background-size: cover;
             background-position: center center;
@@ -492,7 +494,8 @@ nav {
         > li {
             @include animated;
             display: block;
-            height: 40vh;
+            height: 480px;
+            max-height: 45vh;
             margin: 5px;
             width: 140px;
             position: relative;
