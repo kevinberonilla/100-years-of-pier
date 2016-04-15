@@ -324,10 +324,6 @@ $(document).ready(function() {
         }, 1000);
     }
     
-    function processAfterMove() {
-        // afterMove functions can go here
-    }
-    
     $('body').on('pageready.np', function() {
         $('#main').onepage_scroll({
             sectionContainer: 'section',
@@ -337,8 +333,7 @@ $(document).ready(function() {
             direction: 'vertical',
             pagination: false,
             loop: false,
-            beforeMove: processBeforeMove,
-            afterMove: processAfterMove
+            beforeMove: processBeforeMove
         });
     });
     
@@ -469,6 +464,20 @@ $(document).ready(function() {
             });
         });
     }
+    
+    function hideQuoteBody() {
+        var target = $('section.active .quote-body .animate-in');
+        
+        target.removeClass('reveal');
+    }
+    
+    function showQuoteBody() {
+        var target = $('section.active .quote-body .animate-in');
+        
+        target.addClass('reveal');
+    }
+    
+    quoteImageContainer.hover(hideQuoteBody, showQuoteBody);
     
     $(window).resize($.debounce(250, centerQuoteImages));
     $(window).load(centerQuoteImages);

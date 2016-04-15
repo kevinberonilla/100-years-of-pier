@@ -132,9 +132,11 @@ header {
     top: 0;
     z-index: 9998;
     opacity: 0;
+    pointer-events: none;
     #back-to-np {
         display: inline-block;
         margin-top: 5px;
+        pointer-events: all;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             display: none;
         }
@@ -145,10 +147,12 @@ footer {
     @extend header;
     top: initial;
     bottom: 0;
+    pointer-events: none;
     .icon {
         color: white;
         display: inline-block;
         font-size: 22px;
+        pointer-events: all;
         + .icon {
             margin-left: 10px;
         }
@@ -229,7 +233,7 @@ nav {
     .roman-numeral {
         font-size: 4px;
         stroke-width: 0.1px;
-        top: -24px;
+        top: -22px;
         stroke: $color-nav-roman-numeral;
         letter-spacing: normal;
     }
@@ -242,6 +246,7 @@ nav {
     top: 40px;
     right: 40px;
     opacity: 1;
+    pointer-events: all;
     &:hover {
         opacity: 0.5;
     }
@@ -394,7 +399,7 @@ nav {
         position: relative;
         padding-left: $timeline-border-offset + 40;
         + .timeline-body {
-            margin-top: 120px;
+            margin-top: 80px;
         }
         &:before {
             content: '';
@@ -436,15 +441,16 @@ nav {
     list-style: none;
     display: block;
     &.type-a {
-        height: 480px;
+        height: 360px;
+        max-height: 45vh;
         overflow: visible !important;
         position: relative;
-        top: -23px;
+        top: -6px;
         > li {
             @include animated;
             display: block;
-            width: 720px;
-            height: 480px;
+            width: 600px;
+            height: 360px;
             max-height: 45vh;
             position: relative;
             background-size: cover;
@@ -494,7 +500,7 @@ nav {
         > li {
             @include animated;
             display: block;
-            height: 480px;
+            height: 360px;
             max-height: 45vh;
             margin: 5px;
             width: 140px;
@@ -588,6 +594,7 @@ nav {
         top: 50%;
         left: 50%;
         z-index: -1;
+        cursor: crosshair;
     }
     &-image {
         background-size: cover;

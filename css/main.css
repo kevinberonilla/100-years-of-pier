@@ -575,21 +575,25 @@ header, footer {
   width: 100%;
   top: 0;
   z-index: 9998;
-  opacity: 0; }
+  opacity: 0;
+  pointer-events: none; }
   header #back-to-np, footer #back-to-np {
     display: inline-block;
-    margin-top: 5px; }
+    margin-top: 5px;
+    pointer-events: all; }
     @media only screen and (max-width: 768px) {
       header #back-to-np, footer #back-to-np {
         display: none; } }
 
 footer {
   top: initial;
-  bottom: 0; }
+  bottom: 0;
+  pointer-events: none; }
   footer .icon {
     color: white;
     display: inline-block;
-    font-size: 22px; }
+    font-size: 22px;
+    pointer-events: all; }
     footer .icon + .icon {
       margin-left: 10px; }
     footer .icon:hover {
@@ -663,7 +667,7 @@ nav {
   nav .roman-numeral {
     font-size: 4px;
     stroke-width: 0.1px;
-    top: -24px;
+    top: -22px;
     stroke: rgba(255, 255, 255, 0.35);
     letter-spacing: normal; }
 
@@ -674,7 +678,8 @@ nav {
   z-index: 9998;
   top: 40px;
   right: 40px;
-  opacity: 1; }
+  opacity: 1;
+  pointer-events: all; }
   #open-nav-button:hover, #close-nav-button:hover {
     opacity: 0.5; }
 
@@ -807,7 +812,7 @@ nav {
   position: relative;
   padding-left: 120px; }
   .timeline-body + .timeline-body {
-    margin-top: 120px; }
+    margin-top: 80px; }
   .timeline-body:before {
     content: '';
     display: block;
@@ -844,16 +849,17 @@ nav {
   list-style: none;
   display: block; }
   .gallery.type-a {
-    height: 480px;
+    height: 360px;
+    max-height: 45vh;
     overflow: visible !important;
     position: relative;
-    top: -23px; }
+    top: -6px; }
     .gallery.type-a > li {
       -webkit-transition: all 250ms ease;
       transition: all 250ms ease;
       display: block;
-      width: 720px;
-      height: 480px;
+      width: 600px;
+      height: 360px;
       max-height: 45vh;
       position: relative;
       background-size: cover;
@@ -907,7 +913,7 @@ nav {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
     display: block;
-    height: 480px;
+    height: 360px;
     max-height: 45vh;
     margin: 5px;
     width: 140px;
@@ -1000,7 +1006,8 @@ nav {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: -1; }
+  z-index: -1;
+  cursor: crosshair; }
 
 .quote-image {
   background-size: cover;
