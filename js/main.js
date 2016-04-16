@@ -360,7 +360,8 @@ $(document).ready(function() {
                 contentHeight = $(this).find('.timeline-content').innerHeight(),
                 parentHeight = $(this).closest('section').height(),
                 galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
-                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight - timelineMarkOffset,
+                sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
+                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
                 timelineBorder = $('.timeline-border', this);
             
             timelineBorder.css('bottom', position + 'px');
@@ -375,20 +376,21 @@ $(document).ready(function() {
     var galleryTypeA = $('.gallery.type-a'),
         containerWidth = galleryTypeA.closest('.container').width();
     
-    galleryTypeA.Cloud9Carousel({
-        autoPlay: 0,
-        bringToFront: true,
-        smooth: true,
-        transforms: true,
-        speed: 250,
-        itemClass: 'gallery-entry',
-        yRadius: -25,
-        xRadius: containerWidth / 3
-    });
-    
     galleryTypeA.each(function() {
         var galleryEntry = $('.gallery-entry', this),
-            firstGalleryEntry = galleryEntry.first();
+            firstGalleryEntry = galleryEntry.first(),
+            numberOfEntries = galleryEntry.length;
+        
+        $(this).Cloud9Carousel({
+            autoPlay: 0,
+            bringToFront: true,
+            smooth: true,
+            transforms: true,
+            speed: 250,
+            itemClass: 'gallery-entry',
+            yRadius: -25,
+            xRadius: containerWidth / (numberOfEntries - 1)
+        });
         
         firstGalleryEntry.addClass('active');
         
@@ -438,6 +440,8 @@ $(document).ready(function() {
     
     $(window).load(function() {
         slider.twentytwenty();
+        
+        $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
     });
     
     /* ----------------------------------------

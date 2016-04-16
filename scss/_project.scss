@@ -164,6 +164,7 @@ footer {
 
 .roman-numeral {
     font-size: 22px;
+    line-height: 0;
     font-family: $font-stack-secondary;
     stroke: $color-green;
     stroke-width: 0.15px;
@@ -233,7 +234,9 @@ nav {
     .roman-numeral {
         font-size: 4px;
         stroke-width: 0.1px;
-        top: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-bottom: 35px;
         stroke: $color-nav-roman-numeral;
         letter-spacing: normal;
     }
@@ -430,6 +433,7 @@ nav {
     }
     &-slider {
         @include shadow;
+        margin: 40px 130px 0;
         img {
             max-width: 100%;
             height: auto;
@@ -441,7 +445,7 @@ nav {
     list-style: none;
     display: block;
     &.type-a {
-        height: 360px;
+        height: 380px;
         max-height: 45vh;
         overflow: visible !important;
         position: relative;
@@ -450,7 +454,7 @@ nav {
             @include animated;
             display: block;
             width: 600px;
-            height: 360px;
+            height: 380px;
             max-height: 45vh;
             position: relative;
             background-size: cover;
@@ -500,7 +504,7 @@ nav {
         > li {
             @include animated;
             display: block;
-            height: 360px;
+            height: 380px;
             max-height: 45vh;
             margin: 5px;
             width: 140px;

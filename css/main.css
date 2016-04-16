@@ -601,6 +601,7 @@ footer {
 
 .roman-numeral {
   font-size: 22px;
+  line-height: 0;
   font-family: "Libre Baskerville", serif;
   stroke: #bfd62f;
   stroke-width: 0.15px;
@@ -667,7 +668,11 @@ nav {
   nav .roman-numeral {
     font-size: 4px;
     stroke-width: 0.1px;
-    top: -22px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding-bottom: 35px;
     stroke: rgba(255, 255, 255, 0.35);
     letter-spacing: normal; }
 
@@ -840,7 +845,8 @@ nav {
   margin-top: 35px; }
 
 .timeline-slider {
-  box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35); }
+  box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
+  margin: 40px 130px 0; }
   .timeline-slider img {
     max-width: 100%;
     height: auto; }
@@ -849,7 +855,7 @@ nav {
   list-style: none;
   display: block; }
   .gallery.type-a {
-    height: 360px;
+    height: 380px;
     max-height: 45vh;
     overflow: visible !important;
     position: relative;
@@ -859,7 +865,7 @@ nav {
       transition: all 250ms ease;
       display: block;
       width: 600px;
-      height: 360px;
+      height: 380px;
       max-height: 45vh;
       position: relative;
       background-size: cover;
@@ -913,7 +919,7 @@ nav {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
     display: block;
-    height: 360px;
+    height: 380px;
     max-height: 45vh;
     margin: 5px;
     width: 140px;
@@ -1148,6 +1154,17 @@ section {
 /* ----------------------------------------
 Overrides
 ---------------------------------------- */
+.twentytwenty-container {
+  position: relative;
+  max-height: 40vh; }
+  .twentytwenty-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
 /* ----------------------------------------
 Adjustment Styles
 ---------------------------------------- */
