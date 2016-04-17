@@ -436,12 +436,17 @@ $(document).ready(function() {
     /* ----------------------------------------
     Slider Functions
     ---------------------------------------- */
-    var slider = $('.slider');
+    var slider = $('.slider'),
+        sliderSection = $('section.has-slider');
     
     $(window).load(function() {
         slider.twentytwenty();
         
         $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
+    });
+    
+    sliderSection.mousemove(function(e) { 
+        console.log(e.pageX) 
     });
     
     /* ----------------------------------------
