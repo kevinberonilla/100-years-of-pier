@@ -1164,6 +1164,18 @@ Overrides
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
 
+.twentytwenty-left-arrow {
+  margin-left: -12px; }
+
+.twentytwenty-right-arrow {
+  margin-right: -12px; }
+
+.twentytwenty-horizontal .twentytwenty-handle {
+  border: none; }
+  .twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after {
+    margin: 0;
+    width: 1px; }
+
 /* ----------------------------------------
 Adjustment Styles
 ---------------------------------------- */

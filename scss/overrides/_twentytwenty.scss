@@ -9,4 +9,19 @@
             transform: translate(-50%, -50%);
         }
     }
+    &-left-arrow {
+        margin-left: -12px;
+    }
+    &-right-arrow {
+        margin-right: -12px;
+    }
+    &-horizontal {
+        .twentytwenty-handle {
+            border: none;
+            &:before, &:after {
+                margin: 0;
+                width: 1px;
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
-var page = $('html, body');
+var page = $('html, body'),
+    isDev = false; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -36,7 +37,7 @@ $(document).ready(function() {
             
             setTimeout(function() {
                 $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
-            }, 2000); // CHANGE THIS TO 2000 FOR PRODUCTION
+            }, (isDev) ? 0 : 2000);
             
             setTimeout(function() {
                 scrollMessage.addClass('show');
@@ -321,14 +322,14 @@ $(document).ready(function() {
         
         setTimeout(function() {
             processAnimateIn(activeSection);
-        }, 1000);
+        }, (isDev) ? 100 : 1000);
     }
     
     $('body').on('pageready.np', function() {
         $('#main').onepage_scroll({
             sectionContainer: 'section',
             easing: 'ease',
-            animationTime: 1000,
+            animationTime: (isDev) ? 100 : 1000,
             keyboard: true,
             direction: 'vertical',
             pagination: false,
@@ -443,10 +444,6 @@ $(document).ready(function() {
         slider.twentytwenty();
         
         $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
-    });
-    
-    sliderSection.mousemove(function(e) { 
-        console.log(e.pageX) 
     });
     
     /* ----------------------------------------
