@@ -9,19 +9,29 @@
             transform: translate(-50%, -50%);
         }
     }
+    &-left-arrow, &-right-arrow {
+        border-right: 12px solid #fff;
+        margin-top: -12px;
+    }
     &-left-arrow {
-        margin-left: -12px;
+        margin-left: -24px;
+        border: 12px inset transparent;
     }
     &-right-arrow {
-        margin-right: -12px;
+        margin-right: -24px;
+        border: 12px inset transparent;
     }
     &-horizontal {
         .twentytwenty-handle {
             border: none;
+            box-shadow: none;
             &:before, &:after {
                 margin: 0;
                 width: 1px;
             }
         }
+    }
+    &-before-label, &-after-label {
+        display: none;
     }
 }

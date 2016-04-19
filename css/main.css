@@ -1164,17 +1164,27 @@ Overrides
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
 
+.twentytwenty-left-arrow, .twentytwenty-right-arrow {
+  border-right: 12px solid #fff;
+  margin-top: -12px; }
+
 .twentytwenty-left-arrow {
-  margin-left: -12px; }
+  margin-left: -24px;
+  border: 12px inset transparent; }
 
 .twentytwenty-right-arrow {
-  margin-right: -12px; }
+  margin-right: -24px;
+  border: 12px inset transparent; }
 
 .twentytwenty-horizontal .twentytwenty-handle {
-  border: none; }
+  border: none;
+  box-shadow: none; }
   .twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after {
     margin: 0;
     width: 1px; }
+
+.twentytwenty-before-label, .twentytwenty-after-label {
+  display: none; }
 
 /* ----------------------------------------
 Adjustment Styles
