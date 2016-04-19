@@ -1165,26 +1165,36 @@ Overrides
     transform: translate(-50%, -50%); }
 
 .twentytwenty-left-arrow, .twentytwenty-right-arrow {
-  border-right: 12px solid #fff;
+  border: 12px inset transparent;
   margin-top: -12px; }
 
 .twentytwenty-left-arrow {
   margin-left: -24px;
-  border: 12px inset transparent; }
+  border-right: 12px solid #fff; }
 
 .twentytwenty-right-arrow {
   margin-right: -24px;
-  border: 12px inset transparent; }
+  border-left: 12px solid #fff; }
 
 .twentytwenty-horizontal .twentytwenty-handle {
   border: none;
   box-shadow: none; }
   .twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after {
     margin: 0;
-    width: 1px; }
+    width: 1px;
+    box-shadow: none; }
 
 .twentytwenty-before-label, .twentytwenty-after-label {
-  display: none; }
+  opacity: 1;
+  top: 3px; }
+  .twentytwenty-before-label:before, .twentytwenty-after-label:before {
+    display: none; }
+
+.twentytwenty-after-label {
+  left: 42px; }
+
+.twentytwenty-overlay:hover {
+  opacity: 0; }
 
 /* ----------------------------------------
 Adjustment Styles

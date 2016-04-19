@@ -441,9 +441,34 @@ $(document).ready(function() {
         sliderSection = $('section.has-slider');
     
     $(window).load(function() {
-        slider.twentytwenty();
+        $.when(slider.twentytwenty()).done(function() {
+            setTimeout(function() { // Allow time for plugin to initialize
+                slider.each(function() {
+                    var self = this,
+                        beforeText = $(self).data('before-text') || 'Before',
+                        afterText = $(self).data('after-text') || 'After',
+                        handle = $('.twentytwenty-handle', self),
+                        labels = $('.twentytwenty-before-label, .twentytwenty-after-label', self);
+                    
+                    labels.remove();
+                    
+                    function appendLabels() {
+                        handle.append('<div class="twentytwenty-before-label">' + beforeText + '</div>', '<div class="twentytwenty-after-label">' + afterText + '</div>');
+                    }
+                    
+                    $.when(appendLabels()).done(function() {
+                        var newBeforeLabel = $('.twentytwenty-before-label', self),
+                            newAfterLabel = $('.twentytwenty-after-label', self),
+                            newBeforeLabelWidth = newBeforeLabel.width();
+
+                        newBeforeLabel.css('right', newBeforeLabelWidth + 'px');
+                    });
+                    
+                });
         
-        $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
+                $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
+            }, 1000);
+        });
     });
     
     /* ----------------------------------------
