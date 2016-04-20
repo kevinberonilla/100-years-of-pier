@@ -25,6 +25,10 @@
         .twentytwenty-handle {
             border: none;
             box-shadow: none;
+            cursor: grab;
+            &:active {
+                cursor: grabbing;
+            }
             &:before, &:after {
                 margin: 0;
                 width: 1px;
@@ -33,18 +37,21 @@
         }
     }
     &-before-label, &-after-label {
+        pointer-events: none;
         opacity: 1;
         top: 3px;
+        width: auto;
         &:before {
             display: none;
         }
+    }
+    &-before-label {
+        right: 42px;
     }
     &-after-label {
         left: 42px;
     }
     &-overlay {
-        &:hover {
-            opacity: 0;
-        }
+        display: none;
     }
 }

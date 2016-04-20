@@ -226,11 +226,21 @@ $(document).ready(function() {
         
         animateIn.each(function() {
             var self = $(this),
-                delay = self.data('delay') || 0;
+                index = self.index();
             
-            setTimeout(function() {
-                self.addClass('reveal');
-            }, delay);
+            function setDelays() {
+                if (index != 0 && !self.is('[data-delay]')) {
+                    self.attr('data-delay', index + '00');
+                }
+            }
+            
+            $.when(setDelays()).done(function() {
+                var delay = self.data('delay') || 0;
+                
+                setTimeout(function() {
+                    self.addClass('reveal');
+                }, delay);
+            });
         });
     }
     
@@ -451,21 +461,9 @@ $(document).ready(function() {
                         labels = $('.twentytwenty-before-label, .twentytwenty-after-label', self);
                     
                     labels.remove();
-                    
-                    function appendLabels() {
-                        handle.append('<div class="twentytwenty-before-label">' + beforeText + '</div>', '<div class="twentytwenty-after-label">' + afterText + '</div>');
-                    }
-                    
-                    $.when(appendLabels()).done(function() {
-                        var newBeforeLabel = $('.twentytwenty-before-label', self),
-                            newAfterLabel = $('.twentytwenty-after-label', self),
-                            newBeforeLabelWidth = newBeforeLabel.width();
-
-                        newBeforeLabel.css('right', newBeforeLabelWidth + 'px');
-                    });
-                    
+                    handle.append('<div class="twentytwenty-before-label">' + beforeText + '</div>', '<div class="twentytwenty-after-label">' + afterText + '</div>');
                 });
-        
+                
                 $(this).trigger('resize'); // Ensures timeline resizing functions can calculate this height after load
             }, 1000);
         });

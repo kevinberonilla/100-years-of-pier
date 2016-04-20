@@ -1178,23 +1178,33 @@ Overrides
 
 .twentytwenty-horizontal .twentytwenty-handle {
   border: none;
-  box-shadow: none; }
+  box-shadow: none;
+  cursor: -webkit-grab;
+  cursor: grab; }
+  .twentytwenty-horizontal .twentytwenty-handle:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing; }
   .twentytwenty-horizontal .twentytwenty-handle:before, .twentytwenty-horizontal .twentytwenty-handle:after {
     margin: 0;
     width: 1px;
     box-shadow: none; }
 
 .twentytwenty-before-label, .twentytwenty-after-label {
+  pointer-events: none;
   opacity: 1;
-  top: 3px; }
+  top: 3px;
+  width: auto; }
   .twentytwenty-before-label:before, .twentytwenty-after-label:before {
     display: none; }
+
+.twentytwenty-before-label {
+  right: 42px; }
 
 .twentytwenty-after-label {
   left: 42px; }
 
-.twentytwenty-overlay:hover {
-  opacity: 0; }
+.twentytwenty-overlay {
+  display: none; }
 
 /* ----------------------------------------
 Adjustment Styles
