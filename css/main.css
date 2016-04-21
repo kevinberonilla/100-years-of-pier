@@ -476,6 +476,10 @@ h3 {
   line-height: 44px;
   text-transform: uppercase;
   font-weight: 700; }
+  @media only screen and (max-width: 1024px) {
+    h3 {
+      font-size: 32px;
+      line-height: 40px; } }
 
 h4, section#home #title .scroll-message {
   font-size: 12px;
@@ -501,13 +505,25 @@ hr {
   font-family: "Libre Baskerville", serif;
   font-style: italic;
   text-transform: none; }
+  @media only screen and (max-width: 1024px) {
+    .italic-heading {
+      font-size: 46px;
+      line-height: 54px; } }
   .italic-heading.small {
     font-size: 36px;
     line-height: 48px; }
+    @media only screen and (max-width: 1024px) {
+      .italic-heading.small {
+        font-size: 26px;
+        line-height: 38px; } }
 
 body {
   background-color: black;
   color: white; }
+  @media only screen and (max-width: 1024px) {
+    body {
+      font-size: 14px;
+      line-height: 26px; } }
   body.loaded header,
   body.loaded footer,
   body.loaded footer {
@@ -613,6 +629,12 @@ footer {
   top: -72px;
   z-index: -1;
   display: block; }
+  @media only screen and (max-width: 1024px) {
+    .roman-numeral {
+      top: 6%;
+      -webkit-transform: translateY(-46%);
+      -ms-transform: translateY(-46%);
+      transform: translateY(-46%); } }
 
 nav {
   -webkit-transition: all 250ms ease;
@@ -630,6 +652,10 @@ nav {
   z-index: 9999;
   overflow: hidden;
   height: 0; }
+  @media only screen and (max-width: 1024px) {
+    nav {
+      font-size: 16px;
+      line-height: 22px; } }
   nav > ul {
     list-style: none; }
     nav > ul > li {
@@ -674,6 +700,10 @@ nav {
     transform: translateY(-50%);
     stroke: rgba(255, 255, 255, 0.35);
     letter-spacing: normal; }
+    @media only screen and (max-width: 1024px) {
+      nav .roman-numeral {
+        font-size: 8px;
+        margin-top: 1.6%; } }
 
 #open-nav-button, #close-nav-button {
   -webkit-transition: all 250ms ease;
@@ -776,6 +806,9 @@ nav {
   .logo-container img {
     width: 220px;
     height: auto; }
+    @media only screen and (max-width: 1024px) {
+      .logo-container img {
+        width: 180px; } }
   .logo-container.horizontal {
     -webkit-transition: all 1000ms 250ms ease;
     transition: all 1000ms 250ms ease;
@@ -785,9 +818,6 @@ nav {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
-    .logo-container.horizontal img {
-      width: 220px;
-      height: auto; }
     .logo-container.horizontal.show {
       opacity: 1;
       pointer-events: all; }
@@ -802,6 +832,9 @@ nav {
 
 .timeline-entry .italic-heading.small {
   padding-top: 8px; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-entry .italic-heading.small {
+      padding-top: 2px; } }
 
 .timeline-border {
   display: block;
@@ -834,6 +867,9 @@ nav {
   float: left;
   width: 25%;
   padding: 0 30px 0 10px; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-date {
+      width: 150px; } }
 
 .timeline-details {
   float: left;
@@ -845,10 +881,16 @@ nav {
 
 .timeline-slider {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
-  margin: 40px 130px 0; }
+  margin: 40px 130px 0;
+  position: relative; }
   .timeline-slider img {
     max-width: 100%;
     height: auto; }
+  .timeline-slider .caption {
+    position: absolute;
+    bottom: -40px;
+    text-align: center;
+    width: 100%; }
 
 .gallery {
   list-style: none;
@@ -1088,6 +1130,10 @@ section {
     margin-top: 30px;
     font-size: 46px;
     line-height: 54px; }
+    @media only screen and (max-width: 1024px) {
+      section#home #tagline {
+        font-size: 38px;
+        line-height: 46px; } }
   section#home #loading-bar {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -1117,7 +1163,12 @@ section {
     font-size: 22px;
     line-height: 42px;
     text-transform: uppercase;
-    letter-spacing: 2px; }
+    letter-spacing: 2px;
+    padding: 0 40px; }
+    @media only screen and (max-width: 1024px) {
+      section .intro {
+        font-size: 18px;
+        line-height: 36px; } }
     section .intro h3 {
       margin-bottom: 100px;
       position: relative; }
