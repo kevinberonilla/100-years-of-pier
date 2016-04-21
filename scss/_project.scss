@@ -35,7 +35,7 @@ hr {
     border-bottom: none;
     margin: 30px 0;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        margin: 20px 0;
+        margin: 14px 0;
     }
 }
 
@@ -66,6 +66,9 @@ body {
         font-size: 14px;
         line-height: 26px;
     }
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        line-height: 22px;
+    }
     &.loaded {
         header,
         footer {
@@ -75,9 +78,6 @@ body {
             #title {
                 width: 640px;
                 @media only screen and (max-width: $tablet-landscape-breakpoint) {
-                    width: 420px;
-                }
-                @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     width: 100%;
                 }
             }
@@ -158,13 +158,13 @@ header {
     z-index: 9998;
     opacity: 0;
     pointer-events: none;
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        padding: 24px 32px 32px;
+    }
     #back-to-np {
         display: inline-block;
         margin-top: 5px;
         pointer-events: all;
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            display: none;
-        }
     }
 }
 
@@ -178,11 +178,35 @@ footer {
         display: inline-block;
         font-size: 22px;
         pointer-events: all;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            display: block;
+        }
         + .icon {
             margin-left: 10px;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                margin-left: 0;
+            }
         }
         &:hover {
             opacity: 0.5;
+        }
+    }
+    .music {
+        float: right;
+        position: absolute;
+        bottom: 32px;
+        right: 46px;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            right: 32px;
+        }
+    }
+    .social-media {
+        float: left;
+        text-align: center;
+        .icon {
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                margin-top: 4px;
+            }
         }
     }
 }
@@ -225,6 +249,10 @@ nav {
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         font-size: 16px;
         line-height: 22px;
+    }
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        font-size: 14px;
+        line-height: 18px;
     }
     > ul {
         list-style: none;
@@ -275,6 +303,11 @@ nav {
             font-size: 8px;
             margin-top: 1.6%;
         }
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            transform: scale(1.25);
+            stroke-width: 0.2px;
+            margin-top: -2.8%;
+        }
     }
 }
 
@@ -286,6 +319,10 @@ nav {
     right: 40px;
     opacity: 1;
     pointer-events: all;
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        top: 32px;
+        right: 32px;
+    }
     &:hover {
         opacity: 0.5;
     }
@@ -391,7 +428,7 @@ nav {
     img {
         width: 220px;
         height: auto;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
             width: 180px;
         }
     }
@@ -401,6 +438,9 @@ nav {
         pointer-events: none;
         top: 16px;
         transform: translateX(-50%);
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            display: none;
+        }
         &.show {
             opacity: 1;
             pointer-events: all;
@@ -425,7 +465,7 @@ nav {
                     padding-top: 2px;
                 }
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                    padding-top: 16px;
+                    padding-top: 6px;
                 }
             }
         }
@@ -438,18 +478,24 @@ nav {
         bottom: 0;
         width: 30px;
         border-left: 1px solid white;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            left: $timeline-border-offset / 2;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            left: $timeline-border-offset / 4;
         }
     }
     &-body {
         position: relative;
         padding-left: $timeline-border-offset * 1.5;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            padding-left: $timeline-border-offset;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            padding-left: $timeline-border-offset / 1.2;
         }
         + .timeline-body {
-            margin-top: 80px;
+            margin-top: $timeline-border-offset;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                margin-top: $timeline-border-offset / 2;
+            }
+            @media only screen and (max-width: $phone-breakpoint) {
+                margin-top: $timeline-border-offset / 4;
+            }
         }
         &:before {
             content: '';
@@ -460,8 +506,8 @@ nav {
             width: 30px;
             left: $timeline-border-offset;
             top: 30px;
-            @media only screen and (max-width: $tablet-landscape-breakpoint) {
-                left: $timeline-border-offset / 2;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                left: $timeline-border-offset / 4;
             }
         }
     }
@@ -485,6 +531,7 @@ nav {
         width: 80%;
         padding-right: $timeline-border-offset;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            width: 75%;
             padding-right: $timeline-border-offset / 2;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -646,6 +693,9 @@ nav {
         left: $timeline-border-offset;
         width: 30px;
         border-left: 1px solid white;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            left: $timeline-border-offset / 4;
+        }
     }
     &-background-image {
         @extend #background-image;
@@ -718,11 +768,19 @@ nav {
         bottom: 40px;
         font-size: 14px;
         line-height: 28px;
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            font-size: 12px;
+            line-height: 22px;
+        }
         h4 {
             font-size: 18px;
             line-height: 36px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {    
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 }
@@ -762,7 +820,7 @@ section {
             margin-top: 30px;
             font-size: 46px;
             line-height: 54px;
-            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
                 font-size: 38px;
                 line-height: 46px;
             }

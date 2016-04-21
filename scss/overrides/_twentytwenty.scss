@@ -41,15 +41,17 @@
         opacity: 1;
         top: 3px;
         width: auto;
+        font-weight: 700;
+        letter-spacing: 1px;
         &:before {
             display: none;
         }
     }
     &-before-label {
-        right: 42px;
+        right: 36px;
     }
     &-after-label {
-        left: 42px;
+        left: 36px;
     }
     &-overlay {
         display: none;
