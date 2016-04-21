@@ -478,7 +478,7 @@ h3 {
   font-weight: 700; }
   @media only screen and (max-width: 1024px) {
     h3 {
-      font-size: 32px;
+      font-size: 30px;
       line-height: 40px; } }
 
 h4, section#home #title .scroll-message {
@@ -498,6 +498,9 @@ hr {
   border: 1px solid #3fcfd5;
   border-bottom: none;
   margin: 30px 0; }
+  @media only screen and (max-width: 768px) {
+    hr {
+      margin: 20px 0; } }
 
 .italic-heading {
   font-size: 60px;
@@ -530,6 +533,12 @@ body {
     opacity: 1; }
   body.loaded #home #title {
     width: 640px; }
+    @media only screen and (max-width: 1024px) {
+      body.loaded #home #title {
+        width: 420px; } }
+    @media only screen and (max-width: 768px) {
+      body.loaded #home #title {
+        width: 100%; } }
   body.loaded #home #tagline {
     opacity: 1; }
   body.loaded #home #loading-bar,
@@ -632,9 +641,9 @@ footer {
   @media only screen and (max-width: 1024px) {
     .roman-numeral {
       top: 6%;
-      -webkit-transform: translateY(-46%);
-      -ms-transform: translateY(-46%);
-      transform: translateY(-46%); } }
+      -webkit-transform: translateY(-40%);
+      -ms-transform: translateY(-40%);
+      transform: translateY(-40%); } }
 
 nav {
   -webkit-transition: all 250ms ease;
@@ -785,7 +794,7 @@ nav {
   #vignette:after {
     box-shadow: inset 0 0 50vw rgba(0, 0, 0, 0.75);
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     top: 0;
     right: 0;
     left: 0;
@@ -835,6 +844,9 @@ nav {
   @media only screen and (max-width: 1024px) {
     .timeline-entry .italic-heading.small {
       padding-top: 2px; } }
+  @media only screen and (max-width: 768px) {
+    .timeline-entry .italic-heading.small {
+      padding-top: 16px; } }
 
 .timeline-border {
   display: block;
@@ -844,10 +856,16 @@ nav {
   bottom: 0;
   width: 30px;
   border-left: 1px solid white; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-border {
+      left: 40px; } }
 
 .timeline-body {
   position: relative;
   padding-left: 120px; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-body {
+      padding-left: 80px; } }
   .timeline-body + .timeline-body {
     margin-top: 80px; }
   .timeline-body:before {
@@ -859,6 +877,9 @@ nav {
     width: 30px;
     left: 80px;
     top: 30px; }
+    @media only screen and (max-width: 1024px) {
+      .timeline-body:before {
+        left: 40px; } }
 
 .timeline-content {
   padding-top: 50px; }
@@ -870,11 +891,22 @@ nav {
   @media only screen and (max-width: 1024px) {
     .timeline-date {
       width: 150px; } }
+  @media only screen and (max-width: 768px) {
+    .timeline-date {
+      float: none;
+      padding-left: 0; } }
 
 .timeline-details {
   float: left;
-  width: 75%;
+  width: 80%;
   padding-right: 80px; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-details {
+      padding-right: 40px; } }
+  @media only screen and (max-width: 768px) {
+    .timeline-details {
+      float: none;
+      width: 100%; } }
 
 .timeline-gallery {
   margin-top: 35px; }

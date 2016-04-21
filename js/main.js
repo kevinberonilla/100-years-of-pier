@@ -83,14 +83,15 @@ $(document).ready(function() {
     Video Background Functions
     ---------------------------------------- */    
     var videoBackground = $('.video-background'),
-        isMobile,
+        isMobile = false,
         scrollPos,
         adjustedPos,
         videoOffset,
         windowHeight;
     
-    if (matchMedia('only screen and (max-width: 768px)').matches) { // Don't load the video for tablet portrait and smaller
-        videoBackground.remove();
+    if (matchMedia('only screen and (max-width: 768px)').matches || /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
+        videoBackground.find('source')
+            .remove();
         isMobile = true;
     }
     
@@ -384,65 +385,69 @@ $(document).ready(function() {
     /* ----------------------------------------
     Gallery Type A Functions
     ---------------------------------------- */
-    var galleryTypeA = $('.gallery.type-a'),
-        containerWidth = galleryTypeA.closest('.container').width();
-    
-    galleryTypeA.each(function() {
-        var galleryEntry = $('.gallery-entry', this),
-            firstGalleryEntry = galleryEntry.first(),
-            numberOfEntries = galleryEntry.length;
+    if (!isMobile) {
+        var galleryTypeA = $('.gallery.type-a'),
+            containerWidth = galleryTypeA.closest('.container').width();
         
-        $(this).Cloud9Carousel({
-            autoPlay: 0,
-            bringToFront: true,
-            smooth: true,
-            transforms: true,
-            speed: 250,
-            itemClass: 'gallery-entry',
-            yRadius: -25,
-            xRadius: containerWidth / (numberOfEntries - 1)
+        galleryTypeA.each(function() {
+            var galleryEntry = $('.gallery-entry', this),
+                firstGalleryEntry = galleryEntry.first(),
+                numberOfEntries = galleryEntry.length;
+
+            $(this).Cloud9Carousel({
+                autoPlay: 0,
+                bringToFront: true,
+                smooth: true,
+                transforms: true,
+                speed: 250,
+                itemClass: 'gallery-entry',
+                yRadius: -25,
+                xRadius: containerWidth / (numberOfEntries - 1)
+            });
+
+            firstGalleryEntry.addClass('active');
+
+            galleryEntry.click(function() {
+                galleryEntry.removeClass('active');
+                $(this).addClass('active');
+            });
         });
-        
-        firstGalleryEntry.addClass('active');
-        
-        galleryEntry.click(function() {
-            galleryEntry.removeClass('active');
-            $(this).addClass('active');
-        });
-    });
+    }
     
     /* ----------------------------------------
     Gallery Type B Functions
     ---------------------------------------- */
-    var galleryTypeB = $('.gallery.type-b');
-    
-    galleryTypeB.each(function() {
-        var self = this,
-            galleryEntry = $('> li', self),
-            galleryEntryCount = galleryEntry.length,
-            galleryClosedWidth = 140,
-            totalMarginWidth = 10,
-            containerWidth = $(self).closest('.container').width(),
-            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
-        
-        galleryEntry.click(function() {
-            galleryEntry.removeClass('active')
-                .css('width', '');
-            
-            $(this).addClass('active')
-                .css('width', galleryOpenWidth + 'px');
+    if (!isMobile) {
+        var galleryTypeB = $('.gallery.type-b');
+
+        galleryTypeB.each(function() {
+            var self = this,
+                galleryEntry = $('> li', self),
+                galleryEntryCount = galleryEntry.length,
+                galleryClosedWidth = 140,
+                totalMarginWidth = 10,
+                containerWidth = $(self).closest('.container').width(),
+                galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
+
+            galleryEntry.click(function() {
+                galleryEntry.removeClass('active')
+                    .css('width', '');
+
+                $(this).addClass('active')
+                    .css('width', galleryOpenWidth + 'px');
+            });
+
+            function recalculateWidths() {
+                containerWidth = $(self).closest('.container').width();
+                galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
+            }
+
+            $(window).resize($.debounce(250, recalculateWidths));
+
+            galleryEntry.first()
+                .click(); // Set initial state
         });
-        
-        function recalculateWidths() {
-            containerWidth = $(self).closest('.container').width();
-            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
-        }
-        
-        $(window).resize($.debounce(250, recalculateWidths));
-        
-        galleryEntry.first()
-            .click(); // Set initial state
-    });
+    }
     
     /* ----------------------------------------
     Slider Functions
