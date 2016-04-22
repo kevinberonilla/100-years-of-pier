@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = true; // Set this to false before pushing to production
+    isDev = false; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
