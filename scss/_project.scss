@@ -520,14 +520,14 @@ nav {
         }
     }
     &-content {
-        padding-top: 50px;
+        padding-top: 20px;
     }
     &-date {
         float: left;
         width: 25%;
         padding: 0 30px 0 10px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            width: 150px;
+            width: 170px;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             float: none;
@@ -536,10 +536,10 @@ nav {
     }
     &-details {
         float: left;
-        width: 80%;
+        width: 75%;
         padding-right: $timeline-border-offset;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            width: 75%;
+            width: 65%;
             padding-right: $timeline-border-offset / 2;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -550,7 +550,12 @@ nav {
     &-gallery {
         margin-top: 35px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            overflow: scroll;
+            overflow: visible;
+            overflow-x: scroll;
+            &::-webkit-scrollbar { 
+                width: 0 !important;
+                display: none !important;
+            }
         }
     }
     &-slider {
@@ -611,18 +616,20 @@ nav {
                     opacity: 0.25;
                 }
             }
-            &.animate-in {
-                transform: none;
-                &.vertical {
-                    margin-top: 20px;
-                    &.reveal {
-                        margin-top: 0;
+            @media only screen and (min-width: $tablet-landscape-breakpoint + 1) {
+                &.animate-in {
+                    transform: none;
+                    &.vertical {
+                        margin-top: 20px;
+                        &.reveal {
+                            margin-top: 0;
+                        }
                     }
-                }
-                &.horizontal {
-                    margin-left: 20px;
-                    &.reveal {
-                        margin-left: 0;
+                    &.horizontal {
+                        margin-left: 20px;
+                        &.reveal {
+                            margin-left: 0;
+                        }
                     }
                 }
             }
@@ -692,9 +699,15 @@ nav {
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         &.type-a, &.type-b {
             position: relative;
-            overflow: scroll;
+            overflow: visible;
+            overflow-x: scroll;
             white-space: nowrap;
-            padding: 0 $timeline-border-offset;
+            padding: 0 290px;
+            height: 45vh;
+            &::-webkit-scrollbar { 
+                width: 0 !important;
+                display: none !important;
+            }
             > li {
                 display: inline-block;
                 position: relative;
@@ -703,15 +716,21 @@ nav {
                 margin: 0;
                 margin-right: 20px;
                 float: none;
+                transform: none !important;
+                overflow: visible;
+                max-height: none;
                 &:after {
                     display: none;
                 }
+            }
+            .caption {
+                opacity: 1;
             }
         }
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         &.type-a, &.type-b {
-            padding: 0 $timeline-border-offset / 4;
+            padding: 0 65px;
         }
     }
 }
@@ -756,6 +775,12 @@ nav {
         left: 50%;
         z-index: -1;
         cursor: crosshair;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            width: 20vh;
+            height: 20vh;
+            position: relative;
+            margin-bottom: -20px;
+        }
     }
     &-image {
         background-size: cover;
@@ -765,6 +790,10 @@ nav {
         display: block;
         width: 50vh;
         height: 50vh;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            width: 40vh;
+            height: 40vh;
+        }
         &:after {
             display: block;
             content: '';

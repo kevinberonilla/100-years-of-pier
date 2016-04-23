@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = false; // Set this to false before pushing to production
+    isDev = true; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -355,7 +355,7 @@ $(document).ready(function() {
     var timelineEntryStart = $('.timeline-entry.start'),
         timelineEntryEnd = $('.timeline-entry.end'),
         timelineMarkOffset = 30,
-        timelineContentPaddingTop = 50;
+        timelineContentPaddingTop = 20;
     
     function calculateTimelineBorders() {
         timelineEntryStart.each(function() {
