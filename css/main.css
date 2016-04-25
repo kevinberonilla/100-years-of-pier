@@ -1118,7 +1118,8 @@ nav {
       overflow-x: scroll;
       white-space: nowrap;
       padding: 0 290px;
-      height: 45vh; }
+      height: 45vh;
+      cursor: default; }
       .gallery.type-a::-webkit-scrollbar, .gallery.type-b::-webkit-scrollbar {
         width: 0 !important;
         display: none !important; }
@@ -1126,7 +1127,7 @@ nav {
         display: inline-block;
         position: relative;
         height: 40vh;
-        width: 60vh;
+        width: 60vh !important;
         margin: 0;
         margin-right: 20px;
         float: none;
@@ -1137,11 +1138,20 @@ nav {
         max-height: none; }
         .gallery.type-a > li:after, .gallery.type-b > li:after {
           display: none; }
+        .gallery.type-a > li:last-child, .gallery.type-b > li:last-child {
+          margin-right: 80px; }
       .gallery.type-a .caption, .gallery.type-b .caption {
-        opacity: 1; } }
+        opacity: 1;
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; } }
   @media only screen and (max-width: 768px) {
     .gallery.type-a, .gallery.type-b {
-      padding: 0 65px; } }
+      padding: 0 65px; }
+      .gallery.type-a > li:last-child, .gallery.type-b > li:last-child {
+        margin-right: 40px; } }
 
 .quote .vertical-align {
   z-index: 2; }

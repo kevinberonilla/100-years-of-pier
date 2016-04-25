@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = false; // Set this to false before pushing to production
+    isDev = true; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -145,7 +145,7 @@ $(document).ready(function() {
     }
     
     resizeQuoteBackgroundImages();
-    $(window).resize($.debounce(250, resizeQuoteBackgroundImages));
+    $(window).resize($.debounce(500, resizeQuoteBackgroundImages));
     
     /* ----------------------------------------
     Nav Functions
@@ -380,7 +380,7 @@ $(document).ready(function() {
         });
     }
     $(window).load(calculateTimelineBorders);
-    $(window).resize($.debounce(250, calculateTimelineBorders));
+    $(window).resize($.debounce(500, calculateTimelineBorders));
     
     /* ----------------------------------------
     Gallery Type A Functions
@@ -442,7 +442,7 @@ $(document).ready(function() {
                 galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
             }
 
-            $(window).resize($.debounce(250, recalculateWidths));
+            $(window).resize($.debounce(500, recalculateWidths));
 
             galleryEntry.first()
                 .click(); // Set initial state
@@ -513,7 +513,7 @@ $(document).ready(function() {
     
     quoteImageContainer.hover(hideQuoteBody, showQuoteBody);
     
-    $(window).resize($.debounce(250, centerQuoteImages));
+    $(window).resize($.debounce(500, centerQuoteImages));
     $(window).load(centerQuoteImages);
     
     /* ----------------------------------------

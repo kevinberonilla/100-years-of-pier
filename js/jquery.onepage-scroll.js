@@ -58,19 +58,19 @@
             var deltaX = startX - touches[0].pageX;
             var deltaY = startY - touches[0].pageY;
 
-            if (deltaX >= 80) {
+            if (deltaX >= 50) {
               $this.trigger("swipeLeft");
             }
-            if (deltaX <= -80) {
+            if (deltaX <= -50) {
               $this.trigger("swipeRight");
             }
-            if (deltaY >= 80) {
+            if (deltaY >= 50) {
               $this.trigger("swipeUp");
             }
-            if (deltaY <= -80) {
+            if (deltaY <= -50) {
               $this.trigger("swipeDown");
             }
-            if (Math.abs(deltaX) >= 80 || Math.abs(deltaY) >= 80) {
+            if (Math.abs(deltaX) >= 50 || Math.abs(deltaY) >= 50) {
               $this.unbind('touchmove', touchmove);
             }
           }
