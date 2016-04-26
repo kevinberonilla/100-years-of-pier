@@ -14,6 +14,10 @@ h3 {
         font-size: 30px;
         line-height: 40px;
     }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 22px;
+        line-height: 36px;
+    }
 }
 
 h4 {
@@ -25,6 +29,9 @@ h4 {
     a:visited {
         color: white;
         text-decoration: none;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 11px;
     }
 }
 
@@ -53,6 +60,10 @@ hr {
         font-size: 32px;
         line-height: 46px;
     }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 28px;
+        line-height: 42px;
+    }
     &.small {
         font-size: 36px;
         line-height: 48px;
@@ -63,6 +74,10 @@ hr {
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             font-size: 18px;
             line-height: 30px;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            font-size: 26px;
+            line-height: 28px;
         }
     }
 }
@@ -76,6 +91,9 @@ body {
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         line-height: 22px;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 12px;
     }
     &.loaded {
         header,
@@ -316,6 +334,9 @@ nav {
             stroke-width: 0.2px;
             margin-top: -2.8%;
         }
+        @media only screen and (max-width: $phone-breakpoint) {
+            margin-top: -2.4%;
+        }
     }
 }
 
@@ -425,6 +446,17 @@ nav {
     }
 }
 
+#screen-blocker {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: all;
+    z-index: 9999;
+    background-color: $color-intro-overlay;
+}
+
 .logo-container {
     text-align: center;
     position: fixed;
@@ -438,6 +470,9 @@ nav {
         height: auto;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             width: 180px;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            width: 140px;  
         }
     }
     &.horizontal {
@@ -562,6 +597,14 @@ nav {
         @include shadow;
         margin: 40px 130px 0;
         position: relative;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
         img {
             max-width: 100%;
             height: auto;
@@ -747,6 +790,13 @@ nav {
             }
         }
     }
+    @media only screen and (max-width: $phone-breakpoint) {
+        &.type-a, &.type-b {
+            .caption {
+                font-size: 11px;
+            }
+        }
+    }
 }
 
 .quote {
@@ -851,6 +901,9 @@ nav {
             font-size: 12px;
             line-height: 22px;
         }
+        @media only screen and (max-width: $phone-breakpoint) {
+            font-size: 11px;
+        }
         h4 {
             font-size: 18px;
             line-height: 36px;
@@ -860,6 +913,10 @@ nav {
                 font-size: 16px;
                 line-height: 24px;
             }
+            @media only screen and (max-width: $phone-breakpoint) {
+                font-size: 14px;
+                line-height: 22px;
+            }
         }
     }
 }
@@ -868,6 +925,7 @@ section {
     width: 100%;
     position: relative;
     z-index: 1;
+    min-height: 560px;
     &#home {
         #title {
             @include animated(all 2000ms);
@@ -901,6 +959,10 @@ section {
             @media only screen and (max-width: $tablet-portrait-breakpoint) {
                 font-size: 38px;
                 line-height: 46px;
+            }
+            @media only screen and (max-width: $phone-breakpoint) {
+                font-size: 28px;
+                line-height: 36px;
             }
         }
         #loading-bar {
@@ -946,6 +1008,13 @@ section {
         h3 {
             margin-bottom: 100px;
             position: relative;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                margin-bottom: 80px;
+            }
+            @media only screen and (max-width: $phone-breakpoint) {
+                line-height: 30px;
+                margin-bottom: 60px;
+            }
         }
     }
     .content {

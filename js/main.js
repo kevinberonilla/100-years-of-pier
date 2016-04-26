@@ -370,10 +370,10 @@ $(document).ready(function() {
         timelineEntryEnd.each(function() {
             var lastBodyHeight = $(this).find('.timeline-body').last().height(),
                 contentHeight = $(this).find('.timeline-content').innerHeight(),
-                parentHeight = $(this).closest('section').height(),
+                parentHeight = ($(this).closest('section').height() > 560) ? $(this).closest('section').height() : 560,
                 galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
                 sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
-                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
+                position = (( - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
                 timelineBorder = $('.timeline-border', this);
             
             timelineBorder.css('bottom', position + 'px');

@@ -480,6 +480,10 @@ h3 {
     h3 {
       font-size: 30px;
       line-height: 40px; } }
+  @media only screen and (max-width: 480px) {
+    h3 {
+      font-size: 22px;
+      line-height: 36px; } }
 
 h4, section#home #title .scroll-message {
   font-size: 12px;
@@ -491,6 +495,9 @@ h4, section#home #title .scroll-message {
   h4 a:visited, section#home #title .scroll-message a:visited {
     color: white;
     text-decoration: none; }
+  @media only screen and (max-width: 480px) {
+    h4, section#home #title .scroll-message {
+      font-size: 11px; } }
 
 hr {
   display: block;
@@ -516,6 +523,10 @@ hr {
     .italic-heading {
       font-size: 32px;
       line-height: 46px; } }
+  @media only screen and (max-width: 480px) {
+    .italic-heading {
+      font-size: 28px;
+      line-height: 42px; } }
   .italic-heading.small {
     font-size: 36px;
     line-height: 48px; }
@@ -527,6 +538,10 @@ hr {
       .italic-heading.small {
         font-size: 18px;
         line-height: 30px; } }
+    @media only screen and (max-width: 480px) {
+      .italic-heading.small {
+        font-size: 26px;
+        line-height: 28px; } }
 
 body {
   background-color: black;
@@ -538,6 +553,9 @@ body {
   @media only screen and (max-width: 768px) {
     body {
       line-height: 22px; } }
+  @media only screen and (max-width: 480px) {
+    body {
+      font-size: 12px; } }
   body.loaded header,
   body.loaded footer,
   body.loaded footer {
@@ -752,6 +770,9 @@ nav {
         transform: scale(1.25);
         stroke-width: 0.2px;
         margin-top: -2.8%; } }
+    @media only screen and (max-width: 480px) {
+      nav .roman-numeral {
+        margin-top: -2.4%; } }
 
 #open-nav-button, #close-nav-button {
   -webkit-transition: all 250ms ease;
@@ -845,6 +866,16 @@ nav {
     content: '';
     display: block; }
 
+#screen-blocker {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: all;
+  z-index: 9999;
+  background-color: rgba(50, 68, 101, 0.8); }
+
 .logo-container {
   text-align: center;
   position: fixed;
@@ -861,6 +892,9 @@ nav {
     @media only screen and (max-width: 768px) {
       .logo-container img {
         width: 180px; } }
+    @media only screen and (max-width: 480px) {
+      .logo-container img {
+        width: 140px; } }
   .logo-container.horizontal {
     -webkit-transition: all 1000ms 250ms ease;
     transition: all 1000ms 250ms ease;
@@ -975,6 +1009,14 @@ nav {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
   margin: 40px 130px 0;
   position: relative; }
+  @media only screen and (max-width: 768px) {
+    .timeline-slider {
+      margin-left: 70px;
+      margin-right: 70px; } }
+  @media only screen and (max-width: 480px) {
+    .timeline-slider {
+      margin-left: 70px;
+      margin-right: 70px; } }
   .timeline-slider img {
     max-width: 100%;
     height: auto; }
@@ -1152,6 +1194,9 @@ nav {
       padding: 0 65px; }
       .gallery.type-a > li:last-child, .gallery.type-b > li:last-child {
         margin-right: 40px; } }
+  @media only screen and (max-width: 480px) {
+    .gallery.type-a .caption, .gallery.type-b .caption {
+      font-size: 11px; } }
 
 .quote .vertical-align {
   z-index: 2; }
@@ -1243,6 +1288,9 @@ nav {
     .quote-caption {
       font-size: 12px;
       line-height: 22px; } }
+  @media only screen and (max-width: 480px) {
+    .quote-caption {
+      font-size: 11px; } }
   .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
     font-size: 18px;
     line-height: 36px;
@@ -1252,11 +1300,16 @@ nav {
       .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
         font-size: 16px;
         line-height: 24px; } }
+    @media only screen and (max-width: 480px) {
+      .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
+        font-size: 14px;
+        line-height: 22px; } }
 
 section {
   width: 100%;
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  min-height: 560px; }
   section#home #title {
     -webkit-transition: all 2000ms 250ms ease;
     transition: all 2000ms 250ms ease;
@@ -1288,6 +1341,10 @@ section {
       section#home #tagline {
         font-size: 38px;
         line-height: 46px; } }
+    @media only screen and (max-width: 480px) {
+      section#home #tagline {
+        font-size: 28px;
+        line-height: 36px; } }
   section#home #loading-bar {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -1331,6 +1388,13 @@ section {
     section .intro h3 {
       margin-bottom: 100px;
       position: relative; }
+      @media only screen and (max-width: 768px) {
+        section .intro h3 {
+          margin-bottom: 80px; } }
+      @media only screen and (max-width: 480px) {
+        section .intro h3 {
+          line-height: 30px;
+          margin-bottom: 60px; } }
   section .content {
     position: relative;
     z-index: 1; }
