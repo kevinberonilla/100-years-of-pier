@@ -868,7 +868,6 @@ section {
     width: 100%;
     position: relative;
     z-index: 1;
-    min-height: 700px;
     &#home {
         #title {
             @include animated(all 2000ms);
