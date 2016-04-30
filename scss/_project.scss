@@ -97,11 +97,9 @@ body {
     }
     &.loaded {
         header,
-        footer {
-            opacity: 1;
-        }
+        footer,
         section {
-            display: block;
+            opacity: 1;
         }
         #home {
             #title {
@@ -600,7 +598,6 @@ nav {
     }
     &-gallery {
         margin-top: 35px;
-        position: relative;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             overflow: visible;
             overflow-x: scroll;
@@ -952,10 +949,10 @@ section {
     position: relative;
     z-index: 1;
     min-height: 560px;
-    display: none;
+    opacity: 0;
     overflow: hidden;
     &#home {
-        display: block;
+        opacity: 1;
         #title {
             @include animated(all 2000ms);
             width: 100%;

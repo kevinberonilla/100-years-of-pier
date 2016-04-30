@@ -558,10 +558,9 @@ body {
       font-size: 12px; } }
   body.loaded header,
   body.loaded footer,
-  body.loaded footer {
-    opacity: 1; }
+  body.loaded footer,
   body.loaded section {
-    display: block; }
+    opacity: 1; }
   body.loaded #home #title {
     width: 640px; }
     @media only screen and (max-width: 1024px) {
@@ -1008,8 +1007,7 @@ nav {
       width: 100%; } }
 
 .timeline-gallery {
-  margin-top: 35px;
-  position: relative; }
+  margin-top: 35px; }
   @media only screen and (max-width: 1024px) {
     .timeline-gallery {
       overflow: visible;
@@ -1338,10 +1336,10 @@ section {
   position: relative;
   z-index: 1;
   min-height: 560px;
-  display: none;
+  opacity: 0;
   overflow: hidden; }
   section#home {
-    display: block; }
+    opacity: 1; }
     section#home #title {
       -webkit-transition: all 2000ms 250ms ease;
       transition: all 2000ms 250ms ease;
