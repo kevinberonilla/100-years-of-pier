@@ -36,13 +36,13 @@ h4 {
 }
 
 hr {
-    display: block;
-    max-width: 60px;
+    display: inline-block;
+    width: 60px;
     border: 1px solid $color-teal;
     border-bottom: none;
-    margin: 30px 0;
+    margin: 30px 0 20px;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        margin: 14px 0;
+        margin: 14px 0 10px;
     }
 }
 
@@ -65,8 +65,8 @@ hr {
         line-height: 42px;
     }
     &.small {
-        font-size: 36px;
-        line-height: 48px;
+        font-size: 32px;
+        line-height: 46px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             font-size: 26px;
             line-height: 38px;
@@ -99,6 +99,9 @@ body {
         header,
         footer {
             opacity: 1;
+        }
+        section {
+            display: block;
         }
         #home {
             #title {
@@ -263,6 +266,7 @@ footer {
     top: -72px;
     z-index: -1;
     display: none;
+    overflow: visible;
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         top: 6%;
         transform: translateY(-40%);
@@ -596,6 +600,7 @@ nav {
     }
     &-gallery {
         margin-top: 35px;
+        position: relative;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             overflow: visible;
             overflow-x: scroll;
@@ -760,14 +765,14 @@ nav {
             overflow-x: scroll;
             white-space: nowrap;
             padding: 0 290px;
-            height: 45vh;
+            height: 48vh;
             &::-webkit-scrollbar {
                 width: 0 !important;
                 display: none !important;
             }
             > li {
-                display: inline-block;
-                position: relative;
+                display: inline-block !important;
+                position: relative !important;
                 height: 40vh;
                 width: 60vh !important;
                 margin: 0;
@@ -947,7 +952,10 @@ section {
     position: relative;
     z-index: 1;
     min-height: 560px;
+    display: none;
+    overflow: hidden;
     &#home {
+        display: block;
         #title {
             @include animated(all 2000ms);
             width: 100%;
