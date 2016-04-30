@@ -599,6 +599,7 @@ nav {
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             overflow: visible;
             overflow-x: scroll;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
             &::-webkit-scrollbar {
                 width: 0 !important;
                 display: none !important;
