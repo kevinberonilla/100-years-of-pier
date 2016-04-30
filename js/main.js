@@ -3,49 +3,6 @@ var page = $('html, body'),
 
 $(document).ready(function() {
     /* ----------------------------------------
-    Page Load Functions
-    ---------------------------------------- */
-    function beginLoading() {
-        var media =  $('img, video'),
-            total = media.length,
-            loadingBar = $('#loading-bar'),
-            loaded = 0,
-            loadingPercentage = $('#loading-percentage .number');
-        
-        function processLoadedMedia() {
-            loaded ++;
-            var percentage = parseInt((loaded / total) * 100);
-            
-            loadingBar.css('width', percentage + '%');
-            loadingPercentage.text(percentage);
-        }
-        
-        media.load(processLoadedMedia);
-        
-        $(window).load(function() {
-            var body = $('body'),
-                homeVideo = $('#home-video'),
-                scrollMessage = $('.scroll-message');
-            
-            loadingBar.css('width', '100%');
-            loadingPercentage.text('100');
-            
-            setTimeout(function() {
-                body.addClass('loaded');
-                videoBackground.addClass('show');
-            }, 250);
-            
-            setTimeout(function() {
-                $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
-            }, (isDev) ? 0 : 2000);
-            
-            setTimeout(function() {
-                scrollMessage.addClass('show');
-            }, 3000);
-        });
-    }
-    
-    /* ----------------------------------------
     Preload Auto-Populate Functions
     ---------------------------------------- */
     function autoPopulatePreload() {
@@ -122,6 +79,49 @@ $(document).ready(function() {
     
     if (!isMobile && videoBackground.length > 0) {
         $(window).load(playVideo);
+    }
+    
+    /* ----------------------------------------
+    Page Load Functions
+    ---------------------------------------- */
+    function beginLoading() {
+        var media =  $('img, video'),
+            total = media.length,
+            loadingBar = $('#loading-bar'),
+            loaded = 0,
+            loadingPercentage = $('#loading-percentage .number');
+        
+        function processLoadedMedia() {
+            loaded ++;
+            var percentage = parseInt((loaded / total) * 100);
+            
+            loadingBar.css('width', percentage + '%');
+            loadingPercentage.text(percentage);
+        }
+        
+        media.load(processLoadedMedia);
+        
+        $(window).load(function() {
+            var body = $('body'),
+                homeVideo = $('#home-video'),
+                scrollMessage = $('.scroll-message');
+            
+            loadingBar.css('width', '100%');
+            loadingPercentage.text('100');
+            
+            setTimeout(function() {
+                body.addClass('loaded');
+                homeVideo.addClass('show');
+            }, 250);
+            
+            setTimeout(function() {
+                $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
+            }, (isDev) ? 0 : 2000);
+            
+            setTimeout(function() {
+                scrollMessage.addClass('show');
+            }, 3000);
+        });
     }
     
     /* ----------------------------------------
@@ -373,7 +373,7 @@ $(document).ready(function() {
                 parentHeight = ($(this).closest('section').height() > 560) ? $(this).closest('section').height() : 560,
                 galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
                 sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
-                position = (( - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
+                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
                 timelineBorder = $('.timeline-border', this);
             
             timelineBorder.css('bottom', position + 'px');

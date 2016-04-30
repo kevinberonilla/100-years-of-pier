@@ -115,6 +115,9 @@ body {
                 opacity: 0;
             }
         }
+        .roman-numeral {
+            display: block;
+        }
     }
     &.nav-open {
         .logo-container.horizontal {
@@ -163,12 +166,21 @@ body {
     background-size: cover;
     pointer-events: none;
     filter: none;
+    -webkit-transform-style: preserve-3d;
     &.show {
         opacity: 1;
     }
     &.blur {
         filter: blur(5px);
     }
+}
+
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+#home-video {
+    -webkit-transform: translate3d(0, 0, 0);
 }
 
 .full-parent-height {
@@ -250,7 +262,7 @@ footer {
     position: absolute;
     top: -72px;
     z-index: -1;
-    display: block;
+    display: none;
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         top: 6%;
         transform: translateY(-40%);
@@ -472,7 +484,7 @@ nav {
             width: 180px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            width: 140px;  
+            width: 140px;
         }
     }
     &.horizontal {
@@ -587,7 +599,7 @@ nav {
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             overflow: visible;
             overflow-x: scroll;
-            &::-webkit-scrollbar { 
+            &::-webkit-scrollbar {
                 width: 0 !important;
                 display: none !important;
             }
@@ -740,15 +752,15 @@ nav {
         }
     }
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        &.type-a, &.type-b {
+        &.type-a,
+        &.type-b {
             position: relative;
             overflow: visible;
             overflow-x: scroll;
             white-space: nowrap;
             padding: 0 290px;
             height: 45vh;
-            cursor: default;
-            &::-webkit-scrollbar { 
+            &::-webkit-scrollbar {
                 width: 0 !important;
                 display: none !important;
             }
@@ -763,11 +775,17 @@ nav {
                 transform: none !important;
                 overflow: visible;
                 max-height: none;
+                cursor: default;
+                cursor: -webkit-grab;
                 &:after {
                     display: none;
                 }
                 &:last-child {
                     margin-right: 80px;
+                }
+                &:active {
+                    cursor: default;
+                    cursor: -webkit-grabbing;
                 }
             }
             .caption {
@@ -781,7 +799,8 @@ nav {
         }
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        &.type-a, &.type-b {
+        &.type-a,
+        &.type-b {
             padding: 0 65px;
             > li {
                 &:last-child {
@@ -791,7 +810,8 @@ nav {
         }
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        &.type-a, &.type-b {
+        &.type-a,
+        &.type-b {
             .caption {
                 font-size: 11px;
             }
@@ -909,7 +929,7 @@ nav {
             line-height: 36px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            @media only screen and (max-width: $tablet-portrait-breakpoint) {    
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
                 font-size: 16px;
                 line-height: 24px;
             }
