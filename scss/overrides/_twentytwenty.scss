@@ -26,6 +26,8 @@
             border: none;
             box-shadow: none;
             cursor: grab;
+            margin-left: -20px;
+            margin-top: -18px;
             &:active {
                 cursor: grabbing;
             }

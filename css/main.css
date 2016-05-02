@@ -1484,7 +1484,9 @@ Overrides
   border: none;
   box-shadow: none;
   cursor: -webkit-grab;
-  cursor: grab; }
+  cursor: grab;
+  margin-left: -20px;
+  margin-top: -18px; }
   .twentytwenty-horizontal .twentytwenty-handle:active {
     cursor: -webkit-grabbing;
     cursor: grabbing; }

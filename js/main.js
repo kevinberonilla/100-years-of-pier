@@ -463,7 +463,6 @@ $(document).ready(function() {
             if (cursorDown === true) {
                 $(this).scrollTop(parseInt($(this).scrollTop() + (cursorYPos - e.offsetY)));
                 $(this).scrollLeft(parseInt($(this).scrollLeft() + (cursorXPos - e.offsetX)));
-                console.log(e);
             }
         });
         
