@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = true; // Set this to false before pushing to production
+    isDev = false; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -44,9 +44,10 @@ $(document).ready(function() {
         scrollPos,
         adjustedPos,
         videoOffset,
-        windowHeight;
+        windowHeight,
+        userAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
-    if (matchMedia('only screen and (max-width: 768px)').matches || /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
+    if (matchMedia('only screen and (max-width: 768px)').matches || userAgentString.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
         videoBackground.find('source')
             .remove();
         isMobile = true;
@@ -446,6 +447,39 @@ $(document).ready(function() {
 
             galleryEntry.first()
                 .click(); // Set initial state
+        });
+    }
+    
+    /* ----------------------------------------
+    Desktop Gallery Drag Functions
+    ---------------------------------------- */
+    if (!userAgentString.test(navigator.userAgent)) {
+        var gallery = $('.gallery'),
+            cursorYPos = 0,
+            cursorXPos = 0,
+            cursorDown = false;
+        
+        gallery.on('mousemove', function(e) {
+            if (cursorDown === true) {
+                $(this).scrollTop(parseInt($(this).scrollTop() + (cursorYPos - e.offsetY)));
+                $(this).scrollLeft(parseInt($(this).scrollLeft() + (cursorXPos - e.offsetX)));
+                console.log(e);
+            }
+        });
+        
+        gallery.on('mousedown', function(e) {
+            cursorDown = true;
+            cursorYPos = e.offsetY;
+            cursorXPos = e.offsetX;
+            e.preventDefault();
+        });
+        gallery.on('mouseup', function() {
+            cursorDown = false;
+        });
+        
+        // Stop dragging if mouse leaves the window (Not essential, can be removed without negative effects)
+        gallery.on('mouseout', function() {
+            cursorDown = false;
         });
     }
     

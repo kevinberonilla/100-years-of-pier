@@ -758,8 +758,8 @@ nav {
         &.type-a,
         &.type-b {
             position: relative;
-            overflow: visible;
-            overflow-x: scroll;
+            overflow: visible !important;
+            overflow-x: scroll !important;
             white-space: nowrap;
             padding: 0 290px;
             height: 48vh;
