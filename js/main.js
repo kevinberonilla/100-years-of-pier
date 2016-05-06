@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = false; // Set this to false before pushing to production
+    isDev = true; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -47,7 +47,7 @@ $(document).ready(function() {
         windowHeight,
         userAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
-    if (matchMedia('only screen and (max-width: 768px)').matches || userAgentString.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
+    if (userAgentString.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
         videoBackground.find('source')
             .remove();
         isMobile = true;
@@ -381,21 +381,47 @@ $(document).ready(function() {
         });
     }
     $(window).load(calculateTimelineBorders);
-    $(window).resize($.debounce(500, calculateTimelineBorders));
+    $(window).resize($.debounce(750, calculateTimelineBorders));
     
     /* ----------------------------------------
     Gallery Type A Functions
     ---------------------------------------- */
-    if (!isMobile) {
-        var galleryTypeA = $('.gallery.type-a'),
-            containerWidth = galleryTypeA.closest('.container').width();
-        
-        galleryTypeA.each(function() {
-            var galleryEntry = $('.gallery-entry', this),
-                firstGalleryEntry = galleryEntry.first(),
-                numberOfEntries = galleryEntry.length;
+    var galleryTypeA = $('.gallery.type-a'),
+        galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0,
+        containerWidth = galleryTypeA.closest('.container').width();
 
-            $(this).Cloud9Carousel({
+    galleryTypeA.each(function() {
+        var self = $(this),
+            galleryEntry = $('.gallery-entry', self),
+            firstGalleryEntry = galleryEntry.first(),
+            numberOfEntries = galleryEntry.length;
+
+        self.Cloud9Carousel({
+            autoPlay: 0,
+            bringToFront: true,
+            smooth: true,
+            transforms: true,
+            speed: 250,
+            itemClass: 'gallery-entry',
+            yRadius: -25,
+            xRadius: (containerWidth - galleryPaddingTotal) / (numberOfEntries - 1)
+        });
+
+        firstGalleryEntry.addClass('active');
+
+        galleryEntry.click(function() {
+            galleryEntry.removeClass('active');
+            $(this).addClass('active');
+        });
+
+        function recalculateWidths() {
+            galleryEntry.unbind()
+                .removeClass('active');
+
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0;
+            containerWidth = galleryTypeA.closest('.container').width();
+
+            self.Cloud9Carousel({
                 autoPlay: 0,
                 bringToFront: true,
                 smooth: true,
@@ -403,7 +429,7 @@ $(document).ready(function() {
                 speed: 250,
                 itemClass: 'gallery-entry',
                 yRadius: -25,
-                xRadius: containerWidth / (numberOfEntries - 1)
+                xRadius: (containerWidth - galleryPaddingTotal) / (numberOfEntries - 1)
             });
 
             firstGalleryEntry.addClass('active');
@@ -412,48 +438,53 @@ $(document).ready(function() {
                 galleryEntry.removeClass('active');
                 $(this).addClass('active');
             });
-        });
-    }
+        }
+
+        $(window).resize($.debounce(500, recalculateWidths));
+    });
     
     /* ----------------------------------------
     Gallery Type B Functions
     ---------------------------------------- */
-    if (!isMobile) {
-        var galleryTypeB = $('.gallery.type-b');
+    var galleryTypeB = $('.gallery.type-b');
 
-        galleryTypeB.each(function() {
-            var self = this,
-                galleryEntry = $('> li', self),
-                galleryEntryCount = galleryEntry.length,
-                galleryClosedWidth = 140,
-                totalMarginWidth = 10,
-                containerWidth = $(self).closest('.container').width(),
-                galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
+    galleryTypeB.each(function() {
+        var self = this,
+            galleryEntry = $('> li', self),
+            galleryEntryCount = galleryEntry.length,
+            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140,
+            totalMarginWidth = 10,
+            containerWidth = $(self).closest('.container').width(),
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0,
+            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth - galleryPaddingTotal;
 
-            galleryEntry.click(function() {
-                galleryEntry.removeClass('active')
-                    .css('width', '');
+        galleryEntry.click(function() {
+            galleryEntry.removeClass('active')
+                .css('width', '');
 
-                $(this).addClass('active')
-                    .css('width', galleryOpenWidth + 'px');
-            });
-
-            function recalculateWidths() {
-                containerWidth = $(self).closest('.container').width();
-                galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth;
-            }
-
-            $(window).resize($.debounce(500, recalculateWidths));
-
-            galleryEntry.first()
-                .click(); // Set initial state
+            $(this).addClass('active')
+                .css('width', galleryOpenWidth + 'px');
         });
-    }
+
+        function recalculateWidths() {
+            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140;
+            containerWidth = $(self).closest('.container').width();
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0;
+            galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth - galleryPaddingTotal;
+
+            $('> li.active', self).css('width', galleryOpenWidth + 'px');
+        }
+
+        $(window).resize($.debounce(500, recalculateWidths));
+
+        galleryEntry.first()
+            .click(); // Set initial state
+    });
     
     /* ----------------------------------------
     Desktop Gallery Drag Functions
     ---------------------------------------- */
-    if (!userAgentString.test(navigator.userAgent)) {
+    if (!isMobile) {
         var gallery = $('.gallery'),
             cursorYPos = 0,
             cursorXPos = 0,

@@ -599,6 +599,10 @@ nav {
     &-gallery {
         margin-top: 35px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            padding: 0 40px;
+        }
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            padding: 0;
             overflow: visible;
             overflow-x: scroll;
             -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -674,7 +678,7 @@ nav {
                     opacity: 0.25;
                 }
             }
-            @media only screen and (min-width: $tablet-landscape-breakpoint + 1) {
+            @media only screen and (min-width: $tablet-portrait-breakpoint + 1) {
                 &.animate-in {
                     transform: none;
                     &.vertical {
@@ -707,6 +711,9 @@ nav {
             background-size: cover;
             background-position: center center;
             cursor: pointer;
+            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                width: 60px;
+            }
             &:after {
                 @include animated;
                 content: '';
@@ -754,14 +761,14 @@ nav {
             }
         }
     }
-    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
         &.type-a,
         &.type-b {
             position: relative;
             overflow: visible !important;
             overflow-x: scroll !important;
             white-space: nowrap;
-            padding: 0 290px;
+            padding: 0 65px;
             height: 48vh;
             &::-webkit-scrollbar {
                 width: 0 !important;
@@ -784,7 +791,7 @@ nav {
                     display: none;
                 }
                 &:last-child {
-                    margin-right: 80px;
+                    margin-right: 40px;
                 }
                 &:active {
                     cursor: default;
@@ -798,17 +805,6 @@ nav {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-            }
-        }
-    }
-    @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        &.type-a,
-        &.type-b {
-            padding: 0 65px;
-            > li {
-                &:last-child {
-                    margin-right: 40px;
-                }
             }
         }
     }

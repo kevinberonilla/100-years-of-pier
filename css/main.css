@@ -1010,6 +1010,10 @@ nav {
   margin-top: 35px; }
   @media only screen and (max-width: 1024px) {
     .timeline-gallery {
+      padding: 0 40px; } }
+  @media only screen and (max-width: 768px) {
+    .timeline-gallery {
+      padding: 0;
       overflow: visible;
       overflow-x: scroll;
       -ms-overflow-style: -ms-autohiding-scrollbar; }
@@ -1074,7 +1078,7 @@ nav {
         opacity: 0; }
       .gallery.type-a > li:not(.active):hover:after {
         opacity: 0.25; }
-      @media only screen and (min-width: 1025px) {
+      @media only screen and (min-width: 769px) {
         .gallery.type-a > li.animate-in {
           -webkit-transform: none;
           -ms-transform: none;
@@ -1116,6 +1120,9 @@ nav {
     background-size: cover;
     background-position: center center;
     cursor: pointer; }
+    @media only screen and (max-width: 1024px) {
+      .gallery.type-b > li {
+        width: 60px; } }
     .gallery.type-b > li:after {
       -webkit-transition: all 250ms ease;
       transition: all 250ms ease;
@@ -1165,14 +1172,14 @@ nav {
       opacity: 0; }
     .gallery li.active .caption {
       opacity: 1; }
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 768px) {
     .gallery.type-a,
     .gallery.type-b {
       position: relative;
       overflow: visible !important;
       overflow-x: scroll !important;
       white-space: nowrap;
-      padding: 0 290px;
+      padding: 0 65px;
       height: 48vh; }
       .gallery.type-a::-webkit-scrollbar,
       .gallery.type-b::-webkit-scrollbar {
@@ -1199,7 +1206,7 @@ nav {
           display: none; }
         .gallery.type-a > li:last-child,
         .gallery.type-b > li:last-child {
-          margin-right: 80px; }
+          margin-right: 40px; }
         .gallery.type-a > li:active,
         .gallery.type-b > li:active {
           cursor: default;
@@ -1212,13 +1219,6 @@ nav {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; } }
-  @media only screen and (max-width: 768px) {
-    .gallery.type-a,
-    .gallery.type-b {
-      padding: 0 65px; }
-      .gallery.type-a > li:last-child,
-      .gallery.type-b > li:last-child {
-        margin-right: 40px; } }
   @media only screen and (max-width: 480px) {
     .gallery.type-a .caption,
     .gallery.type-b .caption {
