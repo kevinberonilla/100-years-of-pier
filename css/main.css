@@ -502,7 +502,7 @@ h4, section#home #title .scroll-message {
 hr {
   display: inline-block;
   width: 60px;
-  border: 1px solid #3fcfd5;
+  border: 1px solid #25CAD3;
   border-bottom: none;
   margin: 30px 0 20px; }
   @media only screen and (max-width: 768px) {
@@ -681,12 +681,13 @@ footer {
         margin-top: 4px; } }
 
 .roman-numeral {
+  text-align: center;
   margin: 0;
   padding: 0;
   font-size: 22px;
   line-height: 0;
   font-family: "Libre Baskerville", serif;
-  stroke: #bfd62f;
+  stroke: #C3D500;
   stroke-width: 0.15px;
   stroke-linecap: butt;
   stroke-linejoin: miter;
@@ -703,6 +704,8 @@ footer {
       -webkit-transform: translateY(-40%);
       -ms-transform: translateY(-40%);
       transform: translateY(-40%); } }
+  .roman-numeral text {
+    display: inline-block; }
 
 nav {
   -webkit-transition: all 250ms ease;
@@ -1020,7 +1023,7 @@ nav {
       padding: 0;
       overflow: visible;
       overflow-x: scroll;
-      -ms-overflow-style: -ms-autohiding-scrollbar; }
+      -ms-overflow-style: none; }
       .timeline-gallery::-webkit-scrollbar {
         width: 0 !important;
         display: none !important; } }
@@ -1096,21 +1099,25 @@ nav {
             .gallery.type-a > li.animate-in.horizontal.reveal {
               margin-left: 0; } }
       .gallery.type-a > li:nth-child(1):after {
-        background-color: #e265b0; }
+        background-color: #6C7C8F; }
       .gallery.type-a > li:nth-child(2):after {
-        background-color: #ffc82B; }
+        background-color: #F5A81C; }
       .gallery.type-a > li:nth-child(3):after {
-        background-color: #bfd62f; }
+        background-color: #C3D500; }
       .gallery.type-a > li:nth-child(4):after {
-        background-color: #3fcfd5; }
+        background-color: #25CAD3; }
       .gallery.type-a > li:nth-child(5):after {
-        background-color: #e265b0; }
+        background-color: #C6D2D9; }
       .gallery.type-a > li:nth-child(6):after {
-        background-color: #ffc82B; }
+        background-color: #6C7C8F; }
       .gallery.type-a > li:nth-child(7):after {
-        background-color: #bfd62f; }
+        background-color: #F5A81C; }
       .gallery.type-a > li:nth-child(8):after {
-        background-color: #3fcfd5; }
+        background-color: #C3D500; }
+      .gallery.type-a > li:nth-child(9):after {
+        background-color: #25CAD3; }
+      .gallery.type-a > li:nth-child(10):after {
+        background-color: #C6D2D9; }
   .gallery.type-b > li {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -1144,21 +1151,25 @@ nav {
     .gallery.type-b > li:not(.active):hover:after {
       opacity: 0.25; }
     .gallery.type-b > li:nth-child(1):after {
-      background-color: #e265b0; }
+      background-color: #6C7C8F; }
     .gallery.type-b > li:nth-child(2):after {
-      background-color: #ffc82B; }
+      background-color: #F5A81C; }
     .gallery.type-b > li:nth-child(3):after {
-      background-color: #bfd62f; }
+      background-color: #C3D500; }
     .gallery.type-b > li:nth-child(4):after {
-      background-color: #3fcfd5; }
+      background-color: #25CAD3; }
     .gallery.type-b > li:nth-child(5):after {
-      background-color: #e265b0; }
+      background-color: #C6D2D9; }
     .gallery.type-b > li:nth-child(6):after {
-      background-color: #ffc82B; }
+      background-color: #6C7C8F; }
     .gallery.type-b > li:nth-child(7):after {
-      background-color: #bfd62f; }
+      background-color: #F5A81C; }
     .gallery.type-b > li:nth-child(8):after {
-      background-color: #3fcfd5; }
+      background-color: #C3D500; }
+    .gallery.type-b > li:nth-child(9):after {
+      background-color: #25CAD3; }
+    .gallery.type-b > li:nth-child(10):after {
+      background-color: #C6D2D9; }
   .gallery.type-b:after {
     content: '';
     display: table;
@@ -1297,14 +1308,16 @@ nav {
     bottom: 0;
     left: 0;
     opacity: 0.7; }
-  .quote-image.teal:after {
-    background-color: #3fcfd5; }
-  .quote-image.yellow:after {
-    background-color: #ffc82B; }
-  .quote-image.pink:after {
-    background-color: #e265b0; }
+  .quote-image.aqua:after {
+    background-color: #25CAD3; }
+  .quote-image.orange:after {
+    background-color: #F5A81C; }
   .quote-image.green:after {
-    background-color: #bfd62f; }
+    background-color: #C3D500; }
+  .quote-image.silver:after {
+    background-color: #C6D2D9; }
+  .quote-image.dark-silver:after {
+    background-color: #6C7C8F; }
 
 .quote-caption {
   position: absolute;

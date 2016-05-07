@@ -38,7 +38,7 @@ h4 {
 hr {
     display: inline-block;
     width: 60px;
-    border: 1px solid $color-teal;
+    border: 1px solid $color-aqua;
     border-bottom: none;
     margin: 30px 0 20px;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -251,6 +251,7 @@ footer {
 }
 
 .roman-numeral {
+    text-align: center;
     margin: 0;
     padding: 0;
     font-size: 22px;
@@ -270,6 +271,9 @@ footer {
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         top: 6%;
         transform: translateY(-40%);
+    }
+    text {
+        display: inline-block;
     }
 }
 
@@ -608,7 +612,7 @@ nav {
             padding: 0;
             overflow: visible;
             overflow-x: scroll;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
+            -ms-overflow-style: none;
             &::-webkit-scrollbar {
                 width: 0 !important;
                 display: none !important;
@@ -890,24 +894,29 @@ nav {
             left: 0;
             opacity: 0.7;
         }
-        &.teal {
+        &.aqua {
             &:after {
-                background-color: $color-teal;
+                background-color: $color-aqua;
             }
         }
-        &.yellow {
+        &.orange {
             &:after {
-                background-color: $color-yellow;
-            }
-        }
-        &.pink {
-            &:after {
-                background-color: $color-pink;
+                background-color: $color-orange;
             }
         }
         &.green {
             &:after {
                 background-color: $color-green;
+            }
+        }
+        &.silver {
+            &:after {
+                background-color: $color-silver;
+            }
+        }
+        &.dark-silver {
+            &:after {
+                background-color: $color-dark-silver;
             }
         }
     }
