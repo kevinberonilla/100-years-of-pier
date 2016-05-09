@@ -604,6 +604,7 @@ nav {
         }
     }
     &-gallery {
+        @include hide-scrollbars;
         margin-top: 35px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             padding: 0 40px;
@@ -612,11 +613,6 @@ nav {
             padding: 0;
             overflow: visible;
             overflow-x: scroll;
-            -ms-overflow-style: none;
-            &::-webkit-scrollbar {
-                width: 0 !important;
-                display: none !important;
-            }
         }
     }
     &-slider {
@@ -645,6 +641,7 @@ nav {
 }
 
 .gallery {
+    @include hide-scrollbars;
     list-style: none;
     display: block;
     > li {
@@ -765,11 +762,7 @@ nav {
             overflow-x: scroll !important;
             white-space: nowrap;
             padding: 0 65px;
-            height: 48vh;
-            &::-webkit-scrollbar {
-                width: 0 !important;
-                display: none !important;
-            }
+            height: calc(40vh + 36px);
             > li {
                 display: inline-block !important;
                 position: relative !important;
@@ -777,8 +770,10 @@ nav {
                 width: 60vh !important;
                 margin: 0;
                 margin-right: 20px;
+                padding: 0;
                 float: none;
                 transform: none !important;
+                transform-origin: center !important;
                 overflow: visible;
                 max-height: none;
                 cursor: default;
@@ -801,11 +796,15 @@ nav {
                         }
                     }
                 }
+                .image {
+                    overflow: visible;
+                }
             }
             .caption {
                 opacity: 1;
                 display: block;
                 width: 100%;
+                bottom: -28px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;

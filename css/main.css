@@ -1014,7 +1014,11 @@ nav {
       width: 100%; } }
 
 .timeline-gallery {
+  -ms-overflow-style: none;
   margin-top: 35px; }
+  .timeline-gallery::-webkit-scrollbar {
+    width: 0 !important;
+    display: none !important; }
   @media only screen and (max-width: 1024px) {
     .timeline-gallery {
       padding: 0 40px; } }
@@ -1022,11 +1026,7 @@ nav {
     .timeline-gallery {
       padding: 0;
       overflow: visible;
-      overflow-x: scroll;
-      -ms-overflow-style: none; }
-      .timeline-gallery::-webkit-scrollbar {
-        width: 0 !important;
-        display: none !important; } }
+      overflow-x: scroll; } }
 
 .timeline-slider {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
@@ -1050,8 +1050,12 @@ nav {
     width: 100%; }
 
 .gallery {
+  -ms-overflow-style: none;
   list-style: none;
   display: block; }
+  .gallery::-webkit-scrollbar {
+    width: 0 !important;
+    display: none !important; }
   .gallery > li {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -1171,11 +1175,8 @@ nav {
       overflow-x: scroll !important;
       white-space: nowrap;
       padding: 0 65px;
-      height: 48vh; }
-      .gallery.type-a::-webkit-scrollbar,
-      .gallery.type-b::-webkit-scrollbar {
-        width: 0 !important;
-        display: none !important; }
+      height: -webkit-calc(40vh + 36px);
+      height: calc(40vh + 36px); }
       .gallery.type-a > li,
       .gallery.type-b > li {
         display: inline-block !important;
@@ -1184,10 +1185,14 @@ nav {
         width: 60vh !important;
         margin: 0;
         margin-right: 20px;
+        padding: 0;
         float: none;
         -webkit-transform: none !important;
         -ms-transform: none !important;
         transform: none !important;
+        -webkit-transform-origin: center !important;
+        -ms-transform-origin: center !important;
+        transform-origin: center !important;
         overflow: visible;
         max-height: none;
         cursor: default;
@@ -1210,11 +1215,15 @@ nav {
             -webkit-transform: none;
             -ms-transform: none;
             transform: none; }
+        .gallery.type-a > li .image,
+        .gallery.type-b > li .image {
+          overflow: visible; }
       .gallery.type-a .caption,
       .gallery.type-b .caption {
         opacity: 1;
         display: block;
         width: 100%;
+        bottom: -28px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; } }
