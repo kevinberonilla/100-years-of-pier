@@ -276,10 +276,11 @@ $(document).ready(function() {
         homeVideo = $('#home-video'),
         backgroundVideo = $('#background-video'),
         title = $('#home #title'),
-        horizontalLogo = $('.logo-container.horizontal');
+        horizontalLogo = $('.logo-container.horizontal'),
+        activeSection;
     
     function processBeforeMove() {
-        var activeSection = $('section.active');
+        activeSection = $('section.active');
         
         // If is home
         if (activeSection.is('#home')) {
@@ -331,10 +332,10 @@ $(document).ready(function() {
         } else {
             backgroundVideo.removeClass('show');
         }
-        
-        setTimeout(function() {
-            processAnimateIn(activeSection);
-        }, (isDev) ? 100 : 1000);
+    }
+    
+    function processAfterMove() {
+        processAnimateIn(activeSection);
     }
     
     $('body').on('pageready.np', function() {
@@ -346,7 +347,8 @@ $(document).ready(function() {
             direction: 'vertical',
             pagination: false,
             loop: false,
-            beforeMove: processBeforeMove
+            beforeMove: processBeforeMove,
+            afterMove: processAfterMove
         });
     });
     
