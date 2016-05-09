@@ -647,6 +647,53 @@ nav {
 .gallery {
     list-style: none;
     display: block;
+    > li {
+        @include animated;
+        @include build-gallery-entry-properties($gallery-entry-list);
+        display: block;
+        position: relative;
+        &:after {
+            @include animated;
+            content: '';
+            display: block;
+            opacity: 0.75;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+        &.active {
+            &:after {
+                opacity: 0;
+            }
+        }
+        &:not(.active) {
+            cursor: pointer;
+            overflow: hidden;
+            &:hover {
+                &:after {
+                    opacity: 0.25;
+                }
+                .image {
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .image {
+            @include animated;
+            background-size: cover;
+            background-position: center center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+            transform: none;
+        }
+    }
     &.type-a {
         height: 380px;
         max-height: 45vh;
@@ -654,37 +701,9 @@ nav {
         position: relative;
         top: -6px;
         > li {
-            @include animated;
-            display: block;
             width: 600px;
             height: 380px;
             max-height: 45vh;
-            position: relative;
-            background-size: cover;
-            background-position: center center;
-            cursor: pointer;
-            &:after {
-                @include animated;
-                content: '';
-                display: block;
-                opacity: 0.75;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                z-index: 1;
-            }
-            &.active {
-                &:after {
-                    opacity: 0;
-                }
-            }
-            &:not(.active):hover {
-                &:after {
-                    opacity: 0.25;
-                }
-            }
             @media only screen and (min-width: $tablet-portrait-breakpoint + 1) {
                 &.animate-in {
                     transform: none;
@@ -702,48 +721,18 @@ nav {
                     }
                 }
             }
-            @include build-gallery-entry-properties($gallery-entry-list);
         }
     }
     &.type-b {
         > li {
-            @include animated;
-            display: block;
             height: 380px;
             max-height: 45vh;
             margin: 5px;
             width: 140px;
-            position: relative;
             float: left;
-            background-size: cover;
-            background-position: center center;
-            cursor: pointer;
             @media only screen and (max-width: $tablet-landscape-breakpoint) {
                 width: 60px;
             }
-            &:after {
-                @include animated;
-                content: '';
-                display: block;
-                opacity: 0.75;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                z-index: 1;
-            }
-            &.active {
-                &:after {
-                    opacity: 0;
-                }
-            }
-            &:not(.active):hover {
-                &:after {
-                    opacity: 0.25;
-                }
-            }
-            @include build-gallery-entry-properties($gallery-entry-list);
         }
         &:after {
             content: '';
@@ -803,6 +792,14 @@ nav {
                 &:active {
                     cursor: default;
                     cursor: -webkit-grabbing;
+                }
+                &:not(.active) {
+                    overflow: visible;
+                    &:hover {
+                        .image {
+                            transform: none;
+                        }
+                    }
                 }
             }
             .caption {

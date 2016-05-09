@@ -1052,6 +1052,68 @@ nav {
 .gallery {
   list-style: none;
   display: block; }
+  .gallery > li {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    display: block;
+    position: relative; }
+    .gallery > li:nth-child(1):after {
+      background-color: #6C7C8F; }
+    .gallery > li:nth-child(2):after {
+      background-color: #F5A81C; }
+    .gallery > li:nth-child(3):after {
+      background-color: #C3D500; }
+    .gallery > li:nth-child(4):after {
+      background-color: #25CAD3; }
+    .gallery > li:nth-child(5):after {
+      background-color: #C6D2D9; }
+    .gallery > li:nth-child(6):after {
+      background-color: #6C7C8F; }
+    .gallery > li:nth-child(7):after {
+      background-color: #F5A81C; }
+    .gallery > li:nth-child(8):after {
+      background-color: #C3D500; }
+    .gallery > li:nth-child(9):after {
+      background-color: #25CAD3; }
+    .gallery > li:nth-child(10):after {
+      background-color: #C6D2D9; }
+    .gallery > li:after {
+      -webkit-transition: all 250ms ease;
+      transition: all 250ms ease;
+      content: '';
+      display: block;
+      opacity: 0.75;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1; }
+    .gallery > li.active:after {
+      opacity: 0; }
+    .gallery > li:not(.active) {
+      cursor: pointer;
+      overflow: hidden; }
+      .gallery > li:not(.active):hover:after {
+        opacity: 0.25; }
+      .gallery > li:not(.active):hover .image {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        transform: scale(1.05); }
+    .gallery > li .image {
+      -webkit-transition: all 250ms ease;
+      transition: all 250ms ease;
+      background-size: cover;
+      background-position: center center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none; }
   .gallery.type-a {
     height: 380px;
     max-height: 45vh;
@@ -1059,32 +1121,9 @@ nav {
     position: relative;
     top: -6px; }
     .gallery.type-a > li {
-      -webkit-transition: all 250ms ease;
-      transition: all 250ms ease;
-      display: block;
       width: 600px;
       height: 380px;
-      max-height: 45vh;
-      position: relative;
-      background-size: cover;
-      background-position: center center;
-      cursor: pointer; }
-      .gallery.type-a > li:after {
-        -webkit-transition: all 250ms ease;
-        transition: all 250ms ease;
-        content: '';
-        display: block;
-        opacity: 0.75;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1; }
-      .gallery.type-a > li.active:after {
-        opacity: 0; }
-      .gallery.type-a > li:not(.active):hover:after {
-        opacity: 0.25; }
+      max-height: 45vh; }
       @media only screen and (min-width: 769px) {
         .gallery.type-a > li.animate-in {
           -webkit-transform: none;
@@ -1098,78 +1137,15 @@ nav {
             margin-left: 20px; }
             .gallery.type-a > li.animate-in.horizontal.reveal {
               margin-left: 0; } }
-      .gallery.type-a > li:nth-child(1):after {
-        background-color: #6C7C8F; }
-      .gallery.type-a > li:nth-child(2):after {
-        background-color: #F5A81C; }
-      .gallery.type-a > li:nth-child(3):after {
-        background-color: #C3D500; }
-      .gallery.type-a > li:nth-child(4):after {
-        background-color: #25CAD3; }
-      .gallery.type-a > li:nth-child(5):after {
-        background-color: #C6D2D9; }
-      .gallery.type-a > li:nth-child(6):after {
-        background-color: #6C7C8F; }
-      .gallery.type-a > li:nth-child(7):after {
-        background-color: #F5A81C; }
-      .gallery.type-a > li:nth-child(8):after {
-        background-color: #C3D500; }
-      .gallery.type-a > li:nth-child(9):after {
-        background-color: #25CAD3; }
-      .gallery.type-a > li:nth-child(10):after {
-        background-color: #C6D2D9; }
   .gallery.type-b > li {
-    -webkit-transition: all 250ms ease;
-    transition: all 250ms ease;
-    display: block;
     height: 380px;
     max-height: 45vh;
     margin: 5px;
     width: 140px;
-    position: relative;
-    float: left;
-    background-size: cover;
-    background-position: center center;
-    cursor: pointer; }
+    float: left; }
     @media only screen and (max-width: 1024px) {
       .gallery.type-b > li {
         width: 60px; } }
-    .gallery.type-b > li:after {
-      -webkit-transition: all 250ms ease;
-      transition: all 250ms ease;
-      content: '';
-      display: block;
-      opacity: 0.75;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1; }
-    .gallery.type-b > li.active:after {
-      opacity: 0; }
-    .gallery.type-b > li:not(.active):hover:after {
-      opacity: 0.25; }
-    .gallery.type-b > li:nth-child(1):after {
-      background-color: #6C7C8F; }
-    .gallery.type-b > li:nth-child(2):after {
-      background-color: #F5A81C; }
-    .gallery.type-b > li:nth-child(3):after {
-      background-color: #C3D500; }
-    .gallery.type-b > li:nth-child(4):after {
-      background-color: #25CAD3; }
-    .gallery.type-b > li:nth-child(5):after {
-      background-color: #C6D2D9; }
-    .gallery.type-b > li:nth-child(6):after {
-      background-color: #6C7C8F; }
-    .gallery.type-b > li:nth-child(7):after {
-      background-color: #F5A81C; }
-    .gallery.type-b > li:nth-child(8):after {
-      background-color: #C3D500; }
-    .gallery.type-b > li:nth-child(9):after {
-      background-color: #25CAD3; }
-    .gallery.type-b > li:nth-child(10):after {
-      background-color: #C6D2D9; }
   .gallery.type-b:after {
     content: '';
     display: table;
@@ -1226,6 +1202,14 @@ nav {
         .gallery.type-b > li:active {
           cursor: default;
           cursor: -webkit-grabbing; }
+        .gallery.type-a > li:not(.active),
+        .gallery.type-b > li:not(.active) {
+          overflow: visible; }
+          .gallery.type-a > li:not(.active):hover .image,
+          .gallery.type-b > li:not(.active):hover .image {
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none; }
       .gallery.type-a .caption,
       .gallery.type-b .caption {
         opacity: 1;

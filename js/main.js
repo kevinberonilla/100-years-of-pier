@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = false; // Set this to false before pushing to production
+    isDev = true; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -416,7 +416,8 @@ $(document).ready(function() {
 
         function recalculateWidths() {
             galleryEntry.unbind()
-                .removeClass('active');
+                .removeClass('active')
+                .removeAttr('style');
 
             galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0;
             containerWidth = galleryTypeA.closest('.container').width();
