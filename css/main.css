@@ -540,7 +540,6 @@ hr {
         line-height: 30px; } }
     @media only screen and (max-width: 480px) {
       .italic-heading.small {
-        font-size: 26px;
         line-height: 28px; } }
 
 body {
@@ -936,7 +935,7 @@ nav {
   position: relative; }
 
 .timeline-entry .italic-heading.small {
-  padding-top: 8px; }
+  padding-top: 4px; }
   @media only screen and (max-width: 1024px) {
     .timeline-entry .italic-heading.small {
       padding-top: 2px; } }
@@ -991,14 +990,20 @@ nav {
 .timeline-date {
   float: left;
   width: 25%;
-  padding: 0 30px 0 10px; }
+  padding: 0 30px 0 10px;
+  font-size: 64px; }
   @media only screen and (max-width: 1024px) {
     .timeline-date {
-      width: 170px; } }
+      width: 170px;
+      font-size: 46px; } }
   @media only screen and (max-width: 768px) {
     .timeline-date {
       float: none;
-      padding-left: 0; } }
+      padding-left: 0;
+      font-size: 32px; } }
+  @media only screen and (max-width: 480px) {
+    .timeline-date {
+      font-size: 28px; } }
 
 .timeline-details {
   float: left;
@@ -1038,8 +1043,8 @@ nav {
       margin-right: 70px; } }
   @media only screen and (max-width: 480px) {
     .timeline-slider {
-      margin-left: 70px;
-      margin-right: 70px; } }
+      margin-left: 30px;
+      margin-right: 30px; } }
   .timeline-slider img {
     max-width: 100%;
     height: auto; }

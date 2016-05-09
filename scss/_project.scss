@@ -76,7 +76,6 @@ hr {
             line-height: 30px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            font-size: 26px;
             line-height: 28px;
         }
     }
@@ -523,7 +522,7 @@ nav {
         }
         .italic-heading {
             &.small {
-                padding-top: 8px;
+                padding-top: 4px;
                 @media only screen and (max-width: $tablet-landscape-breakpoint) {
                     padding-top: 2px;
                 }
@@ -582,12 +581,18 @@ nav {
         float: left;
         width: 25%;
         padding: 0 30px 0 10px;
+        font-size: 64px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             width: 170px;
+            font-size: 46px;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             float: none;
             padding-left: 0;
+            font-size: 32px;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            font-size: 28px;
         }
     }
     &-details {
@@ -624,8 +629,8 @@ nav {
             margin-right: 70px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            margin-left: 70px;
-            margin-right: 70px;
+            margin-left: 30px;
+            margin-right: 30px;
         }
         img {
             max-width: 100%;
