@@ -203,6 +203,9 @@ header {
         display: inline-block;
         margin-top: 5px;
         pointer-events: all;
+        @media only screen and (max-width: $phone-breakpoint) {
+            display: none;
+        }
     }
 }
 

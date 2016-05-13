@@ -644,6 +644,9 @@ header, footer {
     display: inline-block;
     margin-top: 5px;
     pointer-events: all; }
+    @media only screen and (max-width: 480px) {
+      header #back-to-np, footer #back-to-np {
+        display: none; } }
 
 footer {
   top: initial;
