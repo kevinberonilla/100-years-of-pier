@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = false; // Set this to false before pushing to production
+    isDev = true; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -233,38 +233,46 @@ $(document).ready(function() {
     
     console.log(sectionArray);
     
-    function findIndex(element, array) {
-        // Add stuff here
+    function findIndex(element, jQueryArray) {
+        var value;
+        
+        for (var i = 0; i < jQueryArray.length; i++) {
+            var iteratedElement = jQueryArray.eq(i);
+            
+            if (element.is(iteratedElement)) {
+                value = i;
+                break;
+            };
+        }
+        
+        return value;
     }
     
     function resizePositionIndicator(currentSection) {
         var isIntro = $(currentSection).hasClass('has-intro'),
             introSection = $('section[id*="section"]'),
             homeSection = $('#home'),
-            currentSectionIndex;
+            currentSectionIndex,
+            height;
         
         if (isIntro) {
-            for (var i = 0; i < introSection.length; i++) { // Make this for loop DRY by moving it to the findIndex function
-                var iteratedElement = introSection.eq(i);
-                
-                if (currentSection.is(iteratedElement)) currentSectionIndex = i;
-            }
-        } else if (!currentSection.is(homeSection)) {
-            var closestIntro,
-                currentIndex;
+            currentSectionIndex = findIndex(currentSection, introSection);
             
-            for (var i = 0; i < section.length; i++) {
-                var iteratedElement = section.eq(i);
-                
-                if (currentSection.is(iteratedElement)) {
-                    closestIntro = iteratedElement.prevAll('.has-intro').first();
-                    currentIndex = i;
-                }
-            }
-                
-            console.log(closestIntro);
-            console.log(currentIndex);
+            height = (currentSectionIndex / introSection.length) * 100 + '%';
+        } else if (!currentSection.is(homeSection)) {
+            currentSectionIndex = findIndex(currentSection, section);
+            
+            var closestIntro = section.eq(currentSectionIndex).prevAll('.has-intro').first(),
+                introSectionIndex = findIndex(closestIntro, introSection),
+                introSectionHeight = (introSectionIndex / introSection.length) * 100,
+                sectionHeight; // CALCULATE THIS
+            
+            height = introSectionHeight + '%';
+        } else {
+            height = 0;
         }
+        console.log(height);
+        positionIndicator.css('height', height);
     }
     
     subNavLink.click(function(e) {
