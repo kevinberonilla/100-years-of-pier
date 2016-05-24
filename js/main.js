@@ -159,7 +159,7 @@ $(document).ready(function() {
         blurElements = $('#underlay, #clouds, .video-background'),
         main = $('.main');
     
-    function calculatenavEntryHeight() {
+    function calculateNavEntryHeight() {
         var currentWindowHeight = $(window).height(),
             linkHeight = (currentWindowHeight / linkCount);
         
@@ -206,10 +206,76 @@ $(document).ready(function() {
         main.moveTo(index);
     });
     
-    calculatenavEntryHeight();
-    $(window).resize(calculatenavEntryHeight);
+    calculateNavEntryHeight();
+    $(window).resize(calculateNavEntryHeight);
     openNavButton.click(openNav);
     closeNavButton.click(closeNav);
+    
+    /* ----------------------------------------
+    Sub-Nav Functions
+    ---------------------------------------- */
+    var subNavEntry = $('#sub-nav > ul > li'),
+        subNavLink = $('a', subNavEntry),
+        positionIndicator = $('#position-indicator'),
+        section = $('#main section:not(#home)'),
+        sectionArray = [],
+        sectionCount = 0;
+    
+    for (var i = 0; i < section.length; i++) {
+        var currentSection = section.eq(i);
+        
+        if (currentSection.hasClass('end')) {
+            sectionArray.push(sectionCount);
+            sectionCount = 0;
+        }
+        else sectionCount++;
+    }
+    
+    console.log(sectionArray);
+    
+    function findIndex(element, array) {
+        // Add stuff here
+    }
+    
+    function resizePositionIndicator(currentSection) {
+        var isIntro = $(currentSection).hasClass('has-intro'),
+            introSection = $('section[id*="section"]'),
+            homeSection = $('#home'),
+            currentSectionIndex;
+        
+        if (isIntro) {
+            for (var i = 0; i < introSection.length; i++) { // Make this for loop DRY by moving it to the findIndex function
+                var iteratedElement = introSection.eq(i);
+                
+                if (currentSection.is(iteratedElement)) currentSectionIndex = i;
+            }
+        } else if (!currentSection.is(homeSection)) {
+            var closestIntro,
+                currentIndex;
+            
+            for (var i = 0; i < section.length; i++) {
+                var iteratedElement = section.eq(i);
+                
+                if (currentSection.is(iteratedElement)) {
+                    closestIntro = iteratedElement.prevAll('.has-intro').first();
+                    currentIndex = i;
+                }
+            }
+                
+            console.log(closestIntro);
+            console.log(currentIndex);
+        }
+    }
+    
+    subNavLink.click(function(e) {
+        e.preventDefault();
+        
+        var href = $(this).attr('href'),
+            index = $(href).index() + 1;
+        
+        main.moveTo(index);
+    });
+    
     
     /* ----------------------------------------
     Home Link Functions
@@ -336,6 +402,7 @@ $(document).ready(function() {
     
     function processAfterMove() {
         processAnimateIn(activeSection);
+        resizePositionIndicator(activeSection);
     }
     
     $('body').on('pageready.np', function() {

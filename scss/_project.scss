@@ -4,7 +4,6 @@ h2 {
     text-transform: uppercase;
     font-weight: 700;
 }
-
 h3 {
     font-size: 36px;
     line-height: 44px;
@@ -19,7 +18,6 @@ h3 {
         line-height: 36px;
     }
 }
-
 h4 {
     font-size: 12px;
     line-height: 20px;
@@ -34,7 +32,6 @@ h4 {
         font-size: 11px;
     }
 }
-
 hr {
     display: inline-block;
     width: 60px;
@@ -45,7 +42,6 @@ hr {
         margin: 14px 0 10px;
     }
 }
-
 .italic-heading {
     font-size: 60px;
     line-height: 72px;
@@ -80,7 +76,6 @@ hr {
         }
     }
 }
-
 body {
     background-color: black;
     color: white;
@@ -95,6 +90,7 @@ body {
         font-size: 12px;
     }
     &.loaded {
+        #sub-nav,
         header,
         footer,
         section {
@@ -149,11 +145,9 @@ body {
         }
     }
 }
-
 #preload {
     display: none;
 }
-
 .video-background {
     @include animated(all, 1000ms, ease);
     opacity: 0;
@@ -174,19 +168,15 @@ body {
         filter: blur(5px);
     }
 }
-
 video::-webkit-media-controls {
     display: none !important;
 }
-
 #home-video {
     -webkit-transform: translate3d(0, 0, 0);
 }
-
 .full-parent-height {
     position: relative;
 }
-
 header {
     @include animated;
     padding: 36px 42px 32px;
@@ -208,7 +198,6 @@ header {
         }
     }
 }
-
 footer {
     @extend header;
     top: initial;
@@ -251,7 +240,6 @@ footer {
         }
     }
 }
-
 .roman-numeral {
     text-align: center;
     margin: 0;
@@ -278,7 +266,6 @@ footer {
         display: inline-block;
     }
 }
-
 nav {
     @include animated;
     font-size: 20px;
@@ -361,7 +348,42 @@ nav {
         }
     }
 }
-
+#sub-nav {
+    @include animated(all 1000ms);
+    opacity: 0;
+    position: fixed;
+    right: -1px ;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    #position-container {
+        border: 1px solid rgba(white, 0.25);
+        border-right: none;
+        width: 5px;
+        position: absolute;
+        left: -5px;
+        height: 100%;
+        #position-indicator {
+            @include animated;
+            background-color: $color-aqua;
+            width: 100%;
+        }
+    }
+    > ul {
+        list-style: none;
+        background-color: rgba(black, 0.75);
+        width: 60px;
+        border: 1px solid rgba(white, 0.25);
+        li {
+            display: block;
+            width: 60px;
+            height: 60px;
+            &:not(:first-child) {
+                border-top: 1px solid rgba(white, 0.25);
+            }
+        }
+    }
+}
 #open-nav-button {
     @include animated;
     position: fixed;
@@ -378,7 +400,6 @@ nav {
         opacity: 0.5;
     }
 }
-
 #close-nav-button {
     @extend #open-nav-button;
     display: none;
@@ -386,7 +407,6 @@ nav {
     padding: 0 2px;
     height: auto;
 }
-
 #overlay {
     @include animated(all 1000ms);
     opacity: 0;
@@ -409,14 +429,12 @@ nav {
         filter: blur(5px);
     }
 }
-
 #underlay {
     @extend #overlay;
     z-index: -1;
     background-color: rgba(#ccc, 0.75);
     background-blend-mode: normal;
 }
-
 #background-image {
     @extend #overlay;
     z-index: -1;
@@ -435,7 +453,6 @@ nav {
         background-blend-mode: multiply;
     }
 }
-
 #clouds {
     @extend #overlay;
     z-index: 0;
@@ -451,7 +468,6 @@ nav {
         }
     }
 }
-
 #vignette {
     position: relative;
     pointer-events: none;
@@ -467,7 +483,6 @@ nav {
         display: block;
     }
 }
-
 #screen-blocker {
     position: fixed;
     top: 0;
@@ -478,7 +493,6 @@ nav {
     z-index: 9999;
     background-color: $color-intro-overlay;
 }
-
 .logo-container {
     text-align: center;
     position: fixed;
@@ -512,12 +526,10 @@ nav {
         }
     }
 }
-
 .content {
     @include animated;
     opacity: 1;
 }
-
 .timeline {
     &-entry {
         .content {
@@ -647,7 +659,6 @@ nav {
         }
     }
 }
-
 .gallery {
     @include hide-scrollbars;
     list-style: none;
@@ -828,7 +839,6 @@ nav {
         }
     }
 }
-
 .quote {
     @extend .timeline;
     .vertical-align {
@@ -955,7 +965,6 @@ nav {
         }
     }
 }
-
 section {
     width: 100%;
     position: relative;
@@ -1060,7 +1069,6 @@ section {
         z-index: 1;
     }
 }
-
 .animate-in {
     @include animated;
     opacity: 0;
