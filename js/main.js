@@ -263,16 +263,19 @@ $(document).ready(function() {
             currentSectionIndex = findIndex(currentSection, section);
             
             var closestIntro = section.eq(currentSectionIndex).prevAll('.has-intro').first(),
+                closestIntroId = closestIntro.attr('id'),
+                subNavButtonHeight = $('#sub-nav [href="#' + closestIntroId + '"]').closest('li').height(),
                 introSectionIndex = findIndex(closestIntro, introSection),
                 introSectionHeight = (introSectionIndex / introSection.length) * 100,
-                sectionHeight; // CALCULATE THIS
+                relativeSectionIndex = (findIndex(currentSection, section) - introSectionIndex),
+                relativeSectionHeight = (((relativeSectionIndex - introSectionIndex) / sectionArray[introSectionIndex]) / introSection.length) * 100;
             
-            height = introSectionHeight + '%';
+            height = introSectionHeight + relativeSectionHeight + '%';
         } else {
             height = 0;
         }
-        console.log(height);
         positionIndicator.css('height', height);
+        console.log(height);
     }
     
     subNavLink.click(function(e) {
