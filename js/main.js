@@ -91,7 +91,7 @@ $(document).ready(function() {
     function beginLoading() {
         var image =  $('img'),
             audioVideo = $('audio, video'),
-            total = media.length + audioVideo.length,
+            total = image.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
