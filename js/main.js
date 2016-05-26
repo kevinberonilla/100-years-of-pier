@@ -1,5 +1,5 @@
 var page = $('html, body'),
-    isDev = true; // Set this to false before pushing to production
+    isDev = false; // Set this to false before pushing to production
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -219,19 +219,19 @@ $(document).ready(function() {
         positionIndicator = $('#position-indicator'),
         section = $('#main section:not(#home)'),
         sectionArray = [],
-        sectionCount = 0;
+        sectionCount = 1;
     
     for (var i = 0; i < section.length; i++) {
         var currentSection = section.eq(i);
         
         if (currentSection.hasClass('end')) {
+            if (currentSection.is(':last-child')) sectionCount--;
+            
             sectionArray.push(sectionCount);
-            sectionCount = 0;
+            sectionCount = 1;
         }
         else sectionCount++;
     }
-    
-    console.log(sectionArray);
     
     function findIndex(element, jQueryArray) {
         var value;
@@ -264,18 +264,17 @@ $(document).ready(function() {
             
             var closestIntro = section.eq(currentSectionIndex).prevAll('.has-intro').first(),
                 closestIntroId = closestIntro.attr('id'),
-                subNavButtonHeight = $('#sub-nav [href="#' + closestIntroId + '"]').closest('li').height(),
-                introSectionIndex = findIndex(closestIntro, introSection),
-                introSectionHeight = (introSectionIndex / introSection.length) * 100,
-                relativeSectionIndex = (findIndex(currentSection, section) - introSectionIndex),
-                relativeSectionHeight = (((relativeSectionIndex - introSectionIndex) / sectionArray[introSectionIndex]) / introSection.length) * 100;
+                introSectionIndex = findIndex(closestIntro, section),
+                relativeIntroSectionIndex = findIndex(closestIntro, introSection),
+                introSectionHeight = (relativeIntroSectionIndex / introSection.length) * 100,
+                currentSectionIndex = findIndex(currentSection, section),
+                relativeSectionHeight = (((currentSectionIndex - introSectionIndex) / sectionArray[relativeIntroSectionIndex]) / introSection.length) * 100;
             
             height = introSectionHeight + relativeSectionHeight + '%';
         } else {
             height = 0;
         }
         positionIndicator.css('height', height);
-        console.log(height);
     }
     
     subNavLink.click(function(e) {
@@ -409,11 +408,12 @@ $(document).ready(function() {
         } else {
             backgroundVideo.removeClass('show');
         }
+        
+        resizePositionIndicator(activeSection);
     }
     
     function processAfterMove() {
         processAnimateIn(activeSection);
-        resizePositionIndicator(activeSection);
     }
     
     $('body').on('pageready.np', function() {
