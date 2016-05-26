@@ -104,11 +104,11 @@ $(document).ready(function() {
             loadingPercentage.text(percentage);
         }
         
-        media.load(processLoadedMedia);
+        image.load(processLoadedMedia);
         
         audioVideo.each(function() {
             $(this).get()
-                .oncanplaythrough(processLoadedMedia);
+                .oncanplaythrough = processLoadedMedia;
         });
         
         $(window).load(function() {
