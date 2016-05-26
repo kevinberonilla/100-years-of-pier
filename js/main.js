@@ -1,4 +1,5 @@
 var page = $('html, body'),
+    body = $('body'),
     isDev = false; // Set this to false before pushing to production
 
 $(document).ready(function() {
@@ -6,6 +7,8 @@ $(document).ready(function() {
     Preload Auto-Populate Functions
     ---------------------------------------- */
     function autoPopulatePreload() {
+        body.prepend('<div id="preload"></div>');
+        
         var preload = $('#preload');
         
         $('[data-background-image]').each(function() {
@@ -86,8 +89,9 @@ $(document).ready(function() {
     Page Load Functions
     ---------------------------------------- */
     function beginLoading() {
-        var media =  $('img, video'),
-            total = media.length,
+        var image =  $('img'),
+            audioVideo = $('audio, video'),
+            total = media.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
@@ -102,9 +106,13 @@ $(document).ready(function() {
         
         media.load(processLoadedMedia);
         
+        audioVideo.each(function() {
+            $(this).get()
+                .oncanplaythrough(processLoadedMedia);
+        });
+        
         $(window).load(function() {
-            var body = $('body'),
-                homeVideo = $('#home-video'),
+            var homeVideo = $('#home-video'),
                 scrollMessage = $('.scroll-message');
             
             loadingBar.css('width', '100%');
@@ -116,7 +124,7 @@ $(document).ready(function() {
             }, 250);
             
             setTimeout(function() {
-                $('body').trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
+                body.trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
             }, (isDev) ? 0 : 2000);
             
             setTimeout(function() {
@@ -167,7 +175,7 @@ $(document).ready(function() {
     }
     
     function openNav() {
-        $('body').addClass('nav-open')
+        body.addClass('nav-open')
             .addClass('disable-scroll');
         
         navEntry.each(function() {
@@ -185,7 +193,7 @@ $(document).ready(function() {
     }
     
     function closeNav() {
-        $('body').removeClass('nav-open')
+        body.removeClass('nav-open')
             .removeClass('disable-scroll');
         
         navEntry.removeClass('show');
@@ -416,7 +424,7 @@ $(document).ready(function() {
         processAnimateIn(activeSection);
     }
     
-    $('body').on('pageready.np', function() {
+    body.on('pageready.np', function() {
         $('#main').onepage_scroll({
             sectionContainer: 'section',
             easing: 'ease',
