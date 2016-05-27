@@ -90,7 +90,6 @@ body {
         font-size: 12px;
     }
     &.loaded {
-        #sub-nav,
         header,
         footer,
         section {
@@ -221,7 +220,7 @@ footer {
             opacity: 0.5;
         }
     }
-    .music {
+    .audio {
         float: right;
         position: absolute;
         bottom: 32px;
@@ -356,6 +355,9 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     z-index: 9999;
+    &.show {
+        opacity: 1;
+    }
     #position-container {
         border: 1px solid rgba(white, 0.25);
         border-right: none;
@@ -364,7 +366,7 @@ nav {
         left: -5px;
         height: 100%;
         #position-indicator {
-            @include animated;
+            @include animated(all 1000ms);
             background-color: $color-aqua;
             width: 100%;
         }

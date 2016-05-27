@@ -1,11 +1,19 @@
 var page = $('html, body'),
     body = $('body'),
-    isDev = false; // Set this to false before pushing to production
+    isMobile = false,
+    isDev = false, // Set this to false before pushing to production
+    mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
+    
+    if (mobileUserAgentString.test(navigator.userAgent)) {
+        isMobile = true;
+    }
 
 $(document).ready(function() {
     /* ----------------------------------------
     Preload Auto-Populate Functions
     ---------------------------------------- */
+    var scrollSection = $('section');
+    
     function autoPopulatePreload() {
         body.prepend('<div id="preload"></div>');
         
@@ -16,19 +24,56 @@ $(document).ready(function() {
             
             preload.append('<img src="' + imageUrl + '" alt="">');
         });
+        
         $('[style*="background-image"]').each(function() {
             var imageUrl = $(this).attr('style').replace('background-image: url(', '').replace(')', '').replace(';', '');
             
             preload.append('<img src="' + imageUrl + '" alt="">');
         });
+        
+        if (!isMobile) { // Don't preload audio for tablet portrait and smaller
+            $('[data-music]').each(function() {
+                var self = $(this)
+                preload.append('<audio id="music-for-' + self.index(scrollSection) + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
+            });
+        }
     }
     
     $.when(autoPopulatePreload()).done(beginLoading);
     
     /* ----------------------------------------
+    Audio Functions
+    ---------------------------------------- */
+    var audioIcon = $('#audio-icon'),
+        audio = $('audio');
+    
+    function adjustAudioVolume(volume) {
+        audio.stop()
+            .animate({
+                volume: volume
+            }, 1000);
+    }
+    
+    audioIcon.click(function() {
+        if ($(this).hasClass('fa-volume-up')) {
+            $(this).removeClass('fa-volume-up')
+                .addClass('fa-volume-off')
+                .addClass('adjust-p-r-6');
+            
+            adjustAudioVolume(0);
+        } else {
+            $(this).removeClass('fa-volume-off')
+                .addClass('fa-volume-up')
+                .removeClass('adjust-p-r-6');
+            
+            adjustAudioVolume(1);
+        }
+    });
+    
+    /* ----------------------------------------
     Full Parent Height Functions
     ---------------------------------------- */
-    var fullParentHeight = $('.full-parent-height');
+    var fullParentHeight = $('.full-parent-height   ');
     
     function calculateFullParentHeight() {
         var windowHeight = $(window).height();
@@ -43,17 +88,14 @@ $(document).ready(function() {
     Video Background Functions
     ---------------------------------------- */    
     var videoBackground = $('.video-background'),
-        isMobile = false,
         scrollPos,
         adjustedPos,
         videoOffset,
-        windowHeight,
-        userAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
+        windowHeight;
     
-    if (userAgentString.test(navigator.userAgent)) { // Don't load the video for tablet portrait and smaller
+    if (isMobile) { // Don't load videos for tablet portrait and smaller
         videoBackground.find('source')
             .remove();
-        isMobile = true;
     }
     
     function setCenter() {
@@ -107,7 +149,7 @@ $(document).ready(function() {
         image.load(processLoadedMedia);
         
         audioVideo.each(function() {
-            $(this).get()
+            $(this).get(0)
                 .oncanplaythrough = processLoadedMedia;
         });
         
@@ -355,6 +397,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     var underlay = $('#underlay'),
         overlay = $('#overlay'),
+        subNav = $('#sub-nav'),
         backgroundImage = $('#background-image'),
         clouds = $('#clouds'),
         homeVideo = $('#home-video'),
@@ -370,8 +413,10 @@ $(document).ready(function() {
         if (activeSection.is('#home')) {
             homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
+            subNav.removeClass('show');
         } else {
             homeVideo.removeClass('show');
+            subNav.addClass('show');
         }
         
         // If has overlay
@@ -668,21 +713,4 @@ $(document).ready(function() {
     
     $(window).resize($.debounce(500, centerQuoteImages));
     $(window).load(centerQuoteImages);
-    
-    /* ----------------------------------------
-    Music Functions
-    ---------------------------------------- */
-    var musicIcon = $('#music-icon');
-    
-    musicIcon.click(function() {
-        if ($(this).hasClass('fa-volume-up')) {
-            $(this).removeClass('fa-volume-up')
-                .addClass('fa-volume-off')
-                .addClass('adjust-p-r-6');
-        } else {
-            $(this).removeClass('fa-volume-off')
-                .removeClass('adjust-p-r-6')
-                .addClass('fa-volume-up');
-        }
-    });
 });

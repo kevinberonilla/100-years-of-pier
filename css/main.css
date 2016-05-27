@@ -555,7 +555,6 @@ body {
   @media only screen and (max-width: 480px) {
     body {
       font-size: 12px; } }
-  body.loaded #sub-nav,
   body.loaded header,
   body.loaded footer,
   body.loaded footer,
@@ -668,13 +667,13 @@ footer {
           margin-left: 0; } }
     footer .icon:hover {
       opacity: 0.5; }
-  footer .music {
+  footer .audio {
     float: right;
     position: absolute;
     bottom: 32px;
     right: 46px; }
     @media only screen and (max-width: 768px) {
-      footer .music {
+      footer .audio {
         right: 32px; } }
   footer .social-media {
     float: left;
@@ -804,6 +803,8 @@ nav {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 9999; }
+  #sub-nav.show {
+    opacity: 1; }
   #sub-nav #position-container {
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;
@@ -812,8 +813,8 @@ nav {
     left: -5px;
     height: 100%; }
     #sub-nav #position-container #position-indicator {
-      -webkit-transition: all 250ms ease;
-      transition: all 250ms ease;
+      -webkit-transition: all 1000ms 250ms ease;
+      transition: all 1000ms 250ms ease;
       background-color: #25CAD3;
       width: 100%; }
   #sub-nav > ul {
