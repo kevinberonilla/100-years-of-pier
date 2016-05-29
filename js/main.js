@@ -11,9 +11,7 @@ var page = $('html, body'),
 $(document).ready(function() {
     /* ----------------------------------------
     Preload Auto-Populate Functions
-    ---------------------------------------- */
-    var scrollSection = $('section');
-    
+    ---------------------------------------- */    
     function autoPopulatePreload() {
         body.prepend('<div id="preload"></div>');
         
@@ -34,7 +32,7 @@ $(document).ready(function() {
         if (!isMobile) { // Don't preload audio for tablet portrait and smaller
             $('[data-music]').each(function() {
                 var self = $(this)
-                preload.append('<audio id="music-for-' + self.index(scrollSection) + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
+                preload.append('<audio id="music-for-' + self.index('section') + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
             });
         }
     }
@@ -45,13 +43,45 @@ $(document).ready(function() {
     Audio Functions
     ---------------------------------------- */
     var audioIcon = $('#audio-icon'),
-        audio = $('audio');
+        audio = $('audio'),
+        music = $('audio[id*="music-for"]'),
+        sound = $('audio[id*="sound-for"]'),
+        masterVolume = 1;
     
-    function adjustAudioVolume(volume) {
-        audio.stop()
+    function adjustVolume(element, volume, callback) {
+        element.stop()
             .animate({
                 volume: volume
-            }, 1000);
+            }, 1500, callback);
+    }
+    
+    function swapMusic(newMusic) {
+        music.each(function() {
+            var self = $(this);
+            adjustVolume(self, 0, function() {
+                self[0].pause();
+            });
+        });
+        
+        newMusic[0].play();
+        
+        adjustVolume(newMusic, masterVolume);
+    }
+    
+    function playChapterMusic(currentSection) {
+        if (currentSection.hasClass('end')) { // For scrolling up to the end of a previous section
+            var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
+                closestIntroMusic = $('#music-for-' + closestIntroIndex);
+            
+            swapMusic(closestIntroMusic);
+        } else if (currentSection.hasClass('has-intro')) {
+            var introIndex = currentSection.index('section'),
+                introMusic = $('#music-for-' + introIndex);
+            
+            swapMusic(introMusic);
+        } else if (currentSection.is('#home')) {
+            swapMusic($('#music-for-0'));
+        }
     }
     
     audioIcon.click(function() {
@@ -116,7 +146,7 @@ $(document).ready(function() {
     
     function playVideo() {
         videoBackground.each(function() {
-            $(this).get(0).play();
+            $(this)[0].play();
         });
     }
     
@@ -149,16 +179,17 @@ $(document).ready(function() {
         image.load(processLoadedMedia);
         
         audioVideo.each(function() {
-            $(this).get(0)
-                .oncanplaythrough = processLoadedMedia;
+            $(this)[0].oncanplaythrough = processLoadedMedia;
         });
         
         $(window).load(function() {
             var homeVideo = $('#home-video'),
+                homeMusic = $('#music-for-0'),
                 scrollMessage = $('.scroll-message');
             
             loadingBar.css('width', '100%');
             loadingPercentage.text('100');
+            homeMusic[0].play();
             
             setTimeout(function() {
                 body.addClass('loaded');
@@ -267,8 +298,8 @@ $(document).ready(function() {
     var subNavEntry = $('#sub-nav > ul > li'),
         subNavLink = $('a', subNavEntry),
         positionIndicator = $('#position-indicator'),
-        section = $('#main section:not(#home)'),
-        sectionArray = [],
+        section = $('section:not(#home)'),
+        chapterSectionArray = [],
         sectionCount = 1;
     
     for (var i = 0; i < section.length; i++) {
@@ -277,7 +308,7 @@ $(document).ready(function() {
         if (currentSection.hasClass('end')) {
             if (currentSection.is(':last-child')) sectionCount--;
             
-            sectionArray.push(sectionCount);
+            chapterSectionArray.push(sectionCount);
             sectionCount = 1;
         }
         else sectionCount++;
@@ -300,7 +331,7 @@ $(document).ready(function() {
     
     function resizePositionIndicator(currentSection) {
         var isIntro = $(currentSection).hasClass('has-intro'),
-            introSection = $('section[id*="section"]'),
+            introSection = $('section[id*="chapter"]'),
             homeSection = $('#home'),
             currentSectionIndex,
             height;
@@ -315,12 +346,12 @@ $(document).ready(function() {
             var closestIntro = section.eq(currentSectionIndex).prevAll('.has-intro').first(),
                 closestIntroId = closestIntro.attr('id'),
                 introSectionIndex = findIndex(closestIntro, section),
-                relativeIntroSectionIndex = findIndex(closestIntro, introSection),
-                introSectionHeight = (relativeIntroSectionIndex / introSection.length) * 100,
+                chapterIntroSectionIndex = findIndex(closestIntro, introSection),
+                introSectionHeight = (chapterIntroSectionIndex / introSection.length) * 100,
                 currentSectionIndex = findIndex(currentSection, section),
-                relativeSectionHeight = (((currentSectionIndex - introSectionIndex) / sectionArray[relativeIntroSectionIndex]) / introSection.length) * 100;
+                chapterSectionHeight = (((currentSectionIndex - introSectionIndex) / chapterSectionArray[chapterIntroSectionIndex]) / introSection.length) * 100;
             
-            height = introSectionHeight + relativeSectionHeight + '%';
+            height = introSectionHeight + chapterSectionHeight + '%';
         } else {
             height = 0;
         }
@@ -463,6 +494,7 @@ $(document).ready(function() {
         }
         
         resizePositionIndicator(activeSection);
+        playChapterMusic(activeSection);
     }
     
     function processAfterMove() {
