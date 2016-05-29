@@ -13,7 +13,7 @@ $(document).ready(function() {
     Preload Auto-Populate Functions
     ---------------------------------------- */    
     function autoPopulatePreload() {
-        body.prepend('<div id="preload"></div>');
+        body.append('<div id="preload"></div>');
         
         var preload = $('#preload');
         
@@ -52,7 +52,7 @@ $(document).ready(function() {
         element.stop()
             .animate({
                 volume: volume
-            }, 1500, callback);
+            }, 1000, 'linear', callback);
     }
     
     function swapMusic(newMusic) {
@@ -90,14 +90,16 @@ $(document).ready(function() {
                 .addClass('fa-volume-off')
                 .addClass('adjust-p-r-6');
             
-            adjustAudioVolume(0);
+            masterVolume = 0;
         } else {
             $(this).removeClass('fa-volume-off')
                 .addClass('fa-volume-up')
                 .removeClass('adjust-p-r-6');
             
-            adjustAudioVolume(1);
+            masterVolume = 1;
         }
+        
+        adjustVolume(audio, masterVolume);
     });
     
     /* ----------------------------------------
@@ -189,11 +191,11 @@ $(document).ready(function() {
             
             loadingBar.css('width', '100%');
             loadingPercentage.text('100');
-            homeMusic[0].play();
             
             setTimeout(function() {
                 body.addClass('loaded');
                 homeVideo.addClass('show');
+                homeMusic[0].play();
             }, 250);
             
             setTimeout(function() {

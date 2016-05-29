@@ -576,7 +576,10 @@ body {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
     opacity: 0; }
-  body.nav-open .content {
+  body.nav-open .content,
+  body.nav-open #sub-nav.show {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
     opacity: 0; }
   body.nav-open nav {
     opacity: 1;
