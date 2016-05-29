@@ -308,7 +308,7 @@ $(document).ready(function() {
         var currentSection = section.eq(i);
         
         if (currentSection.hasClass('end')) {
-            if (currentSection.is(':last-child')) sectionCount--;
+            //if (currentSection.is(':last-child')) sectionCount--;
             
             chapterSectionArray.push(sectionCount);
             sectionCount = 1;
