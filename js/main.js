@@ -34,6 +34,10 @@ $(document).ready(function() {
                 var self = $(this)
                 preload.append('<audio id="music-for-' + self.index('section') + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
             });
+            $('[data-sound]').each(function() {
+                var self = $(this)
+                preload.append('<audio id="sound-for-' + self.index('section') + '" preload="true"><source src="' + self.data('sound') + '" type="audio/mpeg"></audio>');
+            });
         }
     }
     
@@ -48,8 +52,8 @@ $(document).ready(function() {
         sound = $('audio[id*="sound-for"]'),
         masterVolume = 1;
     
-    function adjustVolume(element, volume, callback) {
-        element.stop()
+    function adjustVolume(audioElement, volume, callback) {
+        audioElement.stop()
             .animate({
                 volume: volume
             }, 1000, 'linear', callback);
@@ -84,6 +88,22 @@ $(document).ready(function() {
         }
     }
     
+    function playSound(currentSection) {
+        var sectionIndex = currentSection.index('section'),
+            sectionSound = $('#sound-for-' + sectionIndex),
+            otherSound = sound.not(sectionSound);
+        
+        adjustVolume(sound, 0, function() {
+            otherSound[0].pause();
+            otherSound[0].currentTime = 0;
+        });
+        
+        if (sectionSound.length > 0) {
+            sectionSound[0].play();
+            adjustVolume(sectionSound, masterVolume);
+        }
+    }
+    
     audioIcon.click(function() {
         if ($(this).hasClass('fa-volume-up')) {
             $(this).removeClass('fa-volume-up')
@@ -99,7 +119,9 @@ $(document).ready(function() {
             masterVolume = 1;
         }
         
-        adjustVolume(audio, masterVolume);
+        audio.each(function() {
+            $(this)[0].volume = masterVolume;
+        });
     });
     
     /* ----------------------------------------
@@ -496,11 +518,12 @@ $(document).ready(function() {
         }
         
         resizePositionIndicator(activeSection);
-        playChapterMusic(activeSection);
     }
     
     function processAfterMove() {
         processAnimateIn(activeSection);
+        playChapterMusic(activeSection);
+        playSound(activeSection);
     }
     
     body.on('pageready.np', function() {

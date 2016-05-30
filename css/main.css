@@ -557,9 +557,11 @@ body {
       font-size: 12px; } }
   body.loaded header,
   body.loaded footer,
-  body.loaded footer,
+  body.loaded footer .social-media,
   body.loaded section {
     opacity: 1; }
+  body.loaded footer .social-media a {
+    pointer-events: all; }
   body.loaded #home #title {
     width: 640px; }
     @media only screen and (max-width: 1024px) {
@@ -654,7 +656,7 @@ header, footer {
 footer {
   top: initial;
   bottom: 0;
-  pointer-events: none; }
+  opacity: 1; }
   footer .icon {
     color: white;
     display: inline-block;
@@ -679,11 +681,16 @@ footer {
       footer .audio {
         right: 32px; } }
   footer .social-media {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    opacity: 0;
     float: left;
     text-align: center; }
     @media only screen and (max-width: 768px) {
       footer .social-media .icon {
         margin-top: 4px; } }
+    footer .social-media a {
+      pointer-events: none; }
 
 .roman-numeral {
   text-align: center;
@@ -808,6 +815,8 @@ nav {
   z-index: 9999; }
   #sub-nav.show {
     opacity: 1; }
+    #sub-nav.show a {
+      pointer-events: all; }
   #sub-nav #position-container {
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;
@@ -831,6 +840,8 @@ nav {
       height: 60px; }
       #sub-nav > ul li:not(:first-child) {
         border-top: 1px solid rgba(255, 255, 255, 0.25); }
+  #sub-nav a {
+    pointer-events: none; }
 
 #open-nav-button, #close-nav-button {
   -webkit-transition: all 250ms ease;

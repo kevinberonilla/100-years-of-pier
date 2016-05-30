@@ -91,9 +91,12 @@ body {
     }
     &.loaded {
         header,
-        footer,
+        footer .social-media,
         section {
             opacity: 1;
+        }
+        footer .social-media a {
+            pointer-events: all;
         }
         #home {
             #title {
@@ -203,7 +206,7 @@ footer {
     @extend header;
     top: initial;
     bottom: 0;
-    pointer-events: none;
+    opacity: 1;
     .icon {
         color: white;
         display: inline-block;
@@ -232,12 +235,17 @@ footer {
         }
     }
     .social-media {
+        @include animated;
+        opacity: 0;
         float: left;
         text-align: center;
         .icon {
             @media only screen and (max-width: $tablet-portrait-breakpoint) {
                 margin-top: 4px;
             }
+        }
+        a {
+            pointer-events: none;
         }
     }
 }
@@ -359,6 +367,9 @@ nav {
     z-index: 9999;
     &.show {
         opacity: 1;
+        a {
+            pointer-events: all;
+        }
     }
     #position-container {
         border: 1px solid rgba(white, 0.25);
@@ -386,6 +397,9 @@ nav {
                 border-top: 1px solid rgba(white, 0.25);
             }
         }
+    }
+    a {
+        pointer-events: none;
     }
 }
 #open-nav-button {
