@@ -104,25 +104,30 @@ $(document).ready(function() {
         }
     }
     
-    audioIcon.click(function() {
-        if ($(this).hasClass('fa-volume-up')) {
-            $(this).removeClass('fa-volume-up')
-                .addClass('fa-volume-off')
-                .addClass('adjust-p-r-6');
+    if (isMobile) {
+        audioIcon.remove()
+            .unbind();
+    } else {
+        audioIcon.click(function() {
+            if ($(this).hasClass('fa-volume-up')) {
+                $(this).removeClass('fa-volume-up')
+                    .addClass('fa-volume-off')
+                    .addClass('adjust-p-r-6');
+                
+                masterVolume = 0;
+            } else {
+                $(this).removeClass('fa-volume-off')
+                    .addClass('fa-volume-up')
+                    .removeClass('adjust-p-r-6');
+                
+                masterVolume = 1;
+            }
             
-            masterVolume = 0;
-        } else {
-            $(this).removeClass('fa-volume-off')
-                .addClass('fa-volume-up')
-                .removeClass('adjust-p-r-6');
-            
-            masterVolume = 1;
-        }
-        
-        audio.each(function() {
-            $(this)[0].volume = masterVolume;
+            audio.each(function() {
+                $(this)[0].volume = masterVolume;
+            });
         });
-    });
+    }
     
     /* ----------------------------------------
     Full Parent Height Functions
@@ -185,9 +190,9 @@ $(document).ready(function() {
     Page Load Functions
     ---------------------------------------- */
     function beginLoading() {
-        var image =  $('img'),
-            audioVideo = $('audio, video'),
-            total = image.length + audioVideo.length,
+        var preloadImage =  $('#preload img'),
+            preloadAudioVideo = $('#preload audio, #preload video'),
+            total = preloadImage.length + preloadAudioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
@@ -198,21 +203,22 @@ $(document).ready(function() {
             
             loadingBar.css('width', percentage + '%');
             loadingPercentage.text(percentage);
+            
+            if (loaded === total) {
+                body.trigger('load.np')
+            }
         }
         
-        image.load(processLoadedMedia);
+        preloadImage.load(processLoadedMedia);
         
-        audioVideo.each(function() {
-            $(this)[0].oncanplaythrough = processLoadedMedia;
+        preloadAudioVideo.each(function() {
+            $(this)[0].oncanplay = processLoadedMedia;
         });
         
-        $(window).load(function() {
+        page.on('load.np', function() {
             var homeVideo = $('#home-video'),
                 homeMusic = $('#music-for-0'),
                 scrollMessage = $('.scroll-message');
-            
-            loadingBar.css('width', '100%');
-            loadingPercentage.text('100');
             
             setTimeout(function() {
                 body.addClass('loaded');
