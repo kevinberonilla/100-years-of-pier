@@ -193,6 +193,9 @@ header {
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         padding: 24px 32px 32px;
     }
+    @media only screen and (max-height: 560px) {
+        display: none;
+    }
     #back-to-np {
         display: inline-block;
         margin-top: 5px;
@@ -365,6 +368,9 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     z-index: 9999;
+    @media only screen and (max-height: 560px) {
+        display: none;
+    }
     &.show {
         opacity: 1;
         a {
@@ -378,6 +384,7 @@ nav {
         position: absolute;
         left: -5px;
         height: 100%;
+        overflow: hidden;
         #position-indicator {
             @include animated(all 1000ms);
             background-color: $color-aqua;
@@ -395,6 +402,9 @@ nav {
             height: 60px;
             &:not(:first-child) {
                 border-top: 1px solid rgba(white, 0.25);
+            }
+            &.active {
+                background-color: rgba($color-silver, 0.5);
             }
         }
     }
@@ -502,14 +512,23 @@ nav {
     }
 }
 #screen-blocker {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: all;
-    z-index: 9999;
-    background-color: $color-intro-overlay;
+    display: none;
+    @media only screen and (max-height: 560px) {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: all;
+        z-index: 9999;
+        background-color: $color-intro-overlay;
+        text-align: center;
+        img {
+            width: 120px;
+            height: 120px;
+        }
+    }
 }
 .logo-container {
     text-align: center;
@@ -525,7 +544,7 @@ nav {
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             width: 180px;
         }
-        @media only screen and (max-width: $phone-breakpoint) {
+        @media only screen and (max-width: $phone-breakpoint), only screen and (max-height: 768px) {
             width: 140px;
         }
     }
@@ -547,6 +566,9 @@ nav {
 .content {
     @include animated;
     opacity: 1;
+    @media only screen and (max-height: 560px) {
+        display: none;
+    }
 }
 .timeline {
     &-entry {
@@ -1025,7 +1047,7 @@ section {
                 font-size: 38px;
                 line-height: 46px;
             }
-            @media only screen and (max-width: $phone-breakpoint) {
+            @media only screen and (max-width: $phone-breakpoint), only screen and (max-height: 768px) {
                 font-size: 28px;
                 line-height: 36px;
             }

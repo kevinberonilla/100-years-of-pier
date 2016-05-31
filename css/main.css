@@ -645,6 +645,9 @@ header, footer {
   @media only screen and (max-width: 768px) {
     header, footer {
       padding: 24px 32px 32px; } }
+  @media only screen and (max-height: 560px) {
+    header, footer {
+      display: none; } }
   header #back-to-np, footer #back-to-np {
     display: inline-block;
     margin-top: 5px;
@@ -813,6 +816,9 @@ nav {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 9999; }
+  @media only screen and (max-height: 560px) {
+    #sub-nav {
+      display: none; } }
   #sub-nav.show {
     opacity: 1; }
     #sub-nav.show a {
@@ -823,7 +829,8 @@ nav {
     width: 5px;
     position: absolute;
     left: -5px;
-    height: 100%; }
+    height: 100%;
+    overflow: hidden; }
     #sub-nav #position-container #position-indicator {
       -webkit-transition: all 1000ms 250ms ease;
       transition: all 1000ms 250ms ease;
@@ -840,6 +847,8 @@ nav {
       height: 60px; }
       #sub-nav > ul li:not(:first-child) {
         border-top: 1px solid rgba(255, 255, 255, 0.25); }
+      #sub-nav > ul li.active {
+        background-color: rgba(198, 210, 217, 0.5); }
   #sub-nav a {
     pointer-events: none; }
 
@@ -936,14 +945,22 @@ nav {
     display: block; }
 
 #screen-blocker {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: all;
-  z-index: 9999;
-  background-color: rgba(50, 68, 101, 0.8); }
+  display: none; }
+  @media only screen and (max-height: 560px) {
+    #screen-blocker {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: all;
+      z-index: 9999;
+      background-color: rgba(50, 68, 101, 0.8);
+      text-align: center; }
+      #screen-blocker img {
+        width: 120px;
+        height: 120px; } }
 
 .logo-container {
   text-align: center;
@@ -961,7 +978,7 @@ nav {
     @media only screen and (max-width: 768px) {
       .logo-container img {
         width: 180px; } }
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 480px), only screen and (max-height: 768px) {
       .logo-container img {
         width: 140px; } }
   .logo-container.horizontal {
@@ -984,6 +1001,9 @@ nav {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
   opacity: 1; }
+  @media only screen and (max-height: 560px) {
+    .content {
+      display: none; } }
 
 .timeline-entry .content {
   position: relative; }
@@ -1440,7 +1460,7 @@ section {
         section#home #tagline {
           font-size: 38px;
           line-height: 46px; } }
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: 480px), only screen and (max-height: 768px) {
         section#home #tagline {
           font-size: 28px;
           line-height: 36px; } }

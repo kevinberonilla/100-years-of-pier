@@ -359,17 +359,20 @@ $(document).ready(function() {
         return value;
     }
     
-    function resizePositionIndicator(currentSection) {
+    function setSubNavPosition(currentSection) {
         var isIntro = $(currentSection).hasClass('has-intro'),
             introSection = $('section[id*="chapter"]'),
             homeSection = $('#home'),
             currentSectionIndex,
-            height;
+            currentSubNavChapter,
+            size;
+        
+            subNavEntry.removeClass('active');
         
         if (isIntro) {
             currentSectionIndex = findIndex(currentSection, introSection);
-            
-            height = (currentSectionIndex / introSection.length) * 100 + '%';
+            currentSubNavChapter = $('[href="#' + introSection.eq(currentSectionIndex).attr('id') + '"]', subNavEntry).parent();
+            size = (currentSectionIndex / introSection.length) * 100 + '%';
         } else if (!currentSection.is(homeSection)) {
             currentSectionIndex = findIndex(currentSection, section);
             
@@ -377,15 +380,28 @@ $(document).ready(function() {
                 closestIntroId = closestIntro.attr('id'),
                 introSectionIndex = findIndex(closestIntro, section),
                 chapterIntroSectionIndex = findIndex(closestIntro, introSection),
-                introSectionHeight = (chapterIntroSectionIndex / introSection.length) * 100,
+                introSectionSize = (chapterIntroSectionIndex / introSection.length) * 100,
                 currentSectionIndex = findIndex(currentSection, section),
-                chapterSectionHeight = (((currentSectionIndex - introSectionIndex) / chapterSectionArray[chapterIntroSectionIndex]) / introSection.length) * 100;
+                chapterSectionSize = (((currentSectionIndex - introSectionIndex) / chapterSectionArray[chapterIntroSectionIndex]) / introSection.length) * 100;
             
-            height = introSectionHeight + chapterSectionHeight + '%';
-        } else {
-            height = 0;
+            currentSubNavChapter = $('[href="#' + section.eq(introSectionIndex).attr('id') + '"]', subNavEntry).parent();
+            size = introSectionSize + chapterSectionSize + '%';
+        } else { // If home
+            size = 0;
         }
-        positionIndicator.css('height', height);
+        
+        positionIndicator.css({
+            'width': '',
+            'height': ''
+        });
+        
+        if (matchMedia('only screen and (max-width: 768px)').matches) {
+            positionIndicator.css('width', size);
+        } else {
+            positionIndicator.css('height', size);
+        }
+        
+        if (currentSubNavChapter) currentSubNavChapter.addClass('active');
     }
     
     subNavLink.click(function(e) {
@@ -396,6 +412,10 @@ $(document).ready(function() {
         
         main.moveTo(index);
     });
+    
+    $(window).resize($.debounce(750, function() {
+        setSubNavPosition($('section.active'))
+    }));
     
     
     /* ----------------------------------------
@@ -523,7 +543,7 @@ $(document).ready(function() {
             backgroundVideo.removeClass('show');
         }
         
-        resizePositionIndicator(activeSection);
+        setSubNavPosition(activeSection);
     }
     
     function processAfterMove() {
