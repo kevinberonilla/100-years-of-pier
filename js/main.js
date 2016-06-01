@@ -272,7 +272,8 @@ $(document).ready(function() {
     
     function calculateNavEntryHeight() {        
         var windowHeight = $(window).height(),
-            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowHeight / linkCount) - 7) : windowHeight,
+            windowWidth = $(window).width(),
+            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowWidth / linkCount) - 6) : windowHeight,
             linkHeight = (navHeight / linkCount);
         
         navEntry.css('height', linkHeight + 'px');
@@ -497,13 +498,13 @@ $(document).ready(function() {
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
+            horizontalLogo.addClass('show');
         }
         
         // If has overlay
         if (activeSection.hasClass('has-overlay')) {
             overlay.addClass('show');
             clouds.addClass('show');
-            horizontalLogo.removeClass('show');
             
             enableCloudParallax();
         } else {
@@ -519,7 +520,6 @@ $(document).ready(function() {
             
             underlay.css('background-image', 'url(' + underlayUrl + ')')
                 .addClass('show');
-            horizontalLogo.removeClass('show');
         } else {
             underlay.removeClass('show');
         }
@@ -536,7 +536,6 @@ $(document).ready(function() {
         
         // If is not home, does not have overlay, and does not have underlay
         if (!activeSection.is('#home') && !activeSection.hasClass('has-overlay') && !activeSection.hasClass('has-underlay')) {
-            horizontalLogo.addClass('show');
             backgroundVideo.addClass('show');
         } else {
             backgroundVideo.removeClass('show');

@@ -141,7 +141,7 @@ body {
             opacity: 1;
             height: 100vh;
             @media only screen and (max-width: $phone-breakpoint) {
-                height: calc(100vh - (100vw / #{$chapter-count}) - 7px);
+                height: calc(100vh - (100vw / #{$chapter-count}) - 6px);
             }
         }
         header,
@@ -315,7 +315,7 @@ nav {
         line-height: 18px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        top: calc((100vw / #{$chapter-count}) + 7px);
+        top: calc((100vw / #{$chapter-count}) + 6px);
     }
     > ul {
         list-style: none;
@@ -389,7 +389,7 @@ nav {
     }
     @media only screen and (max-width: $phone-breakpoint) {
         @include animated;
-        top: 0;
+        top: -1px;
         left: 0;
         width: 100%;
         transform: none;
@@ -402,7 +402,7 @@ nav {
         }
     }
     #position-container {
-        border: 1px solid rgba($color-silver, 0.75);
+        border: 1px solid $color-dark-silver;
         border-right: none;
         width: 5px;
         position: absolute;
@@ -414,6 +414,7 @@ nav {
             bottom: -5px;
             height: 5px;
             width: 100%;
+            border-left: none;
         }
         #position-indicator {
             @include animated(all 1000ms);
@@ -428,7 +429,7 @@ nav {
     > ul {
         list-style: none;
         width: 60px;
-        border: 1px solid rgba($color-silver, 0.75);
+        border: 1px solid $color-dark-silver;
         @media only screen and (max-width: $phone-breakpoint) {
             width: 100vw;
             display: table-row;
@@ -439,16 +440,19 @@ nav {
             width: 60px;
             height: 60px;
             text-align: center;
-            background-color: rgba(black, 0.5);
+            background-color: $color-sub-nav-background;
             @media only screen and (max-width: $phone-breakpoint) {
                 height: calc(100vw / #{$chapter-count});
                 display: table-cell;
+                + li {
+                    border-left: 1px solid $color-dark-silver;
+                }
             }
             &:not(:first-child) {
-                border-top: 1px solid rgba($color-silver, 0.75);
+                border-top: 1px solid $color-dark-silver;
             }
             &.active {
-                background-color: rgba($color-silver, 0.75);
+                background-color: $color-dark-silver;
             }
         }
     }
