@@ -39,16 +39,22 @@
     }
 }
 @mixin block-adjustment-classes($property-value, $side-value, $pixels) {
-    @if (nth($property-value, 1) == b) { // If border
-        @if (nth($side-value, 1) == a) { // If all sides
+    @if (nth($property-value, 1)==b) {
+        // If border
+        @if (nth($side-value, 1)==a) {
+            // If all sides
             border-width: #{$pixels}px;
-        } @else {
+        }
+        @else {
             border-#{nth($side-value, 2)}-width: #{$pixels}px;
         }
-    } @else {
-        @if (nth($side-value, 1) == a) { // If all sides
+    }
+    @else {
+        @if (nth($side-value, 1)==a) {
+            // If all sides
             #{nth($property-value, 2)}: #{$pixels}px;
-        } @else {
+        }
+        @else {
             #{nth($property-value, 2)}-#{nth($side-value, 2)}: #{$pixels}px;
         }
     }
@@ -110,7 +116,8 @@
                 }
             }
         }
-    } @else {
+    }
+    @else {
         &-pos {
             @each $position in $position-list {
                 &-#{nth($position, 1)} {
@@ -168,7 +175,7 @@
         }
     }
 }
-@mixin shadow($horizontal: 8px, $vertical: 12px, $blur: 40px, $spread: 0, $color: rgba(0,0,0,0.35)) {
+@mixin shadow($horizontal: 8px, $vertical: 12px, $blur: 40px, $spread: 0, $color: rgba(0, 0, 0, 0.35)) {
     box-shadow: $horizontal $vertical $blur $spread $color;
 }
 @mixin build-gallery-entry-properties($list) {
@@ -185,5 +192,12 @@
     &::-webkit-scrollbar {
         width: 0 !important;
         display: none !important;
+    }
+}
+@mixin clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
     }
 }

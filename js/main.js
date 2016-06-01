@@ -227,7 +227,7 @@ $(document).ready(function() {
             }, 250);
             
             setTimeout(function() {
-                body.trigger('pageready.np'); // Custom namespaced event to initialized one page scroll
+                body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
             }, (isDev) ? 0 : 2000);
             
             setTimeout(function() {
@@ -270,9 +270,10 @@ $(document).ready(function() {
         blurElements = $('#underlay, #clouds, .video-background'),
         main = $('.main');
     
-    function calculateNavEntryHeight() {
-        var currentWindowHeight = $(window).height(),
-            linkHeight = (currentWindowHeight / linkCount);
+    function calculateNavEntryHeight() {        
+        var windowHeight = $(window).height(),
+            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowHeight / linkCount) - 7) : windowHeight,
+            linkHeight = (navHeight / linkCount);
         
         navEntry.css('height', linkHeight + 'px');
     }
@@ -318,7 +319,7 @@ $(document).ready(function() {
     });
     
     calculateNavEntryHeight();
-    $(window).resize(calculateNavEntryHeight);
+    $(window).resize($.debounce(750, calculateNavEntryHeight));
     openNavButton.click(openNav);
     closeNavButton.click(closeNav);
     
@@ -335,9 +336,7 @@ $(document).ready(function() {
     for (var i = 0; i < section.length; i++) {
         var currentSection = section.eq(i);
         
-        if (currentSection.hasClass('end')) {
-            //if (currentSection.is(':last-child')) sectionCount--;
-            
+        if (currentSection.hasClass('end')) {            
             chapterSectionArray.push(sectionCount);
             sectionCount = 1;
         }
@@ -552,7 +551,7 @@ $(document).ready(function() {
         playSound(activeSection);
     }
     
-    body.on('pageready.np', function() {
+    body.on('start.np', function() {
         $('#main').onepage_scroll({
             sectionContainer: 'section',
             easing: 'ease',

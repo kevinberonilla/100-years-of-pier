@@ -98,6 +98,11 @@ body {
         footer .social-media a {
             pointer-events: all;
         }
+        #sub-nav {
+            @media only screen and (max-width: $phone-breakpoint) {
+                opacity: 1;
+            }
+        }
         #home {
             #title {
                 width: 640px;
@@ -127,9 +132,17 @@ body {
             @include animated;
             opacity: 0;
         }
+        #sub-nav.show {
+            @media only screen and (max-width: $phone-breakpoint) {
+                opacity: 1;
+            }
+        }
         nav {
             opacity: 1;
-            height: 100%;
+            height: 100vh;
+            @media only screen and (max-width: $phone-breakpoint) {
+                height: calc(100vh - (100vw / #{$chapter-count}) - 7px);
+            }
         }
         header,
         footer {
@@ -187,13 +200,13 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 9998;
+    z-index: 9997;
     opacity: 0;
     pointer-events: none;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         padding: 24px 32px 32px;
     }
-    @media only screen and (max-height: 560px) {
+    @media only screen and (max-height: $min-screen-height) {
         display: none;
     }
     #back-to-np {
@@ -301,6 +314,9 @@ nav {
         font-size: 14px;
         line-height: 18px;
     }
+    @media only screen and (max-width: $phone-breakpoint) {
+        top: calc((100vw / #{$chapter-count}) + 7px);
+    }
     > ul {
         list-style: none;
         > li {
@@ -368,8 +384,16 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     z-index: 9999;
-    @media only screen and (max-height: 560px) {
+    @media only screen and (max-height: $min-screen-height) {
         display: none;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        @include animated;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        display: table;
     }
     &.show {
         opacity: 1;
@@ -378,38 +402,59 @@ nav {
         }
     }
     #position-container {
-        border: 1px solid rgba(white, 0.25);
+        border: 1px solid rgba($color-silver, 0.75);
         border-right: none;
         width: 5px;
         position: absolute;
         left: -5px;
         height: 100%;
         overflow: hidden;
+        @media only screen and (max-width: $phone-breakpoint) {
+            left: 0;
+            bottom: -5px;
+            height: 5px;
+            width: 100%;
+        }
         #position-indicator {
             @include animated(all 1000ms);
             background-color: $color-aqua;
             width: 100%;
+            @media only screen and (max-width: $phone-breakpoint) {
+                width: 0;
+                height: 5px;
+            }
         }
     }
     > ul {
         list-style: none;
-        background-color: rgba(black, 0.75);
         width: 60px;
-        border: 1px solid rgba(white, 0.25);
+        border: 1px solid rgba($color-silver, 0.75);
+        @media only screen and (max-width: $phone-breakpoint) {
+            width: 100vw;
+            display: table-row;
+        }
         li {
+            @include animated(all 1000ms);
             display: block;
             width: 60px;
             height: 60px;
+            text-align: center;
+            background-color: rgba(black, 0.5);
+            @media only screen and (max-width: $phone-breakpoint) {
+                height: calc(100vw / #{$chapter-count});
+                display: table-cell;
+            }
             &:not(:first-child) {
-                border-top: 1px solid rgba(white, 0.25);
+                border-top: 1px solid rgba($color-silver, 0.75);
             }
             &.active {
-                background-color: rgba($color-silver, 0.5);
+                background-color: rgba($color-silver, 0.75);
             }
         }
     }
     a {
         pointer-events: none;
+        text-decoration: none;
     }
 }
 #open-nav-button {
@@ -424,6 +469,9 @@ nav {
         top: 32px;
         right: 32px;
     }
+    @media only screen and (max-width: $phone-breakpoint) {
+        top: calc(100vw / #{$chapter-count} + 38px)
+    }
     &:hover {
         opacity: 0.5;
     }
@@ -434,6 +482,9 @@ nav {
     width: 32px;
     padding: 0 2px;
     height: auto;
+    //    @media only screen and (max-width: $phone-breakpoint) {
+    //        top: 32px;
+    //    }
 }
 #overlay {
     @include animated(all 1000ms);
@@ -513,7 +564,7 @@ nav {
 }
 #screen-blocker {
     display: none;
-    @media only screen and (max-height: 560px) {
+    @media only screen and (max-height: $min-screen-height) {
         display: block;
         position: fixed;
         top: 0;
@@ -544,7 +595,8 @@ nav {
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             width: 180px;
         }
-        @media only screen and (max-width: $phone-breakpoint), only screen and (max-height: 768px) {
+        @media only screen and (max-width: $phone-breakpoint),
+        only screen and (max-height: 768px) {
             width: 140px;
         }
     }
@@ -566,7 +618,7 @@ nav {
 .content {
     @include animated;
     opacity: 1;
-    @media only screen and (max-height: 560px) {
+    @media only screen and (max-height: $min-screen-height) {
         display: none;
     }
 }
@@ -780,6 +832,7 @@ nav {
         }
     }
     &.type-b {
+        @include clearfix;
         > li {
             height: 380px;
             max-height: 45vh;
@@ -789,11 +842,6 @@ nav {
             @media only screen and (max-width: $tablet-landscape-breakpoint) {
                 width: 60px;
             }
-        }
-        &:after {
-            content: '';
-            display: table;
-            clear: both;
         }
     }
     li {
@@ -1009,7 +1057,7 @@ section {
     width: 100%;
     position: relative;
     z-index: 1;
-    min-height: 560px;
+    min-height: $min-screen-height;
     opacity: 0;
     overflow: hidden;
     &#home {
@@ -1047,7 +1095,8 @@ section {
                 font-size: 38px;
                 line-height: 46px;
             }
-            @media only screen and (max-width: $phone-breakpoint), only screen and (max-height: 768px) {
+            @media only screen and (max-width: $phone-breakpoint),
+            only screen and (max-height: 768px) {
                 font-size: 28px;
                 line-height: 36px;
             }
