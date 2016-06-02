@@ -273,7 +273,7 @@ $(document).ready(function() {
     function calculateNavEntryHeight() {        
         var windowHeight = $(window).height(),
             windowWidth = $(window).width(),
-            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowWidth / linkCount) - 6) : windowHeight,
+            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowWidth / linkCount) - 5) : windowHeight,
             linkHeight = (navHeight / linkCount);
         
         navEntry.css('height', linkHeight + 'px');

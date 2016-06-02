@@ -594,8 +594,8 @@ body {
     height: 100vh; }
     @media only screen and (max-width: 480px) {
       body.nav-open nav {
-        height: -webkit-calc(100vh - (100vw / 6) - 6px);
-        height: calc(100vh - (100vw / 6) - 6px); } }
+        height: -webkit-calc(100vh - (100vw / 6) - 5px);
+        height: calc(100vh - (100vw / 6) - 5px); } }
   body.nav-open header,
   body.nav-open footer,
   body.nav-open footer {
@@ -742,7 +742,7 @@ nav {
   letter-spacing: 1px;
   opacity: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   z-index: 9999;
@@ -758,8 +758,8 @@ nav {
       line-height: 18px; } }
   @media only screen and (max-width: 480px) {
     nav {
-      top: -webkit-calc((100vw / 6) + 6px);
-      top: calc((100vw / 6) + 6px); } }
+      top: -webkit-calc((100vw / 6) + 5px);
+      top: calc((100vw / 6) + 5px); } }
   nav > ul {
     list-style: none; }
     nav > ul > li {
@@ -820,8 +820,8 @@ nav {
         margin-top: -2.4%; } }
 
 #sub-nav {
-  -webkit-transition: all 1000ms 250ms ease;
-  transition: all 1000ms 250ms ease;
+  -webkit-transition: all 1000ms ease;
+  transition: all 1000ms ease;
   opacity: 0;
   position: fixed;
   right: -1px;
@@ -846,10 +846,11 @@ nav {
       display: table; } }
   #sub-nav.show {
     opacity: 1; }
-    #sub-nav.show a {
+    #sub-nav.show a,
+    #sub-nav.show a:visited {
       pointer-events: all; }
   #sub-nav #position-container {
-    border: 1px solid #6C7C8F;
+    border: 1px solid #6e7e91;
     border-right: none;
     width: 5px;
     position: absolute;
@@ -858,14 +859,15 @@ nav {
     overflow: hidden; }
     @media only screen and (max-width: 480px) {
       #sub-nav #position-container {
+        background: rgba(12, 27, 51, 0.9);
         left: 0;
         bottom: -5px;
         height: 5px;
         width: 100%;
         border-left: none; } }
     #sub-nav #position-container #position-indicator {
-      -webkit-transition: all 1000ms 250ms ease;
-      transition: all 1000ms 250ms ease;
+      -webkit-transition: all 1000ms ease;
+      transition: all 1000ms ease;
       background-color: #25CAD3;
       width: 100%; }
       @media only screen and (max-width: 480px) {
@@ -875,33 +877,54 @@ nav {
   #sub-nav > ul {
     list-style: none;
     width: 60px;
-    border: 1px solid #6C7C8F; }
+    border: 1px solid #6e7e91; }
     @media only screen and (max-width: 480px) {
       #sub-nav > ul {
         width: 100vw;
         display: table-row; } }
     #sub-nav > ul li {
-      -webkit-transition: all 1000ms 250ms ease;
-      transition: all 1000ms 250ms ease;
+      -webkit-transition: all 1000ms ease;
+      transition: all 1000ms ease;
       display: block;
       width: 60px;
       height: 60px;
       text-align: center;
-      background-color: rgba(16, 16, 16, 0.5); }
+      background-color: rgba(12, 27, 51, 0.9); }
       @media only screen and (max-width: 480px) {
         #sub-nav > ul li {
           height: -webkit-calc(100vw / 6);
           height: calc(100vw / 6);
           display: table-cell; }
           #sub-nav > ul li + li {
-            border-left: 1px solid #6C7C8F; } }
+            border-left: 1px solid #6e7e91; } }
       #sub-nav > ul li:not(:first-child) {
-        border-top: 1px solid #6C7C8F; }
+        border-top: 1px solid #6e7e91; }
       #sub-nav > ul li.active {
-        background-color: #6C7C8F; }
-  #sub-nav a {
+        background-color: #6e7e91; }
+        #sub-nav > ul li.active a,
+        #sub-nav > ul li.active a:visited {
+          color: rgba(12, 27, 51, 0.9); }
+  #sub-nav a,
+  #sub-nav a:visited {
+    font-family: "Libre Baskerville", serif;
+    display: block;
+    height: 100%;
+    position: relative;
+    font-size: 18px;
     pointer-events: none;
-    text-decoration: none; }
+    text-decoration: none;
+    color: #6e7e91; }
+    @media only screen and (max-width: 480px) {
+      #sub-nav a,
+      #sub-nav a:visited {
+        pointer-events: all; } }
+    #sub-nav a .title,
+    #sub-nav a:visited .title {
+      margin: 0 auto;
+      display: block; }
+      #sub-nav a .title.vertical-align,
+      #sub-nav a:visited .title.vertical-align {
+        position: relative; }
 
 #open-nav-button, #close-nav-button {
   -webkit-transition: all 250ms ease;
@@ -930,8 +953,8 @@ nav {
   height: auto; }
 
 #overlay, #underlay, #background-image, .quote-background-image, #clouds {
-  -webkit-transition: all 1000ms 250ms ease;
-  transition: all 1000ms 250ms ease;
+  -webkit-transition: all 1000ms ease;
+  transition: all 1000ms ease;
   opacity: 0;
   position: fixed;
   z-index: 0;
@@ -1037,8 +1060,8 @@ nav {
       .logo-container img {
         width: 140px; } }
   .logo-container.horizontal {
-    -webkit-transition: all 1000ms 250ms ease;
-    transition: all 1000ms 250ms ease;
+    -webkit-transition: all 1000ms ease;
+    transition: all 1000ms ease;
     opacity: 0;
     pointer-events: none;
     top: 16px;
@@ -1488,11 +1511,11 @@ section {
       -webkit-transition: all 2000ms 250ms ease;
       transition: all 2000ms 250ms ease;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.5);
       margin: 0 auto; }
       section#home #title .scroll-message {
-        -webkit-transition: all 1000ms 250ms ease;
-        transition: all 1000ms 250ms ease;
+        -webkit-transition: all 1000ms ease;
+        transition: all 1000ms ease;
         position: absolute;
         bottom: 40px;
         text-align: center;
@@ -1505,8 +1528,8 @@ section {
         section#home #title .scroll-message .scroll-arrow {
           margin-top: 10px; }
     section#home #tagline {
-      -webkit-transition: all 1000ms 250ms ease;
-      transition: all 1000ms 250ms ease;
+      -webkit-transition: all 1000ms ease;
+      transition: all 1000ms ease;
       opacity: 0;
       margin-top: 30px;
       font-size: 46px;
@@ -1586,8 +1609,8 @@ section {
     -ms-transform: translateX(-20px);
     transform: translateX(-20px); }
   .animate-in.blur {
-    -webkit-transition: all 1000ms 250ms ease;
-    transition: all 1000ms 250ms ease;
+    -webkit-transition: all 1000ms ease;
+    transition: all 1000ms ease;
     -webkit-filter: blur(10px);
     filter: blur(10px); }
   .animate-in.reveal {
