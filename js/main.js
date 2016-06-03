@@ -457,19 +457,21 @@ $(document).ready(function() {
     Parallax Functions
     ---------------------------------------- */
     var cloudsList = $('#clouds'),
-        cloudParallax;
+        fireworksList = $('#fireworks'),
+        cloudParallax,
+        fireworksParallax;
     
-    function enableCloudParallax() {
-        if (typeof(cloudParallax) === 'undefined') {
-            cloudParallax = cloudsList.parallax();
+    function enableParallax(list, parallaxVar) {
+        if (typeof(parallaxVar) === 'undefined') {
+            parallaxVar = list.parallax();
         } else {
-            cloudParallax.parallax('enable');
+            parallaxVar.parallax('enable');
         }
     }
     
-    function disableCloudParallax() {
-        if (typeof(cloudParallax) !== 'undefined') {
-            cloudParallax.parallax('disable');
+    function disableParallax(parallaxVar) {
+        if (typeof(parallaxVar) !== 'undefined') {
+            parallaxVar.parallax('disable');
         }
     }
     
@@ -495,10 +497,14 @@ $(document).ready(function() {
             homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
             subNav.removeClass('show');
+            
+            enableParallax(fireworksList, fireworksParallax);
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
             horizontalLogo.addClass('show');
+            
+            disableParallax(fireworksParallax);
         }
         
         // If has overlay
@@ -506,12 +512,12 @@ $(document).ready(function() {
             overlay.addClass('show');
             clouds.addClass('show');
             
-            enableCloudParallax();
+            enableParallax(cloudsList, cloudParallax);
         } else {
             overlay.removeClass('show');
             clouds.removeClass('show');
             
-            disableCloudParallax();
+            disableParallax(cloudParallax);
         }
         
         // If has underlay

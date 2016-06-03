@@ -490,6 +490,7 @@ nav {
     z-index: 9998;
     top: 40px;
     right: 40px;
+    width: 32px;
     opacity: 1;
     pointer-events: all;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -497,7 +498,8 @@ nav {
         right: 32px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        top: calc(100vw / #{$chapter-count} + 38px)
+        top: calc(100vw / #{$chapter-count} + 38px);
+        width: 22px;
     }
     &:hover {
         opacity: 0.5;
@@ -506,12 +508,8 @@ nav {
 #close-nav-button {
     @extend #open-nav-button;
     display: none;
-    width: 32px;
     padding: 0 2px;
     height: auto;
-    //    @media only screen and (max-width: $phone-breakpoint) {
-    //        top: 32px;
-    //    }
 }
 #overlay {
     @include animated(all, 1000ms);
