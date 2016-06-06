@@ -1,7 +1,7 @@
 var page = $('html, body'),
     body = $('body'),
     isMobile = false,
-    isDev = false, // Set this to false before pushing to production
+    isDev = true, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
     if (mobileUserAgentString.test(navigator.userAgent)) {
@@ -395,7 +395,7 @@ $(document).ready(function() {
             'height': ''
         });
         
-        if (matchMedia('only screen and (max-width: 768px)').matches) {
+        if (matchMedia('only screen and (max-width: 480px)').matches) {
             positionIndicator.css('width', size);
         } else {
             positionIndicator.css('height', size);
@@ -607,7 +607,7 @@ $(document).ready(function() {
     Gallery Type A Functions
     ---------------------------------------- */
     var galleryTypeA = $('.gallery.type-a'),
-        galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0,
+        galleryPaddingTotal = (matchMedia('only screen and (max-width: 768px)').matches) ? 120 : 80,
         containerWidth = galleryTypeA.closest('.container').width();
 
     galleryTypeA.each(function() {
@@ -639,7 +639,7 @@ $(document).ready(function() {
                 .removeClass('active')
                 .removeAttr('style');
 
-            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0;
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 768px)').matches) ? 120 : 80;
             containerWidth = galleryTypeA.closest('.container').width();
 
             self.Cloud9Carousel({
@@ -676,7 +676,7 @@ $(document).ready(function() {
             galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140,
             totalMarginWidth = 10,
             containerWidth = $(self).closest('.container').width(),
-            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0,
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 768px)').matches) ? 120 : 80,
             galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth - galleryPaddingTotal;
 
         galleryEntry.click(function() {
@@ -690,7 +690,7 @@ $(document).ready(function() {
         function recalculateWidths() {
             galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140;
             containerWidth = $(self).closest('.container').width();
-            galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 80 : 0;
+            galleryPaddingTotal = (matchMedia('only screen and (max-width: 768px)').matches) ? 120 : 80;
             galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth - galleryPaddingTotal;
 
             $('> li.active', self).css('width', galleryOpenWidth + 'px');
