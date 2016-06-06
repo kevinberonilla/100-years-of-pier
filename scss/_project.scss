@@ -106,7 +106,10 @@ body {
         #home {
             #title {
                 width: 640px;
-                @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                @media only screen and (max-height: $tablet-landscape-height) {
+                    width: 400px;
+                }
+                @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     width: 100%;
                 }
             }
@@ -432,7 +435,7 @@ nav {
         list-style: none;
         width: 60px;
         border: 1px solid $color-sub-nav-border;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        @media only screen and (max-width: $small-desktop-breakpoint) {
             width: 40px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
@@ -447,7 +450,7 @@ nav {
             font-size: 18px;
             text-align: center;
             background-color: $color-sub-nav-background;
-            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            @media only screen and (max-width: $small-desktop-breakpoint) {
                 width: 40px;
                 height: 40px;
                 font-size: 12px;
@@ -630,7 +633,7 @@ nav {
             width: 180px;
         }
         @media only screen and (max-width: $phone-breakpoint),
-        only screen and (max-height: 768px) {
+        only screen and (max-height: $tablet-landscape-height) {
             width: 140px;
         }
     }
@@ -742,20 +745,26 @@ nav {
         padding-right: 60px;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             width: 65%;
-            padding-right: 0;
+            padding-right: 20px;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             float: none;
             width: 100%;
             padding-right: 80px;
         }
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            padding-right: 32px;
+        }
     }
     &-gallery {
         @include hide-scrollbars;
         margin-top: 35px;
         padding: 0 40px;
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            padding: 0 120px;
+        }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            padding: 0 60px;
+            padding: 0;
             overflow: visible;
             overflow-x: scroll;
         }
@@ -1113,6 +1122,9 @@ section {
                 width: 100%;
                 opacity: 0;
                 margin-bottom: 50px;
+                @media only screen and (max-width: $tablet-landscape-height) {
+                    font-size: 10px;
+                }
                 &.show {
                     opacity: 1;
                     margin-bottom: 0;
@@ -1202,6 +1214,10 @@ section {
         text-align: center;
         .vertical-align {
             padding: 0 75px 35vh;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                padding-left: 32px;
+                padding-right: 32px;
+            }
         }
         .italic-heading {
             margin-top: 20px;

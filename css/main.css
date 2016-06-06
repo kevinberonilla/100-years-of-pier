@@ -567,7 +567,10 @@ body {
       opacity: 1; } }
   body.loaded #home #title {
     width: 640px; }
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-height: 768px) {
+      body.loaded #home #title {
+        width: 400px; } }
+    @media only screen and (max-width: 768px) {
       body.loaded #home #title {
         width: 100%; } }
   body.loaded #home #tagline {
@@ -878,7 +881,7 @@ nav {
     list-style: none;
     width: 60px;
     border: 1px solid #6e7e91; }
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1100px) {
       #sub-nav > ul {
         width: 40px; } }
     @media only screen and (max-width: 480px) {
@@ -894,7 +897,7 @@ nav {
       font-size: 18px;
       text-align: center;
       background-color: rgba(12, 27, 51, 0.9); }
-      @media only screen and (max-width: 1024px) {
+      @media only screen and (max-width: 1100px) {
         #sub-nav > ul li {
           width: 40px;
           height: 40px;
@@ -1174,12 +1177,15 @@ nav {
   @media only screen and (max-width: 1024px) {
     .timeline-details {
       width: 65%;
-      padding-right: 0; } }
+      padding-right: 20px; } }
   @media only screen and (max-width: 768px) {
     .timeline-details {
       float: none;
       width: 100%;
       padding-right: 80px; } }
+  @media only screen and (max-width: 768px) {
+    .timeline-details {
+      padding-right: 32px; } }
 
 .timeline-gallery {
   -ms-overflow-style: none;
@@ -1188,9 +1194,12 @@ nav {
   .timeline-gallery::-webkit-scrollbar {
     width: 0 !important;
     display: none !important; }
+  @media only screen and (max-width: 1024px) {
+    .timeline-gallery {
+      padding: 0 120px; } }
   @media only screen and (max-width: 768px) {
     .timeline-gallery {
-      padding: 0 60px;
+      padding: 0;
       overflow: visible;
       overflow-x: scroll; } }
 
@@ -1535,6 +1544,9 @@ section {
         width: 100%;
         opacity: 0;
         margin-bottom: 50px; }
+        @media only screen and (max-width: 768px) {
+          section#home #title .scroll-message {
+            font-size: 10px; } }
         section#home #title .scroll-message.show {
           opacity: 1;
           margin-bottom: 0; }
@@ -1616,6 +1628,10 @@ section {
     text-align: center; }
     #end .content .vertical-align {
       padding: 0 75px 35vh; }
+      @media only screen and (max-width: 768px) {
+        #end .content .vertical-align {
+          padding-left: 32px;
+          padding-right: 32px; } }
     #end .content .italic-heading {
       margin-top: 20px; }
   #end .fireworks {
