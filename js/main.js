@@ -1,7 +1,7 @@
 var page = $('html, body'),
     body = $('body'),
     isMobile = false,
-    isDev = true, // Set this to false before pushing to production
+    isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
     if (mobileUserAgentString.test(navigator.userAgent)) {
@@ -16,6 +16,12 @@ $(document).ready(function() {
         body.append('<div id="preload"></div>');
         
         var preload = $('#preload');
+        
+        $('img').each(function() {
+            var imageUrl = $(this).attr('src');
+            
+            preload.append('<img src="' + imageUrl + '" alt="">');
+        });
         
         $('[data-background-image]').each(function() {
             var imageUrl = $(this).data('background-image');
@@ -458,21 +464,59 @@ $(document).ready(function() {
     ---------------------------------------- */
     var cloudsList = $('#clouds'),
         fireworksList = $('#fireworks'),
-        cloudParallax,
+        cloudsParallax,
         fireworksParallax;
     
-    function enableParallax(list, parallaxVar) {
-        if (typeof(parallaxVar) === 'undefined') {
-            parallaxVar = list.parallax();
-        } else {
-            parallaxVar.parallax('enable');
+    function enableParallax(list, targetId) {
+        switch(targetId) {
+            case 'clouds':
+                if (typeof(cloudsParallax) === 'undefined') {
+                    cloudsParallax = list.parallax();
+                } else {
+                    cloudsParallax.parallax('enable');
+                }
+                break;
+            case 'fireworks':
+                if (typeof(fireworksParallax) === 'undefined') {
+                    fireworksParallax = list.parallax();
+                } else {
+                    fireworksParallax.parallax('enable');
+                }
+                break;
         }
     }
     
-    function disableParallax(parallaxVar) {
-        if (typeof(parallaxVar) !== 'undefined') {
-            parallaxVar.parallax('disable');
+    function disableParallax(targetId) {
+        switch(targetId) {
+            case 'clouds':
+                if (typeof(cloudsParallax) !== 'undefined') {
+                    cloudsParallax.parallax('disable');
+                }
+                break;
+            case 'fireworks':
+                if (typeof(fireworksParallax) !== 'undefined') {
+                    fireworksParallax.parallax('disable');
+                }
+                break;
         }
+    }
+    
+    /* ----------------------------------------
+    Home Fireworks Functions
+    ---------------------------------------- */
+    function showFireworks() {
+        var fireworksListEntry = $('> li', fireworksList);
+        
+        fireworksList.addClass('show');
+        
+        fireworksListEntry.each(function() {
+            var fireworksImage = $('img', this),
+                listEntryIndex = $(this).index();
+            
+            setTimeout(function() {
+                fireworksImage.addClass('show');
+            }, (listEntryIndex * 50));
+        });
     }
     
     /* ----------------------------------------
@@ -482,7 +526,6 @@ $(document).ready(function() {
         overlay = $('#overlay'),
         subNav = $('#sub-nav'),
         backgroundImage = $('#background-image'),
-        clouds = $('#clouds'),
         homeVideo = $('#home-video'),
         backgroundVideo = $('#background-video'),
         title = $('#home #title'),
@@ -497,27 +540,29 @@ $(document).ready(function() {
             homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
             subNav.removeClass('show');
+            fireworksList.addClass('show');
             
-            enableParallax(fireworksList, fireworksParallax);
+            enableParallax(fireworksList, 'fireworks');
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
             horizontalLogo.addClass('show');
+            fireworksList.removeClass('show');
             
-            disableParallax(fireworksParallax);
+            disableParallax('fireworks');
         }
         
         // If has overlay
         if (activeSection.hasClass('has-overlay')) {
             overlay.addClass('show');
-            clouds.addClass('show');
+            cloudsList.addClass('show');
             
-            enableParallax(cloudsList, cloudParallax);
+            enableParallax(cloudsList, 'clouds');
         } else {
             overlay.removeClass('show');
-            clouds.removeClass('show');
+            cloudsList.removeClass('show');
             
-            disableParallax(cloudParallax);
+            disableParallax('clouds');
         }
         
         // If has underlay
@@ -571,6 +616,9 @@ $(document).ready(function() {
             beforeMove: processBeforeMove,
             afterMove: processAfterMove
         });
+        
+        enableParallax(fireworksList, 'fireworks');
+        showFireworks();
     });
     
     /* ----------------------------------------

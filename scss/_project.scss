@@ -178,6 +178,7 @@ body {
     width: auto;
     height: auto;
     background-size: cover;
+    background-repeat: no-repeat;
     pointer-events: none;
     filter: none;
     -webkit-transform-style: preserve-3d;
@@ -193,6 +194,7 @@ video::-webkit-media-controls {
 }
 #home-video {
     -webkit-transform: translate3d(0, 0, 0);
+    background-position: center bottom;
 }
 .full-parent-height {
     position: relative;
@@ -398,6 +400,9 @@ nav {
         transform: none;
         display: table;
     }
+    @media only screen and (max-height: $min-screen-height) {
+        display: none;
+    }
     &.show {
         opacity: 1;
         a,
@@ -581,6 +586,22 @@ nav {
         img {
             width: 120vw;
             opacity: 0.25;
+        }
+    }
+}
+#fireworks {
+    @extend #clouds;
+    > li {
+        top: -30vh !important;
+        @media only screen and (max-height: $tablet-landscape-height) {
+            top: -60vh !important;
+        }
+        img {
+            @include animated(all, 500ms, ease-out);
+            opacity: 0;
+            &.show {
+                opacity: 1;
+            }
         }
     }
 }
@@ -1122,7 +1143,7 @@ section {
                 width: 100%;
                 opacity: 0;
                 margin-bottom: 50px;
-                @media only screen and (max-width: $tablet-landscape-height) {
+                @media only screen and (max-height: $tablet-landscape-height) {
                     font-size: 10px;
                 }
                 &.show {
@@ -1215,20 +1236,33 @@ section {
         .vertical-align {
             padding: 0 75px 35vh;
             @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+            @media only screen and (max-width: $phone-breakpoint) {
                 padding-left: 32px;
                 padding-right: 32px;
             }
         }
         .italic-heading {
             margin-top: 20px;
+            @media only screen and (max-width: $phone-breakpoint) {
+                margin-top: 16px;
+                font-size: 16px;
+            }
         }
     }
     .fireworks {
         margin-top: 5vh;
         margin-bottom: -40px;
-        width: 80%;
+        width: 75%;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             margin-bottom: 0;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            width: 100%;
+            margin-bottom: -20px;
+            margin-top: 10vh;
         }
     }
 }

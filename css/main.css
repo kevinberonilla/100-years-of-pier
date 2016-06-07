@@ -626,6 +626,7 @@ body {
   width: auto;
   height: auto;
   background-size: cover;
+  background-repeat: no-repeat;
   pointer-events: none;
   -webkit-filter: none;
   filter: none;
@@ -640,7 +641,8 @@ video::-webkit-media-controls {
   display: none !important; }
 
 #home-video {
-  -webkit-transform: translate3d(0, 0, 0); }
+  -webkit-transform: translate3d(0, 0, 0);
+  background-position: center bottom; }
 
 .full-parent-height {
   position: relative; }
@@ -847,6 +849,9 @@ nav {
       -ms-transform: none;
       transform: none;
       display: table; } }
+  @media only screen and (max-height: 560px) {
+    #sub-nav {
+      display: none; } }
   #sub-nav.show {
     opacity: 1; }
     #sub-nav.show a,
@@ -965,7 +970,7 @@ nav {
   padding: 0 2px;
   height: auto; }
 
-#overlay, #underlay, #background-image, .quote-background-image, #clouds {
+#overlay, #underlay, #background-image, .quote-background-image, #clouds, #fireworks {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
@@ -982,9 +987,9 @@ nav {
   background-position: center center;
   -webkit-filter: none;
   filter: none; }
-  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show#clouds {
+  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show#clouds, .show#fireworks {
     opacity: 1; }
-  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur#clouds {
+  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur#clouds, .blur#fireworks {
     -webkit-filter: blur(5px);
     filter: blur(5px); }
 
@@ -1009,17 +1014,29 @@ nav {
     background-color: rgba(50, 68, 101, 0.8);
     background-blend-mode: multiply; }
 
-#clouds {
+#clouds, #fireworks {
   z-index: 0;
   background-color: transparent;
   background-blend-mode: none; }
-  #clouds > li {
+  #clouds > li, #fireworks > li {
     width: 120vw;
     left: -10vw !important;
     top: -10vh !important; }
-    #clouds > li img {
+    #clouds > li img, #fireworks > li img {
       width: 120vw;
       opacity: 0.25; }
+
+#fireworks > li {
+  top: -30vh !important; }
+  @media only screen and (max-height: 768px) {
+    #fireworks > li {
+      top: -60vh !important; } }
+  #fireworks > li img {
+    -webkit-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+    opacity: 0; }
+    #fireworks > li img.show {
+      opacity: 1; }
 
 #vignette {
   position: relative;
@@ -1544,7 +1561,7 @@ section {
         width: 100%;
         opacity: 0;
         margin-bottom: 50px; }
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-height: 768px) {
           section#home #title .scroll-message {
             font-size: 10px; } }
         section#home #title .scroll-message.show {
@@ -1630,17 +1647,30 @@ section {
       padding: 0 75px 35vh; }
       @media only screen and (max-width: 768px) {
         #end .content .vertical-align {
+          padding-left: 60px;
+          padding-right: 60px; } }
+      @media only screen and (max-width: 480px) {
+        #end .content .vertical-align {
           padding-left: 32px;
           padding-right: 32px; } }
     #end .content .italic-heading {
       margin-top: 20px; }
+      @media only screen and (max-width: 480px) {
+        #end .content .italic-heading {
+          margin-top: 16px;
+          font-size: 16px; } }
   #end .fireworks {
     margin-top: 5vh;
     margin-bottom: -40px;
-    width: 80%; }
+    width: 75%; }
     @media only screen and (max-width: 768px) {
       #end .fireworks {
         margin-bottom: 0; } }
+    @media only screen and (max-width: 480px) {
+      #end .fireworks {
+        width: 100%;
+        margin-bottom: -20px;
+        margin-top: 10vh; } }
 
 .animate-in {
   -webkit-transition: all 250ms ease;
