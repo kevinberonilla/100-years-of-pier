@@ -143,6 +143,9 @@ body {
             @media only screen and (max-width: $phone-breakpoint) {
                 height: calc(100vh - (100vw / #{$chapter-count}) - 5px);
             }
+            @media only screen and (max-height: $min-screen-height) {
+                display: none;
+            }
         }
         header,
         footer {
@@ -271,6 +274,7 @@ footer {
     display: block;
     width: 250px;
     position: absolute;
+    z-index: -1;
     top: -100px;
     left: 50%;
     transform: translateX(-50%);
@@ -288,7 +292,7 @@ nav {
     font-size: 20px;
     line-height: 28px;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 1px;
     opacity: 0;
     width: 100%;
@@ -338,8 +342,8 @@ nav {
                 text-decoration: none;
                 vertical-align: middle;
                 &:hover {
-                    background-color: rgba(white, 0.7);
-                    color: $color-nav-hover;
+                    background-color: rgba($color-silver, 0.85);
+                    color: $color-dark-silver;
                 }
                 span {
                     display: block;
@@ -349,7 +353,12 @@ nav {
     }
     .roman-numeral {
         width: 80px;
-        top: calc((100vw / 6) - 50px);
+        top: calc(50% + 3px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        @media only screen and (max-width: $phone-breakpoint) {
+            width: 60px;
+        }
     }
 }
 #sub-nav {
@@ -1157,6 +1166,7 @@ section {
         }
         #loading-percentage {
             @include animated;
+            font-weight: 700;
             opacity: 1;
             position: fixed;
             left: 0;

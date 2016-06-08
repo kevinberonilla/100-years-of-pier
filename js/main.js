@@ -273,7 +273,7 @@ $(document).ready(function() {
         linkCount = navEntry.length,
         openNavButton = $('#open-nav-button'),
         closeNavButton = $('#close-nav-button'),
-        blurElements = $('#underlay, #clouds, .video-background'),
+        blurElements = $('#underlay, #clouds, #fireworks, .video-background'),
         main = $('.main');
     
     function calculateNavEntryHeight() {        
