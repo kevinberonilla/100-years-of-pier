@@ -121,9 +121,6 @@ body {
                 opacity: 0;
             }
         }
-        .roman-numeral {
-            display: inline-block;
-        }
     }
     &.nav-open {
         .logo-container.horizontal {
@@ -271,29 +268,19 @@ footer {
     }
 }
 .roman-numeral {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    font-size: 22px;
-    line-height: 0;
-    font-family: $font-stack-secondary;
-    stroke: $color-green;
-    stroke-width: 0.15px;
-    stroke-linecap: butt;
-    stroke-linejoin: miter;
-    font-weight: 700;
-    fill: none;
+    display: block;
+    width: 250px;
     position: absolute;
-    top: -72px;
-    z-index: -1;
-    display: none;
-    overflow: visible;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        top: 6%;
-        transform: translateY(-40%);
+        width: 200px;
+        top: -80px;
     }
-    text {
-        display: inline-block;
+    @media only screen and (max-width: $phone-breakpoint) {
+        width: 160px;
+        top: -65px;
     }
 }
 nav {
@@ -361,24 +348,8 @@ nav {
         }
     }
     .roman-numeral {
-        font-size: 4px;
-        stroke-width: 0.1px;
-        top: 50%;
-        transform: translateY(-50%);
-        stroke: $color-nav-roman-numeral;
-        letter-spacing: normal;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            font-size: 8px;
-            margin-top: 1.6%;
-        }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            transform: scale(1.25);
-            stroke-width: 0.2px;
-            margin-top: -2.8%;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            margin-top: -2.4%;
-        }
+        width: 80px;
+        top: calc((100vw / 6) - 50px);
     }
 }
 #sub-nav {
@@ -1252,7 +1223,7 @@ section {
             }
         }
     }
-    .fireworks {
+    .fireworks-image {
         margin-top: 5vh;
         margin-bottom: -40px;
         width: 75%;

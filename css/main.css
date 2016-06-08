@@ -578,8 +578,6 @@ body {
   body.loaded #home #loading-bar,
   body.loaded #home #loading-percentage {
     opacity: 0; }
-  body.loaded .roman-numeral {
-    display: inline-block; }
   body.nav-open .logo-container.horizontal {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -711,31 +709,22 @@ footer {
       pointer-events: none; }
 
 .roman-numeral {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  line-height: 0;
-  font-family: "Miller Text Reg", serif;
-  stroke: #C3D500;
-  stroke-width: 0.15px;
-  stroke-linecap: butt;
-  stroke-linejoin: miter;
-  font-weight: 700;
-  fill: none;
+  display: block;
+  width: 250px;
   position: absolute;
-  top: -72px;
-  z-index: -1;
-  display: none;
-  overflow: visible; }
+  top: -100px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
   @media only screen and (max-width: 1024px) {
     .roman-numeral {
-      top: 6%;
-      -webkit-transform: translateY(-40%);
-      -ms-transform: translateY(-40%);
-      transform: translateY(-40%); } }
-  .roman-numeral text {
-    display: inline-block; }
+      width: 200px;
+      top: -80px; } }
+  @media only screen and (max-width: 480px) {
+    .roman-numeral {
+      width: 160px;
+      top: -65px; } }
 
 nav {
   -webkit-transition: all 250ms ease;
@@ -801,28 +790,9 @@ nav {
         nav > ul > li a:visited span {
           display: block; }
   nav .roman-numeral {
-    font-size: 4px;
-    stroke-width: 0.1px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    stroke: rgba(255, 255, 255, 0.35);
-    letter-spacing: normal; }
-    @media only screen and (max-width: 1024px) {
-      nav .roman-numeral {
-        font-size: 8px;
-        margin-top: 1.6%; } }
-    @media only screen and (max-width: 768px) {
-      nav .roman-numeral {
-        -webkit-transform: scale(1.25);
-        -ms-transform: scale(1.25);
-        transform: scale(1.25);
-        stroke-width: 0.2px;
-        margin-top: -2.8%; } }
-    @media only screen and (max-width: 480px) {
-      nav .roman-numeral {
-        margin-top: -2.4%; } }
+    width: 80px;
+    top: -webkit-calc((100vw / 6) - 50px);
+    top: calc((100vw / 6) - 50px); }
 
 #sub-nav {
   -webkit-transition: all 1000ms ease;
@@ -1550,7 +1520,7 @@ section {
       -webkit-transition: all 2000ms 250ms ease;
       transition: all 2000ms 250ms ease;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.75);
       margin: 0 auto; }
       section#home #title .scroll-message {
         -webkit-transition: all 1000ms ease;
@@ -1659,15 +1629,15 @@ section {
         #end .content .italic-heading {
           margin-top: 16px;
           font-size: 16px; } }
-  #end .fireworks {
+  #end .fireworks-image {
     margin-top: 5vh;
     margin-bottom: -40px;
     width: 75%; }
     @media only screen and (max-width: 768px) {
-      #end .fireworks {
+      #end .fireworks-image {
         margin-bottom: 0; } }
     @media only screen and (max-width: 480px) {
-      #end .fireworks {
+      #end .fireworks-image {
         width: 100%;
         margin-bottom: -20px;
         margin-top: 10vh; } }

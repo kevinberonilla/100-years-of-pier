@@ -515,7 +515,7 @@ $(document).ready(function() {
             
             setTimeout(function() {
                 fireworksImage.addClass('show');
-            }, (listEntryIndex * 50));
+            }, (listEntryIndex * 100));
         });
     }
     
