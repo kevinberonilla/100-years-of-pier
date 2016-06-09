@@ -1,5 +1,5 @@
 /* ===========================================================
- * jquery-onepage-scroll.js v1.3.1
+ * jquery-onepage-scroll.js v1.3.1a
  * ===========================================================
  * Copyright 2013 Pete Rojwongsuriya.
  * http://www.thepetedesign.com
@@ -11,6 +11,8 @@
  * https://github.com/peachananr/onepage-scroll
  *
  * License: GPL v3
+ * 
+ * Edits: Added fix for Mac reverse scroll (GitHub Issue 288)
  *
  * ========================================================== */
 
@@ -270,10 +272,10 @@
             return;
         }
 
-        if (deltaOfInterest < 0) {
-          el.moveDown()
-        } else {
+        if (deltaOfInterest >= 3) {
           el.moveUp()
+        } else if (deltaOfInterest <= -3) {
+          el.moveDown()
         }
         lastAnimation = timeNow;
     }

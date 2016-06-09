@@ -221,7 +221,7 @@ $(document).ready(function() {
             $(this)[0].oncanplay = processLoadedMedia;
         });
         
-        page.on('load.np', function() {
+        page.one('load.np', function() {
             var homeVideo = $('#home-video'),
                 homeMusic = $('#music-for-0'),
                 scrollMessage = $('.scroll-message');
@@ -593,18 +593,18 @@ $(document).ready(function() {
         }
         
         setSubNavPosition(activeSection);
-    }
-    
-    function processAfterMove() {
-        processAnimateIn(activeSection);
         
-        if (!isMobile) {
-            playChapterMusic(activeSection);
-            playSound(activeSection);
-        }
+        setTimeout(function() {
+            processAnimateIn(activeSection);
+            
+            if (!isMobile) {
+                playChapterMusic(activeSection);
+                playSound(activeSection);
+            }
+        }, 1000);
     }
     
-    body.on('start.np', function() {
+    body.one('start.np', function() {
         $('#main').onepage_scroll({
             sectionContainer: 'section',
             easing: 'ease',
@@ -613,8 +613,7 @@ $(document).ready(function() {
             direction: 'vertical',
             pagination: false,
             loop: false,
-            beforeMove: processBeforeMove,
-            afterMove: processAfterMove
+            beforeMove: processBeforeMove
         });
         
         enableParallax(fireworksList, 'fireworks');
