@@ -723,7 +723,7 @@ $(document).ready(function() {
         var self = this,
             galleryEntry = $('> li', self),
             galleryEntryCount = galleryEntry.length,
-            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140,
+            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 120,
             totalMarginWidth = 10,
             containerWidth = $(self).closest('.container').width(),
             galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 240 : 80,
@@ -738,7 +738,7 @@ $(document).ready(function() {
         });
 
         function recalculateWidths() {
-            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 140;
+            galleryClosedWidth = (matchMedia('only screen and (max-width: 1024px)').matches) ? 60 : 120;
             containerWidth = $(self).closest('.container').width();
             galleryPaddingTotal = (matchMedia('only screen and (max-width: 1024px)').matches) ? 240 : 80;
             galleryOpenWidth = containerWidth - ((galleryEntryCount - 1) * (galleryClosedWidth + totalMarginWidth)) - totalMarginWidth - galleryPaddingTotal;
