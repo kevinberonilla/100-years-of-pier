@@ -166,6 +166,12 @@ body {
         }
     }
 }
+#wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-overflow-scrolling: auto;
+}
 #preload {
     display: none;
 }
@@ -543,6 +549,13 @@ nav {
     background-blend-mode: normal;
     top: 100px;
     bottom: 100px;
+    @media only screen and (max-width: $phone-breakpoint) {
+        top: 0;
+        bottom: 0;
+    }
+    @media only screen and (max-height: $min-screen-height) {
+        display: none;
+    }
     &:after {
         content: '';
         display: block;
@@ -560,6 +573,9 @@ nav {
     z-index: 0;
     background-color: transparent;
     background-blend-mode: none;
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        display: none;
+    }
     > li {
         width: 120vw;
         left: -10vw !important;
@@ -722,6 +738,9 @@ nav {
     }
     &-content {
         padding-top: 20px;
+        @media only screen and (max-width: $phone-breakpoint) {
+            padding-top: calc((100vw / #{$chapter-count}) - 20px);
+        }
     }
     &-date {
         float: left;
@@ -913,7 +932,7 @@ nav {
             overflow-x: scroll !important;
             white-space: nowrap;
             padding: 0 65px;
-            height: calc(40vh + 36px);
+            height: calc(30vh + 25px);
             > li {
                 display: inline-block !important;
                 position: relative !important;
@@ -1084,6 +1103,7 @@ nav {
         }
         @media only screen and (max-width: $phone-breakpoint) {
             font-size: 11px;
+            padding: 0 75px;
         }
         h4 {
             font-size: 18px;
@@ -1128,7 +1148,7 @@ section {
                     font-size: 10px;
                 }
                 @media only screen and (max-width: $phone-breakpoint) {
-                    bottom: 30px;   
+                    bottom: 30px;
                 }
                 &.show {
                     opacity: 1;
@@ -1210,6 +1230,11 @@ section {
             @media only screen and (max-width: $phone-breakpoint) {
                 line-height: 30px;
                 margin-bottom: 60px;
+            }
+        }
+        .vertical-align {
+            @media only screen and (max-width: $phone-breakpoint) {
+                margin-top: calc((100vw / #{$chapter-count}) - 20px);
             }
         }
     }

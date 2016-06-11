@@ -614,6 +614,12 @@ body {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease; }
 
+#wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto; }
+
 #preload {
   display: none; }
 
@@ -985,6 +991,13 @@ nav {
   background-blend-mode: normal;
   top: 100px;
   bottom: 100px; }
+  @media only screen and (max-width: 480px) {
+    #background-image, .quote-background-image {
+      top: 0;
+      bottom: 0; } }
+  @media only screen and (max-height: 560px) {
+    #background-image, .quote-background-image {
+      display: none; } }
   #background-image:after, .quote-background-image:after {
     content: '';
     display: block;
@@ -1000,6 +1013,9 @@ nav {
   z-index: 0;
   background-color: transparent;
   background-blend-mode: none; }
+  @media only screen and (max-width: 1024px) {
+    #clouds, #fireworks {
+      display: none; } }
   #clouds > li, #fireworks > li {
     width: 120vw;
     left: -10vw !important;
@@ -1150,6 +1166,10 @@ nav {
 
 .timeline-content {
   padding-top: 20px; }
+  @media only screen and (max-width: 480px) {
+    .timeline-content {
+      padding-top: -webkit-calc((100vw / 6) - 20px);
+      padding-top: calc((100vw / 6) - 20px); } }
 
 .timeline-date {
   float: left;
@@ -1349,8 +1369,8 @@ nav {
       overflow-x: scroll !important;
       white-space: nowrap;
       padding: 0 65px;
-      height: -webkit-calc(40vh + 36px);
-      height: calc(40vh + 36px); }
+      height: -webkit-calc(30vh + 25px);
+      height: calc(30vh + 25px); }
       .gallery.type-a > li,
       .gallery.type-b > li {
         display: inline-block !important;
@@ -1504,7 +1524,8 @@ nav {
       line-height: 22px; } }
   @media only screen and (max-width: 480px) {
     .quote-caption {
-      font-size: 11px; } }
+      font-size: 11px;
+      padding: 0 75px; } }
   .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
     font-size: 18px;
     line-height: 36px;
@@ -1625,6 +1646,10 @@ section {
         section .intro h3 {
           line-height: 30px;
           margin-bottom: 60px; } }
+    @media only screen and (max-width: 480px) {
+      section .intro .vertical-align {
+        margin-top: -webkit-calc((100vw / 6) - 20px);
+        margin-top: calc((100vw / 6) - 20px); } }
   section .content {
     position: relative;
     z-index: 1; }

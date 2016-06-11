@@ -278,6 +278,15 @@
           el.moveDown()
         }
         lastAnimation = timeNow;
+        
+        /*if (deltaOfInterest < 0) { // Old script
+          el.moveDown()
+        } else {
+          el.moveUp()
+        }
+        lastAnimation = timeNow;*/
+
+
     }
 
     // Prepare everything before binding wheel scroll

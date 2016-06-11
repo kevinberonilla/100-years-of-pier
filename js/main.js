@@ -11,7 +11,7 @@ var page = $('html, body'),
 $(document).ready(function() {
     /* ----------------------------------------
     Preload Auto-Populate Functions
-    ---------------------------------------- */    
+    ---------------------------------------- */
     function autoPopulatePreload() {
         body.append('<div id="preload"></div>');
         
@@ -48,6 +48,25 @@ $(document).ready(function() {
     }
     
     $.when(autoPopulatePreload()).done(beginLoading);
+    
+    /* ----------------------------------------
+    Mobile Body Height Functions
+    ---------------------------------------- */
+    if (isMobile) {
+        function setViewPortHeight() {
+            var viewportHeight = $(window).height(),
+                wrapper = $('#wrapper');
+            
+            wrapper.css('height', viewportHeight + 'px');
+        }
+        
+        setViewPortHeight();
+        $(window).resize($.debounce(500, setViewPortHeight));
+        
+        document.ontouchmove = function(e) { // Disable scroll bounce
+            e.preventDefault();
+        }
+    }
     
     /* ----------------------------------------
     Audio Functions
@@ -155,10 +174,9 @@ $(document).ready(function() {
     var videoBackground = $('.video-background'),
         scrollPos,
         adjustedPos,
-        videoOffset,
-        windowHeight;
+        videoOffset;
     
-    if (isMobile) { // Don't load videos for tablet portrait and smaller
+    if (!isMobile) { // Don't load videos for tablet portrait and smaller
         videoBackground.find('source')
             .remove();
     }
@@ -277,9 +295,9 @@ $(document).ready(function() {
         main = $('.main');
     
     function calculateNavEntryHeight() {        
-        var windowHeight = $(window).height(),
-            windowWidth = $(window).width(),
-            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? (windowHeight - (windowWidth / linkCount) - 5) : windowHeight,
+        var windowWidth = $(window).width(),
+            windowHeight = $(window).height(),
+            navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? windowHeight - (windowWidth / linkCount) - 5 : windowHeight,
             linkHeight = (navHeight / linkCount);
         
         navEntry.css('height', linkHeight + 'px');
@@ -542,14 +560,14 @@ $(document).ready(function() {
             subNav.removeClass('show');
             fireworksList.addClass('show');
             
-            enableParallax(fireworksList, 'fireworks');
+            if (!isMobile) enableParallax(fireworksList, 'fireworks');
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
             horizontalLogo.addClass('show');
             fireworksList.removeClass('show');
             
-            disableParallax('fireworks');
+            if (!isMobile) disableParallax('fireworks');
         }
         
         // If has overlay
@@ -557,12 +575,12 @@ $(document).ready(function() {
             overlay.addClass('show');
             cloudsList.addClass('show');
             
-            enableParallax(cloudsList, 'clouds');
+            if (!isMobile) enableParallax(cloudsList, 'clouds');
         } else {
             overlay.removeClass('show');
             cloudsList.removeClass('show');
             
-            disableParallax('clouds');
+            if (!isMobile) disableParallax('clouds');
         }
         
         // If has underlay
@@ -616,7 +634,7 @@ $(document).ready(function() {
             beforeMove: processBeforeMove
         });
         
-        enableParallax(fireworksList, 'fireworks');
+        if (!isMobile) enableParallax(fireworksList, 'fireworks');
         showFireworks();
     });
     
@@ -625,10 +643,17 @@ $(document).ready(function() {
     ---------------------------------------- */
     var timelineEntryStart = $('.timeline-entry.start'),
         timelineEntryEnd = $('.timeline-entry.end'),
-        timelineMarkOffset = 30,
-        timelineContentPaddingTop = 20;
+        timelineMarkOffset = 30;
     
     function calculateTimelineBorders() {
+        var timelineContentPaddingTop;
+        
+        if (matchMedia('only screen and (max-width: 480px)').matches) {
+            var windowWidth = $(window).width();
+            
+            timelineContentPaddingTop = (windowWidth / linkCount) - 20;
+        } else timelineContentPaddingTop = 20;
+        
         timelineEntryStart.each(function() {
             var contentOffsetTop = $(this).find('.timeline-content').offset().top,
                 parentOffsetTop = $(this).closest('section').offset().top,
