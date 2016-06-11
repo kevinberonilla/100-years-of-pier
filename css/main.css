@@ -1369,8 +1369,8 @@ nav {
       overflow-x: scroll !important;
       white-space: nowrap;
       padding: 0 65px;
-      height: -webkit-calc(30vh + 25px);
-      height: calc(30vh + 25px); }
+      height: -webkit-calc(30vh + 30px);
+      height: calc(30vh + 30px); }
       .gallery.type-a > li,
       .gallery.type-b > li {
         display: inline-block !important;
