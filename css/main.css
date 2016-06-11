@@ -1242,6 +1242,9 @@ nav {
     bottom: -50px;
     text-align: center;
     width: 100%; }
+    @media only screen and (max-width: 480px) {
+      .timeline-slider .caption {
+        padding: 0 35px; } }
 
 .gallery {
   -ms-overflow-style: none;

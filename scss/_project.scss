@@ -811,6 +811,9 @@ nav {
             bottom: -50px;
             text-align: center;
             width: 100%;
+            @media only screen and (max-width: $phone-breakpoint) {
+                padding: 0 35px;
+            }
         }
     }
 }
