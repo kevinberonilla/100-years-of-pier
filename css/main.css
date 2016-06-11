@@ -617,8 +617,7 @@ body {
 #wrapper {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  -webkit-overflow-scrolling: auto; }
+  overflow: hidden; }
 
 #preload {
   display: none; }
@@ -926,7 +925,8 @@ nav {
     #sub-nav a .title,
     #sub-nav a:visited .title {
       margin: 0 auto;
-      display: block; }
+      display: block;
+      pointer-events: none; }
       #sub-nav a .title.vertical-align,
       #sub-nav a:visited .title.vertical-align {
         position: relative; }

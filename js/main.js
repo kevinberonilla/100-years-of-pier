@@ -35,7 +35,8 @@ $(document).ready(function() {
             preload.append('<img src="' + imageUrl + '" alt="">');
         });
         
-        if (!isMobile) { // Don't preload audio for tablet portrait and smaller
+        // Don't preload audio for tablet portrait and smaller
+        if (!isMobile) {
             $('[data-music]').each(function() {
                 var self = $(this)
                 preload.append('<audio id="music-for-' + self.index('section') + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
@@ -63,9 +64,17 @@ $(document).ready(function() {
         setViewPortHeight();
         $(window).resize($.debounce(500, setViewPortHeight));
         
-        document.ontouchmove = function(e) { // Disable scroll bounce
-            e.preventDefault();
-        }
+        // Disable overscroll bounce
+        var isGalleryTouch;
+        
+        $(document).on('touchstart', function(e) {
+            if ($(e.target).is('.gallery .image')) isGalleryTouch = true;
+            else isGalleryTouch = false;
+        });
+        
+        $(document).on('touchmove', function(e) {
+            if (!isGalleryTouch) e.preventDefault();
+        });
     }
     
     /* ----------------------------------------
@@ -252,7 +261,7 @@ $(document).ready(function() {
             
             setTimeout(function() {
                 body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
-            }, (isDev) ? 0 : 2000);
+            }, (isDev) ? 0 : 1000);
             
             setTimeout(function() {
                 scrollMessage.addClass('show');
@@ -799,6 +808,7 @@ $(document).ready(function() {
             cursorXPos = e.offsetX;
             e.preventDefault();
         });
+        
         gallery.on('mouseup', function() {
             cursorDown = false;
         });
