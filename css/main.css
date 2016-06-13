@@ -1618,6 +1618,39 @@ section {
       width: 100%;
       text-align: center;
       pointer-events: none; }
+  section#end {
+    background-size: cover;
+    background-position: center bottom; }
+    section#end .content {
+      text-align: center; }
+      section#end .content .vertical-align {
+        padding: 0 75px 35vh; }
+        @media only screen and (max-width: 768px) {
+          section#end .content .vertical-align {
+            padding-left: 60px;
+            padding-right: 60px; } }
+        @media only screen and (max-width: 480px) {
+          section#end .content .vertical-align {
+            padding-left: 32px;
+            padding-right: 32px; } }
+      section#end .content .italic-heading {
+        margin-top: 20px; }
+        @media only screen and (max-width: 480px) {
+          section#end .content .italic-heading {
+            margin-top: 16px;
+            font-size: 16px; } }
+    section#end .fireworks-image {
+      margin-top: 5vh;
+      margin-bottom: -40px;
+      width: 75%; }
+      @media only screen and (max-width: 768px) {
+        section#end .fireworks-image {
+          margin-bottom: 0; } }
+      @media only screen and (max-width: 480px) {
+        section#end .fireworks-image {
+          width: 100%;
+          margin-bottom: -20px;
+          margin-top: 10vh; } }
   section .intro {
     text-align: center;
     font-size: 22px;
@@ -1656,40 +1689,6 @@ section {
   section .content {
     position: relative;
     z-index: 1; }
-
-#end {
-  background-size: cover;
-  background-position: center bottom; }
-  #end .content {
-    text-align: center; }
-    #end .content .vertical-align {
-      padding: 0 75px 35vh; }
-      @media only screen and (max-width: 768px) {
-        #end .content .vertical-align {
-          padding-left: 60px;
-          padding-right: 60px; } }
-      @media only screen and (max-width: 480px) {
-        #end .content .vertical-align {
-          padding-left: 32px;
-          padding-right: 32px; } }
-    #end .content .italic-heading {
-      margin-top: 20px; }
-      @media only screen and (max-width: 480px) {
-        #end .content .italic-heading {
-          margin-top: 16px;
-          font-size: 16px; } }
-  #end .fireworks-image {
-    margin-top: 5vh;
-    margin-bottom: -40px;
-    width: 75%; }
-    @media only screen and (max-width: 768px) {
-      #end .fireworks-image {
-        margin-bottom: 0; } }
-    @media only screen and (max-width: 480px) {
-      #end .fireworks-image {
-        width: 100%;
-        margin-bottom: -20px;
-        margin-top: 10vh; } }
 
 .animate-in {
   -webkit-transition: all 250ms ease;

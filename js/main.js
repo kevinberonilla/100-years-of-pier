@@ -102,7 +102,6 @@ $(document).ready(function() {
         });
         
         newMusic[0].play();
-        
         adjustVolume(newMusic, masterVolume);
     }
     
@@ -603,7 +602,7 @@ $(document).ready(function() {
         }
         
         // If has background image
-        if (activeSection.hasClass('has-background-image')) {
+        if (activeSection.hasClass('has-background-underlay')) {
             var backgroundImageUrl = activeSection.data('background-image');
             
             backgroundImage.css('background-image', 'url(' + backgroundImageUrl + ')')

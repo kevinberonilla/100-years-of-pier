@@ -1203,6 +1203,44 @@ section {
             pointer-events: none;
         }
     }
+    &#end {
+        background-size: cover;
+        background-position: center bottom;
+        .content {
+            text-align: center;
+            .vertical-align {
+                padding: 0 75px 35vh;
+                @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                    padding-left: 60px;
+                    padding-right: 60px;
+                }
+                @media only screen and (max-width: $phone-breakpoint) {
+                    padding-left: 32px;
+                    padding-right: 32px;
+                }
+            }
+            .italic-heading {
+                margin-top: 20px;
+                @media only screen and (max-width: $phone-breakpoint) {
+                    margin-top: 16px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .fireworks-image {
+            margin-top: 5vh;
+            margin-bottom: -40px;
+            width: 75%;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                margin-bottom: 0;
+            }
+            @media only screen and (max-width: $phone-breakpoint) {
+                width: 100%;
+                margin-bottom: -20px;
+                margin-top: 10vh;
+            }
+        }
+    }
     .intro {
         text-align: center;
         font-size: 22px;
@@ -1244,44 +1282,6 @@ section {
     .content {
         position: relative;
         z-index: 1;
-    }
-}
-#end {
-    background-size: cover;
-    background-position: center bottom;
-    .content {
-        text-align: center;
-        .vertical-align {
-            padding: 0 75px 35vh;
-            @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                padding-left: 60px;
-                padding-right: 60px;
-            }
-            @media only screen and (max-width: $phone-breakpoint) {
-                padding-left: 32px;
-                padding-right: 32px;
-            }
-        }
-        .italic-heading {
-            margin-top: 20px;
-            @media only screen and (max-width: $phone-breakpoint) {
-                margin-top: 16px;
-                font-size: 16px;
-            }
-        }
-    }
-    .fireworks-image {
-        margin-top: 5vh;
-        margin-bottom: -40px;
-        width: 75%;
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            margin-bottom: 0;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            width: 100%;
-            margin-bottom: -20px;
-            margin-top: 10vh;
-        }
     }
 }
 .animate-in {
