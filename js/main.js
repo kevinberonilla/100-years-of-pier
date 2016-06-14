@@ -788,14 +788,14 @@ $(document).ready(function() {
             touchDown = false;
         
         gallery.on('touchstart', function(e) {
-            touchDown = true;
             touchXPos = e.originalEvent.touches[0].screenX;
+            touchDown = true;
         });
         
         gallery.on('touchmove', function(e) {
             if (touchDown === true) {
                 $(this).scrollLeft(parseInt($(this).scrollLeft() + (touchXPos - e.originalEvent.touches[0].screenX)));
-                console.log(e);
+                touchXPos = e.originalEvent.touches[0].screenX;
             }
         });
         
@@ -807,8 +807,8 @@ $(document).ready(function() {
             cursorDown = false;
         
         gallery.on('mousedown', function(e) {
-            cursorDown = true;
             cursorXPos = e.offsetX;
+            cursorDown = true;
         });
         
         gallery.on('mousemove', function(e) {

@@ -1249,8 +1249,7 @@ nav {
 .gallery {
   -ms-overflow-style: none;
   list-style: none;
-  display: block;
-  -webkit-overflow-scrolling: auto; }
+  display: block; }
   .gallery::-webkit-scrollbar {
     width: 0 !important;
     display: none !important; }

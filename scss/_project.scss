@@ -821,7 +821,6 @@ nav {
     @include hide-scrollbars;
     list-style: none;
     display: block;
-    -webkit-overflow-scrolling: auto;
     > li {
         @include animated;
         @include build-gallery-entry-properties($gallery-entry-list);
