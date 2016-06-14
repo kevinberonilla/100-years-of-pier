@@ -65,15 +65,8 @@ $(document).ready(function() {
         $(window).resize($.debounce(500, setViewPortHeight));
         
         // Disable overscroll bounce
-        var isGalleryTouch;
-        
-        $(document).on('touchstart', function(e) {
-            if ($(e.target).is('.gallery .image')) isGalleryTouch = true;
-            else isGalleryTouch = false;
-        });
-        
         $(document).on('touchmove', function(e) {
-            if (!isGalleryTouch) e.preventDefault();
+            e.preventDefault();
         });
     }
     
@@ -157,6 +150,7 @@ $(document).ready(function() {
             }
             
             audio.each(function() {
+                $(this).stop(false, true);
                 $(this)[0].volume = masterVolume;
             });
         });
@@ -465,24 +459,26 @@ $(document).ready(function() {
     function processAnimateIn(section) {
         var animateIn = $('.animate-in', section);
         
-        animateIn.each(function() {
-            var self = $(this),
-                index = self.index();
-            
-            function setDelays() {
-                if (index != 0 && !self.is('[data-delay]')) {
-                    self.attr('data-delay', index + '00');
-                }
-            }
-            
-            $.when(setDelays()).done(function() {
-                var delay = self.data('delay') || 0;
+        setTimeout(function() {
+            animateIn.each(function() {
+                var self = $(this),
+                    index = self.index();
                 
-                setTimeout(function() {
-                    self.addClass('reveal');
-                }, delay);
+                function setDelays() {
+                    if (index != 0 && !self.is('[data-delay]')) {
+                        self.attr('data-delay', index + '00');
+                    }
+                }
+                
+                $.when(setDelays()).done(function() {
+                    var delay = self.data('delay') || 0;
+                    
+                    setTimeout(function() {
+                        self.addClass('reveal');
+                    }, delay);
+                });
             });
-        });
+        }, 1000);
     }
     
     /* ----------------------------------------
@@ -619,15 +615,12 @@ $(document).ready(function() {
         }
         
         setSubNavPosition(activeSection);
-        
-        setTimeout(function() {
-            processAnimateIn(activeSection);
-            
-            if (!isMobile) {
-                playChapterMusic(activeSection);
-                playSound(activeSection);
-            }
-        }, 1000);
+        processAnimateIn(activeSection);
+
+        if (!isMobile) {
+            playChapterMusic(activeSection);
+            playSound(activeSection);
+        }
     }
     
     body.one('start.np', function() {
@@ -786,34 +779,45 @@ $(document).ready(function() {
     });
     
     /* ----------------------------------------
-    Desktop Gallery Drag Functions
+    Gallery Drag Functions
     ---------------------------------------- */
-    if (!isMobile) {
-        var gallery = $('.gallery'),
-            cursorYPos = 0,
-            cursorXPos = 0,
+    var gallery = $('.gallery');
+    
+    if (isMobile) {
+        var touchXPos = 0,
+            touchDown = false;
+        
+        gallery.on('touchstart', function(e) {
+            touchDown = true;
+            touchXPos = e.originalEvent.touches[0].screenX;
+        });
+        
+        gallery.on('touchmove', function(e) {
+            if (touchDown === true) {
+                $(this).scrollLeft(parseInt($(this).scrollLeft() + (touchXPos - e.originalEvent.touches[0].screenX)));
+                console.log(e);
+            }
+        });
+        
+        gallery.on('touchend touchcancel', function() {
+            touchDown = false;
+        });
+    } else {
+        var cursorXPos = 0,
             cursorDown = false;
+        
+        gallery.on('mousedown', function(e) {
+            cursorDown = true;
+            cursorXPos = e.offsetX;
+        });
         
         gallery.on('mousemove', function(e) {
             if (cursorDown === true) {
-                $(this).scrollTop(parseInt($(this).scrollTop() + (cursorYPos - e.offsetY)));
                 $(this).scrollLeft(parseInt($(this).scrollLeft() + (cursorXPos - e.offsetX)));
             }
         });
         
-        gallery.on('mousedown', function(e) {
-            cursorDown = true;
-            cursorYPos = e.offsetY;
-            cursorXPos = e.offsetX;
-            e.preventDefault();
-        });
-        
-        gallery.on('mouseup', function() {
-            cursorDown = false;
-        });
-        
-        // Stop dragging if mouse leaves the window (Not essential, can be removed without negative effects)
-        gallery.on('mouseout', function() {
+        gallery.on('mouseup mouseout', function() {
             cursorDown = false;
         });
     }
