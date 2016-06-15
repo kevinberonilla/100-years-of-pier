@@ -1,5 +1,5 @@
 /* ===========================================================
- * jquery-onepage-scroll.js v1.3.1a
+ * jquery-onepage-scroll.js v1.3.1b
  * ===========================================================
  * Copyright 2013 Pete Rojwongsuriya.
  * http://www.thepetedesign.com
@@ -12,7 +12,9 @@
  *
  * License: GPL v3
  * 
- * Edits: Added fix for Mac reverse scroll (GitHub Issue 288)
+ * Edits: 
+ * - Added fix for Mac reverse scroll (GitHub Issue 288)
+ * - Added fix for tapping causing skipped sections on mobile
  *
  * ========================================================== */
 
@@ -44,6 +46,7 @@
             $this = $(this);
 
         $this.bind('touchstart', touchstart);
+        $this.bind('touchend touchcancel', touchend);
 
         function touchstart(event) {
           var touches = event.originalEvent.touches;
@@ -76,6 +79,10 @@
               $this.unbind('touchmove', touchmove);
             }
           }
+        }
+          
+        function touchend(event) {
+            $this.unbind('touchmove', touchmove);
         }
 
       });
