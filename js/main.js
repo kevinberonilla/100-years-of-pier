@@ -456,7 +456,7 @@ $(document).ready(function() {
     /* ----------------------------------------
     Content Reveal Functions
     ---------------------------------------- */
-    function processAnimateIn(section) {
+    function processAnimateIn(section, timeout) {
         var animateIn = $('.animate-in', section);
         
         setTimeout(function() {
@@ -478,7 +478,7 @@ $(document).ready(function() {
                     }, delay);
                 });
             });
-        }, 1000);
+        }, timeout);
     }
     
     /* ----------------------------------------
@@ -615,7 +615,7 @@ $(document).ready(function() {
         }
         
         setSubNavPosition(activeSection);
-        processAnimateIn(activeSection);
+        processAnimateIn(activeSection, (isDev) ? 100 : 1000);
 
         if (!isMobile) {
             playChapterMusic(activeSection);
