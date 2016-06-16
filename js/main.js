@@ -456,29 +456,31 @@ $(document).ready(function() {
     /* ----------------------------------------
     Content Reveal Functions
     ---------------------------------------- */
-    function processAnimateIn(section, timeout) {
+    var sectionElements = $('#main section *');
+    
+    sectionElements.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend webkitTransitionStart otransitionstart oTransitionStart msTransitionStart transitionstart', function(e) { e.stopPropagation(); }); // Avoid triggering the beforeMove afterMove callback multiple times
+    
+    function processAnimateIn(section) {
         var animateIn = $('.animate-in', section);
         
-        setTimeout(function() {
-            animateIn.each(function() {
-                var self = $(this),
-                    index = self.index();
-                
-                function setDelays() {
-                    if (index != 0 && !self.is('[data-delay]')) {
-                        self.attr('data-delay', index + '00');
-                    }
+        animateIn.each(function() {
+            var self = $(this),
+                index = self.index();
+            
+            function setDelays() {
+                if (index != 0 && !self.is('[data-delay]')) {
+                    self.attr('data-delay', index + '00');
                 }
+            }
+            
+            $.when(setDelays()).done(function() {
+                var delay = self.data('delay') || 0;
                 
-                $.when(setDelays()).done(function() {
-                    var delay = self.data('delay') || 0;
-                    
-                    setTimeout(function() {
-                        self.addClass('reveal');
-                    }, delay);
-                });
+                setTimeout(function() {
+                    self.addClass('reveal');
+                }, delay);
             });
-        }, timeout);
+        });
     }
     
     /* ----------------------------------------
@@ -555,6 +557,7 @@ $(document).ready(function() {
         activeSection;
     
     function processBeforeMove() {
+        console.log('beforemove');
         activeSection = $('section.active');
         
         // If is home
@@ -615,12 +618,15 @@ $(document).ready(function() {
         }
         
         setSubNavPosition(activeSection);
-        processAnimateIn(activeSection, (isDev) ? 100 : 1000);
-
+        
         if (!isMobile) {
             playChapterMusic(activeSection);
             playSound(activeSection);
         }
+    }
+    
+    function processAfterMove() {
+        processAnimateIn(activeSection);
     }
     
     body.one('start.np', function() {
@@ -632,7 +638,8 @@ $(document).ready(function() {
             direction: 'vertical',
             pagination: false,
             loop: false,
-            beforeMove: processBeforeMove
+            beforeMove: processBeforeMove,
+            afterMove: processAfterMove
         });
         
         if (!isMobile) enableParallax(fireworksList, 'fireworks');
@@ -647,37 +654,39 @@ $(document).ready(function() {
         timelineMarkOffset = 30;
     
     function calculateTimelineBorders() {
-        var timelineContentPaddingTop;
-        
-        if (matchMedia('only screen and (max-width: 480px)').matches) {
-            var windowWidth = $(window).width();
+        setTimeout(function() { // Ensure all CSS transitions from resize have completed
+            var timelineContentPaddingTop;
             
-            timelineContentPaddingTop = (windowWidth / linkCount) - 20;
-        } else timelineContentPaddingTop = 20;
-        
-        timelineEntryStart.each(function() {
-            var contentOffsetTop = $(this).find('.timeline-content').offset().top,
-                parentOffsetTop = $(this).closest('section').offset().top,
-                position = contentOffsetTop - parentOffsetTop + timelineMarkOffset + timelineContentPaddingTop,
-                timelineBorder = $('.timeline-border', this);
+            if (matchMedia('only screen and (max-width: 480px)').matches) {
+                var windowWidth = $(window).width();
+                
+                timelineContentPaddingTop = (windowWidth / linkCount) - 20;
+            } else timelineContentPaddingTop = 20;
             
-            timelineBorder.css('top', position + 'px');
-        });
-        
-        timelineEntryEnd.each(function() {
-            var lastBodyHeight = $(this).find('.timeline-body').last().height(),
-                contentHeight = $(this).find('.timeline-content').innerHeight(),
-                parentHeight = ($(this).closest('section').height() > 560) ? $(this).closest('section').height() : 560,
-                galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
-                sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
-                position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
-                timelineBorder = $('.timeline-border', this);
+            timelineEntryStart.each(function() {
+                var contentOffsetTop = $(this).find('.timeline-content').offset().top,
+                    parentOffsetTop = $(this).closest('section').offset().top,
+                    position = contentOffsetTop - parentOffsetTop + timelineMarkOffset + timelineContentPaddingTop,
+                    timelineBorder = $('.timeline-border', this);
+                
+                timelineBorder.css('top', position + 'px');
+            });
             
-            timelineBorder.css('bottom', position + 'px');
-        });
+            timelineEntryEnd.each(function() {
+                var lastBodyHeight = $(this).find('.timeline-body').last().height(),
+                    contentHeight = $(this).find('.timeline-content').innerHeight(),
+                    parentHeight = ($(this).closest('section').height() > 560) ? $(this).closest('section').height() : 560,
+                    galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
+                    sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
+                    position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
+                    timelineBorder = $('.timeline-border', this);
+                
+                timelineBorder.css('bottom', position + 'px');
+            });
+        }, 1000);
     }
     $(window).load(calculateTimelineBorders);
-    $(window).resize($.debounce(750, calculateTimelineBorders));
+    $(window).resize($.debounce(1000, calculateTimelineBorders));
     
     /* ----------------------------------------
     Gallery Type A Functions

@@ -1,6 +1,6 @@
-/* ===========================================================
+/* =========================================================================================================================================
  * jquery-onepage-scroll.js v1.3.1b
- * ===========================================================
+ * =========================================================================================================================================
  * Copyright 2013 Pete Rojwongsuriya.
  * http://www.thepetedesign.com
  *
@@ -12,11 +12,12 @@
  *
  * License: GPL v3
  * 
- * Edits: 
+ * Edits by Kevin Beronilla: 
  * - Added fix for Mac reverse scroll (GitHub Issue 288)
  * - Added fix for tapping causing skipped sections on mobile
+ * - Disabled the call to beforeMove on the moveUp and moveDown functions (which call the transformPage function that also calls beforeMove)
  *
- * ========================================================== */
+ * ========================================================================================================================================= */
 
 !function($){
 
@@ -147,7 +148,7 @@
       }else {
         pos = (index * 100) * -1;
       }
-      if (typeof settings.beforeMove == 'function') settings.beforeMove( next.data("index"));
+      //if (typeof settings.beforeMove == 'function') settings.beforeMove(next.data("index"));
       current.removeClass("active")
       next.addClass("active");
       if(settings.pagination == true) {
@@ -182,7 +183,7 @@
       }else {
         pos = ((next.data("index") - 1) * 100) * -1;
       }
-      if (typeof settings.beforeMove == 'function') settings.beforeMove(next.data("index"));
+      //if (typeof settings.beforeMove == 'function') settings.beforeMove(next.data("index"));
       current.removeClass("active")
       next.addClass("active")
       if(settings.pagination == true) {
