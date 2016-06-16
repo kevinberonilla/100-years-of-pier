@@ -178,9 +178,18 @@ $(document).ready(function() {
         adjustedPos,
         videoOffset;
     
-    if (!isMobile) { // Don't load videos for tablet portrait and smaller
-        videoBackground.find('source')
-            .remove();
+    if (!isMobile) { // Don't load videos for mobile
+        videoBackground.each(function() {
+            var self = $(this),
+                source = self.data('src'),
+                formats = (typeof(self.data('formats')) != 'undefined') ? self.data('formats').replace(' ', '').split(',') : '';
+            
+            if (source && formats.length > 0) {
+                for (var i = 0; i < formats.length; i++) {
+                    self.append('<source src="' + source + '.' + formats[i] + '">');
+                }
+            }
+        });
     }
     
     function setCenter() {
@@ -216,9 +225,9 @@ $(document).ready(function() {
     Page Load Functions
     ---------------------------------------- */
     function beginLoading() {
-        var preloadImage =  $('#preload img'),
-            preloadAudioVideo = $('#preload audio, #preload video'),
-            total = preloadImage.length + preloadAudioVideo.length,
+        var image =  $('#preload img'),
+            audioVideo = $('#preload audio, .video-background'),
+            total = image.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
@@ -235,10 +244,12 @@ $(document).ready(function() {
             }
         }
         
-        preloadImage.load(processLoadedMedia);
+        image.load(processLoadedMedia);
         
-        preloadAudioVideo.each(function() {
+        audioVideo.each(function() {
             $(this)[0].oncanplay = processLoadedMedia;
+            $(this)[0].oncanplay = function() {
+            console.log(this);};
         });
         
         page.one('load.np', function() {
@@ -494,14 +505,14 @@ $(document).ready(function() {
     function enableParallax(list, targetId) {
         switch(targetId) {
             case 'clouds':
-                if (typeof(cloudsParallax) === 'undefined') {
+                if (typeof(cloudsParallax) == 'undefined') {
                     cloudsParallax = list.parallax();
                 } else {
                     cloudsParallax.parallax('enable');
                 }
                 break;
             case 'fireworks':
-                if (typeof(fireworksParallax) === 'undefined') {
+                if (typeof(fireworksParallax) == 'undefined') {
                     fireworksParallax = list.parallax();
                 } else {
                     fireworksParallax.parallax('enable');
@@ -513,12 +524,12 @@ $(document).ready(function() {
     function disableParallax(targetId) {
         switch(targetId) {
             case 'clouds':
-                if (typeof(cloudsParallax) !== 'undefined') {
+                if (typeof(cloudsParallax) != 'undefined') {
                     cloudsParallax.parallax('disable');
                 }
                 break;
             case 'fireworks':
-                if (typeof(fireworksParallax) !== 'undefined') {
+                if (typeof(fireworksParallax) != 'undefined') {
                     fireworksParallax.parallax('disable');
                 }
                 break;
@@ -557,7 +568,6 @@ $(document).ready(function() {
         activeSection;
     
     function processBeforeMove() {
-        console.log('beforemove');
         activeSection = $('section.active');
         
         // If is home
