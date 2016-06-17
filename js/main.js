@@ -226,30 +226,38 @@ $(document).ready(function() {
     ---------------------------------------- */
     function beginLoading() {
         var image =  $('#preload img'),
-            audioVideo = $('#preload audio, .video-background'),
+            audioVideo = $('#preload audio, .video-background[data-src][data-formats]'),
             total = image.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
         
         function processLoadedMedia() {
-            loaded ++;
-            var percentage = parseInt((loaded / total) * 100);
-            
-            loadingBar.css('width', percentage + '%');
-            loadingPercentage.text(percentage);
-            
-            if (loaded === total) {
-                body.trigger('load.np')
+            if (!body.hasClass('loaded')) {
+                loaded ++;
+                var percentage = parseInt((loaded / total) * 100);
+                
+                loadingBar.css('width', percentage + '%');
+                loadingPercentage.text(percentage);
+                
+                if (loaded === total) {
+                    body.trigger('load.np')
+                }
             }
         }
         
-        image.load(processLoadedMedia);
+        image.each(function() {
+            $(this).load(processLoadedMedia);
+        });
         
         audioVideo.each(function() {
-            $(this)[0].oncanplay = processLoadedMedia;
-            $(this)[0].oncanplay = function() {
-            console.log(this);};
+            var element = $(this)[0];
+            
+            if (element.readyState > 3) {
+                processLoadedMedia();
+            } else {
+                element.oncanplay = processLoadedMedia;
+            }
         });
         
         page.one('load.np', function() {
