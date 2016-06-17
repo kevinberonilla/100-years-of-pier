@@ -690,6 +690,7 @@ nav {
                 }
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     padding-top: 6px;
+                    letter-spacing: 1px;
                 }
             }
         }
@@ -773,7 +774,7 @@ nav {
             width: 100%;
             padding-right: 80px;
         }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        @media only screen and (max-width: $phone-breakpoint) {
             padding-right: 32px;
         }
     }

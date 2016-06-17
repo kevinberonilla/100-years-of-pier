@@ -1121,7 +1121,8 @@ nav {
       padding-top: 2px; } }
   @media only screen and (max-width: 768px) {
     .timeline-entry .italic-heading.small {
-      padding-top: 6px; } }
+      padding-top: 6px;
+      letter-spacing: 1px; } }
 
 .timeline-border {
   -webkit-transition: all 250ms ease;
@@ -1202,7 +1203,7 @@ nav {
       float: none;
       width: 100%;
       padding-right: 80px; } }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 480px) {
     .timeline-details {
       padding-right: 32px; } }
 
