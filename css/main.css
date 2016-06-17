@@ -698,6 +698,10 @@ footer {
     footer .icon:hover {
       opacity: 0.5; }
   footer .audio {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    opacity: 0;
+    pointer-events: none;
     float: right;
     position: absolute;
     bottom: 32px;
@@ -705,6 +709,9 @@ footer {
     @media only screen and (max-width: 768px) {
       footer .audio {
         right: 32px; } }
+    footer .audio.show {
+      opacity: 1;
+      pointer-events: all; }
   footer .social-media {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;

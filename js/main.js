@@ -131,8 +131,7 @@ $(document).ready(function() {
     }
     
     if (isMobile) {
-        audioIcon.remove()
-            .unbind();
+        audioIcon.unbind();
     } else {
         audioIcon.click(function() {
             if ($(this).hasClass('fa-volume-up')) {
@@ -153,7 +152,9 @@ $(document).ready(function() {
                 $(this).stop(false, true);
                 $(this)[0].volume = masterVolume;
             });
-        });
+        })
+            .parent()
+            .addClass('show');
     }
     
     /* ----------------------------------------
@@ -227,7 +228,7 @@ $(document).ready(function() {
     function beginLoading() {
         var image =  $('#preload img'),
             audioVideo = $('#preload audio, .video-background[data-src][data-formats]'),
-            total = image.length + audioVideo.length,
+            total = (isMobile) ? image.length : image.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
             loadingPercentage = $('#loading-percentage .number');
