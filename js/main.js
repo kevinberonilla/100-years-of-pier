@@ -55,7 +55,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     if (isMobile) {
         function setViewPortHeight() {
-            var viewportHeight = $(window).height(),
+            var viewportHeight = window.innerHeight,
                 wrapper = $('#wrapper');
             
             wrapper.css('height', viewportHeight + 'px');
@@ -160,10 +160,10 @@ $(document).ready(function() {
     /* ----------------------------------------
     Full Parent Height Functions
     ---------------------------------------- */
-    var fullParentHeight = $('.full-parent-height   ');
+    var fullParentHeight = $('.full-parent-height');
     
     function calculateFullParentHeight() {
-        var windowHeight = $(window).height();
+        var windowHeight = window.innerHeight;
         
         fullParentHeight.css('height', windowHeight + 'px');
     }
@@ -317,8 +317,8 @@ $(document).ready(function() {
         main = $('.main');
     
     function calculateNavEntryHeight() {        
-        var windowWidth = $(window).width(),
-            windowHeight = $(window).height(),
+        var windowWidth = window.innerWidth,
+            windowHeight = window.innerHeight,
             navHeight = (matchMedia('only screen and (max-width: 480px)').matches) ? windowHeight - (windowWidth / linkCount) - 5 : windowHeight,
             linkHeight = (navHeight / linkCount);
         
@@ -917,3 +917,8 @@ $(document).ready(function() {
     $(window).resize($.debounce(500, centerQuoteImages));
     $(window).load(centerQuoteImages);
 });
+
+/* ----------------------------------------
+Viewport Units Buggyfill Initialize
+---------------------------------------- */
+window.viewportUnitsBuggyfill.init();
