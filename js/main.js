@@ -54,6 +54,8 @@ $(document).ready(function() {
     Mobile Body Height Functions
     ---------------------------------------- */
     if (isMobile) {
+//        var lastXPos;
+        
         function setViewPortHeight() {
             var viewportHeight = window.innerHeight,
                 wrapper = $('#wrapper');
@@ -65,9 +67,16 @@ $(document).ready(function() {
         $(window).resize($.debounce(500, setViewPortHeight));
         
         // Disable overscroll bounce
-        $(document).on('touchmove', function(e) {
-            e.preventDefault();
-        });
+        /*$(document).on('touchmove', function(e) {
+            var currentXPos = e.touches[0].clientX,
+                touchDelta = Math.abs(currentXPos - lastXPos);
+            
+            if (touchDelta > 10) {
+                e.preventDefault();
+            }
+            
+            lastXPos = currentXPos;
+        });*/
     }
     
     /* ----------------------------------------
@@ -812,7 +821,8 @@ $(document).ready(function() {
     var gallery = $('.gallery');
     
     if (isMobile) {
-        var touchXPos = 0,
+        /*var touchXPos = 0,
+            touchDelta = 0,
             touchDown = false;
         
         gallery.on('touchstart', function(e) {
@@ -822,14 +832,15 @@ $(document).ready(function() {
         
         gallery.on('touchmove', function(e) {
             if (touchDown === true) {
-                $(this).scrollLeft(parseInt($(this).scrollLeft() + (touchXPos - e.originalEvent.touches[0].screenX)));
+                touchDelta = touchXPos - e.originalEvent.touches[0].screenX;
+                $(this).scrollLeft(parseInt($(this).scrollLeft() + touchDelta));
                 touchXPos = e.originalEvent.touches[0].screenX;
             }
         });
         
         gallery.on('touchend touchcancel', function() {
             touchDown = false;
-        });
+        });*/
     } else {
         var cursorXPos = 0,
             cursorDown = false;
@@ -912,13 +923,8 @@ $(document).ready(function() {
         target.addClass('reveal');
     }
     
-    quoteImageContainer.hover(hideQuoteBody, showQuoteBody);
+    if (!isMobile) quoteImageContainer.hover(hideQuoteBody, showQuoteBody);
     
     $(window).resize($.debounce(500, centerQuoteImages));
     $(window).load(centerQuoteImages);
 });
-
-/* ----------------------------------------
-Viewport Units Buggyfill Initialize
----------------------------------------- */
-window.viewportUnitsBuggyfill.init();

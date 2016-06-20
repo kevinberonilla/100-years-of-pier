@@ -598,7 +598,7 @@ body {
       body.nav-open nav {
         height: -webkit-calc(100vh - (100vw / 6) - 5px);
         height: calc(100vh - (100vw / 6) - 5px); } }
-    @media only screen and (max-height: 560px) {
+    @media only screen and (max-height: 440px) {
       body.nav-open nav {
         display: none; } }
   body.nav-open header,
@@ -617,7 +617,8 @@ body {
 #wrapper {
   width: 100%;
   height: 100vh;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
 
 #preload {
   display: none; }
@@ -676,7 +677,7 @@ header, footer {
   @media only screen and (max-width: 768px) {
     header, footer {
       padding: 24px 32px 32px; } }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     header, footer {
       display: none; } }
   header #back-to-np, footer #back-to-np {
@@ -838,7 +839,7 @@ nav {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 9999; }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     #sub-nav {
       display: none; } }
   @media only screen and (max-width: 480px) {
@@ -852,7 +853,7 @@ nav {
       -ms-transform: none;
       transform: none;
       display: table; } }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     #sub-nav {
       display: none; } }
   #sub-nav.show {
@@ -1011,7 +1012,7 @@ nav {
     #background-image, .quote-background-image {
       top: 0;
       bottom: 0; } }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     #background-image, .quote-background-image {
       display: none; } }
   #background-image:after, .quote-background-image:after {
@@ -1068,7 +1069,7 @@ nav {
 
 #screen-blocker {
   display: none; }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     #screen-blocker {
       display: block;
       position: fixed;
@@ -1123,7 +1124,7 @@ nav {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
   opacity: 1; }
-  @media only screen and (max-height: 560px) {
+  @media only screen and (max-height: 440px) {
     .content {
       display: none; } }
 
@@ -1564,7 +1565,7 @@ section {
   width: 100%;
   position: relative;
   z-index: 1;
-  min-height: 560px;
+  min-height: 440px;
   opacity: 0;
   overflow: hidden; }
   section#home {
