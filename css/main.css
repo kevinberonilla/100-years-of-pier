@@ -556,6 +556,10 @@ body {
   @media only screen and (max-width: 480px) {
     body {
       font-size: 12px; } }
+  @media only screen and (max-width: 360px) {
+    body {
+      font-size: 11px;
+      line-height: 18px; } }
   body.loaded header,
   body.loaded footer,
   body.loaded footer .social-media,
@@ -614,12 +618,11 @@ body {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease; }
 
-#wrapper {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative; }
-
+/*#wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}*/
 #preload {
   display: none; }
 
@@ -1104,6 +1107,9 @@ nav {
     @media only screen and (max-width: 480px), only screen and (max-height: 768px) {
       .logo-container img {
         width: 140px; } }
+    @media only screen and (max-width: 360px) {
+      .logo-container img {
+        width: 110px; } }
   .logo-container.horizontal {
     -webkit-transition: all 1000ms ease;
     transition: all 1000ms ease;
@@ -1140,6 +1146,9 @@ nav {
     .timeline-entry .italic-heading.small {
       padding-top: 6px;
       letter-spacing: 1px; } }
+  @media only screen and (max-width: 480px) {
+    .timeline-entry .italic-heading.small {
+      padding-top: 0; } }
 
 .timeline-border {
   -webkit-transition: all 250ms ease;
@@ -1237,8 +1246,9 @@ nav {
   @media only screen and (max-width: 768px) {
     .timeline-gallery {
       padding: 0;
-      overflow: visible;
-      overflow-x: scroll; } }
+      position: relative;
+      overflow: visible !important;
+      overflow-x: scroll !important; } }
 
 .timeline-slider {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
@@ -1445,7 +1455,7 @@ nav {
   @media only screen and (max-width: 480px) {
     .gallery.type-a .caption,
     .gallery.type-b .caption {
-      font-size: 11px; } }
+      font-size: 10px; } }
 
 .quote .vertical-align {
   z-index: 2; }
@@ -1591,11 +1601,17 @@ section {
         @media only screen and (max-width: 480px) {
           section#home #title .scroll-message {
             bottom: 30px; } }
+        @media only screen and (max-width: 360px) {
+          section#home #title .scroll-message {
+            font-size: 8px; } }
         section#home #title .scroll-message.show {
           opacity: 1;
           margin-bottom: 0; }
         section#home #title .scroll-message .scroll-arrow {
           margin-top: 10px; }
+          @media only screen and (max-width: 360px) {
+            section#home #title .scroll-message .scroll-arrow {
+              max-width: 40px; } }
     section#home #tagline {
       -webkit-transition: all 1000ms ease;
       transition: all 1000ms ease;
@@ -1611,6 +1627,11 @@ section {
         section#home #tagline {
           font-size: 28px;
           line-height: 36px; } }
+      @media only screen and (max-width: 360px) {
+        section#home #tagline {
+          margin-top: 16px;
+          font-size: 22px;
+          line-height: 30px; } }
     section#home #loading-bar {
       -webkit-transition: all 250ms ease;
       transition: all 250ms ease;
@@ -1690,6 +1711,11 @@ section {
         font-size: 12px;
         line-height: 24px;
         padding: 0 32px; } }
+    @media only screen and (max-width: 360px) {
+      section .intro {
+        font-size: 11px;
+        line-height: 20px;
+        padding: 0 60px; } }
     section .intro h3 {
       margin-bottom: 100px;
       position: relative; }

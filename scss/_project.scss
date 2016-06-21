@@ -90,6 +90,10 @@ body {
     @media only screen and (max-width: $phone-breakpoint) {
         font-size: 12px;
     }
+    @media only screen and (max-width: $small-phone-breakpoint) {
+        font-size: 11px;
+        line-height: 18px;
+    }
     &.loaded {
         header,
         footer .social-media,
@@ -166,12 +170,11 @@ body {
         }
     }
 }
-#wrapper {
+/*#wrapper {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
     position: relative;
-}
+}*/
 #preload {
     display: none;
 }
@@ -671,6 +674,9 @@ nav {
         only screen and (max-height: $tablet-landscape-height) {
             width: 140px;
         }
+        @media only screen and (max-width: $small-phone-breakpoint) {
+            width: 110px;
+        }
     }
     &.horizontal {
         @include animated(all, 1000ms);
@@ -708,6 +714,9 @@ nav {
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     padding-top: 6px;
                     letter-spacing: 1px;
+                }
+                @media only screen and (max-width: $phone-breakpoint) {
+                    padding-top: 0;
                 }
             }
         }
@@ -804,8 +813,9 @@ nav {
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             padding: 0;
-            overflow: visible;
-            overflow-x: scroll;
+            position: relative;
+            overflow: visible !important;
+            overflow-x: scroll !important;
         }
     }
     &-slider {
@@ -1006,7 +1016,7 @@ nav {
         &.type-a,
         &.type-b {
             .caption {
-                font-size: 11px;
+                font-size: 10px;
             }
         }
     }
@@ -1171,12 +1181,18 @@ section {
                 @media only screen and (max-width: $phone-breakpoint) {
                     bottom: 30px;
                 }
+                @media only screen and (max-width: $small-phone-breakpoint) {
+                    font-size: 8px;
+                }
                 &.show {
                     opacity: 1;
                     margin-bottom: 0;
                 }
                 .scroll-arrow {
                     margin-top: 10px;
+                    @media only screen and (max-width: $small-phone-breakpoint) {
+                        max-width: 40px
+                    }
                 }
             }
         }
@@ -1191,9 +1207,14 @@ section {
                 line-height: 46px;
             }
             @media only screen and (max-width: $phone-breakpoint),
-            only screen and (max-height: 768px) {
+            only screen and (max-height: $tablet-landscape-height) {
                 font-size: 28px;
                 line-height: 36px;
+            }
+            @media only screen and (max-width: $small-phone-breakpoint) {
+                margin-top: 16px;
+                font-size: 22px;
+                line-height: 30px;
             }
         }
         #loading-bar {
@@ -1279,6 +1300,11 @@ section {
             font-size: 12px;
             line-height: 24px;
             padding: 0 32px;
+        }
+        @media only screen and (max-width: $small-phone-breakpoint) {
+            font-size: 11px;
+            line-height: 20px;
+            padding: 0 60px;
         }
         h3 {
             margin-bottom: 100px;

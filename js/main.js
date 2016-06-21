@@ -54,11 +54,10 @@ $(document).ready(function() {
     Mobile Body Height Functions
     ---------------------------------------- */
     if (isMobile) {
-//        var lastXPos;
+        var wrapper = $('#wrapper');
         
         function setViewPortHeight() {
-            var viewportHeight = window.innerHeight,
-                wrapper = $('#wrapper');
+            var viewportHeight = window.innerHeight ;
             
             wrapper.css('height', viewportHeight + 'px');
         }
@@ -68,14 +67,7 @@ $(document).ready(function() {
         
         // Disable overscroll bounce
         /*$(document).on('touchmove', function(e) {
-            var currentXPos = e.touches[0].clientX,
-                touchDelta = Math.abs(currentXPos - lastXPos);
-            
-            if (touchDelta > 10) {
-                e.preventDefault();
-            }
-            
-            lastXPos = currentXPos;
+            e.preventDefault();
         });*/
     }
     
