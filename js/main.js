@@ -8,6 +8,10 @@ var page = $('html, body'),
         isMobile = true;
     }
 
+$(document).on('touchmove', function(e) { // Prevent overflow scroll bounce
+    e.preventDefault();
+});
+
 $(document).ready(function() {
     /* ----------------------------------------
     Preload Auto-Populate Functions
@@ -791,7 +795,26 @@ $(document).ready(function() {
     ---------------------------------------- */
     var gallery = $('.gallery');
     
-    if (!isMobile) {
+    if (isMobile) {
+        var touchXPos = 0,
+            touchDown = false;
+        
+        gallery.on('touchstart', function(e) {
+            touchXPos = e.originalEvent.touches[0].screenX;
+            touchDown = true;
+        });
+        
+        gallery.on('touchmove', function(e) {
+            if (touchDown === true) {
+                $(this).scrollLeft(parseInt($(this).scrollLeft() + (touchXPos - e.originalEvent.touches[0].screenX)));
+                touchXPos = e.originalEvent.touches[0].screenX;
+            }
+        });
+        
+        gallery.on('touchend touchcancel', function() {
+            touchDown = false;
+        });
+    } else {
         var cursorXPos = 0,
             cursorDown = false;
         
