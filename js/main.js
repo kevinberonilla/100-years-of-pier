@@ -53,7 +53,7 @@ $(document).ready(function() {
     /* ----------------------------------------
     Mobile Body Height Functions
     ---------------------------------------- */
-    if (isMobile) {
+    /*if (isMobile) {
         var wrapper = $('#wrapper');
         
         function setViewPortHeight() {
@@ -64,12 +64,7 @@ $(document).ready(function() {
         
         setViewPortHeight();
         $(window).resize($.debounce(500, setViewPortHeight));
-        
-        // Disable overscroll bounce
-        /*$(document).on('touchmove', function(e) {
-            e.preventDefault();
-        });*/
-    }
+    }*/
     
     /* ----------------------------------------
     Audio Functions
@@ -812,28 +807,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     var gallery = $('.gallery');
     
-    if (isMobile) {
-        /*var touchXPos = 0,
-            touchDelta = 0,
-            touchDown = false;
-        
-        gallery.on('touchstart', function(e) {
-            touchXPos = e.originalEvent.touches[0].screenX;
-            touchDown = true;
-        });
-        
-        gallery.on('touchmove', function(e) {
-            if (touchDown === true) {
-                touchDelta = touchXPos - e.originalEvent.touches[0].screenX;
-                $(this).scrollLeft(parseInt($(this).scrollLeft() + touchDelta));
-                touchXPos = e.originalEvent.touches[0].screenX;
-            }
-        });
-        
-        gallery.on('touchend touchcancel', function() {
-            touchDown = false;
-        });*/
-    } else {
+    if (!isMobile) {
         var cursorXPos = 0,
             cursorDown = false;
         

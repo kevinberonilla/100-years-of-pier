@@ -618,11 +618,17 @@ body {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease; }
 
-/*#wrapper {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-}*/
+#wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; }
+
 #preload {
   display: none; }
 
@@ -630,7 +636,7 @@ body {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   min-width: 105%;
   min-height: 105%;
@@ -1399,6 +1405,7 @@ nav {
       overflow: visible !important;
       overflow-x: scroll !important;
       white-space: nowrap;
+      pointer-events: all;
       padding: 0 65px;
       height: -webkit-calc(30vh + 30px);
       height: calc(30vh + 30px); }
