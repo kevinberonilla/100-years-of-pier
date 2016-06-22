@@ -51,22 +51,6 @@ $(document).ready(function() {
     $.when(autoPopulatePreload()).done(beginLoading);
     
     /* ----------------------------------------
-    Mobile Body Height Functions
-    ---------------------------------------- */
-    /*if (isMobile) {
-        var wrapper = $('#wrapper');
-        
-        function setViewPortHeight() {
-            var viewportHeight = window.innerHeight ;
-            
-            wrapper.css('height', viewportHeight + 'px');
-        }
-        
-        setViewPortHeight();
-        $(window).resize($.debounce(500, setViewPortHeight));
-    }*/
-    
-    /* ----------------------------------------
     Audio Functions
     ---------------------------------------- */
     var audioIcon = $('#audio-icon'),
