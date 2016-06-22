@@ -621,7 +621,7 @@ body {
 #preload {
   display: none; }
 
-.video-background {
+.video-background, .video-substitute {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
@@ -637,11 +637,20 @@ body {
   -webkit-filter: none;
   filter: none;
   -webkit-transform-style: preserve-3d; }
-  .video-background.show {
+  .video-background.show, .show.video-substitute {
     opacity: 1; }
-  .video-background.blur {
+  .video-background.blur, .blur.video-substitute {
     -webkit-filter: blur(5px);
     filter: blur(5px); }
+
+.video-substitute {
+  min-width: 100vw !important;
+  min-width: 100vh;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
 
 *::-webkit-media-controls-panel {
   display: none !important;
@@ -656,7 +665,6 @@ body {
   -webkit-appearance: none; }
 
 #home-video {
-  -webkit-transform: translate3d(0, 0, 0);
   background-position: center bottom; }
 
 .full-parent-height {
@@ -1241,9 +1249,8 @@ nav {
   @media only screen and (max-width: 768px) {
     .timeline-gallery {
       padding: 0;
-      position: relative;
-      overflow: visible !important;
-      overflow-x: scroll !important; } }
+      overflow: visible;
+      overflow-x: scroll; } }
 
 .timeline-slider {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
@@ -1390,8 +1397,9 @@ nav {
   @media only screen and (max-width: 768px) {
     .gallery.type-a,
     .gallery.type-b {
-      overflow: visible;
-      overflow-x: scroll;
+      overflow: visible !important;
+      overflow-x: scroll !important;
+      -webkit-overflow-scrolling: touch;
       white-space: nowrap;
       pointer-events: all;
       padding: 0 65px;

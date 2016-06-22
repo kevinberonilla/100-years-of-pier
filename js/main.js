@@ -4,13 +4,13 @@ var page = $('html, body'),
     isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
-    if (mobileUserAgentString.test(navigator.userAgent)) {
-        isMobile = true;
-    }
-
-$(document).on('touchmove', function(e) { // Prevent overflow scroll bounce
-    e.preventDefault();
-});
+if (mobileUserAgentString.test(navigator.userAgent)) {
+    isMobile = true;
+    
+    $(document).on('touchmove', function(e) { // Prevent overflow scroll bounce
+        e.preventDefault();
+    });
+}
 
 $(document).ready(function() {
     /* ----------------------------------------
@@ -163,6 +163,13 @@ $(document).ready(function() {
         adjustedPos,
         videoOffset;
     
+    function substituteVideoElements(element) { // Switch out video tags for divs
+        var id = element.attr('id'),
+            style = element.attr('style');
+        
+        element.replaceWith('<div id="' + id + '"class="video-substitute" style="' + style + '"></div>');
+    }
+    
     if (!isMobile) { // Don't load videos for mobile
         videoBackground.each(function() {
             var self = $(this),
@@ -173,7 +180,11 @@ $(document).ready(function() {
                 for (var i = 0; i < formats.length; i++) {
                     self.append('<source src="' + source + '.' + formats[i] + '">');
                 }
-            }
+            } else substituteVideoElements(self);
+        });
+    } else {
+        videoBackground.each(function() {
+            substituteVideoElements($(this));
         });
     }
     
@@ -297,7 +308,7 @@ $(document).ready(function() {
         linkCount = navEntry.length,
         openNavButton = $('#open-nav-button'),
         closeNavButton = $('#close-nav-button'),
-        blurElements = $('#underlay, #clouds, #fireworks, .video-background'),
+        blurElements = $('#underlay, #clouds, #fireworks, .video-background, .video-substitute'),
         main = $('.main');
     
     function calculateNavEntryHeight() {        
@@ -800,13 +811,18 @@ $(document).ready(function() {
             touchDown = false;
         
         gallery.on('touchstart', function(e) {
+            e.preventDefault();
+            
             touchXPos = e.originalEvent.touches[0].screenX;
             touchDown = true;
         });
         
         gallery.on('touchmove', function(e) {
             if (touchDown === true) {
-                $(this).scrollLeft(parseInt($(this).scrollLeft() + (touchXPos - e.originalEvent.touches[0].screenX)));
+                $(this).stop(true, true)
+                    .animate({
+                        'scrollLeft': parseInt($(this).scrollLeft() + ((touchXPos - e.originalEvent.touches[0].screenX) * 1.5))
+                    }, 250);
                 touchXPos = e.originalEvent.touches[0].screenX;
             }
         });
