@@ -39,12 +39,15 @@ img {
   height: auto; }
 
 .container {
-  width: 1024px;
+  width: 1160px;
   margin: 0 auto; }
+  @media only screen and (max-width: 1160px) {
+    .container {
+      width: 1024px; } }
   @media only screen and (max-width: 1024px) {
     .container {
       width: 100%;
-      padding: 0 0px; } }
+      padding: 0 -68px; } }
 
 .clearfix:after, .row:after {
   content: '';
@@ -504,36 +507,36 @@ hr {
   width: 60px;
   border: 1px solid #25CAD3;
   border-bottom: none;
-  margin: 30px 0 20px; }
+  margin: 20px 0 10px; }
   @media only screen and (max-width: 768px) {
     hr {
       margin: 14px 0 10px; } }
 
 .italic-heading {
-  font-size: 60px;
-  line-height: 72px;
+  font-size: 44px;
+  line-height: 60px;
   font-family: "Miller Text It", serif;
   font-style: italic;
   text-transform: none; }
   @media only screen and (max-width: 1024px) {
     .italic-heading {
-      font-size: 46px;
-      line-height: 54px; } }
+      font-size: 38px;
+      line-height: 50px; } }
   @media only screen and (max-width: 768px) {
     .italic-heading {
-      font-size: 32px;
-      line-height: 46px; } }
+      font-size: 22px;
+      line-height: 34px; } }
   @media only screen and (max-width: 480px) {
     .italic-heading {
-      font-size: 24px;
-      line-height: 36px; } }
+      font-size: 18px;
+      line-height: 28px; } }
   .italic-heading.small {
     font-size: 32px;
-    line-height: 46px; }
+    line-height: 40px; }
     @media only screen and (max-width: 1024px) {
       .italic-heading.small {
         font-size: 26px;
-        line-height: 38px; } }
+        line-height: 34px; } }
     @media only screen and (max-width: 768px) {
       .italic-heading.small {
         font-size: 18px;
@@ -541,7 +544,7 @@ hr {
     @media only screen and (max-width: 480px) {
       .italic-heading.small {
         font-size: 14px;
-        line-height: 26px; } }
+        line-height: 22px; } }
 
 body {
   background-color: black;
@@ -555,11 +558,12 @@ body {
       line-height: 22px; } }
   @media only screen and (max-width: 480px) {
     body {
-      font-size: 12px; } }
-  @media only screen and (max-width: 360px) {
-    body {
       font-size: 11px;
       line-height: 18px; } }
+  @media only screen and (max-width: 360px) {
+    body {
+      font-size: 10px;
+      line-height: 16px; } }
   body.loaded header,
   body.loaded footer,
   body.loaded footer .social-media,
@@ -896,7 +900,7 @@ nav {
     list-style: none;
     width: 60px;
     border: 1px solid #6e7e91; }
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (max-width: 1160px) {
       #sub-nav > ul {
         width: 40px; } }
     @media only screen and (max-width: 480px) {
@@ -912,7 +916,7 @@ nav {
       font-size: 18px;
       text-align: center;
       background-color: rgba(12, 27, 51, 0.9); }
-      @media only screen and (max-width: 1100px) {
+      @media only screen and (max-width: 1160px) {
         #sub-nav > ul li {
           width: 40px;
           height: 40px;
@@ -991,7 +995,7 @@ nav {
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(50, 68, 101, 0.8);
+  background-color: rgba(50, 68, 101, 0.9);
   background-blend-mode: multiply;
   pointer-events: none;
   background-size: cover;
@@ -1029,7 +1033,7 @@ nav {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(50, 68, 101, 0.8);
+    background-color: rgba(50, 68, 101, 0.9);
     background-blend-mode: multiply; }
 
 #clouds, #fireworks {
@@ -1085,7 +1089,7 @@ nav {
       left: 0;
       pointer-events: all;
       z-index: 9999;
-      background-color: rgba(50, 68, 101, 0.8);
+      background-color: rgba(50, 68, 101, 0.9);
       text-align: center; }
       #screen-blocker img {
         width: 120px;
@@ -1141,7 +1145,7 @@ nav {
   position: relative; }
 
 .timeline-entry .italic-heading.small {
-  padding-top: 4px; }
+  padding-top: 8px; }
   @media only screen and (max-width: 1024px) {
     .timeline-entry .italic-heading.small {
       padding-top: 2px; } }
@@ -1217,12 +1221,14 @@ nav {
       font-size: 32px; } }
   @media only screen and (max-width: 480px) {
     .timeline-date {
-      font-size: 28px; } }
+      font-size: 24px; } }
 
 .timeline-details {
   float: left;
   width: 75%;
   padding-right: 60px; }
+  .timeline-details > p:not(:last-child) {
+    margin-bottom: 20px; }
   @media only screen and (max-width: 1024px) {
     .timeline-details {
       width: 65%;
@@ -1501,8 +1507,7 @@ nav {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: -1;
-  cursor: crosshair; }
+  z-index: -1; }
   @media only screen and (max-width: 768px) {
     .quote-image-container {
       width: 20vh;
@@ -1567,12 +1572,12 @@ nav {
     letter-spacing: 1.5px; }
     @media only screen and (max-width: 768px) {
       .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
-        font-size: 16px;
-        line-height: 24px; } }
+        font-size: 12px;
+        line-height: 20px; } }
     @media only screen and (max-width: 480px) {
       .quote-caption h4, .quote-caption section#home #title .scroll-message, section#home #title .quote-caption .scroll-message {
-        font-size: 14px;
-        line-height: 22px; } }
+        font-size: 10px;
+        line-height: 16px; } }
 
 section {
   width: 100%;
@@ -1603,7 +1608,10 @@ section {
             font-size: 10px; } }
         @media only screen and (max-width: 480px) {
           section#home #title .scroll-message {
-            bottom: 30px; } }
+            bottom: 30px;
+            font-size: 10px;
+            line-height: 18px;
+            text-transform: none; } }
         @media only screen and (max-width: 360px) {
           section#home #title .scroll-message {
             font-size: 8px; } }
@@ -1695,30 +1703,8 @@ section {
           margin-top: 10vh; } }
   section .intro {
     text-align: center;
-    font-size: 22px;
-    line-height: 42px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 0 80px; }
-    @media only screen and (max-width: 1024px) {
-      section .intro {
-        font-size: 18px;
-        line-height: 36px; } }
-    @media only screen and (max-width: 768px) {
-      section .intro {
-        font-size: 14px;
-        line-height: 28px;
-        padding: 0 75px; } }
-    @media only screen and (max-width: 480px) {
-      section .intro {
-        font-size: 12px;
-        line-height: 24px;
-        padding: 0 32px; } }
-    @media only screen and (max-width: 360px) {
-      section .intro {
-        font-size: 11px;
-        line-height: 20px;
-        padding: 0 60px; } }
+    letter-spacing: 2px; }
     section .intro h3 {
       margin-bottom: 100px;
       position: relative; }
@@ -1729,6 +1715,32 @@ section {
         section .intro h3 {
           line-height: 30px;
           margin-bottom: 60px; } }
+    section .intro p {
+      font-size: 20px;
+      line-height: 38px;
+      padding: 0 80px; }
+      @media only screen and (max-width: 1160px) {
+        section .intro p {
+          padding: 0 60px; } }
+      @media only screen and (max-width: 1024px) {
+        section .intro p {
+          font-size: 18px;
+          line-height: 36px; } }
+      @media only screen and (max-width: 768px) {
+        section .intro p {
+          font-size: 14px;
+          line-height: 28px;
+          padding: 0 75px; } }
+      @media only screen and (max-width: 480px) {
+        section .intro p {
+          font-size: 11px;
+          line-height: 18px;
+          padding: 0 30px; } }
+      @media only screen and (max-width: 360px) {
+        section .intro p {
+          font-size: 11px;
+          line-height: 20px;
+          padding: 0 60px; } }
     @media only screen and (max-width: 480px) {
       section .intro .vertical-align {
         margin-top: -webkit-calc((100vw / 6) - 20px);

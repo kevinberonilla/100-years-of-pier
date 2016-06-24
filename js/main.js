@@ -608,8 +608,11 @@ $(document).ready(function() {
         if (activeSection.hasClass('has-underlay')) {
             var underlayUrl = activeSection.data('underlay-background');
             
-            underlay.css('background-image', 'url(' + underlayUrl + ')')
-                .addClass('show');
+            underlay.css('background-image', 'url(' + underlayUrl + ')');
+            
+            setTimeout(function() {
+                underlay.addClass('show');
+            }, 1000);
         } else {
             underlay.removeClass('show');
         }
@@ -665,6 +668,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     var timelineEntryStart = $('.timeline-entry.start'),
         timelineEntryEnd = $('.timeline-entry.end'),
+        quoteEntryEnd = $('.quote-entry.end'),
         timelineMarkOffset = 30;
     
     function calculateTimelineBorders() {
@@ -696,6 +700,10 @@ $(document).ready(function() {
                     timelineBorder = $('.timeline-border', this);
                 
                 timelineBorder.css('bottom', position + 'px');
+            });
+            
+            quoteEntryEnd.each(function() {
+                // DO STUFF HERE
             });
         }, 1000);
     }
@@ -899,20 +907,6 @@ $(document).ready(function() {
             });
         });
     }
-    
-    function hideQuoteBody() {
-        var target = $('section.active .quote-body .animate-in');
-        
-        target.removeClass('reveal');
-    }
-    
-    function showQuoteBody() {
-        var target = $('section.active .quote-body .animate-in');
-        
-        target.addClass('reveal');
-    }
-    
-    if (!isMobile) quoteImageContainer.hover(hideQuoteBody, showQuoteBody);
     
     $(window).resize($.debounce(500, centerQuoteImages));
     $(window).load(centerQuoteImages);

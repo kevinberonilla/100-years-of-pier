@@ -39,6 +39,9 @@ img {
 .container {
     width: $container-width;
     margin: 0 auto;
+    @media only screen and (max-width: $small-desktop-breakpoint) {
+        width: $tablet-landscape-breakpoint;
+    }
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         width: 100%;
         padding: 0 (($tablet-landscape-breakpoint - $container-width) / 2);
