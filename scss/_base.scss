@@ -44,7 +44,6 @@ img {
     }
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         width: 100%;
-        padding: 0 (($tablet-landscape-breakpoint - $container-width) / 2);
     }
 }
 .clearfix:after {

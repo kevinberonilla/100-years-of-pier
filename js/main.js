@@ -668,7 +668,6 @@ $(document).ready(function() {
     ---------------------------------------- */
     var timelineEntryStart = $('.timeline-entry.start'),
         timelineEntryEnd = $('.timeline-entry.end'),
-        quoteEntryEnd = $('.quote-entry.end'),
         timelineMarkOffset = 30;
     
     function calculateTimelineBorders() {
@@ -700,10 +699,6 @@ $(document).ready(function() {
                     timelineBorder = $('.timeline-border', this);
                 
                 timelineBorder.css('bottom', position + 'px');
-            });
-            
-            quoteEntryEnd.each(function() {
-                // DO STUFF HERE
             });
         }, 1000);
     }
