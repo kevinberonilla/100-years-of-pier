@@ -608,11 +608,8 @@ $(document).ready(function() {
         if (activeSection.hasClass('has-underlay')) {
             var underlayUrl = activeSection.data('underlay-background');
             
-            underlay.css('background-image', 'url(' + underlayUrl + ')');
-            
-            setTimeout(function() {
-                underlay.addClass('show');
-            }, 1000);
+            underlay.css('background-image', 'url(' + underlayUrl + ')')
+                .underlay.addClass('show');
         } else {
             underlay.removeClass('show');
         }
