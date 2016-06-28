@@ -78,12 +78,13 @@ $(document).ready(function() {
             });
         });
         
+        newMusic[0].volume = 0;
         newMusic[0].play();
         adjustVolume(newMusic, masterVolume);
     }
     
     function playChapterMusic(currentSection) {
-        if (currentSection.hasClass('end')) { // For scrolling up to the end of a previous section
+        if (currentSection.hasClass('end')) { // If scrolling up to the end of a previous section
             var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
                 closestIntroMusic = $('#music-for-' + closestIntroIndex);
             
