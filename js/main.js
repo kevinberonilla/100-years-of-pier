@@ -569,6 +569,7 @@ $(document).ready(function() {
         backgroundVideo = $('#background-video'),
         title = $('#home #title'),
         horizontalLogo = $('.logo-container.horizontal'),
+        onlyFadeUnderlay = false,
         activeSection;
     
     function processBeforeMove() {
@@ -608,8 +609,13 @@ $(document).ready(function() {
         if (activeSection.hasClass('has-underlay')) {
             var underlayUrl = activeSection.data('underlay-background');
             
+            if (onlyFadeUnderlay) {
+                underlay.addClass('only-fade');
+                onlyFadeUnderlay = false;
+            } else underlay.removeClass('only-fade');
+            
             underlay.css('background-image', 'url(' + underlayUrl + ')')
-                .underlay.addClass('show');
+                .addClass('show');
         } else {
             underlay.removeClass('show');
         }
@@ -630,6 +636,9 @@ $(document).ready(function() {
         } else {
             backgroundVideo.removeClass('show');
         }
+        
+        // If is end of section
+        if (activeSection.hasClass('end')) onlyFadeUnderlay = true;
         
         setSubNavPosition(activeSection);
         

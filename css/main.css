@@ -617,6 +617,9 @@ nav {
   z-index: -1;
   background-color: rgba(204, 204, 204, 0.75);
   background-blend-mode: normal; }
+  #underlay.only-fade {
+    -webkit-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease; }
 
 #background-image, .quote-background-image {
   z-index: -1;

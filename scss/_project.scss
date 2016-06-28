@@ -565,6 +565,9 @@ nav {
     z-index: -1;
     background-color: rgba(#ccc, 0.75);
     background-blend-mode: normal;
+    &.only-fade {
+        @include animated(opacity, 1000ms);
+    }
 }
 #background-image {
     @extend #overlay;
