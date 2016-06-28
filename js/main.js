@@ -64,7 +64,7 @@ $(document).ready(function() {
         masterVolume = 1;
     
     function adjustVolume(audioElement, volume, callback) {
-        audioElement.stop()
+        $(audioElement).stop()
             .animate({
                 volume: volume
             }, 1000, 'linear', callback);
@@ -112,6 +112,15 @@ $(document).ready(function() {
         if (sectionSound.length > 0) {
             sectionSound[0].play();
             adjustVolume(sectionSound, masterVolume);
+        } else {
+            sound.each(function() {
+                var self = $(this);
+                
+                adjustVolume(self[0], 0, function() {
+                    self[0].pause();
+                    self[0].currentTime = 0;
+                });
+            });
         }
     }
     
@@ -134,8 +143,19 @@ $(document).ready(function() {
             }
             
             audio.each(function() {
-                $(this).stop(false, true);
-                $(this)[0].volume = masterVolume;
+                var self = $(this);
+                
+                self.stop(false, true);
+                
+                if (self.is(sound) && masterVolume === 1) {
+                    self[0].volume = 0;
+                } else {
+                    if (self.is(sound) && masterVolume === 0) {
+                        self[0].pause();
+                        self[0].currentTime = 0;
+                    }
+                    self[0].volume = masterVolume;
+                }
             });
         })
             .parent()
@@ -643,6 +663,7 @@ $(document).ready(function() {
         
         setSubNavPosition(activeSection);
         
+        // Sound functions
         if (!isMobile) {
             playChapterMusic(activeSection);
             playSound(activeSection);
