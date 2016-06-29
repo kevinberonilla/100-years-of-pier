@@ -231,7 +231,7 @@ header {
     opacity: 0;
     pointer-events: none;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        padding: 24px 32px 32px;
+        padding: 18px 26px 26px;
     }
     @media only screen and (max-height: $min-screen-height) {
         display: none;
@@ -373,6 +373,10 @@ nav {
                 &:hover {
                     background-color: rgba($color-silver, 0.85);
                     color: $color-dark-silver;
+                    @media only screen and (max-width: $phone-breakpoint) {
+                        background-color: transparent;
+                        color: white;
+                    }
                 }
                 span {
                     display: block;
@@ -521,8 +525,8 @@ nav {
     opacity: 1;
     pointer-events: all;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        top: 32px;
-        right: 32px;
+        top: 22px;
+        right: 24px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
         top: calc(100vw / #{$chapter-count} + 38px);
@@ -1195,8 +1199,10 @@ section {
                 @media only screen and (max-height: $tablet-landscape-height) {
                     font-size: 10px;
                 }
+                @media only screen and (max-height: $tablet-portrait-breakpoint) {
+                    bottom: 22px;
+                }
                 @media only screen and (max-width: $phone-breakpoint) {
-                    bottom: 30px;
                     font-size: 10px;
                     line-height: 18px;
                     text-transform: none;
@@ -1332,13 +1338,11 @@ section {
                 padding: 0 75px;
             }
             @media only screen and (max-width: $phone-breakpoint) {
-                font-size: 11px;
+                font-size: 10px;
                 line-height: 18px;
-                padding: 0 30px;
+                padding: 0 46px;
             }
             @media only screen and (max-width: $small-phone-breakpoint) {
-                font-size: 11px;
-                line-height: 20px;
                 padding: 0 60px;
             }
         }

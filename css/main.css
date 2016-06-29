@@ -291,7 +291,7 @@ header, footer {
   pointer-events: none; }
   @media only screen and (max-width: 768px) {
     header, footer {
-      padding: 24px 32px 32px; } }
+      padding: 18px 26px 26px; } }
   @media only screen and (max-height: 440px) {
     header, footer {
       display: none; } }
@@ -428,6 +428,11 @@ nav {
         nav > ul > li a:visited:hover {
           background-color: rgba(198, 210, 217, 0.85);
           color: #6C7C8F; }
+          @media only screen and (max-width: 480px) {
+            nav > ul > li a:hover,
+            nav > ul > li a:visited:hover {
+              background-color: transparent;
+              color: white; } }
         nav > ul > li a span,
         nav > ul > li a:visited span {
           display: block; }
@@ -575,8 +580,8 @@ nav {
   pointer-events: all; }
   @media only screen and (max-width: 768px) {
     #open-nav-button, #close-nav-button {
-      top: 32px;
-      right: 32px; } }
+      top: 22px;
+      right: 24px; } }
   @media only screen and (max-width: 480px) {
     #open-nav-button, #close-nav-button {
       top: -webkit-calc(100vw / 6 + 38px);
@@ -1217,9 +1222,11 @@ section {
         @media only screen and (max-height: 768px) {
           section#home #title .scroll-message {
             font-size: 10px; } }
+        @media only screen and (max-height: 768px) {
+          section#home #title .scroll-message {
+            bottom: 22px; } }
         @media only screen and (max-width: 480px) {
           section#home #title .scroll-message {
-            bottom: 30px;
             font-size: 10px;
             line-height: 18px;
             text-transform: none; } }
@@ -1344,13 +1351,11 @@ section {
           padding: 0 75px; } }
       @media only screen and (max-width: 480px) {
         section .intro p {
-          font-size: 11px;
+          font-size: 10px;
           line-height: 18px;
-          padding: 0 30px; } }
+          padding: 0 46px; } }
       @media only screen and (max-width: 360px) {
         section .intro p {
-          font-size: 11px;
-          line-height: 20px;
           padding: 0 60px; } }
     @media only screen and (max-width: 480px) {
       section .intro .vertical-align {
