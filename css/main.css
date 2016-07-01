@@ -110,8 +110,9 @@ h4, section#home #title .scroll-message {
 hr {
   display: inline-block;
   width: 60px;
-  border: 1px solid #25CAD3;
-  border-bottom: none;
+  height: 1px;
+  border: none;
+  border-top: 1px solid #25CAD3;
   margin: 20px 0 10px; }
   @media only screen and (max-width: 768px) {
     hr {
@@ -292,16 +293,20 @@ header, footer {
   @media only screen and (max-width: 768px) {
     header, footer {
       padding: 18px 26px 26px; } }
+  @media only screen and (max-width: 480px) {
+    header, footer {
+      display: none; } }
   @media only screen and (max-height: 440px) {
     header, footer {
       display: none; } }
   header #back-to-np, footer #back-to-np {
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
     display: inline-block;
     margin-top: 5px;
     pointer-events: all; }
-    @media only screen and (max-width: 480px) {
-      header #back-to-np, footer #back-to-np {
-        display: none; } }
+    header #back-to-np:hover, footer #back-to-np:hover {
+      opacity: 0.5; }
 
 footer {
   top: initial;
@@ -337,6 +342,8 @@ footer {
     footer .audio.show {
       opacity: 1;
       pointer-events: all; }
+      footer .audio.show:hover {
+        opacity: 0.5; }
   footer .social-media {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -653,7 +660,13 @@ nav {
   z-index: 0;
   background-color: transparent;
   background-blend-mode: none; }
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 768px) {
+    #clouds, #fireworks {
+      -webkit-transform: scale(1.5) !important;
+      -ms-transform: scale(1.5) !important;
+      transform: scale(1.5) !important;
+      top: 40vh; } }
+  @media only screen and (max-height: 440px) {
     #clouds, #fireworks {
       display: none; } }
   #clouds > li, #fireworks > li {
@@ -665,10 +678,13 @@ nav {
       opacity: 0.25; }
 
 #fireworks > li {
-  top: -30vh !important; }
-  @media only screen and (max-height: 768px) {
+  top: -35vh !important; }
+  @media only screen and (max-height: 768px), only screen and (max-width: 768px) {
     #fireworks > li {
       top: -20vh !important; } }
+  @media only screen and (max-width: 768px) {
+    #fireworks > li {
+      top: -15vh !important; } }
   #fireworks > li img {
     -webkit-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
@@ -1218,7 +1234,7 @@ section {
         text-align: center;
         width: 100%;
         opacity: 0;
-        margin-bottom: 50px; }
+        margin-bottom: 60px; }
         @media only screen and (max-height: 768px) {
           section#home #title .scroll-message {
             font-size: 10px; } }

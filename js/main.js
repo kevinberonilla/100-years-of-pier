@@ -603,14 +603,14 @@ $(document).ready(function() {
             subNav.removeClass('show');
             fireworksList.addClass('show');
             
-            if (!isMobile) enableParallax(fireworksList, 'fireworks');
+            enableParallax(fireworksList, 'fireworks');
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
             horizontalLogo.addClass('show');
             fireworksList.removeClass('show');
             
-            if (!isMobile) disableParallax('fireworks');
+            disableParallax('fireworks');
         }
         
         // If has overlay
@@ -618,12 +618,15 @@ $(document).ready(function() {
             overlay.addClass('show');
             cloudsList.addClass('show');
             
-            if (!isMobile) enableParallax(cloudsList, 'clouds');
+            enableParallax(cloudsList, 'clouds');
         } else {
             overlay.removeClass('show');
-            cloudsList.removeClass('show');
             
-            if (!isMobile) disableParallax('clouds');
+            if (!activeSection.hasClass('has-underlay')) {
+                cloudsList.removeClass('show');
+                
+                disableParallax('clouds');
+            }
         }
         
         // If has underlay
@@ -687,7 +690,7 @@ $(document).ready(function() {
             afterMove: processAfterMove
         });
         
-        if (!isMobile) enableParallax(fireworksList, 'fireworks');
+        enableParallax(fireworksList, 'fireworks');
         showFireworks();
     });
     
