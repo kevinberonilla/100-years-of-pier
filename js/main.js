@@ -290,7 +290,7 @@ $(document).ready(function() {
         page.one('load.np', function() {
             var homeVideo = $('#home-video'),
                 homeMusic = $('#music-for-0'),
-                scrollMessage = $('.scroll-message');
+                homeScrollMessage = $('#home .scroll-message');
             
             setTimeout(function() {
                 body.addClass('loaded');
@@ -303,8 +303,8 @@ $(document).ready(function() {
             }, (isDev) ? 0 : 1000);
             
             setTimeout(function() {
-                scrollMessage.addClass('show');
-            }, 3000);
+                homeScrollMessage.addClass('show');
+            }, 2000);
         });
         
         if (isDev) body.trigger('load.np');
@@ -509,7 +509,10 @@ $(document).ready(function() {
     sectionElements.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend webkitTransitionStart otransitionstart oTransitionStart msTransitionStart transitionstart', function(e) { e.stopPropagation(); }); // Avoid triggering the beforeMove afterMove callback multiple times
     
     function processAnimateIn(section) {
-        var animateIn = $('.animate-in', section);
+        var animateIn = $('.animate-in', section),
+            sectionScrollMessage = $('.scroll-message', section);
+        
+        sectionScrollMessage.addClass('show');
         
         animateIn.each(function() {
             var self = $(this),
