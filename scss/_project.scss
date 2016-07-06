@@ -1214,40 +1214,6 @@ section {
             width: 100%;
             background-color: $color-title-overlay;
             margin: 0 auto;
-            .scroll-message {
-                @include animated(all, 1000ms);
-                @extend h4;
-                position: absolute;
-                bottom: 40px;
-                text-align: center;
-                width: 100%;
-                opacity: 0;
-                margin-bottom: 60px;
-                @media only screen and (max-height: $tablet-landscape-height) {
-                    font-size: 10px;
-                }
-                @media only screen and (max-height: $tablet-portrait-breakpoint) {
-                    bottom: 22px;
-                }
-                @media only screen and (max-width: $phone-breakpoint) {
-                    font-size: 10px;
-                    line-height: 18px;
-                    text-transform: none;
-                }
-                @media only screen and (max-width: $small-phone-breakpoint) {
-                    font-size: 8px;
-                }
-                &.show {
-                    opacity: 1;
-                    margin-bottom: 0;
-                }
-                .scroll-arrow {
-                    margin-top: 10px;
-                    @media only screen and (max-width: $small-phone-breakpoint) {
-                        max-width: 40px
-                    }
-                }
-            }
         }
         #tagline {
             @include animated(all, 1000ms);
@@ -1382,6 +1348,40 @@ section {
     .content {
         position: relative;
         z-index: 1;
+    }
+}
+.scroll-message {
+    @include animated(all, 1000ms);
+    @extend h4;
+    position: absolute;
+    bottom: 40px;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    margin-bottom: 60px;
+    @media only screen and (max-height: $tablet-landscape-height) {
+        font-size: 10px;
+    }
+    @media only screen and (max-height: $tablet-portrait-breakpoint) {
+        bottom: 22px;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 10px;
+        line-height: 18px;
+        text-transform: none;
+    }
+    @media only screen and (max-width: $small-phone-breakpoint) {
+        font-size: 8px;
+    }
+    &.show {
+        opacity: 1;
+        margin-bottom: 0;
+    }
+    .scroll-arrow {
+        margin-top: 10px;
+        @media only screen and (max-width: $small-phone-breakpoint) {
+            max-width: 40px
+        }
     }
 }
 .animate-in {

@@ -1,7 +1,7 @@
 var page = $('html, body'),
     body = $('body'),
     isMobile = false,
-    isDev = false, // Set this to false before pushing to production
+    isDev = true, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
@@ -268,7 +268,7 @@ $(document).ready(function() {
                 loadingPercentage.text(percentage);
                 
                 if (loaded >= total) {
-                    body.trigger('load.np')
+                    body.trigger('load.np');
                 }
             }
         }
@@ -306,6 +306,8 @@ $(document).ready(function() {
                 scrollMessage.addClass('show');
             }, 3000);
         });
+        
+        if (isDev) body.trigger('load.np');
     }
     
     /* ----------------------------------------
