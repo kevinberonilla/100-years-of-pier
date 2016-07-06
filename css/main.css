@@ -1003,6 +1003,15 @@ nav {
             margin-left: 20px; }
             .gallery.type-a > li.animate-in.horizontal.reveal {
               margin-left: 0; } }
+    .gallery.type-a.has-two > li {
+      -webkit-transition: all 250ms ease;
+      transition: all 250ms ease;
+      left: 0; }
+      .gallery.type-a.has-two > li:not(.active) {
+        left: 30%; }
+        @media only screen and (max-width: 768px) {
+          .gallery.type-a.has-two > li:not(.active) {
+            left: initial; } }
   .gallery.type-b:after {
     content: '';
     display: table;

@@ -632,7 +632,7 @@ nav {
     @extend #clouds;
     > li {
         top: -35vh !important;
-        @media only screen and (max-height: $tablet-landscape-height), only screen and (max-width: $tablet-portrait-breakpoint)  {
+        @media only screen and (max-height: $tablet-landscape-height), only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -20vh !important;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -949,6 +949,18 @@ nav {
                         &.reveal {
                             margin-left: 0;
                         }
+                    }
+                }
+            }
+        }
+        &.has-two {
+            > li {
+                @include animated;
+                left: 0;
+                &:not(.active) {
+                    left: 30%;
+                    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                        left: initial;
                     }
                 }
             }

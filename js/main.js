@@ -71,16 +71,18 @@ $(document).ready(function() {
     }
     
     function swapMusic(newMusic) {
-        music.each(function() {
-            var self = $(this);
-            adjustVolume(self, 0, function() {
-                self[0].pause();
+        if (newMusic[0].paused) { // Don't crossfade if it's the same music that's currently playing
+            music.each(function() {
+                var self = $(this);
+                adjustVolume(self, 0, function() {
+                    self[0].pause();
+                });
             });
-        });
-        
-        newMusic[0].volume = 0;
-        newMusic[0].play();
-        adjustVolume(newMusic, masterVolume);
+
+            newMusic[0].volume = 0;
+            newMusic[0].play();
+            adjustVolume(newMusic, masterVolume); 
+        }
     }
     
     function playChapterMusic(currentSection) {
@@ -97,6 +99,14 @@ $(document).ready(function() {
         } else if (currentSection.is('#home')) {
             swapMusic($('#music-for-0'));
         }
+    }
+    
+    function pauseChapterMusic(currectSection) {
+        var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
+            closestIntroMusic = $('#music-for-' + closestIntroIndex);
+        
+        adjustVolume(closestIntroMusic[0], 0, function() { closestIntroMusic[0].pause(); });
+        // Write the one-binding of slide change triggering music to play again here
     }
     
     function playSound(currentSection) {
@@ -257,7 +267,7 @@ $(document).ready(function() {
                 loadingBar.css('width', percentage + '%');
                 loadingPercentage.text(percentage);
                 
-                if (loaded === total) {
+                if (loaded >= total) {
                     body.trigger('load.np')
                 }
             }
@@ -670,6 +680,10 @@ $(document).ready(function() {
         if (!isMobile) {
             playChapterMusic(activeSection);
             playSound(activeSection);
+            
+            if (activeSection.hasClass('no-music')) {
+                pauseChapterMusic(activeSection);
+            }
         }
     }
     
@@ -748,6 +762,8 @@ $(document).ready(function() {
             galleryEntry = $('.gallery-entry', self),
             firstGalleryEntry = galleryEntry.first(),
             numberOfEntries = galleryEntry.length;
+        
+        if (numberOfEntries === 2) self.addClass('has-two');
 
         self.Cloud9Carousel({
             autoPlay: 0,
