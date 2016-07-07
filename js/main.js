@@ -702,9 +702,7 @@ $(document).ready(function() {
             playChapterMusic(activeSection);
             playSound(activeSection);
             
-            if (activeSection.hasClass('no-music')) {
-                muteChapterMusic(activeSection);
-            }
+            if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
         }
     }
     
