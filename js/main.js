@@ -1,7 +1,7 @@
 var page = $('html, body'),
     body = $('body'),
     isMobile = false,
-    isDev = true, // Set this to false before pushing to production
+    isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
@@ -13,6 +13,8 @@ if (mobileUserAgentString.test(navigator.userAgent)) {
 }
 
 $(document).ready(function() {
+    var onePageScroll = $('#main');
+    
     /* ----------------------------------------
     Preload Auto-Populate Functions
     ---------------------------------------- */
@@ -101,12 +103,20 @@ $(document).ready(function() {
         }
     }
     
-    function pauseChapterMusic(currectSection) {
+    function muteChapterMusic(currectSection) {
         var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
             closestIntroMusic = $('#music-for-' + closestIntroIndex);
         
-        adjustVolume(closestIntroMusic[0], 0, function() { closestIntroMusic[0].pause(); });
-        // Write the one-binding of slide change triggering music to play again here
+        adjustVolume(closestIntroMusic[0], 0);
+        
+        onePageScroll.one('before-move.np', function() {
+            console.log(activeSection);
+            if (activeSection.hasClass('has-intro')) {
+                // To do: get intro of new section and check if the activeSection variable being passed in is correct.
+            } else {
+                adjustVolume(closestIntroMusic[0], 0);
+            }
+        });
     }
     
     function playSound(currentSection) {
@@ -304,10 +314,14 @@ $(document).ready(function() {
             
             setTimeout(function() {
                 homeScrollMessage.addClass('show');
-            }, 2000);
+            }, 2500);
         });
         
-        if (isDev) body.trigger('load.np');
+        if (isDev) {
+            setTimeout(function() {
+                body.trigger('load.np');
+            }, 500);
+        }
     }
     
     /* ----------------------------------------
@@ -512,8 +526,6 @@ $(document).ready(function() {
         var animateIn = $('.animate-in', section),
             sectionScrollMessage = $('.scroll-message', section);
         
-        sectionScrollMessage.addClass('show');
-        
         animateIn.each(function() {
             var self = $(this),
                 index = self.index();
@@ -532,6 +544,8 @@ $(document).ready(function() {
                 }, delay);
             });
         });
+        
+        sectionScrollMessage.addClass('show');
     }
     
     /* ----------------------------------------
@@ -611,6 +625,8 @@ $(document).ready(function() {
     function processBeforeMove() {
         activeSection = $('section.active');
         
+        onePageScroll.trigger('before-move.np');
+        
         // If is home
         if (activeSection.is('#home')) {
             homeVideo.addClass('show');
@@ -687,17 +703,19 @@ $(document).ready(function() {
             playSound(activeSection);
             
             if (activeSection.hasClass('no-music')) {
-                pauseChapterMusic(activeSection);
+                muteChapterMusic(activeSection);
             }
         }
     }
     
     function processAfterMove() {
+        onePageScroll.trigger('after-move.np');
+        
         processAnimateIn(activeSection);
     }
     
     body.one('start.np', function() {
-        $('#main').onepage_scroll({
+        onePageScroll.onepage_scroll({
             sectionContainer: 'section',
             easing: 'ease',
             animationTime: (isDev) ? 100 : 1000,
