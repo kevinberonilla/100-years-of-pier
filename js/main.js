@@ -550,12 +550,27 @@ $(document).ready(function() {
     /* ----------------------------------------
     Parallax Functions
     ---------------------------------------- */
-    var cloudsList = $('#clouds'),
+    /*var cloudsList = $('#clouds'),
         fireworksList = $('#fireworks'),
         cloudsParallax,
-        fireworksParallax;
+        fireworksParallax;*/
     
-    function enableParallax(list, targetId) {
+    var homeParallaxList = $('#home-parallax'),
+        chapter1ParallaxList = $('#chapter-1-parallax'),
+        chapter2ParallaxList = $('#chapter-2-parallax'),
+        chapter3ParallaxList = $('#chapter-3-parallax'),
+        chapter4ParallaxList = $('#chapter-4-parallax'),
+        chapter5ParallaxList = $('#chapter-5-parallax'),
+        chapter6ParallaxList = $('#chapter-6-parallax'),
+        homeParallaxObj,
+        chapter1ParallaxObj,
+        chapter2ParallaxObj,
+        chapter3ParallaxObj,
+        chapter4ParallaxObj,
+        chapter5ParallaxObj,
+        chapter6ParallaxObj;
+    
+    /*function enableParallax(list, targetId) {
         switch(targetId) {
             case 'clouds':
                 if (typeof(cloudsParallax) == 'undefined') {
@@ -572,9 +587,63 @@ $(document).ready(function() {
                 }
                 break;
         }
+    }*/
+    
+    function enableParallax(list, targetId) {
+        switch(targetId) {
+            case 'home-parallax':
+                if (typeof(homeParallaxObj) == 'undefined') {
+                    homeParallaxObj = list.parallax();
+                } else {
+                    homeParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-1-parallax':
+                if (typeof(chapter1ParallaxObj) == 'undefined') {
+                    chapter1ParallaxObj = list.parallax();
+                } else {
+                    chapter1ParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-2-parallax':
+                if (typeof(chapter2ParallaxObj) == 'undefined') {
+                    chapter2ParallaxObj = list.parallax();
+                } else {
+                    chapter2ParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-3-parallax':
+                if (typeof(chapter3ParallaxObj) == 'undefined') {
+                    chapter3ParallaxObj = list.parallax();
+                } else {
+                    chapter3ParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-4-parallax':
+                if (typeof(chapter4ParallaxObj) == 'undefined') {
+                    chapter4ParallaxObj = list.parallax();
+                } else {
+                    chapter4ParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-5-parallax':
+                if (typeof(chapter5ParallaxObj) == 'undefined') {
+                    chapter5ParallaxObj = list.parallax();
+                } else {
+                    chapter5ParallaxObj.parallax('enable');
+                }
+                break;
+            case 'chapter-6-parallax':
+                if (typeof(chapter6ParallaxObj) == 'undefined') {
+                    chapter6ParallaxObj = list.parallax();
+                } else {
+                    chapter6ParallaxObj.parallax('enable');
+                }
+                break;
+        }
     }
     
-    function disableParallax(targetId) {
+    /*function disableParallax(targetId) {
         switch(targetId) {
             case 'clouds':
                 if (typeof(cloudsParallax) != 'undefined') {
@@ -587,17 +656,57 @@ $(document).ready(function() {
                 }
                 break;
         }
+    }*/
+    
+    function disableParallax(targetId) {
+        switch(targetId) {
+            case 'home-parallax':
+                if (typeof(homeParallaxObj) != 'undefined') {
+                    homeParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-1-parallax':
+                if (typeof(chapter1ParallaxObj) != 'undefined') {
+                    chapter1ParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-2-parallax':
+                if (typeof(chapter2ParallaxObj) != 'undefined') {
+                    chapter2ParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-3-parallax':
+                if (typeof(chapter3ParallaxObj) != 'undefined') {
+                    chapter3ParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-4-parallax':
+                if (typeof(chapter4ParallaxObj) != 'undefined') {
+                    chapter4ParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-5-parallax':
+                if (typeof(chapter5ParallaxObj) != 'undefined') {
+                    chapter5ParallaxObj.parallax('disable');
+                }
+                break;
+            case 'chapter-6-parallax':
+                if (typeof(chapter6ParallaxObj) != 'undefined') {
+                    chapter6ParallaxObj.parallax('disable');
+                }
+                break;
+        }
     }
     
     /* ----------------------------------------
     Home Fireworks Functions
     ---------------------------------------- */
-    function showFireworks() {
-        var fireworksListEntry = $('> li', fireworksList);
+    function showHomeFireworks() {
+        var homeParallaxListEntry = $('> li', homeParallaxList);
         
-        fireworksList.addClass('show');
+        homeParallaxList.addClass('show');
         
-        fireworksListEntry.each(function() {
+        homeParallaxListEntry.each(function() {
             var fireworksImage = $('img', this),
                 listEntryIndex = $(this).index();
             
@@ -651,9 +760,6 @@ $(document).ready(function() {
         if (activeSection.hasClass('has-underlay')) {
             var underlayUrl = activeSection.data('underlay-background');
             
-            cloudsList.addClass('show');
-            enableParallax(cloudsList, 'clouds');
-            
             if (onlyFadeUnderlay) {
                 underlay.addClass('only-fade');
                 onlyFadeUnderlay = false;
@@ -661,10 +767,18 @@ $(document).ready(function() {
             
             underlay.css('background-image', 'url(' + underlayUrl + ')')
                 .addClass('show');
+        } else underlay.removeClass('show');
+        
+        // If has parallax
+        if (activeSection.hasClass('has-parallax')) {
+            var parallaxList = activeSection.data('parallax-list'),
+                parallaxId = activeSection.data('parallax-id');
+            
+            parallaxList.addClass('show');
+            enableParallax(eval(parallaxList), parallaxId);
+            console.log(eval(parallaxList));
         } else {
-            underlay.removeClass('show');
-            cloudsList.removeClass('show');
-            disableParallax('clouds');
+            // To do: remove show class and disable parallax for all lists and ids
         }
         
         // If has background image
@@ -717,8 +831,8 @@ $(document).ready(function() {
             afterMove: processAfterMove
         });
         
-        enableParallax(fireworksList, 'fireworks');
-        showFireworks();
+        enableParallax(homeParallaxList, 'home-parallax');
+        showHomeFireworks();
     });
     
     /* ----------------------------------------

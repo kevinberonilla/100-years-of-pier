@@ -606,9 +606,10 @@ nav {
         background-blend-mode: multiply;
     }
 }
+// To do: refactor ids to reflect new ones
 #clouds {
     @extend #overlay;
-    z-index: 0;
+    z-index: -1;
     background-color: transparent;
     background-blend-mode: none;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {

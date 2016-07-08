@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
         <title>100 Years of Pier | Navy Pier</title>
-        <link rel="stylesheet" type="text/css" href="https://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">
+        <!--<link rel="stylesheet" type="text/css" href="https://cloud.webtype.com/css/e692c93e-09a6-4af5-841b-00d6dc258288.css">
         <link rel="stylesheet" type="text/css" href="http://cloud.typenetwork.com/projects/39/fontface.css/">
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">-->
         <link rel="stylesheet" type="text/css" href="css/onepage-scroll.min.css">
         <link rel="stylesheet" type="text/css" href="css/twentytwenty.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -97,16 +97,20 @@
         <div id="background-image"></div>
         <div id="vignette"></div>
         <div id="overlay"></div>
-        <ul id="clouds">
-            <li class="layer" data-depth="0.5"><img src="images/clouds-1.png" alt=""></li>
-            <li class="layer" data-depth="0.15"><img src="images/clouds-2.png" alt=""></li>
-        </ul>
-        <ul id="fireworks">
+        <ul id="home-parallax">
             <li class="layer" data-depth="1.0"><img src="images/fireworks-1.png" alt=""></li>
             <li class="layer" data-depth="0.125"><img src="images/fireworks-2.png" alt=""></li>
             <li class="layer" data-depth="0.5"><img src="images/fireworks-3.png" alt=""></li>
             <li class="layer" data-depth="0.75"><img src="images/fireworks-4.png" alt=""></li>
             <li class="layer" data-depth="0.25"><img src="images/fireworks-5.png" alt=""></li>
+        </ul>
+        <ul id="chapter-1-parallax">
+            <li class="layer" data-depth="0.5"><img src="images/chapter-1-layer-1.png" alt=""></li>
+            <li class="layer" data-depth="0.15"><img src="images/chapter-1-layer-2.png" alt=""></li>
+        </ul>
+        <ul id="chapter-2-parallax">
+            <li class="layer" data-depth="0.5"><img src="images/clouds-1.png" alt=""></li>
+            <li class="layer" data-depth="0.15"><img src="images/clouds-2.png" alt=""></li>
         </ul>
         <div class="content logo-container horizontal">
             <a href="#home"><img src="images/logo-horizontal.svg" alt=""></a>
@@ -130,7 +134,7 @@
             <!-- /Home -->
             <!-- Chapter 1 -->
                 <!-- Intro -->
-                <section id="chapter-1" class="has-intro has-overlay has-underlay" data-underlay-background="images/chapter-1-bg.jpg" data-music="audio/116_full_finding-hope_0141.mp3">
+                <section id="chapter-1" class="has-intro has-overlay has-underlay has-parallax" data-underlay-background="images/chapter-1-bg.png" data-parallax-list="chapter1ParallaxList" data-parallax-id="chapter-1-parallax" data-music="audio/116_full_finding-hope_0141.mp3">
                     <div class="intro">
                         <div class="container content full-parent-height">
                             <div class="vertical-align">
@@ -143,7 +147,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="has-underlay" data-underlay-background="images/chapter-1-bg.jpg"></section>
+                <section class="has-underlay has-parallax" data-underlay-background="images/chapter-1-bg.png" data-parallax-list="chapter1ParallaxList" data-parallax-id="chapter-1-parallax"></section>
                 <!-- /Intro -->
                 <!-- Timeline Entry -->
                 <section class="timeline-entry start">
@@ -304,7 +308,7 @@
             <!-- /Chapter 1 -->
             <!-- Chapter 2 -->
                 <!-- Intro -->
-                <section id="chapter-2" class="has-intro has-overlay has-underlay" data-underlay-background="images/chapter-1-bg.jpg" data-music="audio/12_full_benny-s-clarinet_0127.mp3">
+                <section id="chapter-2" class="has-intro has-overlay has-underlay has-parallax" data-underlay-background="images/chapter-2-bg.jpg" data-parallax-list="chapter2ParallaxList" data-parallax-id="chapter-2-parallax" data-music="audio/12_full_benny-s-clarinet_0127.mp3">
                     <div class="intro">
                         <div class="container content full-parent-height">
                             <div class="vertical-align">
@@ -317,7 +321,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="has-underlay" data-underlay-background="images/chapter-1-bg.jpg"></section>
+                <section class="has-underlay has-parallax" data-underlay-background="images/chapter-2-bg.jpg" data-parallax-list="chapter2ParallaxList" data-parallax-id="chapter-2-parallax"></section>
                 <!-- /Intro -->
                 <!-- Timeline Entry -->
                 <section class="timeline-entry start">

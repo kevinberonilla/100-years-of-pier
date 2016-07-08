@@ -657,7 +657,7 @@ nav {
     background-blend-mode: multiply; }
 
 #clouds, #fireworks {
-  z-index: 0;
+  z-index: -1;
   background-color: transparent;
   background-blend-mode: none; }
   @media only screen and (max-width: 768px) {
