@@ -103,18 +103,17 @@ $(document).ready(function() {
         }
     }
     
-    function muteChapterMusic(currectSection) {
+    function muteChapterMusic(currentSection) {
         var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
             closestIntroMusic = $('#music-for-' + closestIntroIndex);
         
         adjustVolume(closestIntroMusic[0], 0);
-        
+
         onePageScroll.one('before-move.np', function() {
-            console.log(activeSection);
             if (activeSection.hasClass('has-intro')) {
                 // To do: get intro of new section and check if the activeSection variable being passed in is correct.
             } else {
-                adjustVolume(closestIntroMusic[0], 0);
+                adjustVolume(closestIntroMusic[0], masterVolume);
             }
         });
     }
@@ -645,24 +644,15 @@ $(document).ready(function() {
         }
         
         // If has overlay
-        if (activeSection.hasClass('has-overlay')) {
-            overlay.addClass('show');
-            cloudsList.addClass('show');
-            
-            enableParallax(cloudsList, 'clouds');
-        } else {
-            overlay.removeClass('show');
-            
-            if (!activeSection.hasClass('has-underlay')) {
-                cloudsList.removeClass('show');
-                
-                disableParallax('clouds');
-            }
-        }
+        if (activeSection.hasClass('has-overlay')) overlay.addClass('show');
+        else overlay.removeClass('show');
         
         // If has underlay
         if (activeSection.hasClass('has-underlay')) {
             var underlayUrl = activeSection.data('underlay-background');
+            
+            cloudsList.addClass('show');
+            enableParallax(cloudsList, 'clouds');
             
             if (onlyFadeUnderlay) {
                 underlay.addClass('only-fade');
@@ -673,6 +663,8 @@ $(document).ready(function() {
                 .addClass('show');
         } else {
             underlay.removeClass('show');
+            cloudsList.removeClass('show');
+            disableParallax('clouds');
         }
         
         // If has background image
@@ -699,10 +691,10 @@ $(document).ready(function() {
         
         // Sound functions
         if (!isMobile) {
+            if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
+            
             playChapterMusic(activeSection);
             playSound(activeSection);
-            
-            if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
         }
     }
     
