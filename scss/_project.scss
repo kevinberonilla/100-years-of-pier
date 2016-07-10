@@ -606,8 +606,7 @@ nav {
         background-blend-mode: multiply;
     }
 }
-// To do: refactor ids to reflect new ones
-#clouds {
+%parallax {
     @extend #overlay;
     z-index: -1;
     background-color: transparent;
@@ -625,12 +624,19 @@ nav {
         top: -10vh !important;
         img {
             width: 120vw;
-            opacity: 0.25;
         }
     }
 }
-#fireworks {
-    @extend #clouds;
+#home-parallax,
+#chapter-1-parallax,
+#chapter-2-parallax,
+#chapter-3-parallax,
+#chapter-4-parallax,
+#chapter-5-parallax,
+#chapter-6-parallax {
+    @extend %parallax;
+}
+#home-parallax {
     > li {
         top: -35vh !important;
         @media only screen and (max-height: $tablet-landscape-height), only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -645,6 +651,13 @@ nav {
             &.show {
                 opacity: 1;
             }
+        }
+    }
+}
+#chapter-2-parallax {
+    > li {
+        img {
+            opacity: 0.25;
         }
     }
 }

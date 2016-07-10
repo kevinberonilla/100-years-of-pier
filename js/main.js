@@ -110,11 +110,7 @@ $(document).ready(function() {
         adjustVolume(closestIntroMusic[0], 0);
 
         onePageScroll.one('before-move.np', function() {
-            if (activeSection.hasClass('has-intro')) {
-                // To do: get intro of new section and check if the activeSection variable being passed in is correct.
-            } else {
-                adjustVolume(closestIntroMusic[0], masterVolume);
-            }
+            adjustVolume(closestIntroMusic[0], masterVolume);
         });
     }
     
@@ -562,6 +558,7 @@ $(document).ready(function() {
         chapter4ParallaxList = $('#chapter-4-parallax'),
         chapter5ParallaxList = $('#chapter-5-parallax'),
         chapter6ParallaxList = $('#chapter-6-parallax'),
+        allParallaxLists = $('#home-parallax, #chapter-1-parallax, #chapter-2-parallax, #chapter-3-parallax, #chapter-4-parallax, #chapter-5-parallax, #chapter-6-parallax'),
         homeParallaxObj,
         chapter1ParallaxObj,
         chapter2ParallaxObj,
@@ -592,53 +589,32 @@ $(document).ready(function() {
     function enableParallax(list, targetId) {
         switch(targetId) {
             case 'home-parallax':
-                if (typeof(homeParallaxObj) == 'undefined') {
-                    homeParallaxObj = list.parallax();
-                } else {
-                    homeParallaxObj.parallax('enable');
-                }
+                if (typeof(homeParallaxObj) == 'undefined') homeParallaxObj = list.parallax();
+                else homeParallaxObj.parallax('enable');
                 break;
             case 'chapter-1-parallax':
-                if (typeof(chapter1ParallaxObj) == 'undefined') {
-                    chapter1ParallaxObj = list.parallax();
-                } else {
-                    chapter1ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter1ParallaxObj) == 'undefined') chapter1ParallaxObj = list.parallax();
+                else chapter1ParallaxObj.parallax('enable');
                 break;
             case 'chapter-2-parallax':
-                if (typeof(chapter2ParallaxObj) == 'undefined') {
-                    chapter2ParallaxObj = list.parallax();
-                } else {
-                    chapter2ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter2ParallaxObj) == 'undefined') chapter2ParallaxObj = list.parallax();
+                else chapter2ParallaxObj.parallax('enable');
                 break;
             case 'chapter-3-parallax':
-                if (typeof(chapter3ParallaxObj) == 'undefined') {
-                    chapter3ParallaxObj = list.parallax();
-                } else {
-                    chapter3ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter3ParallaxObj) == 'undefined') chapter3ParallaxObj = list.parallax();
+                else chapter3ParallaxObj.parallax('enable');
                 break;
             case 'chapter-4-parallax':
-                if (typeof(chapter4ParallaxObj) == 'undefined') {
-                    chapter4ParallaxObj = list.parallax();
-                } else {
-                    chapter4ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter4ParallaxObj) == 'undefined') chapter4ParallaxObj = list.parallax();
+                else chapter4ParallaxObj.parallax('enable');
                 break;
             case 'chapter-5-parallax':
-                if (typeof(chapter5ParallaxObj) == 'undefined') {
-                    chapter5ParallaxObj = list.parallax();
-                } else {
-                    chapter5ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter5ParallaxObj) == 'undefined') chapter5ParallaxObj = list.parallax();
+                else chapter5ParallaxObj.parallax('enable');
                 break;
             case 'chapter-6-parallax':
-                if (typeof(chapter6ParallaxObj) == 'undefined') {
-                    chapter6ParallaxObj = list.parallax();
-                } else {
-                    chapter6ParallaxObj.parallax('enable');
-                }
+                if (typeof(chapter6ParallaxObj) == 'undefined') chapter6ParallaxObj = list.parallax();
+                else chapter6ParallaxObj.parallax('enable');
                 break;
         }
     }
@@ -659,49 +635,45 @@ $(document).ready(function() {
     }*/
     
     function disableParallax(targetId) {
-        switch(targetId) {
-            case 'home-parallax':
-                if (typeof(homeParallaxObj) != 'undefined') {
-                    homeParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-1-parallax':
-                if (typeof(chapter1ParallaxObj) != 'undefined') {
-                    chapter1ParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-2-parallax':
-                if (typeof(chapter2ParallaxObj) != 'undefined') {
-                    chapter2ParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-3-parallax':
-                if (typeof(chapter3ParallaxObj) != 'undefined') {
-                    chapter3ParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-4-parallax':
-                if (typeof(chapter4ParallaxObj) != 'undefined') {
-                    chapter4ParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-5-parallax':
-                if (typeof(chapter5ParallaxObj) != 'undefined') {
-                    chapter5ParallaxObj.parallax('disable');
-                }
-                break;
-            case 'chapter-6-parallax':
-                if (typeof(chapter6ParallaxObj) != 'undefined') {
-                    chapter6ParallaxObj.parallax('disable');
-                }
-                break;
+        if (targetId == 'undefined') {
+            homeParallaxObj.parallax('disable');
+            chapter1ParallaxObj.parallax('disable');
+            chapter2ParallaxObj.parallax('disable');
+            chapter3ParallaxObj.parallax('disable');
+            chapter4ParallaxObj.parallax('disable');
+            chapter5ParallaxObj.parallax('disable');
+            chapter6ParallaxObj.parallax('disable');
+        } else {
+            switch(targetId) {
+                case 'home-parallax':
+                    if (typeof(homeParallaxObj) != 'undefined') homeParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-1-parallax':
+                    if (typeof(chapter1ParallaxObj) != 'undefined') chapter1ParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-2-parallax':
+                    if (typeof(chapter2ParallaxObj) != 'undefined') chapter2ParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-3-parallax':
+                    if (typeof(chapter3ParallaxObj) != 'undefined') chapter3ParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-4-parallax':
+                    if (typeof(chapter4ParallaxObj) != 'undefined') chapter4ParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-5-parallax':
+                    if (typeof(chapter5ParallaxObj) != 'undefined') chapter5ParallaxObj.parallax('disable');
+                    break;
+                case 'chapter-6-parallax':
+                    if (typeof(chapter6ParallaxObj) != 'undefined') chapter6ParallaxObj.parallax('disable');
+                    break;
+            }
         }
     }
     
     /* ----------------------------------------
-    Home Fireworks Functions
+    Home Fireworks Reveal Functions
     ---------------------------------------- */
-    function showHomeFireworks() {
+    function revealHomeFireworks() {
         var homeParallaxListEntry = $('> li', homeParallaxList);
         
         homeParallaxList.addClass('show');
@@ -735,21 +707,15 @@ $(document).ready(function() {
         
         onePageScroll.trigger('before-move.np');
         
-        // If is home
+        // If home
         if (activeSection.is('#home')) {
             homeVideo.addClass('show');
             horizontalLogo.removeClass('show');
             subNav.removeClass('show');
-            fireworksList.addClass('show');
-            
-            enableParallax(fireworksList, 'fireworks');
         } else {
             homeVideo.removeClass('show');
             subNav.addClass('show');
             horizontalLogo.addClass('show');
-            fireworksList.removeClass('show');
-            
-            disableParallax('fireworks');
         }
         
         // If has overlay
@@ -771,14 +737,17 @@ $(document).ready(function() {
         
         // If has parallax
         if (activeSection.hasClass('has-parallax')) {
-            var parallaxList = activeSection.data('parallax-list'),
+            var parallaxList = $(eval(activeSection.data('parallax-list'))),
                 parallaxId = activeSection.data('parallax-id');
+            
+            allParallaxLists.removeClass('show');
+            disableParallax();
             
             parallaxList.addClass('show');
             enableParallax(eval(parallaxList), parallaxId);
-            console.log(eval(parallaxList));
         } else {
-            // To do: remove show class and disable parallax for all lists and ids
+            allParallaxLists.removeClass('show');
+            disableParallax();
         }
         
         // If has background image
@@ -832,7 +801,7 @@ $(document).ready(function() {
         });
         
         enableParallax(homeParallaxList, 'home-parallax');
-        showHomeFireworks();
+        revealHomeFireworks();
     });
     
     /* ----------------------------------------

@@ -602,7 +602,13 @@ nav {
   padding: 0 2px;
   height: auto; }
 
-#overlay, #underlay, #background-image, .quote-background-image, #clouds, #fireworks {
+#overlay, #underlay, #background-image, .quote-background-image, #home-parallax,
+#chapter-1-parallax,
+#chapter-2-parallax,
+#chapter-3-parallax,
+#chapter-4-parallax,
+#chapter-5-parallax,
+#chapter-6-parallax {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   opacity: 0;
@@ -612,16 +618,28 @@ nav {
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(50, 68, 101, 0.9);
+  background-color: rgba(50, 68, 101, 0.85);
   background-blend-mode: multiply;
   pointer-events: none;
   background-size: cover;
   background-position: center center;
   -webkit-filter: none;
   filter: none; }
-  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show#clouds, .show#fireworks {
+  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show#home-parallax,
+  .show#chapter-1-parallax,
+  .show#chapter-2-parallax,
+  .show#chapter-3-parallax,
+  .show#chapter-4-parallax,
+  .show#chapter-5-parallax,
+  .show#chapter-6-parallax {
     opacity: 1; }
-  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur#clouds, .blur#fireworks {
+  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur#home-parallax,
+  .blur#chapter-1-parallax,
+  .blur#chapter-2-parallax,
+  .blur#chapter-3-parallax,
+  .blur#chapter-4-parallax,
+  .blur#chapter-5-parallax,
+  .blur#chapter-6-parallax {
     -webkit-filter: blur(5px);
     filter: blur(5px); }
 
@@ -653,44 +671,76 @@ nav {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(50, 68, 101, 0.9);
+    background-color: rgba(50, 68, 101, 0.85);
     background-blend-mode: multiply; }
 
-#clouds, #fireworks {
+#home-parallax,
+#chapter-1-parallax,
+#chapter-2-parallax,
+#chapter-3-parallax,
+#chapter-4-parallax,
+#chapter-5-parallax,
+#chapter-6-parallax {
   z-index: -1;
   background-color: transparent;
   background-blend-mode: none; }
   @media only screen and (max-width: 768px) {
-    #clouds, #fireworks {
+    #home-parallax,
+    #chapter-1-parallax,
+    #chapter-2-parallax,
+    #chapter-3-parallax,
+    #chapter-4-parallax,
+    #chapter-5-parallax,
+    #chapter-6-parallax {
       -webkit-transform: scale(1.5) !important;
       -ms-transform: scale(1.5) !important;
       transform: scale(1.5) !important;
       top: 40vh; } }
   @media only screen and (max-height: 440px) {
-    #clouds, #fireworks {
+    #home-parallax,
+    #chapter-1-parallax,
+    #chapter-2-parallax,
+    #chapter-3-parallax,
+    #chapter-4-parallax,
+    #chapter-5-parallax,
+    #chapter-6-parallax {
       display: none; } }
-  #clouds > li, #fireworks > li {
+  #home-parallax > li,
+  #chapter-1-parallax > li,
+  #chapter-2-parallax > li,
+  #chapter-3-parallax > li,
+  #chapter-4-parallax > li,
+  #chapter-5-parallax > li,
+  #chapter-6-parallax > li {
     width: 120vw;
     left: -10vw !important;
     top: -10vh !important; }
-    #clouds > li img, #fireworks > li img {
-      width: 120vw;
-      opacity: 0.25; }
+    #home-parallax > li img,
+    #chapter-1-parallax > li img,
+    #chapter-2-parallax > li img,
+    #chapter-3-parallax > li img,
+    #chapter-4-parallax > li img,
+    #chapter-5-parallax > li img,
+    #chapter-6-parallax > li img {
+      width: 120vw; }
 
-#fireworks > li {
+#home-parallax > li {
   top: -35vh !important; }
   @media only screen and (max-height: 768px), only screen and (max-width: 768px) {
-    #fireworks > li {
+    #home-parallax > li {
       top: -20vh !important; } }
   @media only screen and (max-width: 768px) {
-    #fireworks > li {
+    #home-parallax > li {
       top: -15vh !important; } }
-  #fireworks > li img {
+  #home-parallax > li img {
     -webkit-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
     opacity: 0; }
-    #fireworks > li img.show {
+    #home-parallax > li img.show {
       opacity: 1; }
+
+#chapter-2-parallax > li img {
+  opacity: 0.25; }
 
 #vignette {
   position: relative;
@@ -718,7 +768,7 @@ nav {
       left: 0;
       pointer-events: all;
       z-index: 9999;
-      background-color: rgba(50, 68, 101, 0.9);
+      background-color: rgba(50, 68, 101, 0.85);
       text-align: center; }
       #screen-blocker img {
         width: 120px;
