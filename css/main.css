@@ -726,7 +726,10 @@ nav {
 
 #home-parallax > li {
   top: -35vh !important; }
-  @media only screen and (max-height: 768px), only screen and (max-width: 768px) {
+  @media only screen and (max-height: 768px) {
+    #home-parallax > li {
+      top: -70vh !important; } }
+  @media only screen and (max-height: 768px) and (max-width: 1024px) {
     #home-parallax > li {
       top: -20vh !important; } }
   @media only screen and (max-width: 768px) {

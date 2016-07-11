@@ -639,8 +639,11 @@ nav {
 #home-parallax {
     > li {
         top: -35vh !important;
-        @media only screen and (max-height: $tablet-landscape-height), only screen and (max-width: $tablet-portrait-breakpoint) {
-            top: -20vh !important;
+        @media only screen and (max-height: $tablet-landscape-height) {
+            top: -70vh !important;
+            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                top: -20vh !important;
+            }
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -15vh !important;
