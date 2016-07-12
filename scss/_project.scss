@@ -657,10 +657,77 @@ nav {
         }
     }
 }
+#chapter-1-parallax {
+    > li {
+        @media only screen and (max-height: $tablet-landscape-height) {
+            top: 8vh !important;
+        }
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            left: initial !important;
+            right: 15vw !important;
+        }
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            top: -10vh !important;
+        }
+    }
+}
 #chapter-2-parallax {
     > li {
         img {
             opacity: 0.25;
+        }
+    }
+}
+#chapter-3-parallax,
+#chapter-4-parallax {
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        transform: scale(1.5) !important;
+    }
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        transform: scale(2) !important;
+    }
+    > li {
+        top: initial !important;
+        bottom: 0 !important;
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            bottom: -10vh !important;
+        }
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            bottom: 0 !important;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            bottom: -10vh !important;
+        }
+    }
+}
+#chapter-5-parallax {
+    transform: scale(1.25) !important;
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        transform: scale(1.5) !important;
+    }
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        transform: scale(2.5) !important;
+    }
+    > li {
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            top: 0 !important;
+        }
+    }
+}
+#chapter-6-parallax {
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        transform: scale(1.25) !important;
+    }
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        transform: scale(1.5) !important;
+    }
+    > li {
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            bottom: 0 !important;
+        }
+        top: 0 !important;
+        @media only screen and (max-width: $tablet-portrait-breakpoint) {
+            top: -15vh !important;
         }
     }
 }
