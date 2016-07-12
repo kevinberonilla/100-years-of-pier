@@ -831,13 +831,23 @@ $(document).ready(function() {
             });
             
             timelineEntryEnd.each(function() {
-                var lastBodyHeight = $(this).find('.timeline-body').last().height(),
-                    contentHeight = $(this).find('.timeline-content').innerHeight(),
-                    parentHeight = ($(this).closest('section').height() > 560) ? $(this).closest('section').height() : 560,
-                    galleryHeight = $(this).find('.timeline-gallery').outerHeight(true),
-                    sliderHeight = $(this).find('.timeline-slider').outerHeight(true),
-                    position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset,
-                    timelineBorder = $('.timeline-border', this);
+                var self = $(this),
+                    contentHeight = self.find('.timeline-content').innerHeight(),
+                    parentHeight = (self.closest('section').height() > 560) ? self.closest('section').height() : 560,
+                    timelineBorder = $('.timeline-border', self),
+                    position;
+                
+                if (self.hasClass('end-lower')) {
+                    var endAchorHeight = self.find('.end-anchor').height();
+                    
+                    position = ((parentHeight - contentHeight) / 2) + (endAchorHeight / 2);
+                } else {
+                    var lastBodyHeight = self.find('.timeline-body').last().height(),
+                        galleryHeight = self.find('.timeline-gallery').outerHeight(true),
+                        sliderHeight = self.find('.timeline-slider').outerHeight(true);
+                    
+                    position = ((parentHeight - contentHeight) / 2) + lastBodyHeight + galleryHeight + sliderHeight - timelineMarkOffset;
+                }
                 
                 timelineBorder.css('bottom', position + 'px');
             });
