@@ -619,11 +619,11 @@ nav {
         display: none;
     }
     > li {
-        width: 120vw;
-        left: -10vw !important;
-        top: -10vh !important;
+        width: 100vw;
+        position: absolute !important;
+        top: initial !important;
         img {
-            width: 120vw;
+            width: auto;
         }
     }
 }
@@ -633,7 +633,8 @@ nav {
 #chapter-3-parallax,
 #chapter-4-parallax,
 #chapter-5-parallax,
-#chapter-6-parallax {
+#chapter-6-parallax,
+#end-parallax {
     @extend %parallax;
 }
 #home-parallax {
@@ -729,6 +730,18 @@ nav {
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -15vh !important;
         }
+    }
+}
+#end-parallax {
+    z-index: 1;
+    transform: translate3d(0px, 0px, 0px) translateX(25%) !important;
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        transform: scale(1) translate3d(0px, 0px, 0px) translateX(25%) !important;
+        top: 5vh;
+    }
+    > li {
+        width: 50vw;
+        top: 10vh !important;
     }
 }
 #vignette {
@@ -1351,7 +1364,7 @@ section {
         .content {
             text-align: center;
             .vertical-align {
-                padding: 0 75px 35vh;
+                padding: 10vh 75px 0;
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     padding-left: 60px;
                     padding-right: 60px;
@@ -1359,6 +1372,7 @@ section {
                 @media only screen and (max-width: $phone-breakpoint) {
                     padding-left: 32px;
                     padding-right: 32px;
+                    padding: 0 60px;
                 }
             }
             .italic-heading {
