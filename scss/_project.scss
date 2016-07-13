@@ -673,6 +673,9 @@ nav {
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -10vh !important;
         }
+        @media only screen and (max-width: $phone-breakpoint) {
+            top: 0 !important;
+        }
     }
 }
 #chapter-2-parallax {
@@ -688,7 +691,10 @@ nav {
         transform: scale(1.5) !important;
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(2) !important;
+        transform: scale(2.5) !important;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        transform: scale(3) !important;
     }
     > li {
         top: initial !important;
@@ -700,7 +706,7 @@ nav {
             bottom: 0 !important;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            bottom: -10vh !important;
+            bottom: 12vh !important;
         }
     }
 }
@@ -1451,9 +1457,6 @@ section {
                 font-size: 10px;
                 line-height: 16px;
                 padding: 0 15px;
-            }
-            @media only screen and (max-width: $small-phone-breakpoint) {
-                padding: 0 60px;
             }
         }
         .vertical-align {

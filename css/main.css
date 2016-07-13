@@ -766,6 +766,10 @@ nav {
   #chapter-1-parallax > li {
     top: -10vh !important; } }
 
+@media only screen and (max-width: 480px) {
+  #chapter-1-parallax > li {
+    top: 0 !important; } }
+
 #chapter-2-parallax > li img {
   opacity: 0.25; }
 
@@ -779,9 +783,16 @@ nav {
 @media only screen and (max-width: 768px) {
   #chapter-3-parallax,
   #chapter-4-parallax {
-    -webkit-transform: scale(2) !important;
-    -ms-transform: scale(2) !important;
-    transform: scale(2) !important; } }
+    -webkit-transform: scale(2.5) !important;
+    -ms-transform: scale(2.5) !important;
+    transform: scale(2.5) !important; } }
+
+@media only screen and (max-width: 480px) {
+  #chapter-3-parallax,
+  #chapter-4-parallax {
+    -webkit-transform: scale(3) !important;
+    -ms-transform: scale(3) !important;
+    transform: scale(3) !important; } }
 
 #chapter-3-parallax > li,
 #chapter-4-parallax > li {
@@ -798,7 +809,7 @@ nav {
   @media only screen and (max-width: 480px) {
     #chapter-3-parallax > li,
     #chapter-4-parallax > li {
-      bottom: -10vh !important; } }
+      bottom: 12vh !important; } }
 
 #chapter-5-parallax {
   -webkit-transform: scale(1.25) !important;
@@ -1527,9 +1538,6 @@ section {
           font-size: 10px;
           line-height: 16px;
           padding: 0 15px; } }
-      @media only screen and (max-width: 360px) {
-        section .intro p {
-          padding: 0 60px; } }
     @media only screen and (max-width: 480px) {
       section .intro .vertical-align {
         margin-top: -webkit-calc((100vw / 6) - 20px);

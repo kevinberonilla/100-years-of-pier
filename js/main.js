@@ -847,7 +847,7 @@ $(document).ready(function() {
                     timelineBorder = $('.timeline-border', self),
                     position;
                 
-                if (self.hasClass('end-lower') && matchMedia('only screen and (max-width: 768px)').matches) {
+                if (self.hasClass('end-lower') && matchMedia('only screen and (min-width: 769px)').matches) {
                     var endAchorHeight = self.find('.end-anchor').height();
                     
                     position = ((parentHeight - contentHeight) / 2) + (endAchorHeight / 2);
