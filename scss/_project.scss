@@ -14,7 +14,7 @@ h3 {
         line-height: 40px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 36px;
     }
 }
@@ -41,6 +41,9 @@ hr {
     margin: 20px 0 10px;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         margin: 14px 0 10px;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        margin: 8px 0 6px;
     }
 }
 .italic-heading {
@@ -320,8 +323,8 @@ footer {
         top: -80px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        width: 160px;
-        top: -65px;
+        width: 110px;
+        top: -40px;
     }
 }
 nav {
@@ -906,7 +909,7 @@ nav {
             font-size: 32px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            font-size: 24px;
+            font-size: 22px;
         }
     }
     &-details {
@@ -928,7 +931,7 @@ nav {
             padding-right: 80px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            padding-right: 32px;
+            padding-right: 15px;
         }
     }
     &-gallery {
@@ -943,6 +946,9 @@ nav {
             overflow: visible;
             overflow-x: scroll;
         }
+        @media only screen and (max-width: $phone-breakpoint) {
+            margin-top: 15px;
+        }
     }
     &-slider {
         @include shadow;
@@ -953,8 +959,9 @@ nav {
             margin-right: 70px;
         }
         @media only screen and (max-width: $phone-breakpoint) {
-            margin-left: 30px;
+            margin-top: 15px;
             margin-right: 30px;
+            margin-left: 30px;
         }
         img {
             max-width: 100%;
@@ -967,6 +974,10 @@ nav {
             width: 100%;
             @media only screen and (max-width: $phone-breakpoint) {
                 padding: 0 35px;
+                font-size: 10px;
+                line-height: 16px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
             }
         }
     }
@@ -1154,6 +1165,11 @@ nav {
     @media only screen and (max-width: $phone-breakpoint) {
         &.type-a,
         &.type-b {
+            height: 25vh;
+            max-height: 25vh;
+            > li {
+                height: 25vh;
+            }
             .caption {
                 font-size: 10px;
             }
@@ -1212,6 +1228,9 @@ nav {
             height: 20vh;
             position: relative;
             margin-bottom: -20px;
+        }
+        @media only screen and (max-width: $phone-breakpoint) {
+            display: none;
         }
     }
     &-image {
@@ -1378,7 +1397,7 @@ section {
             .italic-heading {
                 margin-top: 20px;
                 @media only screen and (max-width: $phone-breakpoint) {
-                    margin-top: 16px;
+                    margin-top: 30px;
                     font-size: 16px;
                 }
             }
@@ -1430,8 +1449,8 @@ section {
             }
             @media only screen and (max-width: $phone-breakpoint) {
                 font-size: 10px;
-                line-height: 18px;
-                padding: 0 46px;
+                line-height: 16px;
+                padding: 0 15px;
             }
             @media only screen and (max-width: $small-phone-breakpoint) {
                 padding: 0 60px;

@@ -2,6 +2,10 @@
     &-container {
         position: relative;
         max-height: 40vh;
+        @media only screen and (max-width: $phone-breakpoint) {
+            height: 25vh;
+            max-height: 25vh;
+        }
         img {
             position: absolute;
             top: 50%;

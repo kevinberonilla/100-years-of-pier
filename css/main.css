@@ -90,7 +90,7 @@ h3 {
       line-height: 40px; } }
   @media only screen and (max-width: 480px) {
     h3 {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 36px; } }
 
 h4, .scroll-message {
@@ -117,6 +117,9 @@ hr {
   @media only screen and (max-width: 768px) {
     hr {
       margin: 14px 0 10px; } }
+  @media only screen and (max-width: 480px) {
+    hr {
+      margin: 8px 0 6px; } }
 
 .italic-heading {
   font-size: 44px;
@@ -372,8 +375,8 @@ footer {
       top: -80px; } }
   @media only screen and (max-width: 480px) {
     .roman-numeral {
-      width: 160px;
-      top: -65px; } }
+      width: 110px;
+      top: -40px; } }
 
 nav {
   -webkit-transition: all 250ms ease;
@@ -1007,7 +1010,7 @@ nav {
       font-size: 32px; } }
   @media only screen and (max-width: 480px) {
     .timeline-date {
-      font-size: 24px; } }
+      font-size: 22px; } }
 
 .timeline-details {
   float: left;
@@ -1026,7 +1029,7 @@ nav {
       padding-right: 80px; } }
   @media only screen and (max-width: 480px) {
     .timeline-details {
-      padding-right: 32px; } }
+      padding-right: 15px; } }
 
 .timeline-gallery {
   -ms-overflow-style: none;
@@ -1043,6 +1046,9 @@ nav {
       padding: 0;
       overflow: visible;
       overflow-x: scroll; } }
+  @media only screen and (max-width: 480px) {
+    .timeline-gallery {
+      margin-top: 15px; } }
 
 .timeline-slider {
   box-shadow: 8px 12px 40px 0 rgba(0, 0, 0, 0.35);
@@ -1054,8 +1060,9 @@ nav {
       margin-right: 70px; } }
   @media only screen and (max-width: 480px) {
     .timeline-slider {
-      margin-left: 30px;
-      margin-right: 30px; } }
+      margin-top: 15px;
+      margin-right: 30px;
+      margin-left: 30px; } }
   .timeline-slider img {
     max-width: 100%;
     height: auto; }
@@ -1066,7 +1073,11 @@ nav {
     width: 100%; }
     @media only screen and (max-width: 480px) {
       .timeline-slider .caption {
-        padding: 0 35px; } }
+        padding: 0 35px;
+        font-size: 10px;
+        line-height: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px; } }
 
 .gallery {
   -ms-overflow-style: none;
@@ -1257,9 +1268,16 @@ nav {
         overflow: hidden;
         text-overflow: ellipsis; } }
   @media only screen and (max-width: 480px) {
-    .gallery.type-a .caption,
-    .gallery.type-b .caption {
-      font-size: 10px; } }
+    .gallery.type-a,
+    .gallery.type-b {
+      height: 25vh;
+      max-height: 25vh; }
+      .gallery.type-a > li,
+      .gallery.type-b > li {
+        height: 25vh; }
+      .gallery.type-a .caption,
+      .gallery.type-b .caption {
+        font-size: 10px; } }
 
 .quote-entry.end .quote-border {
   bottom: 50vh; }
@@ -1309,6 +1327,9 @@ nav {
       height: 20vh;
       position: relative;
       margin-bottom: -20px; } }
+  @media only screen and (max-width: 480px) {
+    .quote-image-container {
+      display: none; } }
 
 .quote-image {
   background-size: cover;
@@ -1457,7 +1478,7 @@ section {
         margin-top: 20px; }
         @media only screen and (max-width: 480px) {
           section#end .content .italic-heading {
-            margin-top: 16px;
+            margin-top: 30px;
             font-size: 16px; } }
     section#end .fireworks-image {
       margin-top: 5vh;
@@ -1504,8 +1525,8 @@ section {
       @media only screen and (max-width: 480px) {
         section .intro p {
           font-size: 10px;
-          line-height: 18px;
-          padding: 0 46px; } }
+          line-height: 16px;
+          padding: 0 15px; } }
       @media only screen and (max-width: 360px) {
         section .intro p {
           padding: 0 60px; } }
@@ -1580,6 +1601,10 @@ Overrides
 .twentytwenty-container {
   position: relative;
   max-height: 40vh; }
+  @media only screen and (max-width: 480px) {
+    .twentytwenty-container {
+      height: 25vh;
+      max-height: 25vh; } }
   .twentytwenty-container img {
     position: absolute;
     top: 50%;
