@@ -759,12 +759,12 @@ nav {
 
 @media only screen and (max-width: 1024px) {
   #chapter-1-parallax > li {
-    left: initial !important;
-    right: 15vw !important; } }
+    right: 15vw !important;
+    left: initial !important; } }
 
 @media only screen and (max-width: 768px) {
   #chapter-1-parallax > li {
-    top: -10vh !important; } }
+    top: -5vh !important; } }
 
 @media only screen and (max-width: 480px) {
   #chapter-1-parallax > li {
@@ -801,11 +801,11 @@ nav {
   @media only screen and (max-width: 1024px) {
     #chapter-3-parallax > li,
     #chapter-4-parallax > li {
-      bottom: -10vh !important; } }
+      bottom: 10vh !important; } }
   @media only screen and (max-width: 768px) {
     #chapter-3-parallax > li,
     #chapter-4-parallax > li {
-      bottom: 0 !important; } }
+      bottom: 15vh !important; } }
   @media only screen and (max-width: 480px) {
     #chapter-3-parallax > li,
     #chapter-4-parallax > li {
@@ -825,9 +825,17 @@ nav {
       -webkit-transform: scale(2.5) !important;
       -ms-transform: scale(2.5) !important;
       transform: scale(2.5) !important; } }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 480px) {
+    #chapter-5-parallax {
+      -webkit-transform: scale(3) !important;
+      -ms-transform: scale(3) !important;
+      transform: scale(3) !important; } }
+  @media only screen and (max-width: 1024px) {
     #chapter-5-parallax > li {
       top: 0 !important; } }
+  @media only screen and (max-width: 480px) {
+    #chapter-5-parallax > li {
+      top: 5vh !important; } }
 
 @media only screen and (max-width: 1024px) {
   #chapter-6-parallax {
@@ -841,6 +849,12 @@ nav {
     -ms-transform: scale(1.5) !important;
     transform: scale(1.5) !important; } }
 
+@media only screen and (max-width: 480px) {
+  #chapter-6-parallax {
+    -webkit-transform: scale(2.5) !important;
+    -ms-transform: scale(2.5) !important;
+    transform: scale(2.5) !important; } }
+
 #chapter-6-parallax > li {
   top: 0 !important; }
   @media only screen and (max-width: 1024px) {
@@ -848,7 +862,10 @@ nav {
       bottom: 0 !important; } }
   @media only screen and (max-width: 768px) {
     #chapter-6-parallax > li {
-      top: -15vh !important; } }
+      top: -20vh !important; } }
+  @media only screen and (max-width: 480px) {
+    #chapter-6-parallax > li {
+      top: -5vh !important; } }
 
 #end-parallax {
   z-index: 1;
