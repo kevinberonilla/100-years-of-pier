@@ -614,6 +614,7 @@ nav {
     z-index: -1;
     background-color: transparent;
     background-blend-mode: none;
+    transform: scale(1.1) translateZ(0) !important;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         transform: scale(1.5) translateZ(0) !important;
         top: 40vh;
@@ -715,7 +716,6 @@ nav {
     }
 }
 #chapter-5-parallax {
-    transform: scale(1.25) translateZ(0) !important;
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
         transform: scale(1.5) translateZ(0) !important;
     }
@@ -726,6 +726,7 @@ nav {
         transform: scale(3) translateZ(0) !important;
     }
     > li {
+        top: 5vh !important;
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             top: 0 !important;
         }
