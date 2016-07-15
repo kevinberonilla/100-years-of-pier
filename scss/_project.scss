@@ -205,7 +205,7 @@ body {
     min-width: 100vh;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
 }
 *::-webkit-media-controls-panel {
     display: none!important;
@@ -399,7 +399,7 @@ nav {
         width: 80px;
         top: calc(50% + 3px);
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%) translateZ(0);
         @media only screen and (max-width: $phone-breakpoint) {
             width: 60px;
         }
@@ -411,7 +411,7 @@ nav {
     position: fixed;
     right: -1px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateZ(0);
     z-index: 9999;
     @media only screen and (max-height: $min-screen-height) {
         display: none;
@@ -421,7 +421,6 @@ nav {
         top: -1px;
         left: 0;
         width: 100%;
-        transform: none;
         display: table;
     }
     @media only screen and (max-height: $min-screen-height) {
@@ -615,7 +614,7 @@ nav {
     background-color: transparent;
     background-blend-mode: none;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1.5) !important;
+        transform: scale(1.5) translateZ(0)!important;
         top: 40vh;
     }
     @media only screen and (max-height: $min-screen-height) {
@@ -689,13 +688,13 @@ nav {
 #chapter-3-parallax,
 #chapter-4-parallax {
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.5) !important;
+        transform: scale(1.5) translateZ(0) !important;
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(2.5) !important;
+        transform: scale(2.5) translateZ(0) !important;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(3) !important;
+        transform: scale(3) translateZ(0) !important;
     }
     > li {
         top: initial !important;
@@ -712,15 +711,15 @@ nav {
     }
 }
 #chapter-5-parallax {
-    transform: scale(1.25) !important;
+    transform: scale(1.25) translateZ(0) !important;
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.5) !important;
+        transform: scale(1.5) translateZ(0) !important;
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(2.5) !important;
+        transform: scale(2.5) translateZ(0) !important;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(3) !important;
+        transform: scale(3) translateZ(0) !important;
     }
     > li {
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
@@ -733,13 +732,13 @@ nav {
 }
 #chapter-6-parallax {
     @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.25) !important;
+        transform: scale(1.25) translateZ(0) !important;
     }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1.5) !important;
+        transform: scale(1.5) translateZ(0) !important;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(2.5) !important;
+        transform: scale(2.5) translateZ(0) !important;
     }
     > li {
         top: 0 !important;
@@ -756,9 +755,9 @@ nav {
 }
 #end-parallax {
     z-index: 1;
-    transform: translate3d(0px, 0px, 0px) translateX(25%) !important;
+    transform: translateX(25%) translateZ(0) !important;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1) translate3d(0px, 0px, 0px) translateX(25%) !important;
+        transform: scale(1) translateX(25%) translateZ(0) !important;
         top: 5vh;
     }
     > li {
@@ -827,7 +826,7 @@ nav {
         opacity: 0;
         pointer-events: none;
         top: 16px;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateZ(0);
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             display: none;
         }
@@ -882,7 +881,7 @@ nav {
         position: relative;
         padding-left: $timeline-border-offset * 1.5;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            padding-left: $timeline-border-offset / 1.2;
+            padding-left: $timeline-border-offset;
         }
         + .timeline-body {
             margin-top: $timeline-border-offset;
@@ -1035,7 +1034,7 @@ nav {
                     opacity: 0.25;
                 }
                 .image {
-                    transform: scale(1.05);
+                    transform: scale(1.05) translateZ(0);
                 }
             }
         }
@@ -1049,7 +1048,6 @@ nav {
             bottom: 0;
             left: 0;
             z-index: 0;
-            transform: none;
         }
     }
     &.type-a {
@@ -1064,7 +1062,7 @@ nav {
             max-height: 40vh;
             @media only screen and (min-width: $tablet-portrait-breakpoint + 1) {
                 &.animate-in {
-                    transform: none;
+                    transform: translateZ(0);
                     &.vertical {
                         margin-top: 20px;
                         &.reveal {
@@ -1131,7 +1129,7 @@ nav {
             -webkit-overflow-scrolling: touch;
             white-space: nowrap;
             pointer-events: all;
-            padding: 0 65px;
+            padding: 0 80px;
             height: calc(30vh + 30px);
             > li {
                 display: inline-block !important;
@@ -1142,7 +1140,7 @@ nav {
                 margin-right: 20px;
                 padding: 0;
                 float: none;
-                transform: none !important;
+                transform: translateZ(0) !important;
                 transform-origin: center !important;
                 overflow: visible;
                 max-height: none;
@@ -1162,7 +1160,7 @@ nav {
                     overflow: visible;
                     &:hover {
                         .image {
-                            transform: none;
+                            transform: translateZ(0);
                         }
                     }
                 }
@@ -1235,7 +1233,7 @@ nav {
         @include shadow(-4px, 12px);
         width: 30vh;
         height: 30vh;
-        transform: rotate(-45deg) translateY(-70%);
+        transform: rotate(-45deg) translateY(-70%) translateZ(0);
         display: block;
         overflow: hidden;
         position: absolute;
@@ -1255,7 +1253,7 @@ nav {
     &-image {
         background-size: cover;
         background-position: center center;
-        transform: rotate(45deg);
+        transform: rotate(45deg) translateZ(0);
         position: absolute;
         display: block;
         width: 50vh;
@@ -1521,10 +1519,10 @@ section {
     @include animated;
     opacity: 0;
     &.vertical {
-        transform: translateY(20px);
+        transform: translateY(20px) translateZ(0);
     }
     &.horizontal {
-        transform: translateX(-20px);
+        transform: translateX(-20px) translateZ(0);
     }
     &.blur {
         @include animated(all, 1000ms);
@@ -1532,7 +1530,7 @@ section {
     }
     &.reveal {
         opacity: 1;
-        transform: none;
         filter: none;
+        transform: translateZ(0);
     }
 }
