@@ -135,11 +135,13 @@ body {
     &.nav-open {
         .logo-container.horizontal {
             @include animated;
+            transform: translateX(-50%) translateZ(0);
             opacity: 0;
         }
         .content,
         #sub-nav.show {
             @include animated;
+            transform: translateY(-50%) translateZ(0);
             opacity: 0;
         }
         #sub-nav.show {
@@ -158,10 +160,9 @@ body {
             }
         }
         header,
-        footer {
-            opacity: 0;
-        }
-        #open-nav-button {
+        footer,
+        #open-nav-button,
+        .scroll-message.show {
             opacity: 0;
         }
         #close-nav-button {
@@ -614,7 +615,7 @@ nav {
     background-color: transparent;
     background-blend-mode: none;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1.5) translateZ(0)!important;
+        transform: scale(1.5) translateZ(0) !important;
         top: 40vh;
     }
     @media only screen and (max-height: $min-screen-height) {
@@ -661,6 +662,9 @@ nav {
     }
 }
 #chapter-1-parallax {
+    @media only screen and (max-width: $phone-breakpoint) {
+        transform: scale(1.75) translateZ(0) !important;
+    }
     > li {
         top: 5vh !important;
         @media only screen and (max-height: $tablet-landscape-height) {

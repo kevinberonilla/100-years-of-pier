@@ -145,14 +145,12 @@ $(document).ready(function() {
         audioIcon.click(function() {
             if ($(this).hasClass('fa-volume-up')) {
                 $(this).removeClass('fa-volume-up')
-                    .addClass('fa-volume-off')
-                    .addClass('adjust-p-r-6');
+                    .addClass('fa-volume-off adjust-p-r-6');
                 
                 masterVolume = 0;
             } else {
-                $(this).removeClass('fa-volume-off')
-                    .addClass('fa-volume-up')
-                    .removeClass('adjust-p-r-6');
+                $(this).removeClass('fa-volume-off adjust-p-r-6')
+                    .addClass('fa-volume-up');
                 
                 masterVolume = 1;
             }
@@ -357,7 +355,7 @@ $(document).ready(function() {
         linkCount = navEntry.length,
         openNavButton = $('#open-nav-button'),
         closeNavButton = $('#close-nav-button'),
-        blurElements = $('#underlay, #clouds, #fireworks, .video-background, .video-substitute'),
+        blurElements = $('#underlay, .video-background, .video-substitute, .parallax'),
         main = $('.main');
     
     function calculateNavEntryHeight() {        
@@ -370,8 +368,7 @@ $(document).ready(function() {
     }
     
     function openNav() {
-        body.addClass('nav-open')
-            .addClass('disable-scroll');
+        body.addClass('nav-open disable-scroll');
         
         navEntry.each(function() {
             var self = this,
@@ -388,8 +385,7 @@ $(document).ready(function() {
     }
     
     function closeNav() {
-        body.removeClass('nav-open')
-            .removeClass('disable-scroll');
+        body.removeClass('nav-open disable-scroll');
         
         navEntry.removeClass('show');
         
@@ -796,6 +792,10 @@ $(document).ready(function() {
             playChapterMusic(activeSection);
             playSound(activeSection);
         }
+        
+        // Surgical functions
+        if (underlayUrl == 'images/chapter-6-bg.jpg' && matchMedia('only screen and (max-width: 480px)').matches) underlay.css('background-position', 'right 75% center');
+        else underlay.css('background-position', '');
     }
     
     function processAfterMove() {
