@@ -280,9 +280,9 @@
             return;
         }
 
-        if (deltaOfInterest >= 3) {
+        if (deltaOfInterest >= 1) {
           el.moveUp()
-        } else if (deltaOfInterest <= -3) {
+        } else if (deltaOfInterest <= -1) {
           el.moveDown()
         }
         lastAnimation = timeNow;

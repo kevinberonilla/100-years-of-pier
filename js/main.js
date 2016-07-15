@@ -266,30 +266,37 @@ $(document).ready(function() {
         
         function processLoadedMedia() {
             if (!body.hasClass('loaded')) {
-                loaded ++;
                 var percentage = parseInt((loaded / total) * 100);
                 
-                loadingBar.css('width', percentage + '%');
-                loadingPercentage.text(percentage);
+                loaded ++;
+                
+                if (percentage <= 100) {
+                    loadingBar.css('width', percentage + '%');
+                    loadingPercentage.text(percentage);
+                }
                 
                 if (loaded >= total) {
                     body.trigger('load.np');
+                    loadingBar.css('width', '100%'); // Safety first
+                    loadingPercentage.text('100');
                 }
             }
         }
         
         image.each(function() {
-            $(this).load(processLoadedMedia);
+            if (this.complete) processLoadedMedia();
+            else $(this).load(processLoadedMedia);
         });
         
         audioVideo.each(function() {
-            var element = $(this)[0];
+            var element = $(this)[0],
+                ieTimeout = setTimeout(function() { processLoadedMedia(); }, 5000); // IE and Edge can't read the readyState property
             
             if (element.readyState > 3) {
+                clearTimeout(ieTimeout);
                 processLoadedMedia();
-            } else {
-                element.oncanplay = processLoadedMedia;
             }
+            else element.addEventListener('canplay', processLoadedMedia);
         });
         
         page.one('load.np', function() {
@@ -977,14 +984,16 @@ $(document).ready(function() {
             touchDown = false;
         
         gallery.on('touchstart', function(e) {
-            e.preventDefault();
-            
-            touchXPos = e.originalEvent.touches[0].screenX;
-            touchDown = true;
+            if (matchMedia('only screen and (max-width: 768px)').matches) {
+                e.preventDefault();
+                
+                touchXPos = e.originalEvent.touches[0].screenX;
+                touchDown = true;
+            }
         });
         
         gallery.on('touchmove', function(e) {
-            if (touchDown === true) {
+            if (matchMedia('only screen and (max-width: 768px)').matches && touchDown === true) {
                 $(this).stop(true, true)
                     .animate({
                         'scrollLeft': parseInt($(this).scrollLeft() + ((touchXPos - e.originalEvent.touches[0].screenX) * 1.5))

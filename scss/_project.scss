@@ -663,6 +663,7 @@ nav {
 }
 #chapter-1-parallax {
     > li {
+        top: 5vh !important;
         @media only screen and (max-height: $tablet-landscape-height) {
             top: 8vh !important;
         }

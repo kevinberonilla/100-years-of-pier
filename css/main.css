@@ -753,22 +753,21 @@ nav {
     #home-parallax > li img.show {
       opacity: 1; }
 
-@media only screen and (max-height: 768px) {
-  #chapter-1-parallax > li {
-    top: 8vh !important; } }
-
-@media only screen and (max-width: 1024px) {
-  #chapter-1-parallax > li {
-    right: 15vw !important;
-    left: initial !important; } }
-
-@media only screen and (max-width: 768px) {
-  #chapter-1-parallax > li {
-    top: -5vh !important; } }
-
-@media only screen and (max-width: 480px) {
-  #chapter-1-parallax > li {
-    top: 0 !important; } }
+#chapter-1-parallax > li {
+  top: 5vh !important; }
+  @media only screen and (max-height: 768px) {
+    #chapter-1-parallax > li {
+      top: 8vh !important; } }
+  @media only screen and (max-width: 1024px) {
+    #chapter-1-parallax > li {
+      right: 15vw !important;
+      left: initial !important; } }
+  @media only screen and (max-width: 768px) {
+    #chapter-1-parallax > li {
+      top: -5vh !important; } }
+  @media only screen and (max-width: 480px) {
+    #chapter-1-parallax > li {
+      top: 0 !important; } }
 
 #chapter-2-parallax > li img {
   opacity: 0.25; }
