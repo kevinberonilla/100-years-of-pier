@@ -116,7 +116,7 @@ body {
         #home {
             #title {
                 width: 640px;
-                @media only screen and (max-height: $tablet-landscape-height) {
+                @media only screen and (max-height: $tablet-portrait-breakpoint) {
                     width: 400px;
                 }
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
@@ -614,20 +614,45 @@ nav {
     z-index: -1;
     background-color: transparent;
     background-blend-mode: none;
-    transform: scale(1.1) translateZ(0) !important;
+    /*transform: scale(1.1) translateZ(0) !important;
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         transform: scale(1.5) translateZ(0) !important;
         top: 40vh;
-    }
+    }*/
     @media only screen and (max-height: $min-screen-height) {
         display: none;
     }
     > li {
         width: 100vw;
         position: absolute !important;
-        top: initial !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        text-align: center;
         img {
-            width: auto;
+            display: inline-block;
+            max-width: none;
+            position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%) translateZ(0);
+        }
+    }
+    &.clamp-vertical {
+        > li {
+            img {
+                width: auto;
+                min-height: 100vh;
+            }
+        }
+    }
+    &.clamp-horizontal {
+        > li {
+            img {
+                min-width: 100vw;
+                height: auto;
+            }
         }
     }
 }
@@ -641,14 +666,24 @@ nav {
 #end-parallax {
     @extend %parallax;
 }
-#home-parallax {
+#chapter-2-parallax {
+    > li {
+        img {
+            opacity: 0.35;
+        }
+    }
+}
+/*#home-parallax {
     > li {
         top: -35vh !important;
-        @media only screen and (max-height: $tablet-landscape-height) {
+        @media only screen and (max-height: $tablet-portrait-breakpoint) {
             top: -70vh !important;
             @media only screen and (max-width: $tablet-landscape-breakpoint) {
                 top: -20vh !important;
             }
+        }
+        @media only screen and (max-width: $tablet-landscape-breakpoint) and (min-height: $tablet-portrait-breakpoint) {
+            top: 10vh !important;
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -15vh !important;
@@ -668,12 +703,15 @@ nav {
     }
     > li {
         top: 5vh !important;
-        @media only screen and (max-height: $tablet-landscape-height) {
+        @media only screen and (max-height: $tablet-portrait-breakpoint) {
             top: 8vh !important;
         }
         @media only screen and (max-width: $tablet-landscape-breakpoint) {
             right: 15vw !important;
             left: initial !important;
+            @media only screen and (min-height: $tablet-portrait-breakpoint) {
+                top: 30vh !important;
+            }
         }
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: -5vh !important;
@@ -757,7 +795,7 @@ nav {
             top: -5vh !important;
         }
     }
-}
+}*/
 #end-parallax {
     z-index: 1;
     transform: translateX(25%) translateZ(0) !important;
@@ -819,7 +857,7 @@ nav {
             width: 180px;
         }
         @media only screen and (max-width: $phone-breakpoint),
-        only screen and (max-height: $tablet-landscape-height) {
+        only screen and (max-height: $tablet-portrait-breakpoint) {
             width: 140px;
         }
         @media only screen and (max-width: $small-phone-breakpoint) {
@@ -1364,7 +1402,7 @@ section {
                 line-height: 46px;
             }
             @media only screen and (max-width: $phone-breakpoint),
-            only screen and (max-height: $tablet-landscape-height) {
+            only screen and (max-height: $tablet-portrait-breakpoint) {
                 font-size: 28px;
                 line-height: 36px;
             }
@@ -1476,6 +1514,10 @@ section {
             }
         }
         .vertical-align {
+            margin-top: 30px;
+            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                margin-top: 20px;
+            }
             @media only screen and (max-width: $phone-breakpoint) {
                 margin-top: calc((100vw / #{$chapter-count}) - 20px);
             }
@@ -1495,7 +1537,7 @@ section {
     width: 100%;
     opacity: 0;
     margin-bottom: 60px;
-    @media only screen and (max-height: $tablet-landscape-height) {
+    @media only screen and (max-height: $tablet-portrait-breakpoint) {
         font-size: 10px;
     }
     @media only screen and (max-height: $tablet-portrait-breakpoint) {

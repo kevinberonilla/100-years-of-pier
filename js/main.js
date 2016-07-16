@@ -208,7 +208,7 @@ $(document).ready(function() {
         videoBackground.each(function() {
             var self = $(this),
                 source = self.data('src'),
-                formats = (typeof(self.data('formats')) != 'undefined') ? self.data('formats').replace(' ', '').split(',') : '';
+                formats = (typeof(self.data('formats')) !== 'undefined') ? self.data('formats').replace(' ', '').split(',') : '';
             
             if (source && formats.length > 0) {
                 for (var i = 0; i < formats.length; i++) {
@@ -580,75 +580,75 @@ $(document).ready(function() {
     function enableParallax(list, targetId) {
         switch(targetId) {
             case 'home-parallax':
-                if (typeof(homeParallaxObj) == 'undefined') homeParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(homeParallaxObj) === 'undefined') homeParallaxObj = list.parallax(parallaxArgs);
                 else homeParallaxObj.parallax('enable');
                 break;
             case 'chapter-1-parallax':
-                if (typeof(chapter1ParallaxObj) == 'undefined') chapter1ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter1ParallaxObj) === 'undefined') chapter1ParallaxObj = list.parallax(parallaxArgs);
                 else chapter1ParallaxObj.parallax('enable');
                 break;
             case 'chapter-2-parallax':
-                if (typeof(chapter2ParallaxObj) == 'undefined') chapter2ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter2ParallaxObj) === 'undefined') chapter2ParallaxObj = list.parallax(parallaxArgs);
                 else chapter2ParallaxObj.parallax('enable');
                 break;
             case 'chapter-3-parallax':
-                if (typeof(chapter3ParallaxObj) == 'undefined') chapter3ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter3ParallaxObj) === 'undefined') chapter3ParallaxObj = list.parallax(parallaxArgs);
                 else chapter3ParallaxObj.parallax('enable');
                 break;
             case 'chapter-4-parallax':
-                if (typeof(chapter4ParallaxObj) == 'undefined') chapter4ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter4ParallaxObj) === 'undefined') chapter4ParallaxObj = list.parallax(parallaxArgs);
                 else chapter4ParallaxObj.parallax('enable');
                 break;
             case 'chapter-5-parallax':
-                if (typeof(chapter5ParallaxObj) == 'undefined') chapter5ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter5ParallaxObj) === 'undefined') chapter5ParallaxObj = list.parallax(parallaxArgs);
                 else chapter5ParallaxObj.parallax('enable');
                 break;
             case 'chapter-6-parallax':
-                if (typeof(chapter6ParallaxObj) == 'undefined') chapter6ParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(chapter6ParallaxObj) === 'undefined') chapter6ParallaxObj = list.parallax(parallaxArgs);
                 else chapter6ParallaxObj.parallax('enable');
                 break;
             case 'end-parallax':
-                if (typeof(endParallaxObj) == 'undefined') endParallaxObj = list.parallax(parallaxArgs);
+                if (typeof(endParallaxObj) === 'undefined') endParallaxObj = list.parallax(parallaxArgs);
                 else endParallaxObj.parallax('enable');
                 break;
         }
     }
     
     function disableParallax(targetId) {
-        if (targetId == 'undefined') {
-            homeParallaxObj.parallax('disable');
-            chapter1ParallaxObj.parallax('disable');
-            chapter2ParallaxObj.parallax('disable');
-            chapter3ParallaxObj.parallax('disable');
-            chapter4ParallaxObj.parallax('disable');
-            chapter5ParallaxObj.parallax('disable');
-            chapter6ParallaxObj.parallax('disable');
-            endParallaxObj.parallax('disable');
+        if (typeof(targetId) === 'undefined') {
+            if (typeof(homeParallaxObj) !== 'undefined') homeParallaxObj.parallax('disable');
+            if (typeof(chapter1ParallaxObj) !== 'undefined') chapter1ParallaxObj.parallax('disable');
+            if (typeof(chapter2ParallaxObj) !== 'undefined') chapter2ParallaxObj.parallax('disable');
+            if (typeof(chapter3ParallaxObj) !== 'undefined') chapter3ParallaxObj.parallax('disable');
+            if (typeof(chapter4ParallaxObj) !== 'undefined') chapter4ParallaxObj.parallax('disable');
+            if (typeof(chapter5ParallaxObj) !== 'undefined') chapter5ParallaxObj.parallax('disable');
+            if (typeof(chapter6ParallaxObj) !== 'undefined') chapter6ParallaxObj.parallax('disable');
+            if (typeof(endParallaxObj) !== 'undefined') endParallaxObj.parallax('disable');
         } else {
             switch(targetId) {
                 case 'home-parallax':
-                    if (typeof(homeParallaxObj) != 'undefined') homeParallaxObj.parallax('disable');
+                    if (typeof(homeParallaxObj) !== 'undefined') homeParallaxObj.parallax('disable');
                     break;
                 case 'chapter-1-parallax':
-                    if (typeof(chapter1ParallaxObj) != 'undefined') chapter1ParallaxObj.parallax('disable');
+                    if (typeof(chapter1ParallaxObj) !== 'undefined') chapter1ParallaxObj.parallax('disable');
                     break;
                 case 'chapter-2-parallax':
-                    if (typeof(chapter2ParallaxObj) != 'undefined') chapter2ParallaxObj.parallax('disable');
+                    if (typeof(chapter2ParallaxObj) !== 'undefined') chapter2ParallaxObj.parallax('disable');
                     break;
                 case 'chapter-3-parallax':
-                    if (typeof(chapter3ParallaxObj) != 'undefined') chapter3ParallaxObj.parallax('disable');
+                    if (typeof(chapter3ParallaxObj) !== 'undefined') chapter3ParallaxObj.parallax('disable');
                     break;
                 case 'chapter-4-parallax':
-                    if (typeof(chapter4ParallaxObj) != 'undefined') chapter4ParallaxObj.parallax('disable');
+                    if (typeof(chapter4ParallaxObj) !== 'undefined') chapter4ParallaxObj.parallax('disable');
                     break;
                 case 'chapter-5-parallax':
-                    if (typeof(chapter5ParallaxObj) != 'undefined') chapter5ParallaxObj.parallax('disable');
+                    if (typeof(chapter5ParallaxObj) !== 'undefined') chapter5ParallaxObj.parallax('disable');
                     break;
                 case 'chapter-6-parallax':
-                    if (typeof(chapter6ParallaxObj) != 'undefined') chapter6ParallaxObj.parallax('disable');
+                    if (typeof(chapter6ParallaxObj) !== 'undefined') chapter6ParallaxObj.parallax('disable');
                     break;
                 case 'end-parallax':
-                    if (typeof(endParallaxObj) != 'undefined') endParallaxObj.parallax('disable');
+                    if (typeof(endParallaxObj) !== 'undefined') endParallaxObj.parallax('disable');
                     break;
             }
         }
