@@ -727,6 +727,9 @@ nav {
     width: 100vw;
     height: 100vh; }
   @media only screen and (max-width: 768px) {
+    .parallax#home-parallax .parallax-image {
+      background-position: 80% center; } }
+  @media only screen and (max-width: 768px) {
     .parallax#chapter-1-parallax .parallax-image {
       background-position: 80% center; } }
   .parallax#chapter-2-parallax .parallax-image {
@@ -760,6 +763,12 @@ nav {
     bottom: 0;
     content: '';
     display: block; }
+    @media only screen and (max-height: 1024px) {
+      #vignette:after {
+        box-shadow: inset 0 0 35vh rgba(0, 0, 0, 0.9); } }
+    @media only screen and (max-width: 1024px) {
+      #vignette:after {
+        box-shadow: inset 0 0 35vw rgba(0, 0, 0, 0.9); } }
 
 #screen-blocker {
   display: none; }
