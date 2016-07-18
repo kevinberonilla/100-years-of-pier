@@ -1,7 +1,7 @@
 var page = $('html, body'),
     body = $('body'),
     isMobile = false,
-    isDev = true, // Set this to false before pushing to production
+    isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
