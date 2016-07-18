@@ -549,11 +549,6 @@ $(document).ready(function() {
     /* ----------------------------------------
     Parallax Functions
     ---------------------------------------- */
-    /*var cloudsList = $('#clouds'),
-        fireworksList = $('#fireworks'),
-        cloudsParallax,
-        fireworksParallax;*/
-    
     var parallaxArgs = {
             clipRelativeInput: true,
             limitX: 150,
@@ -754,8 +749,6 @@ $(document).ready(function() {
         // If is end of section
         if (activeSection.hasClass('end')) onlyFadeUnderlay = true;
         
-        setSubNavPosition(activeSection);
-        
         // Sound functions
         if (!isMobile) {
             if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
@@ -764,9 +757,7 @@ $(document).ready(function() {
             playSound(activeSection);
         }
         
-        // Surgical functions
-        if (underlayUrl == 'images/chapter-6-bg.jpg' && matchMedia('only screen and (max-width: 360px)').matches) underlay.css('background-position', 'right 25% center');
-        else underlay.css('background-position', '');
+        setSubNavPosition(activeSection);
     }
     
     function processAfterMove() {
