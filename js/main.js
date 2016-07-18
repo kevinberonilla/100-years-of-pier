@@ -556,8 +556,8 @@ $(document).ready(function() {
     
     var parallaxArgs = {
             clipRelativeInput: true,
-            limitX: 100,
-            limitY: 50
+            limitX: 150,
+            limitY: 100
         },
         homeParallaxList = $('#home-parallax'),
         chapter1ParallaxList = $('#chapter-1-parallax'),

@@ -638,14 +638,7 @@ nav {
   padding: 0 2px;
   height: auto; }
 
-#overlay, #underlay, #background-image, .quote-background-image, #home-parallax,
-#chapter-1-parallax,
-#chapter-2-parallax,
-#chapter-3-parallax,
-#chapter-4-parallax,
-#chapter-5-parallax,
-#chapter-6-parallax,
-#end-parallax {
+#overlay, #underlay, #background-image, .quote-background-image, .parallax {
   -webkit-transition: all 1000ms ease;
   transition: all 1000ms ease;
   -webkit-transform: translateZ(0);
@@ -664,23 +657,9 @@ nav {
   background-position: center center;
   -webkit-filter: none;
   filter: none; }
-  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show#home-parallax,
-  .show#chapter-1-parallax,
-  .show#chapter-2-parallax,
-  .show#chapter-3-parallax,
-  .show#chapter-4-parallax,
-  .show#chapter-5-parallax,
-  .show#chapter-6-parallax,
-  .show#end-parallax {
+  #overlay.show, .show#underlay, .show#background-image, .show.quote-background-image, .show.parallax {
     opacity: 1; }
-  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur#home-parallax,
-  .blur#chapter-1-parallax,
-  .blur#chapter-2-parallax,
-  .blur#chapter-3-parallax,
-  .blur#chapter-4-parallax,
-  .blur#chapter-5-parallax,
-  .blur#chapter-6-parallax,
-  .blur#end-parallax {
+  #overlay.blur, .blur#underlay, .blur#background-image, .blur.quote-background-image, .blur.parallax {
     -webkit-filter: blur(5px);
     filter: blur(5px); }
 
@@ -717,221 +696,39 @@ nav {
     background-color: rgba(50, 68, 101, 0.85);
     background-blend-mode: multiply; }
 
-#home-parallax,
-#chapter-1-parallax,
-#chapter-2-parallax,
-#chapter-3-parallax,
-#chapter-4-parallax,
-#chapter-5-parallax,
-#chapter-6-parallax,
-#end-parallax {
+.parallax {
   z-index: -1;
   background-color: transparent;
-  background-blend-mode: none;
-  /*transform: scale(1.1) translateZ(0) !important;
-    @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1.5) translateZ(0) !important;
-        top: 40vh;
-    }*/ }
+  background-blend-mode: none; }
   @media only screen and (max-height: 440px) {
-    #home-parallax,
-    #chapter-1-parallax,
-    #chapter-2-parallax,
-    #chapter-3-parallax,
-    #chapter-4-parallax,
-    #chapter-5-parallax,
-    #chapter-6-parallax,
-    #end-parallax {
+    .parallax {
       display: none; } }
-  #home-parallax > li,
-  #chapter-1-parallax > li,
-  #chapter-2-parallax > li,
-  #chapter-3-parallax > li,
-  #chapter-4-parallax > li,
-  #chapter-5-parallax > li,
-  #chapter-6-parallax > li,
-  #end-parallax > li {
+  .parallax-image {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background-position: center center;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05); }
+  .parallax > li {
     width: 100vw;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    text-align: center; }
-    #home-parallax > li img,
-    #chapter-1-parallax > li img,
-    #chapter-2-parallax > li img,
-    #chapter-3-parallax > li img,
-    #chapter-4-parallax > li img,
-    #chapter-5-parallax > li img,
-    #chapter-6-parallax > li img,
-    #end-parallax > li img {
-      display: inline-block;
-      max-width: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0);
-      transform: translateX(-50%) translateY(-50%) translateZ(0); }
-  .clamp-vertical#home-parallax > li img,
-  .clamp-vertical#chapter-1-parallax > li img,
-  .clamp-vertical#chapter-2-parallax > li img,
-  .clamp-vertical#chapter-3-parallax > li img,
-  .clamp-vertical#chapter-4-parallax > li img,
-  .clamp-vertical#chapter-5-parallax > li img,
-  .clamp-vertical#chapter-6-parallax > li img,
-  .clamp-vertical#end-parallax > li img {
-    width: auto;
-    min-height: 100vh; }
-  .clamp-horizontal#home-parallax > li img,
-  .clamp-horizontal#chapter-1-parallax > li img,
-  .clamp-horizontal#chapter-2-parallax > li img,
-  .clamp-horizontal#chapter-3-parallax > li img,
-  .clamp-horizontal#chapter-4-parallax > li img,
-  .clamp-horizontal#chapter-5-parallax > li img,
-  .clamp-horizontal#chapter-6-parallax > li img,
-  .clamp-horizontal#end-parallax > li img {
-    min-width: 100vw;
-    height: auto; }
-
-#chapter-2-parallax > li img {
-  opacity: 0.35; }
-
-/*#home-parallax {
-    > li {
-        top: -35vh !important;
-        @media only screen and (max-height: $tablet-portrait-breakpoint) {
-            top: -70vh !important;
-            @media only screen and (max-width: $tablet-landscape-breakpoint) {
-                top: -20vh !important;
-            }
-        }
-        @media only screen and (max-width: $tablet-landscape-breakpoint) and (min-height: $tablet-portrait-breakpoint) {
-            top: 10vh !important;
-        }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            top: -15vh !important;
-        }
-        img {
-            @include animated(all, 500ms, ease-out);
-            opacity: 0;
-            &.show {
-                opacity: 1;
-            }
-        }
-    }
-}
-#chapter-1-parallax {
-    @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(1.75) translateZ(0) !important;
-    }
-    > li {
-        top: 5vh !important;
-        @media only screen and (max-height: $tablet-portrait-breakpoint) {
-            top: 8vh !important;
-        }
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            right: 15vw !important;
-            left: initial !important;
-            @media only screen and (min-height: $tablet-portrait-breakpoint) {
-                top: 30vh !important;
-            }
-        }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            top: -5vh !important;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            top: 0 !important;
-        }
-    }
-}
-#chapter-2-parallax {
-    > li {
-        img {
-            opacity: 0.25;
-        }
-    }
-}
-#chapter-3-parallax,
-#chapter-4-parallax {
-    @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.5) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(2.5) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(3) translateZ(0) !important;
-    }
-    > li {
-        top: initial !important;
-        bottom: 0 !important;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            bottom: 10vh !important;
-        }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            bottom: 15vh !important;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            bottom: 12vh !important;
-        }
-    }
-}
-#chapter-5-parallax {
-    @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.5) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(2.5) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(3) translateZ(0) !important;
-    }
-    > li {
-        top: 5vh !important;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            top: 0 !important;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            top: 5vh !important;
-        }
-    }
-}
-#chapter-6-parallax {
-    @media only screen and (max-width: $tablet-landscape-breakpoint) {
-        transform: scale(1.25) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $tablet-portrait-breakpoint) {
-        transform: scale(1.5) translateZ(0) !important;
-    }
-    @media only screen and (max-width: $phone-breakpoint) {
-        transform: scale(2.5) translateZ(0) !important;
-    }
-    > li {
-        top: 0 !important;
-        @media only screen and (max-width: $tablet-landscape-breakpoint) {
-            bottom: 0 !important;
-        }
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            top: -20vh !important;
-        }
-        @media only screen and (max-width: $phone-breakpoint) {
-            top: -5vh !important;
-        }
-    }
-}*/
-#end-parallax {
-  z-index: 1;
-  -webkit-transform: translateX(25%) translateZ(0) !important;
-  transform: translateX(25%) translateZ(0) !important; }
-  @media only screen and (max-width: 768px) {
-    #end-parallax {
-      -webkit-transform: scale(1) translateX(25%) translateZ(0) !important;
-      transform: scale(1) translateX(25%) translateZ(0) !important;
-      top: 5vh; } }
-  #end-parallax > li {
-    width: 50vw;
-    top: 10vh !important; }
+    height: 100vh; }
+  .parallax#chapter-2-parallax .parallax-image {
+    opacity: 0.35; }
+  .parallax#end-parallax {
+    z-index: 1;
+    -webkit-transform: translateX(25%) translateZ(0) !important;
+    transform: translateX(25%) translateZ(0) !important; }
+    @media only screen and (max-width: 768px) {
+      .parallax#end-parallax {
+        -webkit-transform: scale(1) translateX(25%) translateZ(0) !important;
+        transform: scale(1) translateX(25%) translateZ(0) !important;
+        top: 5vh; } }
+    .parallax#end-parallax > li {
+      width: 50vw;
+      top: 10vh !important; }
 
 #vignette {
   position: relative;
