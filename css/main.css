@@ -675,10 +675,11 @@ nav {
     transition: opacity 1000ms ease;
     -webkit-transform: translateZ(0);
     transform: translateZ(0); }
-  #underlay[style*="chapter-1-bg.jpg"] {
-    background-position: 80% center; }
-  #underlay[style*="chapter-6-bg.jpg"] {
-    background-position: 60% center; }
+  @media only screen and (max-width: 768px) {
+    #underlay[style*="chapter-1-bg.jpg"] {
+      background-position: 80% center; }
+    #underlay[style*="chapter-6-bg.jpg"] {
+      background-position: 60% center; } }
 
 #background-image, .quote-background-image {
   z-index: -1;
