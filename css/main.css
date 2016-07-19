@@ -333,6 +333,7 @@ header, footer {
       opacity: 0.5; }
 
 footer {
+  top: auto;
   top: initial;
   bottom: 0;
   opacity: 1; }
@@ -1092,6 +1093,7 @@ nav {
         left: 30%; }
         @media only screen and (max-width: 768px) {
           .gallery.type-a.has-two > li:not(.active) {
+            left: auto;
             left: initial; } }
   .gallery.type-b:after {
     content: '';

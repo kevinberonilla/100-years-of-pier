@@ -259,6 +259,7 @@ header {
 }
 footer {
     @extend header;
+    top: auto;
     top: initial;
     bottom: 0;
     opacity: 1;
@@ -1006,6 +1007,7 @@ nav {
                 &:not(.active) {
                     left: 30%;
                     @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                        left: auto;
                         left: initial;
                     }
                 }
