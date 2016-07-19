@@ -677,12 +677,15 @@ nav {
         z-index: 1;
         transform: translateX(25%) translateZ(0) !important;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            transform: scale(1) translateX(25%) translateZ(0) !important;
-            top: 5vh;
+            top: 2vh;
+            transform: translateX(20%) translateZ(0) !important;
         }
         > li {
             width: 50vw;
             top: 10vh !important;
+            @media only screen and (max-width: $tablet-portrait-breakpoint) {
+                width: 60vw;
+            }
         }
     }
 }
@@ -1329,12 +1332,9 @@ section {
             .vertical-align {
                 padding: 10vh 75px 0;
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                    padding-left: 60px;
-                    padding-right: 60px;
+                    padding: 0 60px;
                 }
                 @media only screen and (max-width: $phone-breakpoint) {
-                    padding-left: 32px;
-                    padding-right: 32px;
                     padding: 0 20px;
                 }
             }
@@ -1344,19 +1344,6 @@ section {
                     margin-top: 30px;
                     font-size: 15px;
                 }
-            }
-        }
-        .fireworks-image {
-            margin-top: 5vh;
-            margin-bottom: -40px;
-            width: 75%;
-            @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                margin-bottom: 0;
-            }
-            @media only screen and (max-width: $phone-breakpoint) {
-                width: 100%;
-                margin-bottom: -20px;
-                margin-top: 10vh;
             }
         }
     }
