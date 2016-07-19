@@ -256,7 +256,7 @@ $(document).ready(function() {
     ---------------------------------------- */
     function beginLoading() {
         var image =  $('#preload img'),
-            audioVideo = $('#preload audio, .video-background[data-src][data-formats]'),
+            audioVideo = $('#preload audio[id*="music-for"], .video-background[data-src][data-formats]'),
             total = (isMobile) ? image.length : image.length + audioVideo.length,
             loadingBar = $('#loading-bar'),
             loaded = 0,
@@ -283,12 +283,12 @@ $(document).ready(function() {
         
         image.each(function() {
             if (this.complete) processLoadedMedia();
-            else $(this).load(processLoadedMedia);
+            else $(this).one('load', processLoadedMedia);
         });
         
         audioVideo.each(function() {
             var element = $(this)[0],
-                ieTimeout = setTimeout(function() { processLoadedMedia(); }, 5000); // IE and Edge can't read the readyState property
+                ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
             
             if (element.readyState > 3) {
                 clearTimeout(ieTimeout);
