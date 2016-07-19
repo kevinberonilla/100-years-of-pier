@@ -1,5 +1,6 @@
 var page = $('html, body'),
     body = $('body'),
+    isInternetExplorer = false,
     isMobile = false,
     isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
@@ -12,22 +13,18 @@ if (mobileUserAgentString.test(navigator.userAgent)) {
     });
 }
 
+if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
+
 $(document).ready(function() {
     var onePageScroll = $('#main');
     
     /* ----------------------------------------
-    Preload Auto-Populate Functions
+    Preload Auto-Populate Functions (Disabled for IE Compatibility)
     ---------------------------------------- */
-    function autoPopulatePreload() {
+    /*function autoPopulatePreload() {
         body.append('<div id="preload"></div>');
         
         var preload = $('#preload');
-        
-        $('img').each(function() {
-            var imageUrl = $(this).attr('src');
-            
-            preload.append('<img src="' + imageUrl + '" alt="">');
-        });
         
         $('[data-background-image]').each(function() {
             var imageUrl = $(this).data('background-image');
@@ -54,7 +51,7 @@ $(document).ready(function() {
         }
     }
     
-    $.when(autoPopulatePreload()).done(beginLoading);
+    $.when(autoPopulatePreload()).done(beginLoading);*/
     
     /* ----------------------------------------
     Audio Functions
@@ -121,7 +118,7 @@ $(document).ready(function() {
         
         adjustVolume(sound, 0, function() {
             otherSound[0].pause();
-            otherSound[0].currentTime = 0;
+            if (!isNaN(otherSound[0].duration)) otherSound[0].currentTime = 0;
         });
         
         if (sectionSound.length > 0) {
@@ -133,7 +130,7 @@ $(document).ready(function() {
                 
                 adjustVolume(self[0], 0, function() {
                     self[0].pause();
-                    self[0].currentTime = 0;
+                    if (!isNaN(otherSound[0].duration)) self[0].currentTime = 0;
                 });
             });
         }
@@ -141,6 +138,7 @@ $(document).ready(function() {
     
     if (isMobile) {
         audioIcon.unbind();
+        $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
     } else {
         audioIcon.click(function() {
             if ($(this).hasClass('fa-volume-up')) {
@@ -199,9 +197,10 @@ $(document).ready(function() {
     
     function substituteVideoElements(element) { // Switch out video tags for divs
         var id = element.attr('id'),
-            style = element.attr('style');
+            backgroundImage = element.attr('style').replace('background-image:', '').replace(' ', '').replace(';', ''); // Strip out background image to add afterwards (for IE compatibility)
         
-        element.replaceWith('<div id="' + id + '"class="video-substitute" style="' + style + '"></div>');
+        element.replaceWith('<div id="' + id + '"class="video-substitute"></div>');
+        $('#' + id).css('background-image', backgroundImage);
     }
     
     if (!isMobile) { // Don't load videos for mobile
@@ -216,11 +215,7 @@ $(document).ready(function() {
                 }
             } else substituteVideoElements(self);
         });
-    } else {
-        videoBackground.each(function() {
-            substituteVideoElements($(this));
-        });
-    }
+    } else videoBackground.each(function() { substituteVideoElements($(this)); });
     
     function setCenter() {
         videoBackground.each(function() {
@@ -254,74 +249,72 @@ $(document).ready(function() {
     /* ----------------------------------------
     Page Load Functions
     ---------------------------------------- */
-    function beginLoading() {
-        var image =  $('#preload img'),
-            audioVideo = $('#preload audio[id*="music-for"], .video-background[data-src][data-formats]'),
-            total = (isMobile) ? image.length : image.length + audioVideo.length,
-            loadingBar = $('#loading-bar'),
-            loaded = 0,
-            loadingPercentage = $('#loading-percentage .number');
-        
-        function processLoadedMedia() {
-            if (!body.hasClass('loaded')) {
-                var percentage = parseInt((loaded / total) * 100);
-                
-                loaded ++;
-                
-                if (percentage <= 100) {
-                    loadingBar.css('width', percentage + '%');
-                    loadingPercentage.text(percentage);
-                }
-                
-                if (loaded >= total) {
-                    body.trigger('load.np');
-                    loadingBar.css('width', '100%'); // Safety first
-                    loadingPercentage.text('100');
-                }
+    var image =  $('#preload img'),
+        audioVideo = $('#preload audio[id*="music-for"], .video-background[data-src][data-formats]'),
+        total = (isMobile) ? image.length : image.length + audioVideo.length,
+        loadingBar = $('#loading-bar'),
+        loaded = 0,
+        loadingPercentage = $('#loading-percentage .number');
+
+    function processLoadedMedia() {
+        if (!body.hasClass('loaded')) {
+            var percentage = parseInt((loaded / total) * 100);
+
+            loaded ++;
+
+            if (percentage <= 100) {
+                loadingBar.css('width', percentage + '%');
+                loadingPercentage.text(percentage);
             }
-        }
-        
-        image.each(function() {
-            if (this.complete) processLoadedMedia();
-            else $(this).one('load', processLoadedMedia);
-        });
-        
-        audioVideo.each(function() {
-            var element = $(this)[0],
-                ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
             
-            if (element.readyState > 3) {
-                clearTimeout(ieTimeout);
-                processLoadedMedia();
-            }
-            else element.addEventListener('canplay', processLoadedMedia);
-        });
-        
-        page.one('load.np', function() {
-            var homeVideo = $('#home-video'),
-                homeMusic = $('#music-for-0'),
-                homeScrollMessage = $('#home .scroll-message');
-            
-            setTimeout(function() {
-                body.addClass('loaded');
-                homeVideo.addClass('show');
-                if (!isMobile) homeMusic[0].play();
-            }, 250);
-            
-            setTimeout(function() {
-                body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
-            }, (isDev) ? 0 : 1000);
-            
-            setTimeout(function() {
-                homeScrollMessage.addClass('show');
-            }, 2500);
-        });
-        
-        if (isDev) {
-            setTimeout(function() {
+            if (loaded >= total) {
                 body.trigger('load.np');
-            }, 500);
+                loadingBar.css('width', '100%'); // Safety first
+                loadingPercentage.text('100');
+            }
         }
+    }
+
+    image.each(function() {
+        if (this.complete) processLoadedMedia();
+        else $(this).load(processLoadedMedia);
+    });
+
+    audioVideo.each(function() {
+        var element = $(this)[0],
+            ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
+
+        if (element.readyState > 3) {
+            clearTimeout(ieTimeout);
+            processLoadedMedia();
+        }
+        else element.addEventListener('canplay', processLoadedMedia);
+    });
+
+    page.one('load.np', function() {
+        var homeVideo = $('#home-video'),
+            homeMusic = $('#music-for-0'),
+            homeScrollMessage = $('#home .scroll-message');
+
+        setTimeout(function() {
+            body.addClass('loaded');
+            homeVideo.addClass('show');
+            if (!isMobile) homeMusic[0].play();
+        }, 250);
+
+        setTimeout(function() {
+            body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
+        }, (isDev) ? 0 : 1000);
+
+        setTimeout(function() {
+            homeScrollMessage.addClass('show');
+        }, 2500);
+    });
+
+    if (isDev) {
+        setTimeout(function() {
+            body.trigger('load.np');
+        }, 500);
     }
     
     /* ----------------------------------------
