@@ -47,6 +47,7 @@ hr {
     }
 }
 .italic-heading {
+    -webkit-font-smoothing: subpixel-antialiased;
     font-size: 44px;
     line-height: 60px;
     font-family: $font-stack-secondary-italic;
@@ -228,6 +229,7 @@ body {
 }
 .full-parent-height {
     position: relative;
+    height: 100vh;
 }
 header {
     @include animated;
@@ -539,6 +541,9 @@ nav {
     width: 32px;
     opacity: 1;
     pointer-events: all;
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        display: none;
+    }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         top: 22px;
         right: 24px;
@@ -778,7 +783,6 @@ nav {
                 }
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
                     padding-top: 6px;
-                    letter-spacing: 1px;
                 }
                 @media only screen and (max-width: $phone-breakpoint) {
                     padding-top: 0;
@@ -1053,12 +1057,12 @@ nav {
             white-space: nowrap;
             pointer-events: all;
             padding: 0 80px;
-            height: calc(30vh + 30px);
+            height: calc(25vh + 30px);
             > li {
                 display: inline-block !important;
                 position: relative !important;
-                height: 30vh;
-                width: 50vh !important;
+                height: 25vh;
+                width: 35vh !important;
                 margin: 0;
                 margin-right: 20px;
                 padding: 0;
@@ -1331,14 +1335,14 @@ section {
                 @media only screen and (max-width: $phone-breakpoint) {
                     padding-left: 32px;
                     padding-right: 32px;
-                    padding: 0 60px;
+                    padding: 0 20px;
                 }
             }
             .italic-heading {
                 margin-top: 20px;
                 @media only screen and (max-width: $phone-breakpoint) {
                     margin-top: 30px;
-                    font-size: 16px;
+                    font-size: 15px;
                 }
             }
         }
@@ -1426,7 +1430,6 @@ section {
     @media only screen and (max-width: $phone-breakpoint) {
         font-size: 10px;
         line-height: 18px;
-        text-transform: none;
     }
     @media only screen and (max-width: $small-phone-breakpoint) {
         font-size: 8px;

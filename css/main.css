@@ -124,6 +124,7 @@ hr {
       margin: 8px 0 6px; } }
 
 .italic-heading {
+  -webkit-font-smoothing: subpixel-antialiased;
   font-size: 44px;
   line-height: 60px;
   font-family: "Miller Text It", serif;
@@ -298,7 +299,8 @@ body {
       background-position: 30% bottom; } }
 
 .full-parent-height {
-  position: relative; }
+  position: relative;
+  height: 100vh; }
 
 header, footer {
   -webkit-transition: all 250ms ease;
@@ -625,6 +627,9 @@ nav {
   width: 32px;
   opacity: 1;
   pointer-events: all; }
+  @media only screen and (max-width: 1024px) {
+    #open-nav-button, #close-nav-button {
+      display: none; } }
   @media only screen and (max-width: 768px) {
     #open-nav-button, #close-nav-button {
       top: 22px;
@@ -849,8 +854,7 @@ nav {
       padding-top: 2px; } }
   @media only screen and (max-width: 768px) {
     .timeline-entry .italic-heading.small {
-      padding-top: 6px;
-      letter-spacing: 1px; } }
+      padding-top: 6px; } }
   @media only screen and (max-width: 480px) {
     .timeline-entry .italic-heading.small {
       padding-top: 0; } }
@@ -1132,14 +1136,14 @@ nav {
       white-space: nowrap;
       pointer-events: all;
       padding: 0 80px;
-      height: -webkit-calc(30vh + 30px);
-      height: calc(30vh + 30px); }
+      height: -webkit-calc(25vh + 30px);
+      height: calc(25vh + 30px); }
       .gallery.type-a > li,
       .gallery.type-b > li {
         display: inline-block !important;
         position: relative !important;
-        height: 30vh;
-        width: 50vh !important;
+        height: 25vh;
+        width: 35vh !important;
         margin: 0;
         margin-right: 20px;
         padding: 0;
@@ -1394,13 +1398,13 @@ section {
           section#end .content .vertical-align {
             padding-left: 32px;
             padding-right: 32px;
-            padding: 0 60px; } }
+            padding: 0 20px; } }
       section#end .content .italic-heading {
         margin-top: 20px; }
         @media only screen and (max-width: 480px) {
           section#end .content .italic-heading {
             margin-top: 30px;
-            font-size: 16px; } }
+            font-size: 15px; } }
     section#end .fireworks-image {
       margin-top: 5vh;
       margin-bottom: -40px;
@@ -1481,8 +1485,7 @@ section {
   @media only screen and (max-width: 480px) {
     .scroll-message {
       font-size: 10px;
-      line-height: 18px;
-      text-transform: none; } }
+      line-height: 18px; } }
   @media only screen and (max-width: 360px) {
     .scroll-message {
       font-size: 8px; } }
