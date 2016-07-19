@@ -1,0 +1,98 @@
+/* Scroll text change to uppercase */
+.scroll-message {
+    text-transform: uppercase;
+}
+
+@media all and (min-width: 768px) {
+	/* Adjust section 5 Pparalax scale and positioning */
+	#chapter-5-parallax>li {
+		top: 7vh !important;
+		-webkit-transform: scale(1.4);
+		-ms-transform: scale(1.4);
+		transform: scale(1.4);
+	}
+}
+
+@media all and (max-width: 1024px) {
+	/* Remove dropdown navigation */
+	#open-nav-button {
+		display: none;
+	}
+	/* Gallery iPad style to match mobile */
+	.gallery.type-a>li, .gallery.type-b>li {
+		display: inline-block!important;
+		position: relative!important;
+		height: 30vh;
+		width: 50vh!important;
+		margin: 0;
+		margin-right: 20px;
+		padding: 0;
+		float: none;
+		-webkit-transform: translateZ(0)!important;
+		transform: translateZ(0)!important;
+		-webkit-transform-origin: center!important;
+		transform-origin: center!important;
+		overflow: visible;
+		max-height: none;
+		cursor: default;
+		cursor: -webkit-grab;
+	}
+	.gallery.type-a>li .image, .gallery.type-b>li .image {
+		overflow: visible;
+	}
+	.gallery.type-a, .gallery.type-b {
+		overflow: visible!important;
+		overflow-x: scroll!important;
+		-webkit-overflow-scrolling: touch;
+		white-space: nowrap;
+		pointer-events: all;
+		padding: 0 80px;
+		height: calc(30vh + 30px);
+	}
+	.gallery.type-a>li:after, .gallery.type-b>li:after {
+		display: none;
+	}
+	.timeline-gallery {
+		padding: 0;
+		overflow: visible;
+		overflow-x: scroll;
+	}
+	.gallery>li:not(.active):hover .image {
+		-webkit-transform: scale(1.0) translateZ(0);
+		transform: scale(1.0) translateZ(0);
+	}
+}
+
+@media all and (max-width: 768px) {
+	/* Reduce width of images on devices */
+	.gallery.type-a>li, .gallery.type-b>li {
+		width: 35vh !important;
+	}
+	/* End slide paralax move */
+	#end-paralax {
+		top: -7vh;
+	}
+	/* Paralax Fixes */
+	#chapter-2-parallax {
+		top: 23vh;
+	}
+}
+
+@media all and (max-width: 480px) {
+	/* End slide space issue fix */
+	section#end .content .vertical-align {
+		padding: 0 20px;
+	}
+	/* End slide font size adjustment */
+	section#end .content .italic-heading {
+		font-size: 15px;
+	}
+	/* End slide paralax scale up and positioning */
+	#end-parallax {
+		-webkit-transform: scale(1.4) !important;
+		-ms-transform: scale(1.4) !important;
+		transform: scale(1.4) !important;
+		left: 31%;
+		top: 15.5vh;
+	}
+}
