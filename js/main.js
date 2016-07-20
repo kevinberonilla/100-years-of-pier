@@ -361,7 +361,7 @@ $(document).ready(function() {
     }
     
     function openNav() {
-        body.addClass('nav-open disable-scroll');
+        body.addClass('nav-open disable-scroll disabled-onepage-scroll');
         
         navEntry.each(function() {
             var self = this,
@@ -378,7 +378,7 @@ $(document).ready(function() {
     }
     
     function closeNav() {
-        body.removeClass('nav-open disable-scroll');
+        body.removeClass('nav-open disable-scroll disabled-onepage-scroll');
         
         navEntry.removeClass('show');
         
