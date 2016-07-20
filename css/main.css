@@ -738,7 +738,8 @@ nav {
     transform: scale(1.05); }
   .parallax > li {
     width: 100vw;
-    height: 100vh; }
+    height: 100vh;
+    position: absolute; }
   @media only screen and (max-width: 768px) {
     .parallax#home-parallax .parallax-image {
       background-position: 80% center; } }

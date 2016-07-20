@@ -713,13 +713,13 @@ $(document).ready(function() {
                 parallaxId = activeSection.data('parallax-id');
             
             allParallaxLists.removeClass('show');
-            disableParallax();
-            
             parallaxList.addClass('show');
-            enableParallax(eval(parallaxList), parallaxId);
+            
+            if (!isMobile) $.when(disableParallax()).done(function() { enableParallax(eval(parallaxList), parallaxId) });
         } else {
             allParallaxLists.removeClass('show');
-            disableParallax();
+            
+            if (!isMobile) disableParallax();
         }
         
         // If has background image
@@ -772,8 +772,9 @@ $(document).ready(function() {
             afterMove: processAfterMove
         });
         
-        enableParallax(homeParallaxList, 'home-parallax');
         revealHomeFireworks();
+        
+        if (!isMobile) enableParallax(homeParallaxList, 'home-parallax');
     });
     
     /* ----------------------------------------
