@@ -100,14 +100,20 @@ h4, .scroll-message {
   line-height: 20px;
   text-transform: uppercase;
   letter-spacing: 2px; }
+  @media only screen and (max-width: 1024px) {
+    h4, .scroll-message {
+      letter-spacing: 0.5px; } }
+  @media only screen and (max-width: 768px) {
+    h4, .scroll-message {
+      letter-spacing: normal; } }
+  @media only screen and (max-width: 480px) {
+    h4, .scroll-message {
+      font-size: 11px; } }
   h4 a,
   .scroll-message a,
   h4 a:visited, .scroll-message a:visited {
     color: white;
     text-decoration: none; }
-  @media only screen and (max-width: 480px) {
-    h4, .scroll-message {
-      font-size: 11px; } }
 
 hr {
   display: inline-block;

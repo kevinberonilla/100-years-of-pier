@@ -23,13 +23,19 @@ h4 {
     line-height: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        letter-spacing: 0.5px;
+    }
+    @media only screen and (max-width: $tablet-portrait-breakpoint) {
+        letter-spacing: normal;
+    }
+    @media only screen and (max-width: $phone-breakpoint) {
+        font-size: 11px;
+    }
     a,
     a:visited {
         color: white;
         text-decoration: none;
-    }
-    @media only screen and (max-width: $phone-breakpoint) {
-        font-size: 11px;
     }
 }
 hr {
