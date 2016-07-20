@@ -1324,6 +1324,19 @@ section {
             pointer-events: none;
         }
     }
+    &.end-lower {
+        .timeline-border {
+            &:after {
+                content: '';
+                display: block;
+                border-top: 1px solid #fff;
+                position: absolute;
+                width: 30px;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
     &#end {
         background-size: cover;
         background-position: center bottom;
