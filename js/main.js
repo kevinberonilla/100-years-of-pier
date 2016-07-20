@@ -2,7 +2,8 @@ var page = $('html, body'),
     body = $('body'),
     isInternetExplorer = false,
     isMobile = false,
-    isDev = false, // Set this to false before pushing to production
+    isTabletOrLarger = false,
+    isDev = true, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
@@ -12,6 +13,8 @@ if (mobileUserAgentString.test(navigator.userAgent)) {
         e.preventDefault();
     });
 }
+    
+if (matchMedia('only screen and (min-width: 481px) and (min-height: 481px)').matches) isTabletOrLarger = true;
 
 if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
 
@@ -136,7 +139,7 @@ $(document).ready(function() {
         }
     }
     
-    if (isMobile) {
+    if (!isTabletOrLarger) {
         audioIcon.unbind();
         $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
     } else {
@@ -283,7 +286,7 @@ $(document).ready(function() {
         setTimeout(function() {
             body.addClass('loaded');
             homeVideo.addClass('show');
-            if (!isMobile) homeMusic[0].play();
+            if (isTabletOrLarger) homeMusic[0].play();
         }, 250);
 
         setTimeout(function() {
@@ -743,7 +746,7 @@ $(document).ready(function() {
         if (activeSection.hasClass('end')) onlyFadeUnderlay = true;
         
         // Sound functions
-        if (!isMobile) {
+        if (isTabletOrLarger) {
             if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
             
             playChapterMusic(activeSection);
