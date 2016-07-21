@@ -142,13 +142,13 @@ body {
     &.nav-open {
         .logo-container.horizontal {
             @include animated;
-            transform: translateX(-50%) translateZ(0);
+            transform: translateX(-50%);
             opacity: 0;
         }
         .content,
         #sub-nav.show {
             @include animated;
-            transform: translateY(-50%) translateZ(0);
+            transform: translateY(-50%);
             opacity: 0;
         }
         #sub-nav.show {
@@ -213,7 +213,7 @@ body {
     min-width: 100vh;
     top: 0;
     left: 50%;
-    transform: translateX(-50%) translateZ(0);
+    transform: translateX(-50%);
 }
 *::-webkit-media-controls-panel {
     display: none!important;
@@ -412,7 +412,7 @@ nav {
         width: 80px;
         top: calc(50% + 3px);
         left: 50%;
-        transform: translateX(-50%) translateY(-50%) translateZ(0);
+        transform: translateX(-50%) translateY(-50%);
         @media only screen and (max-width: $phone-breakpoint) {
             width: 60px;
         }
@@ -424,7 +424,7 @@ nav {
     position: fixed;
     right: -1px;
     top: 50%;
-    transform: translateY(-50%) translateZ(0);
+    transform: translateY(-50%);
     z-index: 9999;
     @media only screen and (max-height: $min-screen-height) {
         display: none;
@@ -682,10 +682,10 @@ nav {
     }
     &#end-parallax {
         z-index: 1;
-        transform: translateX(25%) translateZ(0) !important;
+        transform: translateX(25%) !important;
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             top: 2vh;
-            transform: translateX(20%) translateZ(0) !important;
+            transform: translateX(20%) !important;
         }
         > li {
             width: 50vw;
@@ -763,7 +763,7 @@ nav {
         opacity: 0;
         pointer-events: none;
         top: 16px;
-        transform: translateX(-50%) translateZ(0);
+        transform: translateX(-50%);
         @media only screen and (max-width: $tablet-portrait-breakpoint) {
             display: none;
         }
@@ -970,7 +970,7 @@ nav {
                     opacity: 0.25;
                 }
                 .image {
-                    transform: scale(1.05) translateZ(0);
+                    transform: scale(1.05);
                 }
             }
         }
@@ -998,7 +998,7 @@ nav {
             max-height: 40vh;
             @media only screen and (min-width: $tablet-portrait-breakpoint + 1) {
                 &.animate-in {
-                    transform: translateZ(0);
+                    transform: none;
                     &.vertical {
                         margin-top: 20px;
                         &.reveal {
@@ -1077,7 +1077,7 @@ nav {
                 margin-right: 20px;
                 padding: 0;
                 float: none;
-                transform: translateZ(0) !important;
+                transform: none !important;
                 transform-origin: center !important;
                 overflow: visible;
                 max-height: none;
@@ -1097,7 +1097,7 @@ nav {
                     overflow: visible;
                     &:hover {
                         .image {
-                            transform: translateZ(0);
+                            transform: none;
                         }
                     }
                 }
@@ -1170,7 +1170,7 @@ nav {
         @include shadow(-4px, 12px);
         width: 30vh;
         height: 30vh;
-        transform: rotate(-45deg) translateY(-70%) translateZ(0);
+        transform: rotate(-45deg) translateY(-70%);
         display: block;
         overflow: hidden;
         position: absolute;
@@ -1190,7 +1190,7 @@ nav {
     &-image {
         background-size: cover;
         background-position: center center;
-        transform: rotate(45deg) translateZ(0);
+        transform: rotate(45deg);
         position: absolute;
         display: block;
         width: 50vh;
@@ -1456,10 +1456,10 @@ section {
     @include animated;
     opacity: 0;
     &.vertical {
-        transform: translateY(20px) translateZ(0);
+        transform: translateY(20px);
     }
     &.horizontal {
-        transform: translateX(-20px) translateZ(0);
+        transform: translateX(-20px);
     }
     &.blur {
         @include animated(all, 1000ms);
@@ -1468,6 +1468,6 @@ section {
     &.reveal {
         opacity: 1;
         filter: none;
-        transform: translateZ(0);
+        transform: none;
     }
 }

@@ -543,7 +543,6 @@ $(document).ready(function() {
     Parallax Functions
     ---------------------------------------- */
     var parallaxArgs = {
-            clipRelativeInput: true,
             limitX: 150,
             limitY: 100
         },
