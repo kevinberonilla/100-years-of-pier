@@ -4,17 +4,16 @@ var page = $('html, body'),
     isMobile = false,
     isTabletOrLarger = false,
     isDev = false, // Set this to false before pushing to production
-    mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
+    mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i,
+    tabletUserAgentString = /(tablet|ipad|playbook|silk)|(android(?!.*mobile))/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
     isMobile = true;
     
-    $(document).on('touchmove', function(e) { // Prevent overflow scroll bounce
-        e.preventDefault();
-    });
+    $(document).on('touchmove', function(e) { e.preventDefault(); }); // Prevent overflow scroll bounce
 }
     
-if (matchMedia('only screen and (min-width: 481px) and (min-height: 481px)').matches) isTabletOrLarger = true;
+if (tabletUserAgentString.test(navigator.userAgent) || matchMedia('only screen and (min-width: 481px) and (min-height: 481px)').matches) isTabletOrLarger = true;
 
 if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
 
@@ -403,8 +402,11 @@ $(document).ready(function() {
     
     calculateNavEntryHeight();
     $(window).resize($.debounce(750, calculateNavEntryHeight));
-    openNavButton.click(openNav);
-    closeNavButton.click(closeNav);
+    
+    if (!isMobile) {
+        openNavButton.click(openNav);
+        closeNavButton.click(closeNav);
+    }
     
     /* ----------------------------------------
     Sub-Nav Functions
