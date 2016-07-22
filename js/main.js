@@ -403,7 +403,7 @@ $(document).ready(function() {
     calculateNavEntryHeight();
     $(window).resize($.debounce(750, calculateNavEntryHeight));
     
-    if (!isMobile) {
+    if (isTabletOrLarger) {
         openNavButton.click(openNav);
         closeNavButton.click(closeNav);
     }
