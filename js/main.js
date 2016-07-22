@@ -173,6 +173,8 @@ $(document).ready(function() {
         })
             .parent()
             .addClass('show');
+        
+        if (isMobile) audioIcon.click();
     }
     
     /* ----------------------------------------
