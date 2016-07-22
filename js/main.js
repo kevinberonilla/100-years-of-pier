@@ -777,8 +777,7 @@ $(document).ready(function() {
         });
         
         revealHomeFireworks();
-        
-        if (!isMobile) enableParallax(homeParallaxList, 'home-parallax');
+        enableParallax(homeParallaxList, 'home-parallax');
     });
     
     /* ----------------------------------------
