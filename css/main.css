@@ -328,6 +328,9 @@ header, footer {
     pointer-events: all; }
     header #back-to-np:hover, footer #back-to-np:hover {
       opacity: 0.5; }
+      @media only screen and (max-width: 1024px) {
+        header #back-to-np:hover, footer #back-to-np:hover {
+          opacity: 1; } }
 
 footer {
   top: auto;
@@ -349,6 +352,9 @@ footer {
           margin-left: 0; } }
     footer .icon:hover {
       opacity: 0.5; }
+      @media only screen and (max-width: 1024px) {
+        footer .icon:hover {
+          opacity: 1; } }
   footer .audio {
     -webkit-transition: all 250ms ease;
     transition: all 250ms ease;
@@ -621,6 +627,9 @@ nav {
       width: 22px; } }
   #open-nav-button:hover, #close-nav-button:hover {
     opacity: 0.5; }
+    @media only screen and (max-width: 1024px) {
+      #open-nav-button:hover, #close-nav-button:hover {
+        opacity: 1; } }
 
 #close-nav-button {
   display: none;

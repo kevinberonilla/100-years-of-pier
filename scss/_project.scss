@@ -262,6 +262,9 @@ header {
         pointer-events: all;
         &:hover {
             opacity: 0.5;
+            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                opacity: 1;
+            }
         }
     }
 }
@@ -287,6 +290,9 @@ footer {
         }
         &:hover {
             opacity: 0.5;
+            @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                opacity: 1;
+            }
         }
     }
     .audio {
@@ -561,6 +567,9 @@ nav {
     }
     &:hover {
         opacity: 0.5;
+        @media only screen and (max-width: $tablet-landscape-breakpoint) {
+            opacity: 1;
+        }
     }
 }
 #close-nav-button {
