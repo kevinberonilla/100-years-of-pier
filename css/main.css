@@ -633,15 +633,18 @@ nav {
   width: 32px;
   opacity: 1;
   pointer-events: all; }
+  @media only screen and (max-width: 1024px) {
+    #open-nav-button, #close-nav-button {
+      display: none; } }
   @media only screen and (max-width: 768px) {
     #open-nav-button, #close-nav-button {
       top: 22px;
       right: 24px; } }
   @media only screen and (max-width: 480px) {
     #open-nav-button, #close-nav-button {
-      display: none;
-      /*top: calc(100vw / 6 + 38px);
-        width: 22px;*/ } }
+      top: -webkit-calc(100vw / 6 + 38px);
+      top: calc(100vw / 6 + 38px);
+      width: 22px; } }
   #open-nav-button:hover, #close-nav-button:hover {
     opacity: 0.5; }
 

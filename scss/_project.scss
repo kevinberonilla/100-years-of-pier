@@ -547,14 +547,16 @@ nav {
     width: 32px;
     opacity: 1;
     pointer-events: all;
+    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+        display: none;
+    }
     @media only screen and (max-width: $tablet-portrait-breakpoint) {
         top: 22px;
         right: 24px;
     }
     @media only screen and (max-width: $phone-breakpoint) {
-        display: none;
-        /*top: calc(100vw / #{$chapter-count} + 38px);
-        width: 22px;*/
+        top: calc(100vw / #{$chapter-count} + 38px);
+        width: 22px;
     }
     &:hover {
         opacity: 0.5;
