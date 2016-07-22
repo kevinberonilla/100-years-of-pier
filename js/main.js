@@ -108,9 +108,7 @@ $(document).ready(function() {
         
         adjustVolume(closestIntroMusic[0], 0);
 
-        onePageScroll.one('before-move.np', function() {
-            adjustVolume(closestIntroMusic[0], masterVolume);
-        });
+        onePageScroll.one('before-move.np', function() { adjustVolume(closestIntroMusic[0], masterVolume); });
     }
     
     function playSound(currentSection) {
@@ -138,7 +136,7 @@ $(document).ready(function() {
         }
     }
     
-    if (!isTabletOrLarger) {
+    if (isMobile) {
         audioIcon.unbind();
         $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
     } else {
@@ -173,8 +171,6 @@ $(document).ready(function() {
         })
             .parent()
             .addClass('show');
-        
-        if (isMobile) audioIcon.click();
     }
     
     /* ----------------------------------------
@@ -287,7 +283,7 @@ $(document).ready(function() {
         setTimeout(function() {
             body.addClass('loaded');
             homeVideo.addClass('show');
-            if (isTabletOrLarger) homeMusic[0].play();
+            if (!isMobile) homeMusic[0].play();
         }, 250);
 
         setTimeout(function() {
@@ -749,7 +745,7 @@ $(document).ready(function() {
         if (activeSection.hasClass('end')) onlyFadeUnderlay = true;
         
         // Sound functions
-        if (isTabletOrLarger) {
+        if (!isMobile) {
             if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
             
             playChapterMusic(activeSection);
