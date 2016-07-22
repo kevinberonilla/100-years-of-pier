@@ -717,13 +717,13 @@ $(document).ready(function() {
                 parallaxId = activeSection.data('parallax-id');
             
             allParallaxLists.removeClass('show');
-            parallaxList.addClass('show');
+            disableParallax();
             
-            if (!isMobile) $.when(disableParallax()).done(function() { enableParallax(eval(parallaxList), parallaxId) });
+            parallaxList.addClass('show');
+            enableParallax(eval(parallaxList), parallaxId);
         } else {
             allParallaxLists.removeClass('show');
-            
-            if (!isMobile) disableParallax();
+            disableParallax();
         }
         
         // If has background image
