@@ -3,7 +3,7 @@ var page = $('html, body'),
     isInternetExplorer = false,
     isMobile = false,
     isTabletOrLarger = false,
-    isDev = false, // Set this to false before pushing to production
+    isDev = true, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i,
     tabletUserAgentString = /(tablet|ipad|playbook|silk)|(android(?!.*mobile))/i;
     
@@ -16,6 +16,12 @@ if (mobileUserAgentString.test(navigator.userAgent)) {
 if (tabletUserAgentString.test(navigator.userAgent) || matchMedia('only screen and (min-width: 481px) and (min-height: 481px)').matches) isTabletOrLarger = true;
 
 if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
+
+if (isDev) {
+    console.log('isInternetExplorer: ' + isInternetExplorer);
+    console.log('isMobile: ' + isMobile);
+    console.log('isTabletOrLarger: ' + isTabletOrLarger);
+}
 
 $(document).ready(function() {
     var onePageScroll = $('#main');
@@ -136,10 +142,7 @@ $(document).ready(function() {
         }
     }
     
-    if (isMobile) {
-        audioIcon.unbind();
-        $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
-    } else {
+    if (isTabletOrLarger) {
         audioIcon.click(function() {
             if ($(this).hasClass('fa-volume-up')) {
                 $(this).removeClass('fa-volume-up')
@@ -171,6 +174,11 @@ $(document).ready(function() {
         })
             .parent()
             .addClass('show');
+        
+        if (isMobile) audioIcon.click(); // Set initial muted state for tablets
+    } else {
+        audioIcon.unbind();
+        $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
     }
     
     /* ----------------------------------------
@@ -283,7 +291,7 @@ $(document).ready(function() {
         setTimeout(function() {
             body.addClass('loaded');
             homeVideo.addClass('show');
-            if (!isMobile) homeMusic[0].play();
+            if (isTabletOrLarger) homeMusic[0].play();
         }, 250);
 
         setTimeout(function() {
@@ -307,11 +315,12 @@ $(document).ready(function() {
     });
 
     audioVideo.each(function() {
-        var element = $(this)[0],
-            ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
+        var element = $(this)[0];
+        
+        if (isInternetExplorer) var ieTimeout = setTimeout(processLoadedMedia, 5000); // IE can't read the readyState property
 
         if (element.readyState > 3) {
-            clearTimeout(ieTimeout);
+            if (isInternetExplorer) clearTimeout(ieTimeout);
             processLoadedMedia();
         }
         else element.addEventListener('canplay', processLoadedMedia);
@@ -401,7 +410,7 @@ $(document).ready(function() {
     calculateNavEntryHeight();
     $(window).resize($.debounce(750, calculateNavEntryHeight));
     
-    if (!isMobile) {
+    if (isTabletOrLarger) {
         openNavButton.click(openNav);
         closeNavButton.click(closeNav);
     }
@@ -745,7 +754,7 @@ $(document).ready(function() {
         if (activeSection.hasClass('end')) onlyFadeUnderlay = true;
         
         // Sound functions
-        if (!isMobile) {
+        if (isTabletOrLarger) {
             if (activeSection.hasClass('no-music')) muteChapterMusic(activeSection);
             
             playChapterMusic(activeSection);
