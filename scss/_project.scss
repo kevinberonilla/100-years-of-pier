@@ -690,21 +690,6 @@ nav {
             }
         }
     }
-    &#end-parallax {
-        z-index: 1;
-        transform: translateX(25%) !important;
-        @media only screen and (max-width: $tablet-portrait-breakpoint) {
-            top: 2vh;
-            transform: translateX(20%) !important;
-        }
-        > li {
-            width: 50vw;
-            top: 10vh !important;
-            @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                width: 60vw;
-            }
-        }
-    }
 }
 #vignette {
     position: relative;
@@ -1360,12 +1345,22 @@ section {
         .content {
             text-align: center;
             .vertical-align {
-                padding: 10vh 75px 0;
+                padding: 10vh 75px 40vh;
                 @media only screen and (max-width: $tablet-portrait-breakpoint) {
-                    padding: 0 60px;
+                    padding: 0 60px 30vh;
                 }
                 @media only screen and (max-width: $phone-breakpoint) {
-                    padding: 0 20px;
+                    padding: 0 20px 20vh;
+                }
+                .fireworks-image {
+                    width: 50%;
+                    margin-bottom: -20px;
+                    @media only screen and (max-width: $tablet-landscape-breakpoint) {
+                        width: 60%;
+                    }
+                    @media only screen and (max-width: $phone-breakpoint) {
+                        width: 75%;
+                    }
                 }
             }
             .italic-heading {

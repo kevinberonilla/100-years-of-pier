@@ -556,16 +556,14 @@ $(document).ready(function() {
         chapter4ParallaxList = $('#chapter-4-parallax'),
         chapter5ParallaxList = $('#chapter-5-parallax'),
         chapter6ParallaxList = $('#chapter-6-parallax'),
-        endParallaxList = $('#end-parallax'),
-        allParallaxLists = $('#home-parallax, #chapter-1-parallax, #chapter-2-parallax, #chapter-3-parallax, #chapter-4-parallax, #chapter-5-parallax, #chapter-6-parallax, #end-parallax'),
+        allParallaxLists = $('#home-parallax, #chapter-1-parallax, #chapter-2-parallax, #chapter-3-parallax, #chapter-4-parallax, #chapter-5-parallax, #chapter-6-parallax'),
         homeParallaxObj,
         chapter1ParallaxObj,
         chapter2ParallaxObj,
         chapter3ParallaxObj,
         chapter4ParallaxObj,
         chapter5ParallaxObj,
-        chapter6ParallaxObj,
-        endParallaxObj;
+        chapter6ParallaxObj;
     
     function enableParallax(list, targetId) {
         switch(targetId) {
@@ -597,10 +595,6 @@ $(document).ready(function() {
                 if (typeof(chapter6ParallaxObj) === 'undefined') chapter6ParallaxObj = list.parallax(parallaxArgs);
                 else chapter6ParallaxObj.parallax('enable');
                 break;
-            case 'end-parallax':
-                if (typeof(endParallaxObj) === 'undefined') endParallaxObj = list.parallax(parallaxArgs);
-                else endParallaxObj.parallax('enable');
-                break;
         }
     }
     
@@ -613,7 +607,6 @@ $(document).ready(function() {
             if (typeof(chapter4ParallaxObj) !== 'undefined') chapter4ParallaxObj.parallax('disable');
             if (typeof(chapter5ParallaxObj) !== 'undefined') chapter5ParallaxObj.parallax('disable');
             if (typeof(chapter6ParallaxObj) !== 'undefined') chapter6ParallaxObj.parallax('disable');
-            if (typeof(endParallaxObj) !== 'undefined') endParallaxObj.parallax('disable');
         } else {
             switch(targetId) {
                 case 'home-parallax':
@@ -636,9 +629,6 @@ $(document).ready(function() {
                     break;
                 case 'chapter-6-parallax':
                     if (typeof(chapter6ParallaxObj) !== 'undefined') chapter6ParallaxObj.parallax('disable');
-                    break;
-                case 'end-parallax':
-                    if (typeof(endParallaxObj) !== 'undefined') endParallaxObj.parallax('disable');
                     break;
             }
         }

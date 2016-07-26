@@ -728,23 +728,6 @@ nav {
   @media only screen and (max-width: 768px) {
     .parallax#chapter-6-parallax .parallax-image {
       background-position: 60% center; } }
-  .parallax#end-parallax {
-    z-index: 1;
-    -webkit-transform: translateX(25%) !important;
-    -ms-transform: translateX(25%) !important;
-    transform: translateX(25%) !important; }
-    @media only screen and (max-width: 768px) {
-      .parallax#end-parallax {
-        top: 2vh;
-        -webkit-transform: translateX(20%) !important;
-        -ms-transform: translateX(20%) !important;
-        transform: translateX(20%) !important; } }
-    .parallax#end-parallax > li {
-      width: 50vw;
-      top: 10vh !important; }
-      @media only screen and (max-width: 768px) {
-        .parallax#end-parallax > li {
-          width: 60vw; } }
 
 #vignette {
   position: relative;
@@ -1369,13 +1352,22 @@ section {
     section#end .content {
       text-align: center; }
       section#end .content .vertical-align {
-        padding: 10vh 75px 0; }
+        padding: 10vh 75px 40vh; }
         @media only screen and (max-width: 768px) {
           section#end .content .vertical-align {
-            padding: 0 60px; } }
+            padding: 0 60px 30vh; } }
         @media only screen and (max-width: 480px) {
           section#end .content .vertical-align {
-            padding: 0 20px; } }
+            padding: 0 20px 20vh; } }
+        section#end .content .vertical-align .fireworks-image {
+          width: 50%;
+          margin-bottom: -20px; }
+          @media only screen and (max-width: 1024px) {
+            section#end .content .vertical-align .fireworks-image {
+              width: 60%; } }
+          @media only screen and (max-width: 480px) {
+            section#end .content .vertical-align .fireworks-image {
+              width: 75%; } }
       section#end .content .italic-heading {
         margin-top: 20px; }
         @media only screen and (max-width: 480px) {
