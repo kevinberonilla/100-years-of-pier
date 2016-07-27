@@ -40,8 +40,8 @@ $(document).ready(function() {
             if ($('#preload img[src="' + imageUrl + '"]').length == 0) preload.append('<img src="' + imageUrl + '" alt="">');
         });
         
-        // Don't preload audio for tablet portrait and smaller
-        if (!isMobile) {
+        // Don't preload audio for phones
+        if (isTabletOrLarger) {
             $('[data-music]').each(function() {
                 var self = $(this)
                 preload.append('<audio id="music-for-' + self.index('section') + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
