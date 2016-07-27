@@ -23,7 +23,7 @@ $(document).ready(function() {
     /* ----------------------------------------
     Preload Auto-Populate Functions (Disabled for IE Compatibility)
     ---------------------------------------- */
-    function autoPopulatePreload() {
+    /*function autoPopulatePreload() {
         body.append('<div id="preload"></div>');
         
         var preload = $('#preload');
@@ -53,12 +53,12 @@ $(document).ready(function() {
         }
     }
     
-    $.when(autoPopulatePreload()).done(beginLoading);
+    $.when(autoPopulatePreload()).done(beginLoading);*/
     
     /* ----------------------------------------
     Audio Functions
     ---------------------------------------- */
-    function beginLoading() {
+    //function beginLoading() {
         var audioIcon = $('#audio-icon'),
             audio = $('audio'),
             music = $('audio[id*="music-for"]'),
@@ -173,7 +173,7 @@ $(document).ready(function() {
                 .parent()
                 .addClass('show');
         }
-    }
+    //}
     
     /* ----------------------------------------
     Full Parent Height Functions
