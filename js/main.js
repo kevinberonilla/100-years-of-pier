@@ -410,7 +410,10 @@ $(document).ready(function() {
     calculateNavEntryHeight();
     $(window).resize($.debounce(750, calculateNavEntryHeight));
     
-    if (isTabletOrLarger) {
+    if (isMobile) {
+        openNavButton.remove();
+        closeNavButton.remove();
+    } else {
         openNavButton.click(openNav);
         closeNavButton.click(closeNav);
     }
