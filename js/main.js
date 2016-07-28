@@ -1,6 +1,5 @@
 var page = $('html, body'),
     body = $('body'),
-    isInternetExplorer = false,
     isMobile = false,
     isDev = false, // Set this to false before pushing to production
     mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
@@ -9,13 +8,6 @@ if (mobileUserAgentString.test(navigator.userAgent)) {
     isMobile = true;
     
     $(document).on('touchmove', function(e) { e.preventDefault(); }); // Prevent overflow scroll bounce
-}
-
-if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
-
-if (isDev) {
-    console.log('isInternetExplorer: ', isInternetExplorer);
-    console.log('isMobile: ', isMobile);
 }
 
 $(document).ready(function() {
@@ -310,7 +302,7 @@ $(document).ready(function() {
 
         audioVideo.each(function() {
             var element = $(this)[0],
-                ieTimeout = setTimeout(processLoadedMedia, 5000); // IE can't read the readyState property
+                ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
 
             if (element.readyState > 3) {
                 clearTimeout(ieTimeout);
