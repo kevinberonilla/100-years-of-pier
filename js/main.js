@@ -2,26 +2,27 @@ var page = $('html, body'),
     body = $('body'),
     isInternetExplorer = false,
     isMobile = false,
-    isTabletOrLarger = false,
     isDev = false, // Set this to false before pushing to production
-    mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i,
-    tabletUserAgentString = /(tablet|ipad|playbook|silk)|(android(?!.*mobile))/i;
+    mobileUserAgentString = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
     
 if (mobileUserAgentString.test(navigator.userAgent)) {
     isMobile = true;
     
     $(document).on('touchmove', function(e) { e.preventDefault(); }); // Prevent overflow scroll bounce
 }
-    
-if (tabletUserAgentString.test(navigator.userAgent) || matchMedia('only screen and (min-width: 481px) and (min-height: 481px)').matches) isTabletOrLarger = true;
 
 if (navigator.userAgent.indexOf('MSIE ') > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) isInternetExplorer = true; // Excludes Edge
+
+if (isDev) {
+    console.log('isInternetExplorer: ', isInternetExplorer);
+    console.log('isMobile: ', isMobile);
+}
 
 $(document).ready(function() {
     var onePageScroll = $('#main');
     
     /* ----------------------------------------
-    Preload Auto-Populate Functions (Disabled for IE Compatibility)
+    Preload Populate Functions (Disabled for IE Compatibility)
     ---------------------------------------- */
     /*function autoPopulatePreload() {
         body.append('<div id="preload"></div>');
@@ -41,7 +42,7 @@ $(document).ready(function() {
         });
         
         // Don't preload audio for phones
-        if (isTabletOrLarger) {
+        if (!isMobile) {
             $('[data-music]').each(function() {
                 var self = $(this)
                 preload.append('<audio id="music-for-' + self.index('section') + '" loop preload="true"><source src="' + self.data('music') + '" type="audio/mpeg"></audio>');
@@ -58,122 +59,120 @@ $(document).ready(function() {
     /* ----------------------------------------
     Audio Functions
     ---------------------------------------- */
-    //function beginLoading() {
-        var audioIcon = $('#audio-icon'),
-            audio = $('audio'),
-            music = $('audio[id*="music-for"]'),
-            sound = $('audio[id*="sound-for"]'),
-            masterVolume = 1;
+    var audioIcon = $('#audio-icon'),
+        audio = $('audio'),
+        music = $('audio[id*="music-for"]'),
+        sound = $('audio[id*="sound-for"]'),
+        masterVolume = 1;
 
-        function adjustVolume(audioElement, volume, callback) {
-            $(audioElement).stop()
-                .animate({
-                    volume: volume
-                }, 1000, 'linear', callback);
-        }
+    function adjustVolume(audioElement, volume, callback) {
+        $(audioElement).stop()
+            .animate({
+                volume: volume
+            }, 1000, 'linear', callback);
+    }
 
-        function swapMusic(newMusic) {
-            if (newMusic[0].paused) { // Don't crossfade if it's the same music that's currently playing
-                music.each(function() {
-                    var self = $(this);
-                    adjustVolume(self, 0, function() {
-                        self[0].pause();
-                    });
+    function swapMusic(newMusic) {
+        if (newMusic[0].paused) { // Don't crossfade if it's the same music that's currently playing
+            music.each(function() {
+                var self = $(this);
+                adjustVolume(self, 0, function() {
+                    self[0].pause();
                 });
+            });
 
-                newMusic[0].volume = 0;
-                newMusic[0].play();
-                adjustVolume(newMusic, masterVolume); 
-            }
+            newMusic[0].volume = 0;
+            newMusic[0].play();
+            adjustVolume(newMusic, masterVolume); 
         }
+    }
 
-        function playChapterMusic(currentSection) {
-            if (currentSection.hasClass('end')) { // If scrolling up to the end of a previous section
-                var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
-                    closestIntroMusic = $('#music-for-' + closestIntroIndex);
-
-                swapMusic(closestIntroMusic);
-            } else if (currentSection.hasClass('has-intro')) {
-                var introIndex = currentSection.index('section'),
-                    introMusic = $('#music-for-' + introIndex);
-
-                swapMusic(introMusic);
-            } else if (currentSection.is('#home')) {
-                swapMusic($('#music-for-0'));
-            }
-        }
-
-        function muteChapterMusic(currentSection) {
+    function playChapterMusic(currentSection) {
+        if (currentSection.hasClass('end')) { // If scrolling up to the end of a previous section
             var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
                 closestIntroMusic = $('#music-for-' + closestIntroIndex);
 
-            adjustVolume(closestIntroMusic[0], 0);
+            swapMusic(closestIntroMusic);
+        } else if (currentSection.hasClass('has-intro')) {
+            var introIndex = currentSection.index('section'),
+                introMusic = $('#music-for-' + introIndex);
 
-            onePageScroll.one('before-move.np', function() { adjustVolume(closestIntroMusic[0], masterVolume); });
+            swapMusic(introMusic);
+        } else if (currentSection.is('#home')) {
+            swapMusic($('#music-for-0'));
         }
+    }
 
-        function playSound(currentSection) {
-            var sectionIndex = currentSection.index('section'),
-                sectionSound = $('#sound-for-' + sectionIndex),
-                otherSound = sound.not(sectionSound);
+    function muteChapterMusic(currentSection) {
+        var closestIntroIndex = currentSection.prevAll('.has-intro').first().index('section'),
+            closestIntroMusic = $('#music-for-' + closestIntroIndex);
 
-            adjustVolume(sound, 0, function() {
-                otherSound[0].pause();
-                if (!isNaN(otherSound[0].duration)) otherSound[0].currentTime = 0;
-            });
+        adjustVolume(closestIntroMusic[0], 0);
 
-            if (sectionSound.length > 0) {
-                sectionSound[0].play();
-                adjustVolume(sectionSound, masterVolume);
-            } else {
-                sound.each(function() {
-                    var self = $(this);
+        onePageScroll.one('before-move.np', function() { adjustVolume(closestIntroMusic[0], masterVolume); });
+    }
 
-                    adjustVolume(self[0], 0, function() {
-                        self[0].pause();
-                        if (!isNaN(otherSound[0].duration)) self[0].currentTime = 0;
-                    });
-                });
-            }
-        }
+    function playSound(currentSection) {
+        var sectionIndex = currentSection.index('section'),
+            sectionSound = $('#sound-for-' + sectionIndex),
+            otherSound = sound.not(sectionSound);
 
-        if (isMobile) {
-            audioIcon.unbind();
-            $('#preload audio').remove(); // Don't preload audio for tablet portrait and smaller
+        adjustVolume(sound, 0, function() {
+            otherSound[0].pause();
+            if (!isNaN(otherSound[0].duration)) otherSound[0].currentTime = 0;
+        });
+
+        if (sectionSound.length > 0) {
+            sectionSound[0].play();
+            adjustVolume(sectionSound, masterVolume);
         } else {
-            audioIcon.click(function() {
-                if ($(this).hasClass('fa-volume-up')) {
-                    $(this).removeClass('fa-volume-up')
-                        .addClass('fa-volume-off adjust-p-r-6');
+            sound.each(function() {
+                var self = $(this);
 
-                    masterVolume = 0;
-                } else {
-                    $(this).removeClass('fa-volume-off adjust-p-r-6')
-                        .addClass('fa-volume-up');
-
-                    masterVolume = 1;
-                }
-
-                audio.each(function() {
-                    var self = $(this);
-
-                    self.stop(false, true);
-
-                    if (self.is(sound) && masterVolume === 1) {
-                        self[0].volume = 0;
-                    } else {
-                        if (self.is(sound) && masterVolume === 0) {
-                            self[0].pause();
-                            self[0].currentTime = 0;
-                        }
-                        self[0].volume = masterVolume;
-                    }
+                adjustVolume(self[0], 0, function() {
+                    self[0].pause();
+                    if (!isNaN(otherSound[0].duration)) self[0].currentTime = 0;
                 });
-            })
-                .parent()
-                .addClass('show');
+            });
         }
-    //}
+    }
+
+    if (isMobile) {
+        audioIcon.remove();
+        $('#preload audio').remove(); // Don't preload audio for mobile
+    } else {
+        audioIcon.click(function() {
+            if ($(this).hasClass('fa-volume-up')) {
+                $(this).removeClass('fa-volume-up')
+                    .addClass('fa-volume-off adjust-p-r-6');
+
+                masterVolume = 0;
+            } else {
+                $(this).removeClass('fa-volume-off adjust-p-r-6')
+                    .addClass('fa-volume-up');
+
+                masterVolume = 1;
+            }
+
+            audio.each(function() {
+                var self = $(this);
+
+                self.stop(false, true);
+
+                if (self.is(sound) && masterVolume === 1) {
+                    self[0].volume = 0;
+                } else {
+                    if (self.is(sound) && masterVolume === 0) {
+                        self[0].pause();
+                        self[0].currentTime = 0;
+                    }
+                    self[0].volume = masterVolume;
+                }
+            });
+        })
+            .parent()
+            .addClass('show');
+    }
     
     /* ----------------------------------------
     Full Parent Height Functions
@@ -251,73 +250,75 @@ $(document).ready(function() {
     /* ----------------------------------------
     Page Load Functions
     ---------------------------------------- */
-    var image =  $('#preload img'),
-        audioVideo = $('#preload audio[id*="music-for"], .video-background[data-src][data-formats]'),
-        total = (isMobile) ? image.length : image.length + audioVideo.length,
-        loadingBar = $('#loading-bar'),
-        loaded = 0,
-        loadingPercentage = $('#loading-percentage .number');
+    //function beginLoading() {
+        var image =  $('#preload img'),
+            audioVideo = $('#preload audio[id*="music-for"], .video-background[data-src][data-formats]'),
+            total = (isMobile) ? image.length : image.length + audioVideo.length,
+            loadingBar = $('#loading-bar'),
+            loaded = 0,
+            loadingPercentage = $('#loading-percentage .number');
 
-    function processLoadedMedia() {
-        if (!body.hasClass('loaded')) {
-            var percentage = parseInt((loaded / total) * 100);
+        function processLoadedMedia() {
+            if (!body.hasClass('loaded')) {
+                var percentage = parseInt((loaded / total) * 100);
 
-            loaded ++;
+                loaded ++;
 
-            if (percentage <= 100) {
-                loadingBar.css('width', percentage + '%');
-                loadingPercentage.text(percentage);
+                if (percentage <= 100) {
+                    loadingBar.css('width', percentage + '%');
+                    loadingPercentage.text(percentage);
+                }
+
+                if (loaded >= total) {
+                    body.trigger('load.np');
+                    loadingBar.css('width', '100%'); // Safety first
+                    loadingPercentage.text('100');
+                }
             }
-            
-            if (loaded >= total) {
+        }
+
+        page.one('load.np', function() {
+            var homeVideo = $('#home-video'),
+                homeMusic = $('#music-for-0'),
+                homeScrollMessage = $('#home .scroll-message');
+
+            setTimeout(function() {
+                body.addClass('loaded');
+                homeVideo.addClass('show');
+                if (!isMobile) homeMusic[0].play();
+            }, 250);
+
+            setTimeout(function() {
+                body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
+            }, (isDev) ? 0 : 1000);
+
+            setTimeout(function() {
+                homeScrollMessage.addClass('show');
+            }, 2500);
+        });
+
+        if (isDev) {
+            setTimeout(function() {
                 body.trigger('load.np');
-                loadingBar.css('width', '100%'); // Safety first
-                loadingPercentage.text('100');
+            }, 500);
+        }
+
+        image.each(function() {
+            if (this.complete) processLoadedMedia();
+            else $(this).load(processLoadedMedia);
+        });
+
+        audioVideo.each(function() {
+            var element = $(this)[0],
+                ieTimeout = setTimeout(processLoadedMedia, 5000); // IE can't read the readyState property
+
+            if (element.readyState > 3) {
+                clearTimeout(ieTimeout);
+                processLoadedMedia();
             }
-        }
-    }
-
-    page.one('load.np', function() {
-        var homeVideo = $('#home-video'),
-            homeMusic = $('#music-for-0'),
-            homeScrollMessage = $('#home .scroll-message');
-
-        setTimeout(function() {
-            body.addClass('loaded');
-            homeVideo.addClass('show');
-            if (!isMobile) homeMusic[0].play();
-        }, 250);
-
-        setTimeout(function() {
-            body.trigger('start.np'); // Custom namespaced event to initialize one page scroll
-        }, (isDev) ? 0 : 1000);
-
-        setTimeout(function() {
-            homeScrollMessage.addClass('show');
-        }, 2500);
-    });
-
-    if (isDev) {
-        setTimeout(function() {
-            body.trigger('load.np');
-        }, 500);
-    }
-
-    image.each(function() {
-        if (this.complete) processLoadedMedia();
-        else $(this).load(processLoadedMedia);
-    });
-
-    audioVideo.each(function() {
-        var element = $(this)[0],
-            ieTimeout = setTimeout(processLoadedMedia, 5000); // IE and Edge can't read the readyState property
-
-        if (element.readyState > 3) {
-            clearTimeout(ieTimeout);
-            processLoadedMedia();
-        }
-        else element.addEventListener('canplay', processLoadedMedia);
-    });
+            else element.addEventListener('canplay', processLoadedMedia);
+        });
+    //}
     
     /* ----------------------------------------
     Quote Background Image Functions
