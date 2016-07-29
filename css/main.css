@@ -200,7 +200,7 @@ body {
         width: 100%; } }
   body.loaded #home #tagline {
     opacity: 1; }
-  body.loaded #home #loading-bar, body.loaded #home #loading-percentage {
+  body.loaded #home #loading-note, body.loaded #home #loading-percentage, body.loaded #home #loading-bar {
     opacity: 0;
     pointer-events: none; }
   body.nav-open .logo-container.horizontal {

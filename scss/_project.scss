@@ -134,7 +134,7 @@ body {
                 opacity: 1;
             }
             #loading {
-                &-bar, &-percentage {
+                &-note, &-percentage, &-bar {
                     opacity: 0;
                     pointer-events: none;
                 }
