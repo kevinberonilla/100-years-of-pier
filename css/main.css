@@ -107,6 +107,14 @@ h4, .scroll-message {
   @media only screen and (max-width: 480px) {
     h4, .scroll-message {
       font-size: 11px; } }
+  h4.caption.photo-credit, .caption.photo-credit.scroll-message {
+    font-size: 10px;
+    line-height: 16px;
+    text-transform: none;
+    letter-spacing: initial; }
+    @media only screen and (max-width: 768px) {
+      h4.caption.photo-credit, .caption.photo-credit.scroll-message {
+        opacity: 1; } }
   h4 a,
   .scroll-message a,
   h4 a:visited, .scroll-message a:visited {
@@ -200,7 +208,9 @@ body {
         width: 100%; } }
   body.loaded #home #tagline {
     opacity: 1; }
-  body.loaded #home #loading-note, body.loaded #home #loading-percentage, body.loaded #home #loading-bar {
+  body.loaded #home #loading-note,
+  body.loaded #home #loading-percentage,
+  body.loaded #home #loading-bar {
     opacity: 0;
     pointer-events: none; }
   body.nav-open .logo-container.horizontal {
@@ -812,6 +822,10 @@ nav {
   @media only screen and (max-height: 440px) {
     .content {
       display: none; } }
+  .content h4.caption.photo-credit, .content .caption.photo-credit.scroll-message {
+    font-size: 10px;
+    line-height: 16px;
+    bottom: -43px; }
 
 .timeline-entry .content {
   position: relative; }
@@ -1095,8 +1109,8 @@ nav {
       white-space: nowrap;
       pointer-events: all;
       padding: 0 80px;
-      height: -webkit-calc(25vh + 30px);
-      height: calc(25vh + 30px); }
+      height: -webkit-calc(25vh + 65px);
+      height: calc(25vh + 65px); }
       .gallery.type-a > li,
       .gallery.type-b > li {
         display: inline-block !important;
@@ -1150,8 +1164,9 @@ nav {
   @media only screen and (max-width: 480px) {
     .gallery.type-a,
     .gallery.type-b {
-      height: 25vh;
-      max-height: 25vh; }
+      height: -webkit-calc(25vh + 65px);
+      height: calc(25vh + 65px);
+      max-height: 34vh; }
       .gallery.type-a > li,
       .gallery.type-b > li {
         height: 25vh; }
